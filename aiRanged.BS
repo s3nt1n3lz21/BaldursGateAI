@@ -55,10 +55,9 @@ THEN
 		UseItem("potn20",Myself)  // Antidote
 END
 
-// Run away from nearby enemies if health is low
+// Run away from nearby enemies
 IF 
 	ActionListEmpty()
-	HPPercentLT(Myself,35)
 	See(NearestEnemyOf(Myself))
 	Range(NearestEnemyOf(Myself),10)
 THEN
