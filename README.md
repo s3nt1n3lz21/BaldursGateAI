@@ -10,15 +10,15 @@ ai.BS
 
 In order of priority of actions the AI takes
 
-Healing Spells 
+Healing Spells  
 Healing Potion  
 Antidote  
 Cure Disease  
-Run Away If Health Is Low
+Run Away If Health Is Low  
 Debuff/Control Spells  
-Summon Spells
+Summon Spells  
 Buff Spells  
 Offensive Spells  
 Attack My Attacker  
-Attack Nearby Enemies
-Regroup
+Attack Nearby Enemies  
+Regroup  
