@@ -55,6 +55,16 @@ THEN
 		UseItem("potn20",Myself)  // Antidote
 END
 
+// if diseased use cure disease potion
+IF 
+	ActionListEmpty()
+	StateCheck(Myself,STATE_DISEASED) 
+	HasItem("potn17",Myself)  // Elixir of health - cures disease and poisons
+THEN
+	RESPONSE #100
+		UseItem("potn17",Myself)  // Elixir of health - cures disease and poisons
+END
+
 // Run away from nearby enemies if health is low
 IF 
 	ActionListEmpty()
@@ -113,6 +123,7 @@ IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_CHANT)
 	!StateCheck(Myself,STATE_CHANT)
+	!CheckSpellState(Myself,BENEFICIAL_CHANT)
 THEN
 	RESPONSE #100
 		Spell(Myself,CLERIC_CHANT)
