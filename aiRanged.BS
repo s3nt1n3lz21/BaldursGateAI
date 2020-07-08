@@ -223,6 +223,7 @@ END
 
 //If attacked by enemy and enemy is nearby, attack them
 IF
+	ActionListEmpty()
 	AttackedBy([ANYONE],DEFAULT)
 	See(LastAttackerOf(Myself))
 	OR(2)
@@ -255,6 +256,7 @@ END
 
 IF
 	ActionListEmpty()
+	!Range(PartySlot2,10)
 THEN
 	RESPONSE #100
 		MoveToObject(PartySlot2)
