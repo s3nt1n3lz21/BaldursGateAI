@@ -1,3 +1,14 @@
+// Get help if health is low
+//IF
+//	HPPercentLT(Myself,75)
+//	See(NearestEnemyOf(Myself))
+//THEN
+//	RESPONSE #100
+//		Help()
+//		Continue()
+//END
+//ClearActions(Myself)
+
 // If ally health is low and have heal spell, heal them
 IF
 	ActionListEmpty()
@@ -68,7 +79,7 @@ END
 // Run away from nearby enemies if health is low
 IF 
 	ActionListEmpty()
-	HPPercentLT(Myself,45)
+	HPPercentLT(Myself,60)
 	See(NearestEnemyOf(Myself))
 	Range(NearestEnemyOf(Myself),10)
 THEN
@@ -112,21 +123,22 @@ END
 // If have a buff spell use it
 IF
 	ActionListEmpty()
-	HaveSpell(CLERIC_BLESS)
+	HaveSpell(CLERIC_BLESS)  // SPPR101.SPL (Bless)
+	See(NearestEnemyOf(MySelf))
 	!StateCheck(Myself,STATE_BLESS)
 THEN
 	RESPONSE #100
-		Spell(Myself,CLERIC_BLESS)
+		Spell(Myself,CLERIC_BLESS)  // SPPR101.SPL (Bless)
 END
 
 IF
 	ActionListEmpty()
-	HaveSpell(CLERIC_CHANT)
+	HaveSpell(CLERIC_CHANT)  // SPPR203.SPL (Chant)
+	See(NearestEnemyOf(MySelf))
 	!StateCheck(Myself,STATE_CHANT)
-	!CheckSpellState(Myself,BENEFICIAL_CHANT)
 THEN
 	RESPONSE #100
-		Spell(Myself,CLERIC_CHANT)
+		Spell(Myself,CLERIC_CHANT)  // SPPR203.SPL (Chant)
 END
 
 IF
@@ -154,6 +166,15 @@ IF
 THEN
 	RESPONSE #100
 		Spell(Myself,WIZARD_CHAOS_SHIELD)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(WIZARD_SHIELD)
+	!CheckSpellState(Myself,WIZARD_SHIELD)
+THEN
+	RESPONSE #100
+		Spell(Myself,WIZARD_SHIELD)
 END
 
 IF
@@ -221,6 +242,36 @@ THEN
 		Spell(LastSeenBy(Myself),WIZARD_AGANNAZAR_SCORCHER)
 END
 
+// Help hurt allies
+IF
+	HPPercentLT(MostDamagedOf(Myself),80)
+THEN
+	RESPONSE #100
+		AttackOneRound(LastAttackerOf(MostDamagedOf(Myself)))
+END
+
+// Attack weakest enemy
+IF
+	HPPercentLT(NearestEnemyOf(Myself),50)
+THEN
+	RESPONSE #100
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+IF
+	HPPercentLT(SecondNearestEnemyOf(Myself),50)
+THEN
+	RESPONSE #100
+		AttackOneRound(SecondNearestEnemyOf(Myself))
+END
+
+IF
+	HPPercentLT(ThirdNearestEnemyOf(Myself),50)
+THEN
+	RESPONSE #100
+		AttackOneRound(ThirdNearestEnemyOf(Myself))
+END
+
 // If attacked by enemy and they are far away, move towards them
 IF 
 	ActionListEmpty() 
@@ -243,34 +294,58 @@ IF
 		InWeaponRange(LastAttackerOf(Myself))
 THEN
 	RESPONSE #100
-		AttackReevaluate(LastAttackerOf(Myself),30)
+		AttackOneRound(LastAttackerOf(Myself))
 END
 
 //If you can see a nearby enemy and they are in weapon range, attack them
 IF
 	ActionListEmpty()
 	See(NearestEnemyOf(Myself))
-	InWeaponRange(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
-		AttackReevaluate(NearestEnemyOf(Myself),30)
+		AttackOneRound(NearestEnemyOf(Myself))
 END
+
+//IF
+//	ActionListEmpty()
+//	See(NearestEnemyOf(Myself))
+//	InWeaponRange(NearestEnemyOf(Myself))
+//THEN
+//	RESPONSE #100
+//		AttackOneRound(NearestEnemyOf(Myself))
+//END
 
 // If you can see an enemy and they are not in range, move towards them
-IF
-	ActionListEmpty()
-	See(NearestEnemyOf(Myself))
-	!InWeaponRange(NearestEnemyOf(Myself))
-THEN
-	RESPONSE #100
-		MoveToObject(NearestEnemyOf(Myself))
-END
+//IF
+//	ActionListEmpty()
+//	See(NearestEnemyOf(Myself))
+//	!InWeaponRange(NearestEnemyOf(Myself))
+//THEN
+//	RESPONSE #100
+//		MoveToObject(NearestEnemyOf(Myself))
+//END
 
+// Regroup if far away from each other
 IF
 	ActionListEmpty()
 	!Range(PartySlot2,10)
 THEN
 	RESPONSE #100
-		MoveToObject(PartySlot2)
+		MoveToObjectFollow(PartySlot2)
 END
 
+// Find traps
+IF
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		FindTraps()
+END
+
+// Randomly turn around, makes them look more alive
+IF
+	ActionListEmpty()
+THEN
+	RESPONSE #100
+		RandomTurn()
+END
