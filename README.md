@@ -55,3 +55,5 @@ In order of priority of actions the AI takes
 Descriptions of all the AI and game actions https://gibberlings3.github.io/iesdp/scripting/actions/bgeeactions.htm
 
 Introduction to scripting AI http://www.pocketplane.net/tutorials/simscript.html
+
+Using WeiDU to edit the dialog http://forums.pocketplane.net/index.php?topic=55.0
