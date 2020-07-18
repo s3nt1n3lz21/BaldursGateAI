@@ -22,13 +22,18 @@ In order of priority of actions the AI takes
    3. Antidote - If Poisoned
    4. Elixir of Health - If Diseased Or Poisoned
 5. Run Away If Health Is Low  
+
+   1. If enemy within 5 steps, run 10 steps away
+   2. If enemy within 10 steps, run 5 steps away
 6. Debuff/Control Spells  
 
-   1. Cleric - Silence - If Enemy Wizards
+   1. Cleric - Silence - If Enemy Spellcasters
    2. Wizard - Horror - If Many Enemies
 7. Summon Spells 
+
    1. Cleric - Animate Undead
 8. Buff Spells  
+
    1. Cleric - Bless - If Enemies Nearby
    2. Cleric - Chant - If Enemies Nearby
    3. Cleric - Protection From Evil
@@ -39,10 +44,14 @@ In order of priority of actions the AI takes
    8. Cleric - Flame Blade
    9. Cleric - Draw Upon Holy Might
    10. Cleric - Armor Of Faith
-9. Offensive Spells  
+   11. Wizard - Minor Globe Of Invulnerability - If Enemy Spellcasters
+   12. Wizard - Resist Fear
+9. Offensive Spells 
+
    1. Wizard - Magic Missile
-   2. Wizard - Agannazar Scorcher
-10. Help Hurt Allies
+   2. Wizard - Flame Arrow
+   3. Wizard - Agannazar Scorcher
+10. Attack Attackers Of Hurt Allies
 11. Attack Weakest Nearby Enemies
 10. Attack My Attacker  
 11. Attack Nearby Enemies  
@@ -55,7 +64,5 @@ In order of priority of actions the AI takes
 Descriptions of all the AI and game actions https://gibberlings3.github.io/iesdp/scripting/actions/bgeeactions.htm
 
 Introduction to scripting AI http://www.pocketplane.net/tutorials/simscript.html
-
-Keep? Using WeiDU to edit the dialog http://forums.pocketplane.net/index.php?topic=55.0
 
 Creature Spawn List https://gamefaqs.gamespot.com/pc/75251-baldurs-gate/faqs/7777
