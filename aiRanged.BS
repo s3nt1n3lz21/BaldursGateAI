@@ -122,6 +122,11 @@ IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_HORROR)
 	NumCreatureVsPartyGT(Myself,4)
+	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_PANIC)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_PANIC)
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
