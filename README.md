@@ -56,4 +56,6 @@ Descriptions of all the AI and game actions https://gibberlings3.github.io/iesdp
 
 Introduction to scripting AI http://www.pocketplane.net/tutorials/simscript.html
 
-Using WeiDU to edit the dialog http://forums.pocketplane.net/index.php?topic=55.0
+Keep? Using WeiDU to edit the dialog http://forums.pocketplane.net/index.php?topic=55.0
+
+Creature Spawn List https://gamefaqs.gamespot.com/pc/75251-baldurs-gate/faqs/7777
