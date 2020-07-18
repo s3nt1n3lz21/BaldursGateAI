@@ -16,6 +16,7 @@ IF
 	HPPercentLT(MostDamagedOf(Myself),80)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,12138)
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_LIGHT_WOUNDS)
 END
 
@@ -25,6 +26,7 @@ IF
 	HPPercentLT(MostDamagedOf(Myself),80)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,12138)
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_MEDIUM_WOUNDS)
 END
 
@@ -34,6 +36,7 @@ IF
 	HPPercentLT(MostDamagedOf(Myself),75)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,12138)
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_SERIOUS_WOUNDS)
 END
 
@@ -44,6 +47,7 @@ IF
 	HasItem("potn08",Myself)  // Potion of Healing
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,6990)
 		UseItem("potn08",Myself)  // Potion of Healing
 END
 
@@ -53,6 +57,7 @@ IF
 	HasItem("potn52",Myself)  // Potion of Extra Healing
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,6990)
 		UseItem("potn52",Myself)  // Potion of Extra Healing
 END
 
@@ -63,6 +68,7 @@ IF
 	HasItem("potn20",Myself)  // Antidote
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,7029)
 		UseItem("potn20",Myself)  // Antidote
 END
 
@@ -73,6 +79,7 @@ IF
 	HasItem("potn17",Myself)  // Elixir of health - cures disease and poisons
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,26193)
 		UseItem("potn17",Myself)  // Elixir of health - cures disease and poisons
 END
 
@@ -81,10 +88,22 @@ IF
 	ActionListEmpty()
 	HPPercentLT(Myself,60)
 	See(NearestEnemyOf(Myself))
+	Range(NearestEnemyOf(Myself),5)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,2914)
+		RunAwayFrom(NearestEnemyOf(Myself),10)
+END
+
+IF 
+	ActionListEmpty()
+	HPPercentLT(Myself,60)
+	See(NearestEnemyOf(Myself))
 	Range(NearestEnemyOf(Myself),10)
 THEN
 	RESPONSE #100
-		RunAwayFrom(NearestEnemyOf(Myself),25)
+		DisplayStringHead(Myself,2914)
+		RunAwayFrom(NearestEnemyOf(Myself),5)
 END
 
 // Debuff spells
@@ -94,10 +113,10 @@ IF
 	OR(2)
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	Range(LastSeenBy(Myself),100)
 	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,17384)
 		Spell(LastSeenBy(Myself),CLERIC_SILENCE_15_FOOT)  // SPPR211.SPL (Silence, 15' Radius)
 END
 
@@ -108,6 +127,7 @@ IF
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,17384)
 		Spell(LastSeenBy(Myself),WIZARD_HORROR)
 END
 
@@ -117,6 +137,7 @@ IF
 	HaveSpell(CLERIC_ANIMATE_DEAD)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,25956)
 		Spell(Myself,CLERIC_ANIMATE_DEAD)
 END
 
@@ -128,6 +149,7 @@ IF
 	!StateCheck(Myself,STATE_BLESS)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,25956)
 		Spell(Myself,CLERIC_BLESS)  // SPPR101.SPL (Bless)
 END
 
@@ -138,6 +160,7 @@ IF
 	!StateCheck(Myself,STATE_CHANT)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,25956)
 		Spell(Myself,CLERIC_CHANT)  // SPPR203.SPL (Chant)
 END
 
@@ -147,6 +170,7 @@ IF
 	!CheckSpellState(PartySlot2,PROTECTION_FROM_EVIL)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,25956)
 		Spell(PartySlot2,CLERIC_PROTECT_FROM_EVIL)
 END
 
@@ -156,6 +180,7 @@ IF
 	!CheckSpellState(PartySlot2,BARKSKIN)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,25956)
 		Spell(PartySlot2,CLERIC_BARKSKIN)
 END
 
@@ -165,6 +190,7 @@ IF
 	!CheckSpellState(Myself,CHAOS_SHIELD)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,25956)
 		Spell(Myself,WIZARD_CHAOS_SHIELD)
 END
 
@@ -174,6 +200,7 @@ IF
 	!CheckSpellState(Myself,WIZARD_SHIELD)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,25956)
 		Spell(Myself,WIZARD_SHIELD)
 END
 
@@ -188,6 +215,7 @@ IF
 	!HasItem("SGRASP",Myself)  // Shocking Grasp
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,25956)
 		Spell(Myself,CLERIC_SHILLELAGH)  // SPPR110.SPL (Shillelagh)
 END
 
@@ -202,6 +230,7 @@ IF
 	!HasItem("SGRASP",Myself)  // Shocking Grasp
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,25956)
 		Spell(Myself,CLERIC_FLAME_BLADE)
 END
 
@@ -211,6 +240,7 @@ IF
 	!CheckSpellState(Myself,DRAW_UPON_HOLY_MIGHT)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,25956)
 		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
 END
 
@@ -220,17 +250,51 @@ IF
 	!CheckSpellState(Myself,ARMOR_OF_FAITH)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,25956)
 		Spell(Myself,CLERIC_ARMOR_OF_FAITH)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
+	OR(2)
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	!CheckStat(Myself,1,MINORGLOBE)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,25956)
+		Spell(Myself,WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(WIZARD_RESIST_FEAR)
+	!CheckSpellState(Myself,RESIST_FEAR)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,25956)
+		Spell(Myself,WIZARD_RESIST_FEAR)
 END
 
 // Attack spells
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_MAGIC_MISSILE)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,8624)
+		Spell(NearestEnemyOf(Myself),WIZARD_MAGIC_MISSILE)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(WIZARD_FLAME_ARROW)
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
-		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
+		DisplayStringHead(Myself,8624)
+		Spell(LastSeenBy(Myself),WIZARD_FLAME_ARROW)
 END
 
 IF
@@ -239,36 +303,45 @@ IF
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,8624)
 		Spell(LastSeenBy(Myself),WIZARD_AGANNAZAR_SCORCHER)
 END
 
 // Help hurt allies
 IF
+	ActionListEmpty()
 	HPPercentLT(MostDamagedOf(Myself),80)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,578)
 		AttackOneRound(LastAttackerOf(MostDamagedOf(Myself)))
 END
 
 // Attack weakest enemy
 IF
+	ActionListEmpty()
 	HPPercentLT(NearestEnemyOf(Myself),50)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,578)
 		AttackOneRound(NearestEnemyOf(Myself))
 END
 
 IF
+	ActionListEmpty()
 	HPPercentLT(SecondNearestEnemyOf(Myself),50)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,578)
 		AttackOneRound(SecondNearestEnemyOf(Myself))
 END
 
 IF
+	ActionListEmpty()
 	HPPercentLT(ThirdNearestEnemyOf(Myself),50)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,578)
 		AttackOneRound(ThirdNearestEnemyOf(Myself))
 END
 
@@ -294,15 +367,17 @@ IF
 		InWeaponRange(LastAttackerOf(Myself))
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,578)
 		AttackOneRound(LastAttackerOf(Myself))
 END
 
-//If you can see a nearby enemy and they are in weapon range, attack them
+//If you can see a nearby enemy attack them
 IF
 	ActionListEmpty()
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,578)
 		AttackOneRound(NearestEnemyOf(Myself))
 END
 
@@ -328,9 +403,10 @@ END
 // Regroup if far away from each other
 IF
 	ActionListEmpty()
-	!Range(PartySlot2,10)
+	!Range(PartySlot2,20)
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,68344)
 		MoveToObjectFollow(PartySlot2)
 END
 
@@ -339,6 +415,7 @@ IF
 	ActionListEmpty()
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,9462)
 		FindTraps()
 END
 
@@ -347,5 +424,6 @@ IF
 	ActionListEmpty()
 THEN
 	RESPONSE #100
+		DisplayStringHead(Myself,1539)
 		RandomTurn()
 END
