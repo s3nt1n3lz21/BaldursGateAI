@@ -3,7 +3,10 @@ My own scripts for the AI in Baldurs Gate Enhanced Edition. You can apply them u
 
 ![Near Infinity](./images/nearInfinity.png)
 
+To add the script files to your game, find the folder *Scripts* within Near Infinity and click on one of the .BS files to select it and then click *File* -> *Add Copy Of...* in the menu at the top. Name the new file ai.BS. Replace the contents of the file and then click *Compile* and then *Save*. To apply the AI script to your character in the game, open the character menu and click *Customize* at the bottom, select *Script* and if you scroll down you should now see an option *Custom (AI)*. Select this and click save. That's it, your character should now follow these actions. They should have overhead messages saying what they are doing, you can turn these off by commenting out the lines with *DisplayStringHead(Myself,[number])*. But make sure to click *Compile* and *Save* again.
+
 The file ai.BS is used for all melee fighters
+
 The file aiRanged.BS is used for all ranged characters like wizards and archers.
 
 The only difference between the two is that aiRanged.BS makes the characters move away from enemies whenever enemies come near rather than just at low health
