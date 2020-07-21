@@ -1,14 +1,3 @@
-// Get help if health is low
-//IF
-//	HPPercentLT(Myself,75)
-//	See(NearestEnemyOf(Myself))
-//THEN
-//	RESPONSE #100
-//		Help()
-//		Continue()
-//END
-//ClearActions(Myself)
-
 // If ally health is low and have heal spell, heal them
 IF
 	ActionListEmpty()
@@ -83,6 +72,20 @@ THEN
 		UseItem("potn17",Myself)  // Elixir of health - cures disease and poisons
 END
 
+// Move out of the way of allies
+IF 
+	PersonalSpaceDistance(NearestAllyOf(Myself),1)
+THEN
+	RESPONSE #25
+		MoveToOffset([1.1])
+	RESPONSE #25
+		MoveToOffset([1.-1])
+	RESPONSE #25
+		MoveToOffset([-1.1])
+	RESPONSE #25
+		MoveToOffset([-1.-1])
+END
+
 // Run away from nearby enemies
 IF 
 	ActionListEmpty()
@@ -132,6 +135,92 @@ THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
 		Spell(LastSeenBy(Myself),WIZARD_HORROR)
+END
+
+// Remove Magic = Reveal Magic
+IF
+	ActionListEmpty()
+	HaveSpell(WIZARD_REVEAL_MAGIC)
+	OR(2)
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(5)
+		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_SHIELD)
+		CheckStat(LastSeenBy(Myself),1,SHIELDGLOBE)
+		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+		CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
+		CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,17384)
+		Spell(LastSeenBy(Myself),WIZARD_REVEAL_MAGIC)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(WIZARD_DISPEL_MAGIC)
+	OR(2)
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(5)
+		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_SHIELD)
+		CheckStat(LastSeenBy(Myself),1,SHIELDGLOBE)
+		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+		CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
+		CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,17384)
+		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(CLERIC_DISPEL_MAGIC)
+	OR(2)
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(5)
+		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_SHIELD)
+		CheckStat(LastSeenBy(Myself),1,SHIELDGLOBE)
+		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+		CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
+		CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,17384)
+		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
+	OR(2)
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(5)
+		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_SHIELD)
+		CheckStat(LastSeenBy(Myself),1,SHIELDGLOBE)
+		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+		CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
+		CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,17384)
+		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(CLERIC_MISCAST_MAGIC)
+	OR(2)
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	!CheckSpellState(LastSeenBy(Myself),MISCAST_MAGIC)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,17384)
+		Spell(LastSeenBy(Myself),CLERIC_MISCAST_MAGIC)
 END
 
 // Summon spells
@@ -189,6 +278,16 @@ END
 
 IF
 	ActionListEmpty()
+	HaveSpell(CLERIC_AID)
+	!CheckSpellState(PartySlot2,AID)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,25956)
+		Spell(PartySlot2,CLERIC_AID)
+END
+
+IF
+	ActionListEmpty()
 	HaveSpell(WIZARD_CHAOS_SHIELD)
 	!CheckSpellState(Myself,CHAOS_SHIELD)
 THEN
@@ -205,6 +304,16 @@ THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
 		Spell(Myself,WIZARD_SHIELD)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(WIZARD_MINOR_SPELL_DEFLECTION)
+	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,25956)
+		Spell(Myself,WIZARD_MINOR_SPELL_DEFLECTION)
 END
 
 IF
@@ -320,6 +429,16 @@ THEN
 		AttackOneRound(LastAttackerOf(MostDamagedOf(Myself)))
 END
 
+// If attacked by an enemy attack them
+IF 
+	ActionListEmpty() 
+	AttackedBy([ANYONE],DEFAULT)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,578)
+		AttackOneRound(LastAttackerOf(Myself))
+END
+
 // Attack weakest enemy
 IF
 	ActionListEmpty()
@@ -348,60 +467,15 @@ THEN
 		AttackOneRound(ThirdNearestEnemyOf(Myself))
 END
 
-// If attacked by enemy and they are far away, move towards them
-IF 
-	ActionListEmpty() 
-	AttackedBy([ANYONE],DEFAULT)
-	See(LastAttackerOf(Myself))
-	!Range(LastAttackerOf(Myself),5)
-	!InWeaponRange(LastAttackerOf(Myself))
-THEN
-	RESPONSE #100
-		MoveToObject(LastAttackerOf(Myself))
-END
-
-//If attacked by enemy and enemy is nearby, attack them
+//If there are nearby enemies, attack them
 IF
 	ActionListEmpty()
-	AttackedBy([ANYONE],DEFAULT)
-	See(LastAttackerOf(Myself))
-	OR(2)
-		Range(LastAttackerOf(Myself),5)
-		InWeaponRange(LastAttackerOf(Myself))
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,578)
-		AttackOneRound(LastAttackerOf(Myself))
-END
-
-//If you can see a nearby enemy attack them
-IF
-	ActionListEmpty()
-	See(NearestEnemyOf(Myself))
+	NumCreatureVsPartyGT(Myself,0)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,578)
 		AttackOneRound(NearestEnemyOf(Myself))
 END
-
-//IF
-//	ActionListEmpty()
-//	See(NearestEnemyOf(Myself))
-//	InWeaponRange(NearestEnemyOf(Myself))
-//THEN
-//	RESPONSE #100
-//		AttackOneRound(NearestEnemyOf(Myself))
-//END
-
-// If you can see an enemy and they are not in range, move towards them
-//IF
-//	ActionListEmpty()
-//	See(NearestEnemyOf(Myself))
-//	!InWeaponRange(NearestEnemyOf(Myself))
-//THEN
-//	RESPONSE #100
-//		MoveToObject(NearestEnemyOf(Myself))
-//END
 
 // Regroup if far away from each other
 IF
@@ -416,6 +490,7 @@ END
 // Find traps
 IF
 	ActionListEmpty()
+	Class(Myself,THIEF_ALL)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,9462)
