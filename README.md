@@ -28,6 +28,8 @@ In order of priority of actions the AI takes
    2. Potion of Extra Healing - If Health Low
    3. Antidote - If Poisoned
    4. Elixir of Health - If Diseased Or Poisoned
+   
+3. Stay At Least 1 Step Apart From Each Other
 5. Run Away If Health Is Low  
 
    1. If enemy within 5 steps, run 10 steps away
@@ -45,8 +47,10 @@ In order of priority of actions the AI takes
    2. Cleric - Chant - If Enemies Nearby
    3. Cleric - Protection From Evil
    4. Cleric - Barkskin
+   5. Cleric - Aid
    5. Wizard - Chaos Shield
    6. Wizard - Wizard Shield
+   6. Wizard - Minor Spell Deflection
    7. Cleric - Shillelagh
    8. Cleric - Flame Blade
    9. Cleric - Draw Upon Holy Might
@@ -59,11 +63,11 @@ In order of priority of actions the AI takes
    2. Wizard - Flame Arrow
    3. Wizard - Agannazar Scorcher
 10. Attack Attackers Of Hurt Allies
-11. Attack Weakest Nearby Enemies
 10. Attack My Attacker  
+11. Attack Weakest Nearby Enemies
 11. Attack Nearby Enemies  
 12. Regroup
-13. Find Traps
+13. Thief - Find Traps
 14. Randomly Turn Around
 
  ### Useful links
