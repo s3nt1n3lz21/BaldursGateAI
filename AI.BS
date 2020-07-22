@@ -117,6 +117,8 @@ IF
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+	!HasBounceEffects(LastSeenBy(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
@@ -128,10 +130,15 @@ IF
 	HaveSpell(WIZARD_HORROR)
 	NumCreatureVsPartyGT(Myself,4)
 	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
+	!CheckStatGT(NearestEnemyOf(Myself),0,MINORGLOBE)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,MINORGLOBE)
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,MINORGLOBE)
 	!StateCheck(FourthNearestEnemyOf(Myself),STATE_PANIC)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,MINORGLOBE)
 	!StateCheck(FifthNearestEnemyOf(Myself),STATE_PANIC)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,MINORGLOBE)
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
@@ -139,77 +146,88 @@ THEN
 		Spell(LastSeenBy(Myself),WIZARD_HORROR)
 END
 
-// Remove Magic = Reveal Magic
-IF
-	ActionListEmpty()
-	HaveSpell(WIZARD_REVEAL_MAGIC)
-	OR(2)
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(5)
-		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_SHIELD)
-		CheckStat(LastSeenBy(Myself),1,SHIELDGLOBE)
-		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-		CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
-		CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,17384)
-		Spell(LastSeenBy(Myself),WIZARD_REVEAL_MAGIC)
-END
-
+// Wizard Dispel Magic = Remove Magic
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_DISPEL_MAGIC)
 	OR(2)
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(5)
-		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_SHIELD)
-		CheckStat(LastSeenBy(Myself),1,SHIELDGLOBE)
-		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	OR(26)
+		CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_SHIELD)
+		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
+		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+		CheckStatGT(LastSeenBy(Myself),0,IMPROVEDHASTE)
+		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
+		CheckStatGT(LastSeenBy(Myself),0,TRUE_SIGHT)
+		CheckStatGT(LastSeenBy(Myself),0,CLERIC_DEFENSIVE_HARMONY)
+		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+		CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
+		CheckStatGT(LastSeenBy(Myself),0,DEATH_WARD)
+		CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)
+		CheckStatGT(LastSeenBy(Myself),0,STRENGTH_MODIFIER)
+		CheckStatGT(LastSeenBy(Myself),3,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
+		CheckSpellState(LastSeenBy(Myself),POTION_OF_MAGIC_BLOCKING)
 		CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
 		CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+		CheckSpellState(LastSeenBy(Myself),BUFF_PRO_WEAPONS)
+		CheckSpellState(LastSeenBy(Myself),BUFF_PRO_EFFECTS)
+		CheckSpellState(LastSeenBy(Myself),RESIST_FEAR)
+		CheckSpellState(LastSeenBy(Myself),SCROLL_OF_PROTECTION_FROM_MAGIC)
+		StateCheck(LastSeenBy(Myself),STATE_HASTED)
+		StateCheck(LastSeenBy(Myself),STATE_BLESS)
+		StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
+		StateCheck(LastSeenBy(Myself),STATE_BLUR)
+		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!HasBounceEffects(LastSeenBy(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
 END
 
+// Cleric Dispel Magic = Dispel Magic
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	OR(2)
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(5)
-		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_SHIELD)
-		CheckStat(LastSeenBy(Myself),1,SHIELDGLOBE)
-		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	OR(26)
+		CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_SHIELD)
+		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
+		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+		CheckStatGT(LastSeenBy(Myself),0,IMPROVEDHASTE)
+		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
+		CheckStatGT(LastSeenBy(Myself),0,TRUE_SIGHT)
+		CheckStatGT(LastSeenBy(Myself),0,CLERIC_DEFENSIVE_HARMONY)
+		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+		CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
+		CheckStatGT(LastSeenBy(Myself),0,DEATH_WARD)
+		CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)
+		CheckStatGT(LastSeenBy(Myself),0,STRENGTH_MODIFIER)
+		CheckStatGT(LastSeenBy(Myself),3,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
+		CheckSpellState(LastSeenBy(Myself),POTION_OF_MAGIC_BLOCKING)
 		CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
 		CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+		CheckSpellState(LastSeenBy(Myself),BUFF_PRO_WEAPONS)
+		CheckSpellState(LastSeenBy(Myself),BUFF_PRO_EFFECTS)
+		CheckSpellState(LastSeenBy(Myself),RESIST_FEAR)
+		CheckSpellState(LastSeenBy(Myself),SCROLL_OF_PROTECTION_FROM_MAGIC)
+		StateCheck(LastSeenBy(Myself),STATE_HASTED)
+		StateCheck(LastSeenBy(Myself),STATE_BLESS)
+		StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
+		StateCheck(LastSeenBy(Myself),STATE_BLUR)
+		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!HasBounceEffects(LastSeenBy(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
-END
-
-IF
-	ActionListEmpty()
-	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	OR(2)
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(5)
-		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_SHIELD)
-		CheckStat(LastSeenBy(Myself),1,SHIELDGLOBE)
-		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-		CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
-		CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,17384)
-		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
 
 IF
@@ -219,6 +237,8 @@ IF
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
 	!CheckSpellState(LastSeenBy(Myself),MISCAST_MAGIC)
+	!HasBounceEffects(LastSeenBy(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
@@ -395,16 +415,19 @@ END
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_MAGIC_MISSILE)
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,8624)
-		Spell(NearestEnemyOf(Myself),WIZARD_MAGIC_MISSILE)
+		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
 END
 
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_FLAME_ARROW)
 	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,8624)
@@ -415,6 +438,7 @@ IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_AGANNAZAR_SCORCHER)
 	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,8624)
