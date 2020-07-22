@@ -77,3 +77,5 @@ Descriptions of all the AI and game actions https://gibberlings3.github.io/iesdp
 Introduction to scripting AI http://www.pocketplane.net/tutorials/simscript.html
 
 Creature Spawn List https://gamefaqs.gamespot.com/pc/75251-baldurs-gate/faqs/7777
+
+Checking Spell States And Effects https://sorcerers.net/Games/BG2/SpellsReference/SpellEffects.htm
