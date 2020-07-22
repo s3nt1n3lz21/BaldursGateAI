@@ -81,15 +81,15 @@ In order of priority of actions the AI takes
  
  Can be dispelled with dispel magic or remove magic.
  
- Spell Shield: Immune to the spell magic missile.  
+ Shield: Immune to the spell magic missile.  
  
  The following logic is applied to all spells cast to make sure they are not wasted if the enemy has a spell blocking spell active.
  
  If the spell level is 4 or lower, don't cast it if the enemy has Globe of Invulnerability.  
  If the spell is a debuff spell, don't cast it if the enemy has Spell Deflection.  
  If the spell is an offensive or debuff spell, don't cast it if the enemy has Spell Turning.  
- If the spell is of X magic school, don't cast it if the enemy has Spell Immunity X.  
- If the spell is magic missile, don't cast it if the enemy has Spell Shield.  
+ If the spell is of X magic school, don't cast it if the enemy has Spell Immunity to magic school X.  
+ If the spell is magic missile, don't cast it if the enemy has Shield.  
  
  If the spell is remove magic or dispel magic, cast it if the enemy has a magical buff (including Shield)  
  If the spell is a spell breach type spell, cast it if the enemy has a spell blocking spell (not including Shield)  
