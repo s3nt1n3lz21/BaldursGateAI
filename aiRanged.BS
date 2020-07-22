@@ -86,7 +86,7 @@ THEN
 		MoveToOffset([-1.-1])
 END
 
-// Run away from nearby enemies
+// Run away from nearby enemies if health is low
 IF 
 	ActionListEmpty()
 	See(NearestEnemyOf(Myself))
@@ -116,7 +116,7 @@ IF
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
 	!HasBounceEffects(LastSeenBy(Myself))
-	!HasImmunityEffects(LastSeenBy(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
@@ -128,10 +128,15 @@ IF
 	HaveSpell(WIZARD_HORROR)
 	NumCreatureVsPartyGT(Myself,4)
 	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
+	!CheckStatGT(NearestEnemyOf(Myself),0,MINORGLOBE)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,MINORGLOBE)
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,MINORGLOBE)
 	!StateCheck(FourthNearestEnemyOf(Myself),STATE_PANIC)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,MINORGLOBE)
 	!StateCheck(FifthNearestEnemyOf(Myself),STATE_PANIC)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,MINORGLOBE)
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
@@ -174,7 +179,7 @@ IF
 		StateCheck(LastSeenBy(Myself),STATE_BLUR)
 		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
 	!HasBounceEffects(LastSeenBy(Myself))
-	!HasImmunityEffects(LastSeenBy(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
@@ -216,7 +221,7 @@ IF
 		StateCheck(LastSeenBy(Myself),STATE_BLUR)
 		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
 	!HasBounceEffects(LastSeenBy(Myself))
-	!HasImmunityEffects(LastSeenBy(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
@@ -230,6 +235,8 @@ IF
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
 	!CheckSpellState(LastSeenBy(Myself),MISCAST_MAGIC)
+	!HasBounceEffects(LastSeenBy(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
@@ -406,16 +413,19 @@ END
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_MAGIC_MISSILE)
+	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,8624)
-		Spell(NearestEnemyOf(Myself),WIZARD_MAGIC_MISSILE)
+		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
 END
 
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_FLAME_ARROW)
 	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,8624)
@@ -426,6 +436,7 @@ IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_AGANNAZAR_SCORCHER)
 	See(NearestEnemyOf(Myself))
+	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,8624)
