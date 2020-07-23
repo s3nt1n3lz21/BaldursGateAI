@@ -73,24 +73,23 @@ THEN
 END
 
 // Move out of the way of allies
-IF 
-	PersonalSpaceDistance(NearestAllyOf(Myself),1)
-THEN
-	RESPONSE #25
-		MoveToOffset([1.1])
-	RESPONSE #25
-		MoveToOffset([1.-1])
-	RESPONSE #25
-		MoveToOffset([-1.1])
-	RESPONSE #25
-		MoveToOffset([-1.-1])
-END
+//IF 
+//	PersonalSpaceDistance(NearestAllyOf(Myself),1)
+//THEN
+//	RESPONSE #25
+//		MoveToOffset([1.1])
+//	RESPONSE #25
+//		MoveToOffset([1.-1])
+//	RESPONSE #25
+//		MoveToOffset([-1.1])
+//	RESPONSE #25
+//		MoveToOffset([-1.-1])
+//END
 
 // Run away from nearby enemies if health is low
 IF 
 	ActionListEmpty()
 	HPPercentLT(Myself,60)
-	See(NearestEnemyOf(Myself))
 	Range(NearestEnemyOf(Myself),5)
 THEN
 	RESPONSE #100
@@ -101,7 +100,6 @@ END
 IF 
 	ActionListEmpty()
 	HPPercentLT(Myself,60)
-	See(NearestEnemyOf(Myself))
 	Range(NearestEnemyOf(Myself),10)
 THEN
 	RESPONSE #100
@@ -255,6 +253,42 @@ THEN
 		Spell(Myself,CLERIC_ANIMATE_DEAD)
 END
 
+IF
+	ActionListEmpty()
+	HaveSpell(CLERIC_CALL_WOODLAND_BEINGS)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,25956)
+		Spell(Myself,CLERIC_CALL_WOODLAND_BEINGS)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,25956)
+		Spell(Myself,CLERIC_ANIMAL_SUMMONING_3)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(CLERIC_ANIMAL_SUMMONING_2)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,25956)
+		Spell(Myself,CLERIC_ANIMAL_SUMMONING_2)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(CLERIC_ANIMAL_SUMMONING_1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,25956)
+		Spell(Myself,CLERIC_ANIMAL_SUMMONING_1)
+END
+
 // If have a buff spell use it
 IF
 	ActionListEmpty()
@@ -286,6 +320,16 @@ THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
 		Spell(PartySlot2,CLERIC_PROTECT_FROM_EVIL)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
+	!CheckSpellState(Myself,PROTECTION_FROM_EVIL)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,25956)
+		Spell(Myself,CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
 END
 
 IF
