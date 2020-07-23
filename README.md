@@ -29,7 +29,7 @@ In order of priority of actions the AI takes
    3. Antidote - If Poisoned
    4. Elixir of Health - If Diseased Or Poisoned
    
-3. Stay At Least 1 Step Apart From Each Other
+3. Stay At Least 1 Step Apart From Each Other (Needs fixing)
 5. Run Away If Health Is Low  
 
    1. If enemy within 5 steps, run 10 steps away
@@ -38,14 +38,22 @@ In order of priority of actions the AI takes
 
    1. Cleric - Silence - If Enemy Spellcasters
    2. Wizard - Horror - If Many Enemies
+   3. Wizard - Remove Magic - If Enemy With Magical Buff
+   4. Cleric - Dispel Magic - If Enemy With Magical Buff
+   5. Cleric - Miscast Magic - If Enemy Spellcasters
 7. Summon Spells 
 
    1. Cleric - Animate Undead
+   2. Cleric - Call Woodland Beings
+   3. Cleric - Animal Summoning 3
+   4. Cleric - Animal Summoning 2
+   5. Cleric - Animal Summoning 1
 8. Buff Spells  
 
    1. Cleric - Bless - If Enemies Nearby
    2. Cleric - Chant - If Enemies Nearby
    3. Cleric - Protection From Evil
+   3. Cleric - Protection From Evil 10 Foot
    4. Cleric - Barkskin
    5. Cleric - Aid
    5. Wizard - Chaos Shield
