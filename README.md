@@ -82,35 +82,43 @@ In order of priority of actions the AI takes
  
  Cannot be dispelled with dispel magic or remove magic. Requires a spell breach type spell to remove them.
  
- Globe Of Invulnerability : Blocks all spells level 4 or lower.  
- Spell Deflection: Absorbs a certain number of spells. (Will break after blocking so many spells.)  
- Spell Turning: Turns the spells back on the original caster. (Will break after blocking so many spells.)  
- Spell Immunity: Blocks all spells from a certain magic school.  
+ Globe Of Invulnerability : Blocks all spells of a certain level or lower. (Will NOT break after a certain number of spells)  
+ Spell Deflection: Absorbs a certain number of spells. (Will break after a certain number of spells)  
+ Spell Turning: Turns a certain number of spells back towards the original caster. (Will break after a certain number of spells)   
+ Spell Immunity: Blocks all spells from a certain magic school. (Will NOT break after a certain number of spells)  
  
- Can be dispelled with dispel magic or remove magic.
+ Can be dispelled with dispel magic or remove magic.  
  
- Shield: Immune to the spell magic missile.  
+ Shield: Immune to the spell magic missile. (Will NOT break after a certain number of spells)  
  
- The following logic is applied to all spells cast to make sure they are not wasted if the enemy has a spell blocking spell active.
+ The following logic is applied to all spells cast to make sure they are not wasted if the enemy has a spell blocking spell active.  
  
- If the spell level is 4 or lower, cast it if the enemy doesn't have Globe of Invulnerability.  !CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)  
- If the spell is a debuff spell, cast it if the enemy doesn't have Spell Deflection.  !CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)  
- If the spell is an offensive or debuff spell, cast it if the enemy doesn't have Spell Turning.  !CheckStat(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
- If the spell is of X magic school, cast it if the enemy doesn't have Spell Immunity to magic school X.  !CheckStat(LastSeenBy(Myself),X,WIZARD_SPELL_IMMUNITY)
- If the spell is magic missile, cast it if the enemy doesn't have Shield.  !CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
+ If the spell level is 4 or lower, cast it if the enemy doesn't have Globe of Invulnerability.  
+ !CheckStat(LastSeenBy(Myself),0,MINORGLOBE) = Minor Globe Of Invulnerability (Immune to Level 3 spells or lower)  
+ !CheckStat(LastSeenBy(Myself),1,MINORGLOBE) = Globe Of Invulnerability (Immune to level 4 spells or lower)  
+ If the spell is a debuff spell, cast it if the enemy doesn't have Spell Deflection.  
+ !CheckStat(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION) = Minor Spell Deflection (Blocks 4 levels of spells)  
+ !CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION) = Spell Deflection (Blocks 10 levels of spells)  
+ If the spell is an offensive or debuff spell, cast it if the enemy doesn't have Spell Turning.  
+ !CheckStat(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING) = Minor Spell Turning (Turns back 4 levels of spells)
+ !CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING) = Spell Turning (Turns back 12 levels of spells)  
+ If the spell is of X magic school, cast it if the enemy doesn't have Spell Immunity to magic school X.   
+ !CheckStat(LastSeenBy(Myself),X,WIZARD_SPELL_IMMUNITY)  
+ If the spell is magic missile, cast it if the enemy doesn't have Shield.  
+ !CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)  
  
  If the spell is remove magic or dispel magic, cast it if the enemy has a magical buff (including Shield)  
  If the spell is a spell breach type spell, cast it if the enemy has a spell blocking spell (not including Shield)  
 
- Spell Schools
- 1 =
- 2 =
- 3 =
- 4 =
- 5 =
- 6 =
- 7 =
- 8 =
+ Spell Schools  
+ 1 = Abjuration   
+ 2 = Conjuration   
+ 3 = Divination  
+ 4 = Enchantment   
+ 5 = Illusion  
+ 6 = Evocation  
+ 7 = Necromancy  
+ 8 = Alteration   
 
  ### Useful links
 
