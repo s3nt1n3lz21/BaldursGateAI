@@ -93,14 +93,24 @@ In order of priority of actions the AI takes
  
  The following logic is applied to all spells cast to make sure they are not wasted if the enemy has a spell blocking spell active.
  
- If the spell level is 4 or lower, don't cast it if the enemy has Globe of Invulnerability.  
- If the spell is a debuff spell, don't cast it if the enemy has Spell Deflection.  
- If the spell is an offensive or debuff spell, don't cast it if the enemy has Spell Turning.  
- If the spell is of X magic school, don't cast it if the enemy has Spell Immunity to magic school X.  
- If the spell is magic missile, don't cast it if the enemy has Shield.  
+ If the spell level is 4 or lower, cast it if the enemy doesn't have Globe of Invulnerability.  !CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)  
+ If the spell is a debuff spell, cast it if the enemy doesn't have Spell Deflection.  !CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)  
+ If the spell is an offensive or debuff spell, cast it if the enemy doesn't have Spell Turning.  !CheckStat(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
+ If the spell is of X magic school, cast it if the enemy doesn't have Spell Immunity to magic school X.  !CheckStat(LastSeenBy(Myself),X,WIZARD_SPELL_IMMUNITY)
+ If the spell is magic missile, cast it if the enemy doesn't have Shield.  !CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
  
  If the spell is remove magic or dispel magic, cast it if the enemy has a magical buff (including Shield)  
  If the spell is a spell breach type spell, cast it if the enemy has a spell blocking spell (not including Shield)  
+
+ Spell Schools
+ 1 =
+ 2 =
+ 3 =
+ 4 =
+ 5 =
+ 6 =
+ 7 =
+ 8 =
 
  ### Useful links
 
