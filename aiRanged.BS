@@ -109,12 +109,21 @@ END
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_SILENCE_15_FOOT)  // SPPR211.SPL (Silence, 15' Radius)
-	OR(2)
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
 	!HasBounceEffects(LastSeenBy(Myself))
 	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
+
+	//	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
+	//!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
+	//!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
+	//!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
+	//!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
@@ -500,7 +509,9 @@ END
 // If attacked by an enemy attack them
 IF 
 	ActionListEmpty() 
-	AttackedBy([ANYONE],DEFAULT)
+	AttackedBy([ENEMY],DEFAULT)
+	!AttackedBy([CHARMED],DEFAULT)
+	!AttackedBy([REALLYCHARMED],DEFAULT)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,578)
@@ -538,7 +549,7 @@ END
 //If there are nearby enemies, attack them
 IF
 	ActionListEmpty()
-	NumCreatureVsPartyGT(Myself,0)
+	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,578)
@@ -548,7 +559,7 @@ END
 // Regroup if far away from each other
 IF
 	ActionListEmpty()
-	!Range(PartySlot2,20)
+	!Range(PartySlot2,50)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,68344)
