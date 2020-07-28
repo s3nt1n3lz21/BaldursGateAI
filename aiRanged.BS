@@ -32,7 +32,7 @@ END
 // If health is low use a healing potion
 IF 
 	ActionListEmpty()
-	HPPercentLT(Myself,30) // If health is low use a potion
+	HPPercentLT(Myself,60) // If health is low use a potion
 	HasItem("potn08",Myself)  // Potion of Healing
 THEN
 	RESPONSE #100
@@ -42,7 +42,7 @@ END
 
 IF
 	ActionListEmpty()
-	HPPercentLT(Myself,30)
+	HPPercentLT(Myself,60)
 	HasItem("potn52",Myself)  // Potion of Extra Healing
 THEN
 	RESPONSE #100
@@ -93,7 +93,7 @@ IF
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,2914)
-		RunAwayFrom(NearestEnemyOf(Myself),10)
+		RunAwayFrom(NearestEnemyOf(Myself),15)
 END
 
 IF 
@@ -102,7 +102,7 @@ IF
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,2914)
-		RunAwayFrom(NearestEnemyOf(Myself),5)
+		RunAwayFrom(NearestEnemyOf(Myself),10)
 END
 
 // Debuff spells
@@ -500,6 +500,7 @@ END
 IF
 	ActionListEmpty()
 	HPPercentLT(MostDamagedOf(Myself),80)
+	HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,578)
@@ -546,10 +547,20 @@ THEN
 		AttackOneRound(ThirdNearestEnemyOf(Myself))
 END
 
-//If there are nearby enemies, attack them
+// Attack nearby enemies you can see
 IF
 	ActionListEmpty()
 	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,578)
+		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+// Move and attack nearby enemies you can't see
+IF
+	ActionListEmpty()
+	HPPercentLT(NearestEnemyOf(Myself),101)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,578)
@@ -577,10 +588,10 @@ THEN
 END
 
 // Randomly turn around, makes them look more alive
-IF
-	ActionListEmpty()
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,1539)
-		RandomTurn()
-END
+//IF
+//	ActionListEmpty()
+//THEN
+//	RESPONSE #100
+//		DisplayStringHead(Myself,1539)
+//		RandomTurn()
+//END
