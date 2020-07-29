@@ -93,18 +93,24 @@ In order of priority of actions the AI takes
  
  The following logic is applied to all spells cast to make sure they are not wasted if the enemy has a spell blocking spell active.  
  
- If the spell level is 4 or lower, cast it if the enemy doesn't have Globe of Invulnerability.  
- !CheckStat(LastSeenBy(Myself),0,MINORGLOBE) = Minor Globe Of Invulnerability (Immune to Level 3 spells or lower)  
- !CheckStat(LastSeenBy(Myself),1,MINORGLOBE) = Globe Of Invulnerability (Immune to level 4 spells or lower)  
- If the spell is a debuff spell, cast it if the enemy doesn't have Spell Deflection.  
- !CheckStat(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION) = Minor Spell Deflection (Blocks 4 levels of spells)  
- !CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION) = Spell Deflection (Blocks 10 levels of spells)  
- If the spell is an offensive or debuff spell, cast it if the enemy doesn't have Spell Turning.  
- !CheckStat(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING) = Minor Spell Turning (Turns back 4 levels of spells)
- !CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING) = Spell Turning (Turns back 12 levels of spells)  
- If the spell is of X magic school, cast it if the enemy doesn't have Spell Immunity to magic school X.   
+ If the spell level is 3 or lower, cast it if the enemy doesn't have a Globe of Invulnerability. Theres no separate check to determine whether they have minor globe or normal globe active so assume you cant cast level 3 or lower spells for now. This will mean sometimes level 4 spells will still be wasted if the enemy does have globe of invulnerability.
+ 
+ !CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+ 
+ If the spell is a debuff spell, cast it if the enemy doesn't have Spell Deflection. Theres no separate check to determine whether they have minor spell deflection or normal spell deflection.
+ 
+ !CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+ 
+ If the spell is an offensive or debuff spell, cast it if the enemy doesn't have Spell Turning. Theres no separate check to determine whether they have minor spell turning or normal spell turning.
+ 
+ !CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+ 
+ If the spell is of X magic school, cast it if the enemy doesn't have Spell Immunity to magic school X.
+ 
  !CheckStat(LastSeenBy(Myself),X,WIZARD_SPELL_IMMUNITY)  
+ 
  If the spell is magic missile, cast it if the enemy doesn't have Shield.  
+ 
  !CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)  
  
  If the spell is remove magic or dispel magic, cast it if the enemy has a magical buff (including Shield)  
@@ -119,6 +125,10 @@ In order of priority of actions the AI takes
  6 = Evocation  
  7 = Necromancy  
  8 = Alteration   
+
+For each spell, we also check that the enemy isn't immune to spells of that spell level  
+
+!ImmuneToSpellLevel(LastSeenBy(Myself),8)
 
  ### Useful links
 
