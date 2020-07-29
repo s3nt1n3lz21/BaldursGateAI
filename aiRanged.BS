@@ -1,4 +1,4 @@
-// If ally health is low and have heal spell, heal them
+//////////////////////////////////////////////////////////////////// If ally health is low and have heal spell, heal them
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
@@ -29,7 +29,7 @@ THEN
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_SERIOUS_WOUNDS)
 END
 
-// If health is low use a healing potion
+/////////////////////////////////////////////////////////////////// If health is low use a healing potion
 IF 
 	ActionListEmpty()
 	HPPercentLT(Myself,60) // If health is low use a potion
@@ -50,7 +50,7 @@ THEN
 		UseItem("potn52",Myself)  // Potion of Extra Healing
 END
 
-// If poisoned use an antidote potion
+////////////////////////////////////////////////////////////////// If poisoned use an antidote potion
 IF 
 	ActionListEmpty()
 	StateCheck(Myself,STATE_POISONED) 
@@ -61,7 +61,7 @@ THEN
 		UseItem("potn20",Myself)  // Antidote
 END
 
-// if diseased use cure disease potion
+////////////////////////////////////////////////////////////////// if diseased use cure disease potion
 IF 
 	ActionListEmpty()
 	StateCheck(Myself,STATE_DISEASED) 
@@ -72,7 +72,7 @@ THEN
 		UseItem("potn17",Myself)  // Elixir of health - cures disease and poisons
 END
 
-// Move out of the way of allies
+///////////////////////////////////////////////////////////////// Move out of the way of allies
 //IF 
 //	PersonalSpaceDistance(NearestAllyOf(Myself),1)
 //THEN
@@ -86,7 +86,7 @@ END
 //		MoveToOffset([-1.-1])
 //END
 
-// Run away from nearby enemies
+//////////////////////////////////////////////////////////////// Run away from nearby enemies
 IF 
 	ActionListEmpty()
 	Range(NearestEnemyOf(Myself),5)
@@ -105,7 +105,18 @@ THEN
 		RunAwayFrom(NearestEnemyOf(Myself),10)
 END
 
-// Debuff spells
+// Testing
+//IF 
+//	ActionListEmpty()
+//	See(NearestAllyOf(Myself))
+//	CheckStat(LastSeenBy(Myself),2,MINORGLOBE)
+//THEN
+//	RESPONSE #100
+//		AttackOneRound(LastSeenBy(Myself))
+//END
+
+////////////////////////////////////////////////////////////////////////////////////// Debuff spells
+// Level 2 - Alteration
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_SILENCE_15_FOOT)  // SPPR211.SPL (Silence, 15' Radius)
@@ -115,35 +126,47 @@ IF
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
-	!HasBounceEffects(LastSeenBy(Myself))
-	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
-
-	//	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	//!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
-	//!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
-	//!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
-	//!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
 		Spell(LastSeenBy(Myself),CLERIC_SILENCE_15_FOOT)  // SPPR211.SPL (Silence, 15' Radius)
 END
 
+// Level 2 - Necromancy
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_HORROR)
 	NumCreatureVsPartyGT(Myself,4)
 	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
-	!CheckStatGT(NearestEnemyOf(Myself),0,MINORGLOBE)
+	!CheckStat(NearestEnemyOf(Myself),1,MINORGLOBE)
+	!CheckStat(NearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(NearestEnemyOf(Myself),2)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
-	!CheckStatGT(SecondNearestEnemyOf(Myself),0,MINORGLOBE)
+	!CheckStat(SecondNearestEnemyOf(Myself),1,MINORGLOBE)
+	!CheckStat(SecondNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(SecondNearestEnemyOf(Myself),2)
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
-	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,MINORGLOBE)
+	!CheckStat(ThirdNearestEnemyOf(Myself),1,MINORGLOBE)
+	!CheckStat(ThirdNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(ThirdNearestEnemyOf(Myself),2)
 	!StateCheck(FourthNearestEnemyOf(Myself),STATE_PANIC)
-	!CheckStatGT(FourthNearestEnemyOf(Myself),0,MINORGLOBE)
+	!CheckStat(FourthNearestEnemyOf(Myself),1,MINORGLOBE)
+	!CheckStat(FourthNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(FourthNearestEnemyOf(Myself),2)
 	!StateCheck(FifthNearestEnemyOf(Myself),STATE_PANIC)
-	!CheckStatGT(FifthNearestEnemyOf(Myself),0,MINORGLOBE)
+	!CheckStat(FifthNearestEnemyOf(Myself),1,MINORGLOBE)
+	!CheckStat(FifthNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(FifthNearestEnemyOf(Myself),2)
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
@@ -152,6 +175,7 @@ THEN
 END
 
 // Wizard Dispel Magic = Remove Magic
+// Level 3 - Abjuration
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_DISPEL_MAGIC)
@@ -185,8 +209,11 @@ IF
 		StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
 		StateCheck(LastSeenBy(Myself),STATE_BLUR)
 		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
-	!HasBounceEffects(LastSeenBy(Myself))
-	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
@@ -194,6 +221,7 @@ THEN
 END
 
 // Cleric Dispel Magic = Dispel Magic
+// Level 3 - Abjuration
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_DISPEL_MAGIC)
@@ -227,14 +255,18 @@ IF
 		StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
 		StateCheck(LastSeenBy(Myself),STATE_BLUR)
 		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
-	!HasBounceEffects(LastSeenBy(Myself))
-	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
+// Level 3 - Enchantment
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_MISCAST_MAGIC)
@@ -242,15 +274,18 @@ IF
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
 	!CheckSpellState(LastSeenBy(Myself),MISCAST_MAGIC)
-	!HasBounceEffects(LastSeenBy(Myself))
-	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
 		Spell(LastSeenBy(Myself),CLERIC_MISCAST_MAGIC)
 END
 
-// Summon spells
+/////////////////////////////////////////////////////////////////////////////////////// Summon spells
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_ANIMATE_DEAD)
@@ -296,7 +331,7 @@ THEN
 		Spell(Myself,CLERIC_ANIMAL_SUMMONING_1)
 END
 
-// If have a buff spell use it
+////////////////////////////////////////////////////////////////////////////////// If have a buff spell use it
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_BLESS)  // SPPR101.SPL (Bless)
@@ -462,41 +497,54 @@ THEN
 		Spell(Myself,WIZARD_RESIST_FEAR)
 END
 
-// Attack spells
+////////////////////////////////////////////////////////////////////////////////////// Attack spells
+// Level 1 - Evocation
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_MAGIC_MISSILE)
 	See(NearestEnemyOf(Myself))
-	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,8624)
 		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
 END
 
+// Level 3 - Conjuration
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_FLAME_ARROW)
 	See(NearestEnemyOf(Myself))
-	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING) 
+	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,8624)
 		Spell(LastSeenBy(Myself),WIZARD_FLAME_ARROW)
 END
 
+// Level 2 - Evocation
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_AGANNAZAR_SCORCHER)
 	See(NearestEnemyOf(Myself))
-	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),2) 
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,8624)
 		Spell(LastSeenBy(Myself),WIZARD_AGANNAZAR_SCORCHER)
 END
 
-// Help hurt allies
+//////////////////////////////////////////////////////////////////// Help hurt allies
 IF
 	ActionListEmpty()
 	HPPercentLT(MostDamagedOf(Myself),80)
@@ -507,7 +555,7 @@ THEN
 		AttackOneRound(LastAttackerOf(MostDamagedOf(Myself)))
 END
 
-// If attacked by an enemy attack them
+//////////////////////////////////////////////////////////////////// If attacked by an enemy attack them
 IF 
 	ActionListEmpty() 
 	AttackedBy([ENEMY],DEFAULT)
@@ -519,7 +567,7 @@ THEN
 		AttackOneRound(LastAttackerOf(Myself))
 END
 
-// Attack weakest enemy
+//////////////////////////////////////////////////////////////////// Attack weakest enemy
 IF
 	ActionListEmpty()
 	HPPercentLT(NearestEnemyOf(Myself),50)
@@ -547,7 +595,7 @@ THEN
 		AttackOneRound(ThirdNearestEnemyOf(Myself))
 END
 
-// Attack nearby enemies you can see
+//////////////////////////////////////////////////////////// Attack nearby enemies you can see
 IF
 	ActionListEmpty()
 	See(NearestEnemyOf(Myself))
@@ -557,7 +605,7 @@ THEN
 		AttackOneRound(NearestEnemyOf(Myself))
 END
 
-// Move and attack nearby enemies you can't see
+/////////////////////////////////////////////////////////// Move and attack nearby enemies you can't see
 IF
 	ActionListEmpty()
 	HPPercentLT(NearestEnemyOf(Myself),101)
@@ -567,7 +615,7 @@ THEN
 		AttackOneRound(NearestEnemyOf(Myself))
 END
 
-// Regroup if far away from each other
+////////////////////////////////////////////////////////// Regroup if far away from each other
 IF
 	ActionListEmpty()
 	!Range(PartySlot2,50)
@@ -577,7 +625,7 @@ THEN
 		MoveToObjectFollow(PartySlot2)
 END
 
-// Find traps
+/////////////////////////////////////////////////////////// Find traps
 IF
 	ActionListEmpty()
 	Class(Myself,THIEF_ALL)
@@ -587,7 +635,7 @@ THEN
 		FindTraps()
 END
 
-// Randomly turn around, makes them look more alive
+////////////////////////////////////////////////////////// Randomly turn around, makes them look more alive
 //IF
 //	ActionListEmpty()
 //THEN
