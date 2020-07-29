@@ -126,6 +126,10 @@ In order of priority of actions the AI takes
  7 = Necromancy  
  8 = Alteration   
 
+For each spell, we also check that the enemy isn't immune to spells of that spell level  
+
+!ImmuneToSpellLevel(LastSeenBy(Myself),8)
+
  ### Useful links
 
 Descriptions of all the AI and game actions https://gibberlings3.github.io/iesdp/scripting/actions/bgeeactions.htm
