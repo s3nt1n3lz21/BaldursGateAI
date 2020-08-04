@@ -139,3 +139,5 @@ Introduction to scripting AI http://www.pocketplane.net/tutorials/simscript.html
 Creature Spawn List https://gamefaqs.gamespot.com/pc/75251-baldurs-gate/faqs/7777
 
 Checking Spell States And Effects https://sorcerers.net/Games/BG2/SpellsReference/SpellEffects.htm
+
+How Scripts Work http://www.pocketplane.net/tutorials/simscript.html#EssVariables
