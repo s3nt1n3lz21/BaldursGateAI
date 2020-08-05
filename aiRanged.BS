@@ -64,7 +64,10 @@ END
 ////////////////////////////////////////////////////////////////// if diseased use cure disease potion
 IF 
 	ActionListEmpty()
-	StateCheck(Myself,STATE_DISEASED) 
+	OR(2)
+		StateCheck(Myself,STATE_POISONED)
+		StateCheck(Myself,STATE_DISEASED) 
+		HPPercentLT(Myself,60) // If health is low use a potion
 	HasItem("potn17",Myself)  // Elixir of health - cures disease and poisons
 THEN
 	RESPONSE #100
@@ -131,6 +134,14 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
@@ -150,6 +161,14 @@ IF
 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),4)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
@@ -166,10 +185,73 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),5)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
 		Spell(LastSeenBy(Myself),WIZARD_HOLD_MONSTER)  // SPPR211.SPL (Silence, 15' Radius)
+END
+
+// Level 5 - Enchantment
+IF
+	ActionListEmpty()
+	HaveSpell(WIZARD_CHAOS)  // SPPR211.SPL (Silence, 15' Radius)
+	NumCreatureVsPartyGT(Myself,4)
+
+	!StateCheck(NearestEnemyOf(Myself),STATE_DEBUFF)
+	!CheckStat(NearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(NearestEnemyOf(Myself),5)
+	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)	
+
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DEBUFF)
+	!CheckStat(SecondNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(SecondNearestEnemyOf(Myself),5)
+	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
+
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_DEBUFF)
+	!CheckStat(ThirdNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(ThirdNearestEnemyOf(Myself),5)
+	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
+
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_DEBUFF)
+	!CheckStat(FourthNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(FourthNearestEnemyOf(Myself),5)
+	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
+
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_DEBUFF)
+	!CheckStat(FifthNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(FifthNearestEnemyOf(Myself),5)
+	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMAGIC)
+
+	See(NearestEnemyOf(Myself))
+	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
+	!StateCheck(NearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,17384)
+		Spell(LastSeenBy(Myself),WIZARD_CHAOS)  // SPPR211.SPL (Silence, 15' Radius)
 END
 
 // Level 2 - Necromancy
@@ -192,7 +274,7 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatGT(NearestEnemyOf(Myself),0,SAVEVSSPELL)
-	CheckStatLT(NearestEnemyOf(Myself),50,RESISTMAGIC)
+	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)
 	CheckStat(NearestEnemyOf(Myself),0,MINORGLOBE)
 	!CheckSpellState(NearestEnemyOf(Myself),RESIST_FEAR)
 	!CheckSpellState(NearestEnemyOf(Myself),BARBARIAN_RAGE)
@@ -220,7 +302,7 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatGT(SecondNearestEnemyOf(Myself),0,SAVEVSSPELL)
-	CheckStatLT(SecondNearestEnemyOf(Myself),50,RESISTMAGIC)
+	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
 	CheckStat(SecondNearestEnemyOf(Myself),0,MINORGLOBE)
 	!CheckSpellState(SecondNearestEnemyOf(Myself),RESIST_FEAR)
 	!CheckSpellState(SecondNearestEnemyOf(Myself),BARBARIAN_RAGE)
@@ -248,7 +330,7 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatGT(ThirdNearestEnemyOf(Myself),0,SAVEVSSPELL)
-	CheckStatLT(ThirdNearestEnemyOf(Myself),50,RESISTMAGIC)
+	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
 	CheckStat(ThirdNearestEnemyOf(Myself),0,MINORGLOBE)
 	!CheckSpellState(ThirdNearestEnemyOf(Myself),RESIST_FEAR)
 	!CheckSpellState(ThirdNearestEnemyOf(Myself),BARBARIAN_RAGE)
@@ -276,7 +358,7 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatGT(FourthNearestEnemyOf(Myself),0,SAVEVSSPELL)
-	CheckStatLT(FourthNearestEnemyOf(Myself),50,RESISTMAGIC)
+	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
 	CheckStat(FourthNearestEnemyOf(Myself),0,MINORGLOBE)
 	!CheckSpellState(FourthNearestEnemyOf(Myself),RESIST_FEAR)
 	!CheckSpellState(FourthNearestEnemyOf(Myself),BARBARIAN_RAGE)
@@ -304,7 +386,7 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatGT(FifthNearestEnemyOf(Myself),0,SAVEVSSPELL)
-	CheckStatLT(FifthNearestEnemyOf(Myself),50,RESISTMAGIC)
+	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMAGIC)
 	CheckStat(FifthNearestEnemyOf(Myself),0,MINORGLOBE)
 	!CheckSpellState(FifthNearestEnemyOf(Myself),RESIST_FEAR)
 	!CheckSpellState(FifthNearestEnemyOf(Myself),BARBARIAN_RAGE)
@@ -318,6 +400,13 @@ IF
 	!CheckStat(FifthNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY)
 
 	See(NearestEnemyOf(Myself))
+	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
+	!StateCheck(NearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
@@ -364,6 +453,15 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
@@ -372,6 +470,30 @@ END
 
 // Cleric Dispel Magic = Dispel Magic
 // Level 3 - Abjuration
+IF
+	ActionListEmpty()
+	HaveSpell(CLERIC_DISPEL_MAGIC)
+	OR(6)
+		StateCheck(PartySlot1,STATE_DEBUFF)
+		StateCheck(PartySlot2,STATE_DEBUFF)
+		StateCheck(PartySlot3,STATE_DEBUFF)
+		StateCheck(PartySlot4,STATE_DEBUFF)
+		StateCheck(PartySlot5,STATE_DEBUFF)
+		StateCheck(PartySlot6,STATE_DEBUFF)
+	!StateCheck(LastTrigger,STATE_INVISIBLE)
+	!StateCheck(LastTrigger,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastTrigger,STATE_NOT_TARGETABLE)
+	!StateCheck(LastTrigger,STATE_DEBUFF)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,17384)
+		Spell(LastTrigger,CLERIC_DISPEL_MAGIC)
+END
+
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_DISPEL_MAGIC)
@@ -410,6 +532,15 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
@@ -429,16 +560,54 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,17384)
 		Spell(LastSeenBy(Myself),CLERIC_MISCAST_MAGIC)
 END
 
+/////////////////////////////////////////////////////////////////////////////////////// Turn Undead
+// Start turning undead if can turn nearby undead
+IF
+	ActionListEmpty()
+	!ModalState(TURNUNDEAD)
+	Range([EVILCUTOFF.UNDEAD],12)
+	CanTurn([EVILCUTOFF.UNDEAD],5)
+	!ButtonDisabled(BUTTON_TURNUNDEAD)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,70119)
+		Turn()
+END
+
+// Keep turning undead if already turning nearby undead
+IF
+	ActionListEmpty()
+	ModalState(TURNUNDEAD)
+	Range([EVILCUTOFF.UNDEAD],12)
+	CanTurn([EVILCUTOFF.UNDEAD],5)
+THEN
+	RESPONSE #100
+END
+
 /////////////////////////////////////////////////////////////////////////////////////// Summon spells
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_ANIMATE_DEAD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -448,6 +617,10 @@ END
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_CALL_WOODLAND_BEINGS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -457,6 +630,10 @@ END
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -466,6 +643,10 @@ END
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_2)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -475,6 +656,10 @@ END
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_1)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -487,6 +672,10 @@ IF
 	HaveSpell(CLERIC_BLESS)  // SPPR101.SPL (Bless)
 	//See(NearestEnemyOf(MySelf))
 	!StateCheck(Myself,STATE_BLESS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -498,6 +687,10 @@ IF
 	HaveSpell(CLERIC_CHANT)  // SPPR203.SPL (Chant)
 	//See(NearestEnemyOf(MySelf))
 	!StateCheck(Myself,STATE_CHANT)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -508,6 +701,10 @@ IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_DEFENSIVE_HARMONY)  // SPPR203.SPL (Chant)
 	!CheckStat(Myself,1,CLERIC_DEFENSIVE_HARMONY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -517,6 +714,10 @@ END
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_REMOVE_FEAR)  // SPPR203.SPL (Chant)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -527,6 +728,10 @@ IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
 	!CheckSpellState(PartySlot2,PROTECTION_FROM_EVIL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -537,6 +742,10 @@ IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
 	!CheckSpellState(Myself,PROTECTION_FROM_EVIL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -547,6 +756,10 @@ IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_BARKSKIN)
 	!CheckSpellState(PartySlot2,BARKSKIN)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -557,6 +770,10 @@ IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_AID)
 	!CheckSpellState(PartySlot2,AID)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -567,6 +784,10 @@ IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_CHAOS_SHIELD)
 	!CheckSpellState(Myself,CHAOS_SHIELD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -577,6 +798,10 @@ IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_SHIELD)
 	!CheckSpellState(Myself,WIZARD_SHIELD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -592,6 +817,10 @@ IF
 	!HasItem("CHILLT",Myself)  // Chill Touch
 	!HasItem("GHOULT",Myself)  // Ghoul Touch
 	!HasItem("SGRASP",Myself)  // Shocking Grasp
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -607,6 +836,10 @@ IF
 	!HasItem("CHILLT",Myself)  // Chill Touch
 	!HasItem("GHOULT",Myself)  // Ghoul Touch
 	!HasItem("SGRASP",Myself)  // Shocking Grasp
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -618,6 +851,10 @@ IF
 	HaveSpell(CLERIC_DRAW_UPON_HOLY_MIGHT)
 	!CheckSpellState(Myself,DRAW_UPON_HOLY_MIGHT)
 	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -628,6 +865,10 @@ IF
 	ActionListEmpty()
 	HaveSpell(WHITE_HOLY_MIGHT)
 	!CheckSpellState(Myself,DRAW_UPON_HOLY_MIGHT)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -638,6 +879,10 @@ IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_ARMOR_OF_FAITH)
 	!CheckSpellState(Myself,ARMOR_OF_FAITH)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -648,29 +893,24 @@ IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_HOLY_POWER)
 	!CheckSpellState(Myself,HOLY_POWER)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
 		Spell(Myself,CLERIC_HOLY_POWER)
 END
 
-//IF
-//	ActionListEmpty()
-//	HaveSpell(WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
-//	OR(2)
-//		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-//		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-//	!CheckStat(Myself,1,MINORGLOBE)
-//THEN
-//	RESPONSE #100
-//		DisplayStringHead(Myself,25956)
-//		Spell(Myself,WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
-//END
-
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_RESIST_FEAR)
 	!CheckSpellState(Myself,RESIST_FEAR)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -681,6 +921,10 @@ IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_HASTE)
 	!StateCheck(Myself,STATE_HASTED)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -691,6 +935,10 @@ IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_MIRROR_IMAGE)
 	!StateCheck(Myself,STATE_MIRRORIMAGE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -701,6 +949,10 @@ IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
 	!CheckStat(Myself,1,MINORGLOBE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -711,6 +963,10 @@ IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_MINOR_SPELL_DEFLECTION)
 	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -721,6 +977,10 @@ IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_IMPROVED_INVISIBILITY)
 	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,25956)
@@ -728,16 +988,63 @@ THEN
 END
 
 ////////////////////////////////////////////////////////////////////////////////////// Attack spells
+// Level 3 - Evocation
+//IF
+//	ActionListEmpty()
+//	HaveSpell(WIZARD_FIREBALL)
+//	//NumCreatureVsPartyGT(4)
+//	SaveObjectLocation("GLOBAL","EnemyLocation",NearestEnemyOf(Myself))
+//	!NearSavedLocation(PartySlot1,"EnemyLocation",18)
+//	!NearSavedLocation(PartySlot2,"EnemyLocation",18)
+//	!NearSavedLocation(PartySlot3,"EnemyLocation",18)
+//	!NearSavedLocation(PartySlot4,"EnemyLocation",18)
+//	!NearSavedLocation(PartySlot5,"EnemyLocation",18)
+//	!NearSavedLocation(PartySlot6,"EnemyLocation",18)
+//	See(NearestEnemyOf(Myself))
+
+//	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+//	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+//	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+//	!CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
+//	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
+
+//	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+//	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+//	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+//	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
+//	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+//	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+//	!StateCheck(Myself,STATE_SILENCED)
+//	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+//THEN
+//	RESPONSE #100
+//		DisplayStringHead(Myself,8624)
+//		SpellPoint("EnemyLocation",WIZARD_FIREBALL)
+//END
+
 // Level 1 - Evocation
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_MAGIC_MISSILE)
 	See(NearestEnemyOf(Myself))
+
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 	!CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,8624)
@@ -749,10 +1056,22 @@ IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_FLAME_ARROW)
 	See(NearestEnemyOf(Myself))
+
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING) 
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,8624)
@@ -764,10 +1083,22 @@ IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_MELF_ACID_ARROW)
 	See(NearestEnemyOf(Myself))
+
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING) 
 	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTACID)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,8624)
@@ -779,10 +1110,22 @@ IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_AGANNAZAR_SCORCHER)
 	See(NearestEnemyOf(Myself))
+
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) 
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(LastSeenBy(Myself),2) 
+	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,8624)
@@ -794,10 +1137,21 @@ IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_HOLY_SMITE)
 	See(NearestEnemyOf(Myself))
+
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY) 
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(LastSeenBy(Myself),3) 
+	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,8624)
@@ -878,6 +1232,7 @@ END
 ////////////////////////////////////////////////////////// Regroup if far away from each other
 IF
 	ActionListEmpty()
+	NumInPartyGT(1)
 	!Range(PartySlot2,50)
 THEN
 	RESPONSE #100
@@ -889,6 +1244,7 @@ END
 IF
 	ActionListEmpty()
 	Class(Myself,THIEF_ALL)
+	!ModalState(DETECTTRAPS)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,9462)
@@ -902,4 +1258,18 @@ END
 //	RESPONSE #100
 //		DisplayStringHead(Myself,1539)
 //		RandomTurn()
+//		ClearAllActions()
+//END
+
+//IF
+//
+//THEN
+//	RESPONSE #25
+//		MoveToOffset([1.1])
+//	RESPONSE #25
+//		MoveToOffset([1.-1])
+//	RESPONSE #25
+//		MoveToOffset([-1.1])
+//	RESPONSE #25
+//		MoveToOffset([-1.-1])
 //END
