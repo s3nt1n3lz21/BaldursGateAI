@@ -130,6 +130,20 @@ For each spell, we also check that the enemy isn't immune to spells of that spel
 
 !ImmuneToSpellLevel(LastSeenBy(Myself),8)
 
+We also check for Magic, Fire, Cold, Electricity and Acid Resistance
+
+CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)  
+CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)  
+CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)  
+CheckStatLT(LastSeenBy(Myself),75,RESISTELECTRICITY)  
+CheckStatLT(LastSeenBy(Myself),75,RESISTACID)  
+
+We also check nothing is stopping us from casting spells
+
+!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)  
+!StateCheck(Myself,STATE_SILENCED)  
+CheckStatLT(Myself,50,SPELLFAILUREMAGE)  
+
  ### Useful links
 
 Descriptions of all the AI and game actions https://gibberlings3.github.io/iesdp/scripting/actions/bgeeactions.htm
@@ -139,3 +153,5 @@ Introduction to scripting AI http://www.pocketplane.net/tutorials/simscript.html
 Creature Spawn List https://gamefaqs.gamespot.com/pc/75251-baldurs-gate/faqs/7777
 
 Checking Spell States And Effects https://sorcerers.net/Games/BG2/SpellsReference/SpellEffects.htm
+
+How Scripts Work http://www.pocketplane.net/tutorials/simscript.html#EssVariables
