@@ -132,11 +132,17 @@ For each spell, we also check that the enemy isn't immune to spells of that spel
 
 We also check for Magic, Fire, Cold, Electricity and Acid Resistance
 
-CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
-CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)
-CheckStatLT(LastSeenBy(Myself),75,RESISTELECTRICITY)
-CheckStatLT(LastSeenBy(Myself),75,RESISTACID)
+CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)  
+CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)  
+CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)  
+CheckStatLT(LastSeenBy(Myself),75,RESISTELECTRICITY)  
+CheckStatLT(LastSeenBy(Myself),75,RESISTACID)  
+
+We also check nothing is stopping us from casting spells
+
+!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)  
+!StateCheck(Myself,STATE_SILENCED)  
+CheckStatLT(Myself,50,SPELLFAILUREMAGE)  
 
  ### Useful links
 
