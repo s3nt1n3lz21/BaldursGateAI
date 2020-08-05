@@ -130,6 +130,14 @@ For each spell, we also check that the enemy isn't immune to spells of that spel
 
 !ImmuneToSpellLevel(LastSeenBy(Myself),8)
 
+We also check for Magic, Fire, Cold, Electricity and Acid Resistance
+
+CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
+CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)
+CheckStatLT(LastSeenBy(Myself),75,RESISTELECTRICITY)
+CheckStatLT(LastSeenBy(Myself),75,RESISTACID)
+
  ### Useful links
 
 Descriptions of all the AI and game actions https://gibberlings3.github.io/iesdp/scripting/actions/bgeeactions.htm
