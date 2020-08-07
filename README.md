@@ -9,6 +9,15 @@ To add the script files to your game, find the folder *Scripts* within Near Infi
 
 They should have overhead messages saying what they are doing, you can turn these off by commenting out the lines with *DisplayStringHead(Myself,[number])*. But make sure to click *Compile* and *Save* again.
 
+# Getting The Overhead Messages To Appear
+
+Download Modmerge and place the modmerge.exe into your root Baldur's Gate Folder, that has Baldur.exe. Then run modmerge.exe and this will allow the dialog.tlk file with all the strings and text in the game to become editable. You can then replace the dialog.tlk file in the lang\en_US folder with this one. (TODO finish creating and add file).
+
+https://github.com/ScottBrooks/modmerge/releases
+https://forums.beamdog.com/discussion/59492/help-dialog-tlk-edit-but-not-really
+
+# The AI Actions
+
 The file ai.BS is used for all melee fighters
 
 The file aiRanged.BS is used for all ranged characters like wizards and archers.
