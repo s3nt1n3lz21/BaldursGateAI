@@ -1,10 +1,10 @@
 # Party AI Scripts For Baldurs Gate
 
-My own scripts for the AI in Baldurs Gate Enhanced Edition. I was getting annoyed at the party AI casting healing spells too late, as well as some other things, so I started looking into changing the AI and got a bit carried away with it. I used the software NearInfinity to edit the scripts. I'll take you through how you can apply these scripts to your game or even make your own.
+My own scripts for the AI in Baldurs Gate Enhanced Edition. I was getting annoyed at the party AI casting healing spells too late, as well as some other things, so I started looking into changing the AI and got a bit carried away with it. I used the software Near Infinity to edit the scripts. I'll take you through how you can apply these scripts to your game or even make your own.
 
 # Install Near Infinity
 
-You can apply them using [Near Infinity](https://baldursgate.fandom.com/wiki/Near_Infinity) which can be downloaded [here](https://github.com/NearInfinityBrowser/NearInfinity/wiki). Extract the zip file and place the folder anywhere, it should be able to find the games by itself. Run the executable jar file by navigating to it in the command prompt and type 'java -jar NearInfinity.jar'. To open the games files in Near Infinity in the menu click *Game* -> *Open Game* and browse for the game directory where the .key file is located.
+You can apply them using [Near Infinity](https://baldursgate.fandom.com/wiki/Near_Infinity) which can be downloaded [here](https://github.com/NearInfinityBrowser/NearInfinity/wiki). Extract the zip file and place the folder anywhere, it should be able to find the games by itself. Run the executable jar file by navigating to it in the command prompt and type 'java -jar NearInfinity.jar'. To open the games files in Near Infinity in the menu click *Game* -> *Open Game* and browse for the game directory where the .key file is located. I'm using the steam version of Baldurs Gate, C:\Program Files (x86)\Steam\steamapps\common\Baldur's Gate Enhanced Edition, but this should work with any version of the game.
 
 ![Near Infinity](./images/nearInfinity.png)
 
