@@ -24,11 +24,7 @@ To add the script files to your game, find the folder *Scripts* within Near Infi
 
 # The AI Actions
 
-The file ai.BS is used for all melee fighters
-
-The file aiRanged.BS is used for all ranged characters like wizards and archers.
-
-The only difference between the two is that aiRanged.BS makes the characters move away from enemies whenever enemies come near rather than just at low health
+The file ai.BS is used for all melee fighters and the file aiRanged.BS is used for all ranged characters like wizards and archers. The only difference between the two is that aiRanged.BS makes the characters move away from enemies whenever enemies come near rather than just at low health to keep them at a distance.
 
 In order of priority of actions the AI takes
 
@@ -42,20 +38,25 @@ In order of priority of actions the AI takes
    1. Potion of Healing - If Health Low
    2. Potion of Extra Healing - If Health Low
    3. Antidote - If Poisoned
-   4. Elixir of Health - If Diseased Or Poisoned
+   4. Elixir of Health - If Health Low, Poisoned or Diseased
    
-3. Stay At Least 1 Step Apart From Each Other (Needs fixing)
 5. Run Away If Health Is Low  
 
-   1. If enemy within 5 steps, run 10 steps away
-   2. If enemy within 10 steps, run 5 steps away
+   1. If enemy nearby and space to run away, run away
+   2. If enemy nearby and no space to run away, continue with normal actions and attack
 6. Debuff/Control Spells  
 
    1. Cleric - Silence - If Enemy Spellcasters
+   2. Wizard - Secret Word - If Spellcaster with Spell Blocking Spell
+   2. Wizard - Hold Monster - If Many Enemies
+   2. Wizard - Chaos - If Many Enemies
    2. Wizard - Horror - If Many Enemies
    3. Wizard - Remove Magic - If Enemy With Magical Buff
+   4. Cleric - Dispel Magic - If Ally With Magical Debuff
    4. Cleric - Dispel Magic - If Enemy With Magical Buff
    5. Cleric - Miscast Magic - If Enemy Spellcasters
+6. Cleric - Turn Undead
+
 7. Summon Spells 
 
    1. Cleric - Animate Undead
@@ -65,33 +66,41 @@ In order of priority of actions the AI takes
    5. Cleric - Animal Summoning 1
 8. Buff Spells  
 
-   1. Cleric - Bless - If Enemies Nearby
-   2. Cleric - Chant - If Enemies Nearby
+   1. Cleric - Bless
+   2. Cleric - Chant
+   2. Cleric - Defensive Harmony
+   2. Cleric - Remove Fear
    3. Cleric - Protection From Evil
    3. Cleric - Protection From Evil 10 Foot
    4. Cleric - Barkskin
    5. Cleric - Aid
    5. Wizard - Chaos Shield
-   6. Wizard - Wizard Shield
-   6. Wizard - Minor Spell Deflection
+   6. Wizard - Shield
    7. Cleric - Shillelagh
    8. Cleric - Flame Blade
    9. Cleric - Draw Upon Holy Might
    10. Cleric - Armor Of Faith
-   11. Wizard - Minor Globe Of Invulnerability - If Enemy Spellcasters
+   11. Cleric - Holy Power
    12. Wizard - Resist Fear
+   13. Wizard - Haste
+   14. Wizard - Mirror Image
+   15. Wizard - Minor Globe Of Invulnerability
+   15. Wizard - Minor Spell Deflection
+   16. Wizard - Improved Invisibility
+   
 9. Offensive Spells 
 
    1. Wizard - Magic Missile
    2. Wizard - Flame Arrow
+   2. Wizard - Melf Acid Arrow
    3. Wizard - Agannazar Scorcher
+   4. Cleric - Holy Smite
 10. Attack Attackers Of Hurt Allies
 10. Attack My Attacker  
 11. Attack Weakest Nearby Enemies
 11. Attack Nearby Enemies  
 12. Regroup
 13. Thief - Find Traps
-14. Randomly Turn Around
 
  ### Spells That Block Spells
  
