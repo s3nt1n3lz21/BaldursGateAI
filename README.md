@@ -95,6 +95,11 @@ In order of priority of actions the AI takes
    2. Wizard - Melf Acid Arrow
    3. Wizard - Agannazar Scorcher
    4. Cleric - Holy Smite
+9. Use Wands
+
+   1. Wand Of Fear - If Many Enemies
+   2. Wand Of Magic Missile
+   2. Wand Of Frost
 10. Attack Attackers Of Hurt Allies
 10. Attack My Attacker  
 11. Attack Weakest Nearby Enemies
