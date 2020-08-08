@@ -2,13 +2,13 @@
 
 My own scripts for the AI in Baldurs Gate Enhanced Edition. I was getting annoyed at the party AI casting healing spells too late, as well as some other things, so I started looking into changing the AI and got a bit carried away with it. I used the software NearInfinity to edit the scripts. I'll take you through how you can apply these scripts to your game or even make your own.
 
-# Install NearInfinity
+# Install Near Infinity
 
 You can apply them using [Near Infinity](https://baldursgate.fandom.com/wiki/Near_Infinity) which can be downloaded [here](https://github.com/NearInfinityBrowser/NearInfinity/wiki). Extract the zip file and place the folder anywhere, it should be able to find the games by itself. Run the executable jar file by navigating to it in the command prompt and type 'java -jar NearInfinity.jar'. To open the games files in Near Infinity in the menu click *Game* -> *Open Game* and browse for the game directory where the .key file is located.
 
 ![Near Infinity](./images/nearInfinity.png)
 
-# Run ModMerge
+# Run Modmerge
 
 I've also added messages that appear above the party members heads that tell you what their next action is. e.g. 'Attacking Nearest Enemy'. To do this I've had to add new text strings to the game by editing the dialog.tlk file which is a list of all the different text in the game. This is mostly for debugging to make sure they are doing the right thing and can be useful for when you want to write your own scripts. If you don't want these messages to appear, then you can just use find and replace to comment out or remove all the lines with *DisplayStringHead(Myself,[number])* and skip this step.
 
