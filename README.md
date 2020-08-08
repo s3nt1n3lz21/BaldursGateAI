@@ -11,9 +11,10 @@ They should have overhead messages saying what they are doing, you can turn thes
 
 # Getting The Overhead Messages To Appear
 
-Download Modmerge and place the modmerge.exe into your root Baldur's Gate Folder, that has Baldur.exe. Then run modmerge.exe and this will allow the dialog.tlk file with all the strings and text in the game to become editable. You can then replace the dialog.tlk file in the lang\en_US folder with this one. (TODO finish creating and add file).
+Download Modmerge from [here](https://github.com/ScottBrooks/modmerge/releases) and place the modmerge.exe into your root Baldur's Gate Folder, the folder with the Baldur.exe. Then run modmerge.exe and this will allow the dialog.tlk file with all the strings and text in the game to become editable and for NearInfinity to recognize changes to the dialog.tlk. You can then replace the dialog.tlk file in the lang\en_US folder with the one included here. To make sure its working, you can load up NearInfinity and go to *Edit* -> *String table* to see the dialog.tlk file. There should be more than 71374 different text strings now.
 
-https://github.com/ScottBrooks/modmerge/releases
+![Dialog.tlk](./images/dialog.tlk.png)
+
 https://forums.beamdog.com/discussion/59492/help-dialog-tlk-edit-but-not-really
 
 # The AI Actions
