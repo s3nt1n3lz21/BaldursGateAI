@@ -185,6 +185,25 @@ THEN
 		Spell(LastSeenBy(Myself),WIZARD_SECRET_WORD)
 END
 
+// Level 2 - Divination
+IF
+	HaveSpell(WIZARD_DETECT_INVISIBILITY)
+	OR(2)
+		SpellCast([EVILCUTOFF],WIZARD_INVISIBILITY)
+		SpellCast([EVILCUTOFF],WIZARD_IMPROVED_INVISIBILITY)
+	!ImmuneToSpellLevel(LastTrigger,2)
+	!CheckStat(LastTrigger,1,MINORGLOBE)
+	!CheckStat(LastTrigger,1,WIZARD_SPELL_TURNING)
+	!CheckStat(LastTrigger,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(LastTrigger,3,WIZARD_SPELL_IMMUNITY)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+		Spell(Myself,WIZARD_DETECT_INVISIBILITY)
+END
+
 // Level 5 - Enchantment
 IF
 	ActionListEmpty()
@@ -1177,6 +1196,7 @@ END
 //////////////////////////////////////////////////////////////////// Wands
 
 IF
+	ActionListEmpty()
 	Class(Myself,MAGE_ALL)
 	HasItem("wand02",Myself)
 	NumCreatureVsPartyGT(Myself,4)
@@ -1335,6 +1355,7 @@ THEN
 END
 
 IF
+	ActionListEmpty()
 	Class(Myself,MAGE_ALL)
 	HasItem("wand03",Myself)
 	See(NearestEnemyOf(Myself))
@@ -1345,6 +1366,7 @@ THEN
 END
 
 //IF
+//  ActionListEmpty()
 //	Class(Myself,MAGE_ALL)
 //	HasItem("wand04",Myself)
 //	See(NearestEnemyOf(Myself))
@@ -1355,6 +1377,7 @@ END
 //END
 
 //IF
+//  ActionListEmpty()
 //	Class(Myself,MAGE_ALL)
 //	HasItem("wand05",Myself)
 //	See(NearestEnemyOf(Myself))
@@ -1365,6 +1388,7 @@ END
 //END
 
 IF
+    ActionListEmpty()
 	Class(Myself,MAGE_ALL)
 	HasItem("wand06",Myself)
 	See(NearestEnemyOf(Myself))
@@ -1375,6 +1399,7 @@ THEN
 END
 
 //IF
+//  ActionListEmpty()
 //	Class(Myself,MAGE_ALL)
 //	HasItem("wand08",Myself)
 //	See(NearestEnemyOf(Myself))
@@ -1385,6 +1410,7 @@ END
 //END
 
 //IF
+//  ActionListEmpty()
 //	Class(Myself,MAGE_ALL)
 //	HasItem("wand10",Myself)
 //	See(NearestEnemyOf(Myself))
@@ -1395,6 +1421,7 @@ END
 //END
 
 //IF
+//  ActionListEmpty()
 //	Class(Myself,CLERIC_ALL)
 //	HasItem("wand11",Myself)
 //	See(NearestEnemyOf(Myself))
@@ -1405,6 +1432,7 @@ END
 //END
 
 //IF
+//  ActionListEmpty()
 //	Class(Myself,MAGE_ALL)
 //	HasItem("wand18",Myself)
 //	See(NearestEnemyOf(Myself))
@@ -1495,6 +1523,29 @@ THEN
 		DisplayStringHead(Myself,71428) // Regrouping
 		MoveToObjectFollow(PartySlot2)
 END
+
+/////////////////////////////////////////////////////////// Remove Traps
+//IF
+//  OR()
+//  	See("Trap01")
+//		See("Lightningtrap")
+//		See("Hold_persontrap1")
+//		See("Flamestriketrap1")
+//		See("Speartrap1")
+//		See("Speartrap2")
+//		See("Speartrap3")
+//		See("Speartrap4")
+//		See("Speartrap5")
+//		See("Speartrap6")
+//		See("Speartrap7")
+//		See("Speartrap8")
+//		See("Speartrap9")
+//		See("Speartrap10")
+//  	Class(Myself,THIEF_ALL)
+//THEN
+//  RESPONSE #100
+//    	RemoveTraps(LastSeenBy(Myself))
+//END
 
 /////////////////////////////////////////////////////////// Find traps
 IF
