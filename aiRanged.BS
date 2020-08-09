@@ -501,30 +501,176 @@ END
 
 // Cleric Dispel Magic = Dispel Magic
 // Level 3 - Abjuration
+// Dispel Magic On Allies
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	OR(6)
-		StateCheck(PartySlot1,STATE_DEBUFF)
-		StateCheck(PartySlot2,STATE_DEBUFF)
-		StateCheck(PartySlot3,STATE_DEBUFF)
-		StateCheck(PartySlot4,STATE_DEBUFF)
-		StateCheck(PartySlot5,STATE_DEBUFF)
-		StateCheck(PartySlot6,STATE_DEBUFF)
-	!StateCheck(LastTrigger,STATE_INVISIBLE)
-	!StateCheck(LastTrigger,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastTrigger,STATE_NOT_TARGETABLE)
-	!StateCheck(LastTrigger,STATE_DEBUFF)
-
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	OR(11)
+		CheckSpellState(PartySlot1,HOPELESSNESS)
+		CheckSpellState(PartySlot1,ENFEEBLED)
+		CheckSpellState(PartySlot1,HELD)
+		CheckSpellState(PartySlot1,ENTANGLE)
+		CheckSpellState(PartySlot1,WEB)
+		CheckSpellState(PartySlot1,DOOM)
+		StateCheck(PartySlot1,STATE_PANIC)
+		StateCheck(PartySlot1,STATE_CHARMED)
+		StateCheck(PartySlot1,STATE_CONFUSED)
+		StateCheck(PartySlot1,STATE_SLEEPING)
+		StateCheck(PartySlot1,STATE_SLOWED)
+	See(PartySlot1)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
-		Spell(LastTrigger,CLERIC_DISPEL_MAGIC)
+		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
+IF
+	ActionListEmpty()
+	HaveSpell(CLERIC_DISPEL_MAGIC)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	OR(11)
+		CheckSpellState(PartySlot2,HOPELESSNESS)
+		CheckSpellState(PartySlot2,ENFEEBLED)
+		CheckSpellState(PartySlot2,HELD)
+		CheckSpellState(PartySlot2,ENTANGLE)
+		CheckSpellState(PartySlot2,WEB)
+		CheckSpellState(PartySlot2,DOOM)
+		StateCheck(PartySlot2,STATE_PANIC)
+		StateCheck(PartySlot2,STATE_CHARMED)
+		StateCheck(PartySlot2,STATE_CONFUSED)
+		StateCheck(PartySlot2,STATE_SLEEPING)
+		StateCheck(PartySlot2,STATE_SLOWED)
+	See(PartySlot2)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(CLERIC_DISPEL_MAGIC)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	OR(11)
+		CheckSpellState(PartySlot3,HOPELESSNESS)
+		CheckSpellState(PartySlot3,ENFEEBLED)
+		CheckSpellState(PartySlot3,HELD)
+		CheckSpellState(PartySlot3,ENTANGLE)
+		CheckSpellState(PartySlot3,WEB)
+		CheckSpellState(PartySlot3,DOOM)
+		StateCheck(PartySlot3,STATE_PANIC)
+		StateCheck(PartySlot3,STATE_CHARMED)
+		StateCheck(PartySlot3,STATE_CONFUSED)
+		StateCheck(PartySlot3,STATE_SLEEPING)
+		StateCheck(PartySlot3,STATE_SLOWED)
+	See(PartySlot3)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(CLERIC_DISPEL_MAGIC)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	OR(11)
+		CheckSpellState(PartySlot4,HOPELESSNESS)
+		CheckSpellState(PartySlot4,ENFEEBLED)
+		CheckSpellState(PartySlot4,HELD)
+		CheckSpellState(PartySlot4,ENTANGLE)
+		CheckSpellState(PartySlot4,WEB)
+		CheckSpellState(PartySlot4,DOOM)
+		StateCheck(PartySlot4,STATE_PANIC)
+		StateCheck(PartySlot4,STATE_CHARMED)
+		StateCheck(PartySlot4,STATE_CONFUSED)
+		StateCheck(PartySlot4,STATE_SLEEPING)
+		StateCheck(PartySlot4,STATE_SLOWED)
+	See(PartySlot4)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(CLERIC_DISPEL_MAGIC)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	OR(11)
+		CheckSpellState(PartySlot5,HOPELESSNESS)
+		CheckSpellState(PartySlot5,ENFEEBLED)
+		CheckSpellState(PartySlot5,HELD)
+		CheckSpellState(PartySlot5,ENTANGLE)
+		CheckSpellState(PartySlot5,WEB)
+		CheckSpellState(PartySlot5,DOOM)
+		StateCheck(PartySlot5,STATE_PANIC)
+		StateCheck(PartySlot5,STATE_CHARMED)
+		StateCheck(PartySlot5,STATE_CONFUSED)
+		StateCheck(PartySlot5,STATE_SLEEPING)
+		StateCheck(PartySlot5,STATE_SLOWED)
+	See(PartySlot5)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(CLERIC_DISPEL_MAGIC)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	OR(11)
+		CheckSpellState(PartySlot6,HOPELESSNESS)
+		CheckSpellState(PartySlot6,ENFEEBLED)
+		CheckSpellState(PartySlot6,HELD)
+		CheckSpellState(PartySlot6,ENTANGLE)
+		CheckSpellState(PartySlot6,WEB)
+		CheckSpellState(PartySlot6,DOOM)
+		StateCheck(PartySlot6,STATE_PANIC)
+		StateCheck(PartySlot6,STATE_CHARMED)
+		StateCheck(PartySlot6,STATE_CONFUSED)
+		StateCheck(PartySlot6,STATE_SLEEPING)
+		StateCheck(PartySlot6,STATE_SLOWED)
+	See(PartySlot6)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
+END
+
+// Dispel Magic On Enemies
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_DISPEL_MAGIC)
@@ -609,6 +755,18 @@ THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,71390) // Spell: Miscast Magic
 		Spell(LastSeenBy(Myself),CLERIC_MISCAST_MAGIC)
+END
+
+IF
+ 	ActionListEmpty()
+	HaveSpell(CLERIC_DOOM)
+	See(NearestEnemyOf(Myself))
+	// Check resistances high and saving throws high
+	!CheckSpellState(LastSeenBy(Myself),DOOM)
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,) // Spell: Doom
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
 END
 
 /////////////////////////////////////////////////////////////////////////////////////// Turn Undead
@@ -1027,8 +1185,16 @@ END
 //IF
 //	ActionListEmpty()
 //	HaveSpell(WIZARD_FIREBALL)
-//	//NumCreatureVsPartyGT(4)
-//	SaveObjectLocation("GLOBAL","EnemyLocation",NearestEnemyOf(Myself))
+//	NumCreatureVsPartyGT(Myself,4)
+	//SaveObjectLocation("LOCALS","EnemyLocation",NearestEnemyOf(Myself))
+//	Global("EnemyLocation","LOCALS",1)
+//	!Range(NearestEnemyOf(Myself),25)
+//	Range(PartySlot1,5)
+//	Range(PartySlot2,5)
+//	Range(PartySlot3,5)
+//	Range(PartySlot4,5)
+//	Range(PartySlot5,5)
+//	Range(PartySlot6,5)
 //	!NearSavedLocation(PartySlot1,"EnemyLocation",18)
 //	!NearSavedLocation(PartySlot2,"EnemyLocation",18)
 //	!NearSavedLocation(PartySlot3,"EnemyLocation",18)
@@ -1056,7 +1222,35 @@ END
 //THEN
 //	RESPONSE #100
 //		DisplayStringHead(Myself,71418) // Spell: Fireball
+//		SaveObjectLocation("LOCALS","EnemyLocation",NearestEnemyOf(Myself))
 //		SpellPoint("EnemyLocation",WIZARD_FIREBALL)
+//END
+
+//IF
+//	ActionListEmpty()
+//	InParty(Myself)
+//	HaveSpell(WIZARD_FIREBALL)  // SPWI304.SPL (Fireball)
+//	See([EVILCUTOFF])
+//	!Race(LastSeenBy(Myself),DEMILICH)
+//	!Race(LastSeenBy(Myself),LICH)
+//	!Race(LastSeenBy(Myself),RAKSHASA)
+//	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+//	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TRAP)
+//	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_DEFLECTION)
+//	!CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_TURNING)
+//	!CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+//	!CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+//	CheckStatLT(LastSeenBy(Myself),80,RESISTMAGIC)
+//	CheckStatLT(LastSeenBy(Myself),80,RESISTFIRE)
+//	TriggerOverride(FarthestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+//	!TriggerOverride(FarthestEnemyOf(Myself),Range(NearestEnemyOf(Myself),20))
+//	!Range([NEUTRAL],30)
+//	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+//	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+//	!StateCheck(Myself,STATE_SILENCED)
+//THEN
+//	RESPONSE #100
+//		Spell([EVILCUTOFF],WIZARD_FIREBALL)  // SPWI304.SPL (Fireball)
 //END
 
 // Level 1 - Evocation
@@ -1517,7 +1711,7 @@ END
 IF
 	ActionListEmpty()
 	NumInPartyGT(1)
-	!Range(PartySlot2,50)
+	!Range(PartySlot2,80)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,71428) // Regrouping
