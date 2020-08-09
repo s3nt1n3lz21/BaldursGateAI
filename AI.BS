@@ -234,7 +234,7 @@ END
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_CHAOS)  // SPPR211.SPL (Silence, 15' Radius)
-	NumCreatureVsPartyGT(Myself,4)
+	NumCreatureVsPartyGT(Myself,3)
 
 	!StateCheck(NearestEnemyOf(Myself),STATE_DEBUFF)
 	!CheckStat(NearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
@@ -263,13 +263,6 @@ IF
 	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(FourthNearestEnemyOf(Myself),5)
 	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
-
-	!StateCheck(FifthNearestEnemyOf(Myself),STATE_DEBUFF)
-	!CheckStat(FifthNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
-	!ImmuneToSpellLevel(FifthNearestEnemyOf(Myself),5)
-	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMAGIC)
 
 	See(NearestEnemyOf(Myself))
 	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
@@ -999,6 +992,40 @@ THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,71439) // Spell: Doom
 		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+END
+
+IF
+	ActionListEmpty()
+	NumCreatureVsPartyGT(Myself,3)
+	HaveSpell(WIZARD_GREATER_MALISON)
+
+	!CheckSpellState(NearestEnemyOf(Myself),MALISON)
+	CheckStatLT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
+	CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
+	CheckStatGT(NearestEnemyOf(Myself),50,MAXHITPOINTS)
+	CheckStatLT(NearestEnemyOf(Myself),10,THAC0)
+
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MALISON)
+	CheckStatLT(SecondNearestEnemyOf(Myself),5,SAVEVSSPELL)
+	CheckStatLT(SecondNearestEnemyOf(Myself),0,ARMORCLASS)
+	CheckStatGT(SecondNearestEnemyOf(Myself),50,MAXHITPOINTS)
+	CheckStatLT(SecondNearestEnemyOf(Myself),10,THAC0)
+
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MALISON)
+	CheckStatLT(ThirdNearestEnemyOf(Myself),5,SAVEVSSPELL)
+	CheckStatLT(ThirdNearestEnemyOf(Myself),0,ARMORCLASS)
+	CheckStatGT(ThirdNearestEnemyOf(Myself),50,MAXHITPOINTS)
+	CheckStatLT(ThirdNearestEnemyOf(Myself),10,THAC0)
+
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MALISON)
+	CheckStatLT(FourthNearestEnemyOf(Myself),5,SAVEVSSPELL)
+	CheckStatLT(FourthNearestEnemyOf(Myself),0,ARMORCLASS)
+	CheckStatGT(FourthNearestEnemyOf(Myself),50,MAXHITPOINTS)
+	CheckStatLT(FourthNearestEnemyOf(Myself),10,THAC0)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71440) // Spell: Greater Malison
+		Spell(NearestEnemyOf(Myself),WIZARD_GREATER_MALISON)
 END
 
 /////////////////////////////////////////////////////////////////////////////////////// Turn Undead
