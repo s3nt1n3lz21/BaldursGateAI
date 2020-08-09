@@ -989,11 +989,15 @@ IF
  	ActionListEmpty()
 	HaveSpell(CLERIC_DOOM)
 	See(NearestEnemyOf(Myself))
-	// Check resistances high and saving throws high
+	OR(4)
+		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
+		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+		CheckStatGT(LastSeenBy(Myself),50,MAXHITPOINTS)
+		CheckStatLT(LastSeenBy(Myself),10,THAC0)
 	!CheckSpellState(LastSeenBy(Myself),DOOM)
 THEN
 	RESPONSE #100
-		//DisplayStringHead(Myself,) // Spell: Doom
+		DisplayStringHead(Myself,71439) // Spell: Doom
 		Spell(LastSeenBy(Myself),CLERIC_DOOM)
 END
 
