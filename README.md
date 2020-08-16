@@ -45,18 +45,28 @@ In order of priority of actions the AI takes
 5. Run Away If Health Is Low  
 
    1. If enemy nearby and space to run away, run away
-   2. If enemy nearby and no space to run away, continue with normal actions and attack
+   2. If enemy nearby and no space to run away, continue with normal actions
 6. Debuff/Control Spells  
 
+   1. Cleric - Zone Of Sweet Air - If Gas/Cloud Spell In Area
    1. Cleric - Silence - If Enemy Spellcasters
-   2. Wizard - Secret Word - If Spellcaster with Spell Blocking Spell
+   2. Wizard - Secret Word - If Spellcaster With Spell Blocking Spell
+   2. Wizard - Detect Invisibility - If Enemy Casts Invisibility Spell
    2. Wizard - Hold Monster - If Many Enemies
    2. Wizard - Chaos - If Many Enemies
    2. Wizard - Horror - If Many Enemies
+   3. Wizard - Dispel Magic - If Ally With Magical Debuff
+   3. Wizard - Dispel Magic - If Enemy With Magical Buff
    3. Wizard - Remove Magic - If Enemy With Magical Buff
    4. Cleric - Dispel Magic - If Ally With Magical Debuff
    4. Cleric - Dispel Magic - If Enemy With Magical Buff
    5. Cleric - Miscast Magic - If Enemy Spellcasters
+   6. Cleric - Doom - If Tough Enemy
+   7. Wizard - Greater Malison - If Tough Enemy
+6. Debuff Wands
+
+   1. Wizard - Wand Of Fear - If Many Enemies
+   2. Wizard - Wand Of Paralyzation- If Tough Enemy 
 6. Cleric - Turn Undead
 
 7. Summon Spells 
@@ -89,23 +99,24 @@ In order of priority of actions the AI takes
    15. Wizard - Minor Globe Of Invulnerability
    15. Wizard - Minor Spell Deflection
    16. Wizard - Improved Invisibility
-   
-9. Offensive Spells 
+9. Target Next Enemies (Target one of the following, then continue to next block)
+
+   1. Target Attackers Of Hurt Allies
+   2. Target My Attacker  
+   3. Target Weakest Nearby Enemies
+9. Offensive Spells On Chosen Target
 
    1. Wizard - Magic Missile
    2. Wizard - Flame Arrow
    2. Wizard - Melf Acid Arrow
    3. Wizard - Agannazar Scorcher
    4. Cleric - Holy Smite
-9. Use Wands
+9. Offensive Wands On Chosen Target
 
-   1. Wand Of Fear - If Many Enemies
-   2. Wand Of Magic Missile
-   2. Wand Of Frost
-10. Attack Attackers Of Hurt Allies
-10. Attack My Attacker  
-11. Attack Weakest Nearby Enemies
-11. Attack Nearby Enemies  
+   1. Wizard - Wand Of Frost - If Tough Enemy
+   2. Wizard - Wand Of Magic Missile
+   3. Cleric - Wand Of Heavens - If Tough Enemy
+11. Melee/Ranged Non-Spell Attack On Chosen Target  
 12. Regroup
 13. Thief - Find Traps
 
