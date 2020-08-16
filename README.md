@@ -175,6 +175,11 @@ We also check nothing is stopping us from casting spells
 !StateCheck(Myself,STATE_SILENCED)  
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)  
 
+ ### Testing Creatures
+ 
+ CLUAConsole:CreateCreature("skelet") Skeleton
+ CLUAConsole:CreateCreature("werewogr") Greater Werewolf
+
  ### Useful links
 
 Descriptions of all the AI and game actions https://gibberlings3.github.io/iesdp/scripting/actions/bgeeactions.htm
