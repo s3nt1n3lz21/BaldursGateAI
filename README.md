@@ -111,16 +111,17 @@ In order of priority of actions the AI takes
 
  ### Spells That Block Spells
  
- Cannot be dispelled with dispel magic or remove magic. Requires a spell breach type spell to remove them.
+ The following table shows a list of the different spells that are used to block other spells along with their descriptions, whether they will eventually break after protecting against a finite number of spells and whether they are dispelled by the spell 'dispel magic' or a 'spell breach' type spell.
  
- Globe Of Invulnerability : Blocks all spells of a certain level or lower. (Will NOT break after a certain number of spells)  
- Spell Deflection: Absorbs a certain number of spells. (Will break after a certain number of spells)  
- Spell Turning: Turns a certain number of spells back towards the original caster. (Will break after a certain number of spells)   
- Spell Immunity: Blocks all spells from a certain magic school. (Will NOT break after a certain number of spells)  
+ | Spell                    | Description                                   | Break After Many Spells | Dispel Magic | Spell Breach |
+|--------------------------|-----------------------------------------------|-------------------------|--------------|--------------|
+| Globe Of Invulnerability | Blocks all spells of a certain level or lower | No                      | No           | Yes          |
+| Spell Deflection         | Absorbs spells                                | Yes                     | No           | Yes          |
+| Spell Turning            | Turns spells back towards the original caster | Yes                     | No           | Yes          |
+| Spell Immunity           | Blocks all spells from a certain magic school | No                      | No           | Yes          |
+| Shield                   | Immune to magic missile spell                 | No                      | Yes          | No           |
  
- Can be dispelled with dispel magic or remove magic.  
- 
- Shield: Immune to the spell magic missile. (Will NOT break after a certain number of spells)  
+ #### Spell Logic
  
  The following logic is applied to all spells cast to make sure they are not wasted if the enemy has a spell blocking spell active.  
  
@@ -147,7 +148,7 @@ In order of priority of actions the AI takes
  If the spell is remove magic or dispel magic, cast it if the enemy has a magical buff (including Shield)  
  If the spell is a spell breach type spell, cast it if the enemy has a spell blocking spell (not including Shield)  
 
- Spell Schools  
+ #### Spell Schools  
  1 = Abjuration   
  2 = Conjuration   
  3 = Divination  
@@ -157,9 +158,13 @@ In order of priority of actions the AI takes
  7 = Necromancy  
  8 = Alteration   
 
+#### Check Immune To Spell Level
+
 For each spell, we also check that the enemy isn't immune to spells of that spell level  
 
 !ImmuneToSpellLevel(LastSeenBy(Myself),8)
+
+#### Check For Resistances
 
 We also check for Magic, Fire, Cold, Electricity and Acid Resistance
 
@@ -168,6 +173,8 @@ CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
 CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)  
 CheckStatLT(LastSeenBy(Myself),75,RESISTELECTRICITY)  
 CheckStatLT(LastSeenBy(Myself),75,RESISTACID)  
+
+#### Check Theres Nothing Stopping Us Casting The Spell
 
 We also check nothing is stopping us from casting spells
 
