@@ -64,7 +64,7 @@ END
 ////////////////////////////////////////////////////////////////// if diseased use cure disease potion
 IF 
 	ActionListEmpty()
-	OR(2)
+	OR(3)
 		StateCheck(Myself,STATE_POISONED)
 		StateCheck(Myself,STATE_DISEASED) 
 		HPPercentLT(Myself,60) // If health is low use a potion
@@ -1050,6 +1050,182 @@ THEN
 		Spell(NearestEnemyOf(Myself),WIZARD_GREATER_MALISON)
 END
 
+/////////////////////////////////////////////////////////////////////////////////////// Debuff Wands
+IF
+	ActionListEmpty()
+	Class(Myself,MAGE_ALL)
+	HasItem("wand02",Myself)
+	NumCreatureVsPartyGT(Myself,4)
+	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
+	!CheckStat(NearestEnemyOf(Myself),1,MINORGLOBE)
+	!CheckStat(NearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(NearestEnemyOf(Myself),2)
+	!General(NearestEnemyOf(Myself),UNDEAD)
+	!Race(NearestEnemyOf(Myself),DEMONIC)
+	!Kit(NearestEnemyOf(Myself),CAVALIER)
+	!Kit(NearestEnemyOf(Myself),Blackguard)
+	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatGT(NearestEnemyOf(Myself),0,SAVEVSSPELL)
+	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)
+	CheckStat(NearestEnemyOf(Myself),0,MINORGLOBE)
+	!CheckSpellState(NearestEnemyOf(Myself),RESIST_FEAR)
+	!CheckSpellState(NearestEnemyOf(Myself),BARBARIAN_RAGE)
+	!CheckSpellState(NearestEnemyOf(Myself),BERSERKER_RAGE)
+	!CheckSpellState(NearestEnemyOf(Myself),MINSC_BERSERK)
+	!CheckSpellState(NearestEnemyOf(Myself),POTION_OF_CLARITY)
+	!CheckStatGT(NearestEnemyOf(Myself),0,WIZARD_SPELL_DEFLECTION)
+	!CheckStatGT(NearestEnemyOf(Myself),0,WIZARD_SPELL_TURNING)
+	!CheckStatGT(NearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+	!CheckStat(NearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+	!CheckStat(NearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY)
+
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
+	!CheckStat(SecondNearestEnemyOf(Myself),1,MINORGLOBE)
+	!CheckStat(SecondNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(SecondNearestEnemyOf(Myself),2)
+	!General(SecondNearestEnemyOf(Myself),UNDEAD)
+	!Race(SecondNearestEnemyOf(Myself),DEMONIC)
+	!Kit(SecondNearestEnemyOf(Myself),CAVALIER)
+	!Kit(SecondNearestEnemyOf(Myself),Blackguard)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatGT(SecondNearestEnemyOf(Myself),0,SAVEVSSPELL)
+	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
+	CheckStat(SecondNearestEnemyOf(Myself),0,MINORGLOBE)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),RESIST_FEAR)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),BARBARIAN_RAGE)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),BERSERKER_RAGE)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),MINSC_BERSERK)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),POTION_OF_CLARITY)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,WIZARD_SPELL_DEFLECTION)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,WIZARD_SPELL_TURNING)
+	!CheckStatGT(SecondNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+	!CheckStat(SecondNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+	!CheckStat(SecondNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY)
+
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
+	!CheckStat(ThirdNearestEnemyOf(Myself),1,MINORGLOBE)
+	!CheckStat(ThirdNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(ThirdNearestEnemyOf(Myself),2)
+	!General(ThirdNearestEnemyOf(Myself),UNDEAD)
+	!Race(ThirdNearestEnemyOf(Myself),DEMONIC)
+	!Kit(ThirdNearestEnemyOf(Myself),CAVALIER)
+	!Kit(ThirdNearestEnemyOf(Myself),Blackguard)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_DISABLED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatGT(ThirdNearestEnemyOf(Myself),0,SAVEVSSPELL)
+	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
+	CheckStat(ThirdNearestEnemyOf(Myself),0,MINORGLOBE)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),RESIST_FEAR)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),BARBARIAN_RAGE)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),BERSERKER_RAGE)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),MINSC_BERSERK)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),POTION_OF_CLARITY)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,WIZARD_SPELL_DEFLECTION)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,WIZARD_SPELL_TURNING)
+	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+	!CheckStat(ThirdNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+	!CheckStat(ThirdNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY)
+
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_PANIC)
+	!CheckStat(FourthNearestEnemyOf(Myself),1,MINORGLOBE)
+	!CheckStat(FourthNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(FourthNearestEnemyOf(Myself),2)
+	!General(FourthNearestEnemyOf(Myself),UNDEAD)
+	!Race(FourthNearestEnemyOf(Myself),DEMONIC)
+	!Kit(FourthNearestEnemyOf(Myself),CAVALIER)
+	!Kit(FourthNearestEnemyOf(Myself),Blackguard)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+	!StateCheck(FourthNearestEnemyOf(Myself),STATE_DISABLED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatGT(FourthNearestEnemyOf(Myself),0,SAVEVSSPELL)
+	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
+	CheckStat(FourthNearestEnemyOf(Myself),0,MINORGLOBE)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),RESIST_FEAR)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),BARBARIAN_RAGE)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),BERSERKER_RAGE)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),MINSC_BERSERK)
+	!CheckSpellState(FourthNearestEnemyOf(Myself),POTION_OF_CLARITY)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,WIZARD_SPELL_DEFLECTION)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,WIZARD_SPELL_TURNING)
+	!CheckStatGT(FourthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+	!CheckStat(FourthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+	!CheckStat(FourthNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY)
+
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_PANIC)
+	!CheckStat(FifthNearestEnemyOf(Myself),1,MINORGLOBE)
+	!CheckStat(FifthNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(FifthNearestEnemyOf(Myself),2)
+	!General(FifthNearestEnemyOf(Myself),UNDEAD)
+	!Race(FifthNearestEnemyOf(Myself),DEMONIC)
+	!Kit(FifthNearestEnemyOf(Myself),CAVALIER)
+	!Kit(FifthNearestEnemyOf(Myself),Blackguard)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+	!StateCheck(FifthNearestEnemyOf(Myself),STATE_DISABLED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatGT(FifthNearestEnemyOf(Myself),0,SAVEVSSPELL)
+	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMAGIC)
+	CheckStat(FifthNearestEnemyOf(Myself),0,MINORGLOBE)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),RESIST_FEAR)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),BARBARIAN_RAGE)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),BERSERKER_RAGE)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),MINSC_BERSERK)
+	!CheckSpellState(FifthNearestEnemyOf(Myself),POTION_OF_CLARITY)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,WIZARD_SPELL_DEFLECTION)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,WIZARD_SPELL_TURNING)
+	!CheckStatGT(FifthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+	!CheckStat(FifthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+	!CheckStat(FifthNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY)
+
+	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
+	!StateCheck(NearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71430) // Wand: Fear
+		UseItem("wand02",NearestEnemyOf(Myself))
+END
+
+IF
+  	ActionListEmpty()
+	Class(Myself,MAGE_ALL)
+	HasItem("wand04",Myself)
+	See(NearestEnemyOf(Myself))
+	!CheckSpellState(LastSeenBy(Myself),HELD)
+	OR(4)
+		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
+		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
+		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71431) // Wand: Paralyzation
+		UseItem("wand04",LastSeenBy(Myself))
+END
+
 /////////////////////////////////////////////////////////////////////////////////////// Turn Undead
 // Start turning undead if can turn nearby undead
 IF
@@ -1461,6 +1637,126 @@ THEN
 		Spell(Myself,WIZARD_IMPROVED_INVISIBILITY)
 END
 
+
+///////////////////////////////////////////////////////// Targeting Enemies
+// Help hurt allies
+IF
+	ActionListEmpty()
+
+	HPPercentLT(MostDamagedOf(Myself),80)
+	HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
+
+	See(LastAttackerOf(MostDamagedOf(Myself)))
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71424) // Helping Allies
+		Continue()
+END
+
+// If attacked by an enemy attack them
+IF 
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	!HPPercentLT(MostDamagedOf(Myself),80)
+	!HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
+
+	AttackedBy([ENEMY],DEFAULT)
+	!AttackedBy([CHARMED],DEFAULT)
+	!AttackedBy([REALLYCHARMED],DEFAULT)
+
+	See(LastAttackerOf(Myself))
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71425) // Attacking My Attacker
+		Continue()
+END
+
+// Attack weakest enemy
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	!HPPercentLT(MostDamagedOf(Myself),80)
+	!HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
+
+	// Skip if attacking my attacker
+	!AttackedBy([ENEMY],DEFAULT)
+
+	HPPercentLT(NearestEnemyOf(Myself),50)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71426) // Attacking Weakest Enemy
+		Continue()
+END
+
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	!HPPercentLT(MostDamagedOf(Myself),80)
+	!HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
+
+	// Skip if attacking my attacker
+	!AttackedBy([ENEMY],DEFAULT)
+
+	// Skip if attacking weakest enemy
+	!HPPercentLT(NearestEnemyOf(Myself),50)
+
+	HPPercentLT(SecondNearestEnemyOf(Myself),50)
+	See(SecondNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71426) // Attacking Weakest Enemy
+		Continue()
+END
+
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	!HPPercentLT(MostDamagedOf(Myself),80)
+	!HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
+
+	// Skip if attacking my attacker
+	!AttackedBy([ENEMY],DEFAULT)
+
+	// Skip if attacking weakest enemy
+	!HPPercentLT(NearestEnemyOf(Myself),50)
+	!HPPercentLT(SecondNearestEnemyOf(Myself),50)
+
+	HPPercentLT(ThirdNearestEnemyOf(Myself),50)
+	See(ThirdNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71426) // Attacking Weakest Enemy
+		Continue()
+END
+
+// Attack nearby enemies you can see
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	!HPPercentLT(MostDamagedOf(Myself),80)
+	!HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
+
+	// Skip if attacking my attacker
+	!AttackedBy([ENEMY],DEFAULT)
+
+	// Skip if attacking weakest enemy
+	!HPPercentLT(NearestEnemyOf(Myself),50)
+	!HPPercentLT(SecondNearestEnemyOf(Myself),50)
+	!HPPercentLT(ThirdNearestEnemyOf(Myself),50)
+
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71427) // Attacking Nearby Enemies
+		Continue()
+END
+
 ////////////////////////////////////////////////////////////////////////////////////// Attack spells
 // Level 3 - Evocation
 //IF
@@ -1539,7 +1835,6 @@ END
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_MAGIC_MISSILE)
-	See(NearestEnemyOf(Myself))
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
@@ -1566,7 +1861,6 @@ END
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_FLAME_ARROW)
-	See(NearestEnemyOf(Myself))
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
@@ -1593,7 +1887,6 @@ END
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_MELF_ACID_ARROW)
-	See(NearestEnemyOf(Myself))
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
@@ -1620,7 +1913,6 @@ END
 IF
 	ActionListEmpty()
 	HaveSpell(WIZARD_AGANNAZAR_SCORCHER)
-	See(NearestEnemyOf(Myself))
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) 
@@ -1647,7 +1939,6 @@ END
 IF
 	ActionListEmpty()
 	HaveSpell(CLERIC_HOLY_SMITE)
-	See(NearestEnemyOf(Myself))
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY) 
@@ -1669,189 +1960,11 @@ THEN
 		Spell(LastSeenBy(Myself),CLERIC_HOLY_SMITE)
 END
 
-//////////////////////////////////////////////////////////////////// Wands
-
-IF
-	ActionListEmpty()
-	Class(Myself,MAGE_ALL)
-	HasItem("wand02",Myself)
-	NumCreatureVsPartyGT(Myself,4)
-	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
-	!CheckStat(NearestEnemyOf(Myself),1,MINORGLOBE)
-	!CheckStat(NearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(NearestEnemyOf(Myself),2)
-	!General(NearestEnemyOf(Myself),UNDEAD)
-	!Race(NearestEnemyOf(Myself),DEMONIC)
-	!Kit(NearestEnemyOf(Myself),CAVALIER)
-	!Kit(NearestEnemyOf(Myself),Blackguard)
-	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
-	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatGT(NearestEnemyOf(Myself),0,SAVEVSSPELL)
-	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)
-	CheckStat(NearestEnemyOf(Myself),0,MINORGLOBE)
-	!CheckSpellState(NearestEnemyOf(Myself),RESIST_FEAR)
-	!CheckSpellState(NearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(NearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(NearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(NearestEnemyOf(Myself),POTION_OF_CLARITY)
-	!CheckStatGT(NearestEnemyOf(Myself),0,WIZARD_SPELL_DEFLECTION)
-	!CheckStatGT(NearestEnemyOf(Myself),0,WIZARD_SPELL_TURNING)
-	!CheckStatGT(NearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(NearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!CheckStat(NearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY)
-
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
-	!CheckStat(SecondNearestEnemyOf(Myself),1,MINORGLOBE)
-	!CheckStat(SecondNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(SecondNearestEnemyOf(Myself),2)
-	!General(SecondNearestEnemyOf(Myself),UNDEAD)
-	!Race(SecondNearestEnemyOf(Myself),DEMONIC)
-	!Kit(SecondNearestEnemyOf(Myself),CAVALIER)
-	!Kit(SecondNearestEnemyOf(Myself),Blackguard)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatGT(SecondNearestEnemyOf(Myself),0,SAVEVSSPELL)
-	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
-	CheckStat(SecondNearestEnemyOf(Myself),0,MINORGLOBE)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),RESIST_FEAR)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),POTION_OF_CLARITY)
-	!CheckStatGT(SecondNearestEnemyOf(Myself),0,WIZARD_SPELL_DEFLECTION)
-	!CheckStatGT(SecondNearestEnemyOf(Myself),0,WIZARD_SPELL_TURNING)
-	!CheckStatGT(SecondNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(SecondNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!CheckStat(SecondNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY)
-
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
-	!CheckStat(ThirdNearestEnemyOf(Myself),1,MINORGLOBE)
-	!CheckStat(ThirdNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(ThirdNearestEnemyOf(Myself),2)
-	!General(ThirdNearestEnemyOf(Myself),UNDEAD)
-	!Race(ThirdNearestEnemyOf(Myself),DEMONIC)
-	!Kit(ThirdNearestEnemyOf(Myself),CAVALIER)
-	!Kit(ThirdNearestEnemyOf(Myself),Blackguard)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_DISABLED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatGT(ThirdNearestEnemyOf(Myself),0,SAVEVSSPELL)
-	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
-	CheckStat(ThirdNearestEnemyOf(Myself),0,MINORGLOBE)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),RESIST_FEAR)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),POTION_OF_CLARITY)
-	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,WIZARD_SPELL_DEFLECTION)
-	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,WIZARD_SPELL_TURNING)
-	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(ThirdNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!CheckStat(ThirdNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY)
-
-	!StateCheck(FourthNearestEnemyOf(Myself),STATE_PANIC)
-	!CheckStat(FourthNearestEnemyOf(Myself),1,MINORGLOBE)
-	!CheckStat(FourthNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(FourthNearestEnemyOf(Myself),2)
-	!General(FourthNearestEnemyOf(Myself),UNDEAD)
-	!Race(FourthNearestEnemyOf(Myself),DEMONIC)
-	!Kit(FourthNearestEnemyOf(Myself),CAVALIER)
-	!Kit(FourthNearestEnemyOf(Myself),Blackguard)
-	!StateCheck(FourthNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
-	!StateCheck(FourthNearestEnemyOf(Myself),STATE_DISABLED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatGT(FourthNearestEnemyOf(Myself),0,SAVEVSSPELL)
-	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
-	CheckStat(FourthNearestEnemyOf(Myself),0,MINORGLOBE)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),RESIST_FEAR)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),POTION_OF_CLARITY)
-	!CheckStatGT(FourthNearestEnemyOf(Myself),0,WIZARD_SPELL_DEFLECTION)
-	!CheckStatGT(FourthNearestEnemyOf(Myself),0,WIZARD_SPELL_TURNING)
-	!CheckStatGT(FourthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(FourthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!CheckStat(FourthNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY)
-
-	!StateCheck(FifthNearestEnemyOf(Myself),STATE_PANIC)
-	!CheckStat(FifthNearestEnemyOf(Myself),1,MINORGLOBE)
-	!CheckStat(FifthNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(FifthNearestEnemyOf(Myself),2)
-	!General(FifthNearestEnemyOf(Myself),UNDEAD)
-	!Race(FifthNearestEnemyOf(Myself),DEMONIC)
-	!Kit(FifthNearestEnemyOf(Myself),CAVALIER)
-	!Kit(FifthNearestEnemyOf(Myself),Blackguard)
-	!StateCheck(FifthNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
-	!StateCheck(FifthNearestEnemyOf(Myself),STATE_DISABLED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatGT(FifthNearestEnemyOf(Myself),0,SAVEVSSPELL)
-	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMAGIC)
-	CheckStat(FifthNearestEnemyOf(Myself),0,MINORGLOBE)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),RESIST_FEAR)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),POTION_OF_CLARITY)
-	!CheckStatGT(FifthNearestEnemyOf(Myself),0,WIZARD_SPELL_DEFLECTION)
-	!CheckStatGT(FifthNearestEnemyOf(Myself),0,WIZARD_SPELL_TURNING)
-	!CheckStatGT(FifthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(FifthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
-	!CheckStat(FifthNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY)
-
-	See(NearestEnemyOf(Myself))
-	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
-	!StateCheck(NearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,71430) // Wand: Fear
-		UseItem("wand02",LastSeenBy(Myself))
-END
-
-IF
-  	ActionListEmpty()
-	Class(Myself,MAGE_ALL)
-	HasItem("wand04",Myself)
-	See(NearestEnemyOf(Myself))
-	!CheckSpellState(LastSeenBy(Myself),HELD)
-	OR(4)
-		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
-		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
-		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
-		CheckStatLT(LastSeenBy(Myself),10,THAC0)
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,71431) // Wand: Paralyzation
-		UseItem("wand04",LastSeenBy(Myself))
-END
-
+//////////////////////////////////////////////////////////////////// Offensive Wands
 IF
     ActionListEmpty()
 	Class(Myself,MAGE_ALL)
 	HasItem("wand06",Myself)
-	See(NearestEnemyOf(Myself))
 	OR(4)
 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
 		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
@@ -1867,7 +1980,6 @@ IF
 	ActionListEmpty()
 	Class(Myself,MAGE_ALL)
 	HasItem("wand03",Myself)
-	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,71431) // Wand: Magic Missile
@@ -1911,7 +2023,6 @@ IF
   	ActionListEmpty()
 	Class(Myself,CLERIC_ALL)
 	HasItem("wand11",Myself)
-	See(NearestEnemyOf(Myself))
 	OR(4)
 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
 		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
@@ -1954,74 +2065,22 @@ END
 //END
 // Need function to equip weapon by slot number
 
-//////////////////////////////////////////////////////////////////// Help hurt allies
+///////////////////////////////////////////////////////// Melee/Ranged Non-Spell Attack
+// Attack enemies that have been targeted
 IF
 	ActionListEmpty()
-	HPPercentLT(MostDamagedOf(Myself),80)
-	HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
+	HPPercentGT(LastSeenBy(Myself),0)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71424) // Helping Allies
-		AttackOneRound(LastAttackerOf(MostDamagedOf(Myself)))
+		AttackOneRound(LastSeenBy(Myself))
 END
 
-//////////////////////////////////////////////////////////////////// If attacked by an enemy attack them
-IF 
-	ActionListEmpty() 
-	AttackedBy([ENEMY],DEFAULT)
-	!AttackedBy([CHARMED],DEFAULT)
-	!AttackedBy([REALLYCHARMED],DEFAULT)
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,71425) // Attacking My Attacker
-		AttackOneRound(LastAttackerOf(Myself))
-END
-
-//////////////////////////////////////////////////////////////////// Attack weakest enemy
+// If cant see nearby enemy go and attack the nearest
 IF
 	ActionListEmpty()
-	HPPercentLT(NearestEnemyOf(Myself),50)
+	HPPercentGT(NearestEnemyOf(Myself),0)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71426) // Attacking Weakest Enemy
-		AttackOneRound(NearestEnemyOf(Myself))
-END
-
-IF
-	ActionListEmpty()
-	HPPercentLT(SecondNearestEnemyOf(Myself),50)
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,71426) // Attacking Weakest Enemy
-		AttackOneRound(SecondNearestEnemyOf(Myself))
-END
-
-IF
-	ActionListEmpty()
-	HPPercentLT(ThirdNearestEnemyOf(Myself),50)
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,71426) // Attacking Weakest Enemy
-		AttackOneRound(ThirdNearestEnemyOf(Myself))
-END
-
-//////////////////////////////////////////////////////////// Attack nearby enemies you can see
-IF
-	ActionListEmpty()
-	See(NearestEnemyOf(Myself))
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,71427) // Attacking Nearby Enemies
-		AttackOneRound(NearestEnemyOf(Myself))
-END
-
-/////////////////////////////////////////////////////////// Move and attack nearby enemies you can't see
-IF
-	ActionListEmpty()
-	HPPercentLT(NearestEnemyOf(Myself),101)
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,71427) // Attacking Nearby Enemies
 		AttackOneRound(NearestEnemyOf(Myself))
 END
 
