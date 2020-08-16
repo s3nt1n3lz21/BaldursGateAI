@@ -177,7 +177,7 @@ CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
  ### Testing Creatures
  
- CLUAConsole:CreateCreature("skelet") Skeleton
+ CLUAConsole:CreateCreature("skelet") Skeleton   
  CLUAConsole:CreateCreature("werewogr") Greater Werewolf
 
  ### Useful links
