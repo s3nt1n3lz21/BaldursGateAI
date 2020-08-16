@@ -16,6 +16,8 @@ To get these messages to appear you will need to download Modmerge from [here](h
 
 ![Dialog.tlk](./images/dialog.tlk.png)
 
+Avoid updating the game through steam or backing it up through steam as it will change some of the files as it verifies the files. This may cause the new strings in the dialog.tlk to not be recognized again and you will end up with messages like 'Invalid: 71400'. To fix this you will have to run modmerge again. However, modmerge will think it doesn't need to be run as some of the files it creates, have already been created. To make modmerge run again you will have to delete some files as mentioned here. https://forums.beamdog.com/discussion/comment/1005105/#Comment_1005105. Delete the files sod-dlc.disabled, sod-dlc.key, chitin.key.bak and the folder sod-dlc. Then try running modmerge again. Otherwise it should work again if you reinstall and follow these steps again.
+
 # Add The New AI Scripts
 
 To add the script files to your game, find the folder *Scripts* within Near Infinity and click on one of the .BS files to select it and then click *File* -> *Add Copy Of...* in the menu at the top. Name the new file ai.BS. Replace the contents of the file with the ai.BS in this repo and then click *Compile* and then *Save*. To apply the AI script to your character in the game, open the character menu and click *Customize* at the bottom, select *Script* and if you scroll down you should now see an option *Custom (AI)*. Select this and click save. That's it, your character should now follow these actions. 
@@ -172,6 +174,11 @@ We also check nothing is stopping us from casting spells
 !CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)  
 !StateCheck(Myself,STATE_SILENCED)  
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)  
+
+ ### Testing Creatures
+ 
+ CLUAConsole:CreateCreature("skelet") Skeleton   
+ CLUAConsole:CreateCreature("werewogr") Greater Werewolf
 
  ### Useful links
 
