@@ -45,18 +45,28 @@ In order of priority of actions the AI takes
 5. Run Away If Health Is Low  
 
    1. If enemy nearby and space to run away, run away
-   2. If enemy nearby and no space to run away, continue with normal actions and attack
+   2. If enemy nearby and no space to run away, continue with normal actions
 6. Debuff/Control Spells  
 
+   1. Cleric - Zone Of Sweet Air - If Gas/Cloud Spell In Area
    1. Cleric - Silence - If Enemy Spellcasters
-   2. Wizard - Secret Word - If Spellcaster with Spell Blocking Spell
+   2. Wizard - Secret Word - If Spellcaster With Spell Blocking Spell
+   2. Wizard - Detect Invisibility - If Enemy Casts Invisibility Spell
    2. Wizard - Hold Monster - If Many Enemies
    2. Wizard - Chaos - If Many Enemies
    2. Wizard - Horror - If Many Enemies
+   3. Wizard - Dispel Magic - If Ally With Magical Debuff
+   3. Wizard - Dispel Magic - If Enemy With Magical Buff
    3. Wizard - Remove Magic - If Enemy With Magical Buff
    4. Cleric - Dispel Magic - If Ally With Magical Debuff
    4. Cleric - Dispel Magic - If Enemy With Magical Buff
    5. Cleric - Miscast Magic - If Enemy Spellcasters
+   6. Cleric - Doom - If Tough Enemy
+   7. Wizard - Greater Malison - If Tough Enemy
+6. Debuff Wands
+
+   1. Wizard - Wand Of Fear - If Many Enemies
+   2. Wizard - Wand Of Paralyzation- If Tough Enemy 
 6. Cleric - Turn Undead
 
 7. Summon Spells 
@@ -89,38 +99,40 @@ In order of priority of actions the AI takes
    15. Wizard - Minor Globe Of Invulnerability
    15. Wizard - Minor Spell Deflection
    16. Wizard - Improved Invisibility
-   
-9. Offensive Spells 
+9. Target Next Enemies (Target one of the following, then continue to next block)
+
+   1. Target Attackers Of Hurt Allies
+   2. Target My Attacker  
+   3. Target Weakest Nearby Enemies
+9. Offensive Spells On Chosen Target
 
    1. Wizard - Magic Missile
    2. Wizard - Flame Arrow
    2. Wizard - Melf Acid Arrow
    3. Wizard - Agannazar Scorcher
    4. Cleric - Holy Smite
-9. Use Wands
+9. Offensive Wands On Chosen Target
 
-   1. Wand Of Fear - If Many Enemies
-   2. Wand Of Magic Missile
-   2. Wand Of Frost
-10. Attack Attackers Of Hurt Allies
-10. Attack My Attacker  
-11. Attack Weakest Nearby Enemies
-11. Attack Nearby Enemies  
+   1. Wizard - Wand Of Frost - If Tough Enemy
+   2. Wizard - Wand Of Magic Missile
+   3. Cleric - Wand Of Heavens - If Tough Enemy
+11. Melee/Ranged Non-Spell Attack On Chosen Target  
 12. Regroup
 13. Thief - Find Traps
 
  ### Spells That Block Spells
  
- Cannot be dispelled with dispel magic or remove magic. Requires a spell breach type spell to remove them.
+ The following table shows a list of the different spells that are used to block other spells along with their descriptions, whether they will eventually break after protecting against a finite number of spells and whether they are dispelled by the spell 'dispel magic' or a 'spell breach' type spell.
  
- Globe Of Invulnerability : Blocks all spells of a certain level or lower. (Will NOT break after a certain number of spells)  
- Spell Deflection: Absorbs a certain number of spells. (Will break after a certain number of spells)  
- Spell Turning: Turns a certain number of spells back towards the original caster. (Will break after a certain number of spells)   
- Spell Immunity: Blocks all spells from a certain magic school. (Will NOT break after a certain number of spells)  
+ | Spell                    | Description                                   | Break After Many Spells | Dispel Magic | Spell Breach |
+|--------------------------|-----------------------------------------------|-------------------------|--------------|--------------|
+| Globe Of Invulnerability | Blocks all spells of a certain level or lower | No                      | No           | Yes          |
+| Spell Deflection         | Absorbs spells                                | Yes                     | No           | Yes          |
+| Spell Turning            | Turns spells back towards the original caster | Yes                     | No           | Yes          |
+| Spell Immunity           | Blocks all spells from a certain magic school | No                      | No           | Yes          |
+| Shield                   | Immune to magic missile spell                 | No                      | Yes          | No           |
  
- Can be dispelled with dispel magic or remove magic.  
- 
- Shield: Immune to the spell magic missile. (Will NOT break after a certain number of spells)  
+ #### Spell Logic
  
  The following logic is applied to all spells cast to make sure they are not wasted if the enemy has a spell blocking spell active.  
  
@@ -147,7 +159,7 @@ In order of priority of actions the AI takes
  If the spell is remove magic or dispel magic, cast it if the enemy has a magical buff (including Shield)  
  If the spell is a spell breach type spell, cast it if the enemy has a spell blocking spell (not including Shield)  
 
- Spell Schools  
+ #### Spell Schools  
  1 = Abjuration   
  2 = Conjuration   
  3 = Divination  
@@ -157,9 +169,13 @@ In order of priority of actions the AI takes
  7 = Necromancy  
  8 = Alteration   
 
+#### Check Immune To Spell Level
+
 For each spell, we also check that the enemy isn't immune to spells of that spell level  
 
 !ImmuneToSpellLevel(LastSeenBy(Myself),8)
+
+#### Check For Resistances
 
 We also check for Magic, Fire, Cold, Electricity and Acid Resistance
 
@@ -168,6 +184,8 @@ CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
 CheckStatLT(LastSeenBy(Myself),75,RESISTCOLD)  
 CheckStatLT(LastSeenBy(Myself),75,RESISTELECTRICITY)  
 CheckStatLT(LastSeenBy(Myself),75,RESISTACID)  
+
+#### Check Theres Nothing Stopping Us Casting The Spell
 
 We also check nothing is stopping us from casting spells
 
