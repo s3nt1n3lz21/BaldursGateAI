@@ -1264,7 +1264,7 @@ IF
 		CheckStatLT(LastSeenBy(Myself),10,THAC0)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71431) // Wand: Paralyzation
+		DisplayStringHead(Myself,71432) // Wand: Paralyzation
 		UseItem("wand04",LastSeenBy(Myself))
 END
 
@@ -1695,13 +1695,163 @@ THEN
 		Continue()
 END
 
+// Protect The Wizard
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+
+	See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71443) // Helping Wizard
+		Continue()
+END
+
+// Attack Enemy Spellcasters
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+
+	HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+	See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71444) // Attacking Spellcasters
+		Continue()
+END
+
+// Attack Enemy Spellcasters
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+
+	HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+	See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71444) // Attacking Spellcasters
+		Continue()
+END
+
+// Attack Enemy Spellcasters
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+	See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71444) // Attacking Spellcasters
+		Continue()
+END
+
+// Attack Enemy Spellcasters
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+
+	HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+	See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71444) // Attacking Spellcasters
+		Continue()
+END
+
 // If attacked by an enemy attack them
 IF 
 	ActionListEmpty()
 
 	// Skip if helping hurt allies
-	!HPPercentLT(MostDamagedOf(Myself),80)
-	!HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
 
 	AttackedBy([ENEMY],DEFAULT)
 	!AttackedBy([CHARMED],DEFAULT)
@@ -1719,8 +1869,28 @@ IF
 	ActionListEmpty()
 
 	// Skip if helping hurt allies
-	!HPPercentLT(MostDamagedOf(Myself),80)
-	!HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
 
 	// Skip if attacking my attacker
 	!AttackedBy([ENEMY],DEFAULT)
@@ -1737,8 +1907,28 @@ IF
 	ActionListEmpty()
 
 	// Skip if helping hurt allies
-	!HPPercentLT(MostDamagedOf(Myself),80)
-	!HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
 
 	// Skip if attacking my attacker
 	!AttackedBy([ENEMY],DEFAULT)
@@ -1758,8 +1948,28 @@ IF
 	ActionListEmpty()
 
 	// Skip if helping hurt allies
-	!HPPercentLT(MostDamagedOf(Myself),80)
-	!HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
 
 	// Skip if attacking my attacker
 	!AttackedBy([ENEMY],DEFAULT)
@@ -1781,8 +1991,28 @@ IF
 	ActionListEmpty()
 
 	// Skip if helping hurt allies
-	!HPPercentLT(MostDamagedOf(Myself),80)
-	!HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
 
 	// Skip if attacking my attacker
 	!AttackedBy([ENEMY],DEFAULT)
@@ -2141,126 +2371,6 @@ THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,71423) // Spell: Holy Smite
 		Spell(NearestEnemyOf(Myself),CLERIC_HOLY_SMITE)
-END
-
-
-//////////////////////////////////////////////////////////////////// Decide On Next Target You Can See
-// Help hurt allies
-IF
-	ActionListEmpty()
-
-	HPPercentLT(MostDamagedOf(Myself),80)
-	HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
-
-	See(LastAttackerOf(MostDamagedOf(Myself)))
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,71424) // Helping Allies
-		Continue()
-END
-
-// If attacked by an enemy attack them
-IF 
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	!HPPercentLT(MostDamagedOf(Myself),80)
-	!HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
-
-	AttackedBy([ENEMY],DEFAULT)
-	!AttackedBy([CHARMED],DEFAULT)
-	!AttackedBy([REALLYCHARMED],DEFAULT)
-
-	See(LastAttackerOf(Myself))
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,71425) // Attacking My Attacker
-		Continue()
-END
-
-// Attack weakest enemy
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	!HPPercentLT(MostDamagedOf(Myself),80)
-	!HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
-
-	// Skip if attacking my attacker
-	!AttackedBy([ENEMY],DEFAULT)
-
-	HPPercentLT(NearestEnemyOf(Myself),50)
-	See(NearestEnemyOf(Myself))
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,71426) // Attacking Weakest Enemy
-		Continue()
-END
-
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	!HPPercentLT(MostDamagedOf(Myself),80)
-	!HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
-
-	// Skip if attacking my attacker
-	!AttackedBy([ENEMY],DEFAULT)
-
-	// Skip if attacking weakest enemy
-	!HPPercentLT(NearestEnemyOf(Myself),50)
-
-	HPPercentLT(SecondNearestEnemyOf(Myself),50)
-	See(SecondNearestEnemyOf(Myself))
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,71426) // Attacking Weakest Enemy
-		Continue()
-END
-
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	!HPPercentLT(MostDamagedOf(Myself),80)
-	!HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
-
-	// Skip if attacking my attacker
-	!AttackedBy([ENEMY],DEFAULT)
-
-	// Skip if attacking weakest enemy
-	!HPPercentLT(NearestEnemyOf(Myself),50)
-	!HPPercentLT(SecondNearestEnemyOf(Myself),50)
-
-	HPPercentLT(ThirdNearestEnemyOf(Myself),50)
-	See(ThirdNearestEnemyOf(Myself))
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,71426) // Attacking Weakest Enemy
-		Continue()
-END
-
-// Attack nearby enemies you can see
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	!HPPercentLT(MostDamagedOf(Myself),80)
-	!HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
-
-	// Skip if attacking my attacker
-	!AttackedBy([ENEMY],DEFAULT)
-
-	// Skip if attacking weakest enemy
-	!HPPercentLT(NearestEnemyOf(Myself),50)
-	!HPPercentLT(SecondNearestEnemyOf(Myself),50)
-	!HPPercentLT(ThirdNearestEnemyOf(Myself),50)
-
-	See(NearestEnemyOf(Myself))
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,71427) // Attacking Nearby Enemies
-		Continue()
 END
 
 //////////////////////////////////////////////////////////////////// Offensive Wands On Targets You Can See
