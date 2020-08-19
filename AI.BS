@@ -175,10 +175,14 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -240,7 +244,7 @@ END
 // Level 5 - Enchantment
 IF
 	ActionListEmpty()
-	HaveSpell(WIZARD_HOLD_MONSTER)  // SPPR211.SPL (Silence, 15' Radius)
+	HaveSpell(WIZARD_HOLD_MONSTER)
 	See(NearestEnemyOf(Myself))
 	!CheckSpellState(LastSeenBy(Myself),HELD)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
@@ -251,6 +255,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -258,7 +263,7 @@ IF
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,71385) // Spell: Hold Monster
-		Spell(LastSeenBy(Myself),WIZARD_HOLD_MONSTER)  // SPPR211.SPL (Silence, 15' Radius)
+		Spell(LastSeenBy(Myself),WIZARD_HOLD_MONSTER)
 END
 
 // Level 5 - Enchantment
@@ -273,6 +278,7 @@ IF
 	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(NearestEnemyOf(Myself),5)
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)	
+	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
 
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DEBUFF)
 	!CheckStat(SecondNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
@@ -280,6 +286,7 @@ IF
 	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(SecondNearestEnemyOf(Myself),5)
 	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
+	CheckStatGT(SecondNearestEnemyOf(Myself),5,SAVEVSSPELL)
 
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_DEBUFF)
 	!CheckStat(ThirdNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
@@ -287,6 +294,7 @@ IF
 	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(ThirdNearestEnemyOf(Myself),5)
 	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
+	CheckStatGT(ThirdNearestEnemyOf(Myself),5,SAVEVSSPELL)
 
 	!StateCheck(FourthNearestEnemyOf(Myself),STATE_DEBUFF)
 	!CheckStat(FourthNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
@@ -294,6 +302,7 @@ IF
 	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(FourthNearestEnemyOf(Myself),5)
 	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
+	CheckStatGT(FourthNearestEnemyOf(Myself),5,SAVEVSSPELL)
 
 	See(NearestEnemyOf(Myself))
 	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
@@ -306,7 +315,7 @@ IF
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,71386) // Spell: Chaos
-		Spell(LastSeenBy(Myself),WIZARD_CHAOS)  // SPPR211.SPL (Silence, 15' Radius)
+		Spell(LastSeenBy(Myself),WIZARD_CHAOS)
 END
 
 // Level 2 - Necromancy
@@ -326,7 +335,7 @@ IF
 	!Race(NearestEnemyOf(Myself),DEMONIC)
 	!Kit(NearestEnemyOf(Myself),CAVALIER)
 	!Kit(NearestEnemyOf(Myself),Blackguard)
-	CheckStatGT(NearestEnemyOf(Myself),0,SAVEVSSPELL)
+	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)
 	!CheckSpellState(NearestEnemyOf(Myself),RESIST_FEAR)
 	!CheckSpellState(NearestEnemyOf(Myself),BARBARIAN_RAGE)
@@ -345,7 +354,7 @@ IF
 	!Race(SecondNearestEnemyOf(Myself),DEMONIC)
 	!Kit(SecondNearestEnemyOf(Myself),CAVALIER)
 	!Kit(SecondNearestEnemyOf(Myself),Blackguard)
-	CheckStatGT(SecondNearestEnemyOf(Myself),0,SAVEVSSPELL)
+	CheckStatGT(SecondNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
 	!CheckSpellState(SecondNearestEnemyOf(Myself),RESIST_FEAR)
 	!CheckSpellState(SecondNearestEnemyOf(Myself),BARBARIAN_RAGE)
@@ -364,7 +373,7 @@ IF
 	!Race(ThirdNearestEnemyOf(Myself),DEMONIC)
 	!Kit(ThirdNearestEnemyOf(Myself),CAVALIER)
 	!Kit(ThirdNearestEnemyOf(Myself),Blackguard)
-	CheckStatGT(ThirdNearestEnemyOf(Myself),0,SAVEVSSPELL)
+	CheckStatGT(ThirdNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
 	!CheckSpellState(ThirdNearestEnemyOf(Myself),RESIST_FEAR)
 	!CheckSpellState(ThirdNearestEnemyOf(Myself),BARBARIAN_RAGE)
@@ -383,7 +392,7 @@ IF
 	!Race(FourthNearestEnemyOf(Myself),DEMONIC)
 	!Kit(FourthNearestEnemyOf(Myself),CAVALIER)
 	!Kit(FourthNearestEnemyOf(Myself),Blackguard)
-	CheckStatGT(FourthNearestEnemyOf(Myself),0,SAVEVSSPELL)
+	CheckStatGT(FourthNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
 	!CheckSpellState(FourthNearestEnemyOf(Myself),RESIST_FEAR)
 	!CheckSpellState(FourthNearestEnemyOf(Myself),BARBARIAN_RAGE)
@@ -402,7 +411,7 @@ IF
 	!Race(FifthNearestEnemyOf(Myself),DEMONIC)
 	!Kit(FifthNearestEnemyOf(Myself),CAVALIER)
 	!Kit(FifthNearestEnemyOf(Myself),Blackguard)
-	CheckStatGT(FifthNearestEnemyOf(Myself),0,SAVEVSSPELL)
+	CheckStatGT(FifthNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMAGIC)
 	!CheckSpellState(FifthNearestEnemyOf(Myself),RESIST_FEAR)
 	!CheckSpellState(FifthNearestEnemyOf(Myself),BARBARIAN_RAGE)
@@ -640,6 +649,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -697,6 +707,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -924,6 +935,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -955,6 +967,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -987,10 +1000,11 @@ IF
 	HaveSpell(WIZARD_GREATER_MALISON)
 
 	!CheckSpellState(NearestEnemyOf(Myself),MALISON)
-	CheckStatLT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
-	CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
-	CheckStatGT(NearestEnemyOf(Myself),75,MAXHITPOINTS)
-	CheckStatLT(NearestEnemyOf(Myself),10,THAC0)
+	OR(4)
+		CheckStatLT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
+		CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
+		CheckStatGT(NearestEnemyOf(Myself),75,MAXHITPOINTS)
+		CheckStatLT(NearestEnemyOf(Myself),10,THAC0)
 
 //	!CheckSpellState(SecondNearestEnemyOf(Myself),MALISON)
 //	CheckStatLT(SecondNearestEnemyOf(Myself),5,SAVEVSSPELL)
@@ -1034,7 +1048,7 @@ IF
 	!Race(NearestEnemyOf(Myself),DEMONIC)
 	!Kit(NearestEnemyOf(Myself),CAVALIER)
 	!Kit(NearestEnemyOf(Myself),Blackguard)
-	CheckStatGT(NearestEnemyOf(Myself),0,SAVEVSSPELL)
+	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)
 	!CheckSpellState(NearestEnemyOf(Myself),RESIST_FEAR)
 	!CheckSpellState(NearestEnemyOf(Myself),BARBARIAN_RAGE)
@@ -1054,7 +1068,7 @@ IF
 	!Race(SecondNearestEnemyOf(Myself),DEMONIC)
 	!Kit(SecondNearestEnemyOf(Myself),CAVALIER)
 	!Kit(SecondNearestEnemyOf(Myself),Blackguard)
-	CheckStatGT(SecondNearestEnemyOf(Myself),0,SAVEVSSPELL)
+	CheckStatGT(SecondNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
 	!CheckSpellState(SecondNearestEnemyOf(Myself),RESIST_FEAR)
 	!CheckSpellState(SecondNearestEnemyOf(Myself),BARBARIAN_RAGE)
@@ -1074,7 +1088,7 @@ IF
 	!Race(ThirdNearestEnemyOf(Myself),DEMONIC)
 	!Kit(ThirdNearestEnemyOf(Myself),CAVALIER)
 	!Kit(ThirdNearestEnemyOf(Myself),Blackguard)
-	CheckStatGT(ThirdNearestEnemyOf(Myself),0,SAVEVSSPELL)
+	CheckStatGT(ThirdNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
 	!CheckSpellState(ThirdNearestEnemyOf(Myself),RESIST_FEAR)
 	!CheckSpellState(ThirdNearestEnemyOf(Myself),BARBARIAN_RAGE)
@@ -1094,7 +1108,7 @@ IF
 	!Race(FourthNearestEnemyOf(Myself),DEMONIC)
 	!Kit(FourthNearestEnemyOf(Myself),CAVALIER)
 	!Kit(FourthNearestEnemyOf(Myself),Blackguard)
-	CheckStatGT(FourthNearestEnemyOf(Myself),0,SAVEVSSPELL)
+	CheckStatGT(FourthNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
 	!CheckSpellState(FourthNearestEnemyOf(Myself),RESIST_FEAR)
 	!CheckSpellState(FourthNearestEnemyOf(Myself),BARBARIAN_RAGE)
@@ -1114,7 +1128,7 @@ IF
 	!Race(FifthNearestEnemyOf(Myself),DEMONIC)
 	!Kit(FifthNearestEnemyOf(Myself),CAVALIER)
 	!Kit(FifthNearestEnemyOf(Myself),Blackguard)
-	CheckStatGT(FifthNearestEnemyOf(Myself),0,SAVEVSSPELL)
+	CheckStatGT(FifthNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMAGIC)
 	!CheckSpellState(FifthNearestEnemyOf(Myself),RESIST_FEAR)
 	!CheckSpellState(FifthNearestEnemyOf(Myself),BARBARIAN_RAGE)
@@ -1153,7 +1167,6 @@ IF
 	!General(NearestEnemyOf(Myself),UNDEAD)
 	!Race(NearestEnemyOf(Myself),DEMONIC)
 	!Race(NearestEnemyOf(Myself),ELF)
-	CheckStatGT(NearestEnemyOf(Myself),0,SAVEVSSPELL)
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)
 	!CheckSpellState(NearestEnemyOf(Myself),BARBARIAN_RAGE)
 	!CheckSpellState(NearestEnemyOf(Myself),BERSERKER_RAGE)
@@ -1172,7 +1185,6 @@ IF
 	!General(SecondNearestEnemyOf(Myself),UNDEAD)
 	!Race(SecondNearestEnemyOf(Myself),DEMONIC)
 	!Race(SecondNearestEnemyOf(Myself),ELF)
-	CheckStatGT(SecondNearestEnemyOf(Myself),0,SAVEVSSPELL)
 	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
 	!CheckSpellState(SecondNearestEnemyOf(Myself),BARBARIAN_RAGE)
 	!CheckSpellState(SecondNearestEnemyOf(Myself),BERSERKER_RAGE)
@@ -1191,7 +1203,6 @@ IF
 	!General(ThirdNearestEnemyOf(Myself),UNDEAD)
 	!Race(ThirdNearestEnemyOf(Myself),DEMONIC)
 	!Race(ThirdNearestEnemyOf(Myself),ELF)
-	CheckStatGT(ThirdNearestEnemyOf(Myself),0,SAVEVSSPELL)
 	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
 	!CheckSpellState(ThirdNearestEnemyOf(Myself),BARBARIAN_RAGE)
 	!CheckSpellState(ThirdNearestEnemyOf(Myself),BERSERKER_RAGE)
@@ -1210,7 +1221,6 @@ IF
 	!General(FourthNearestEnemyOf(Myself),UNDEAD)
 	!Race(FourthNearestEnemyOf(Myself),DEMONIC)
 	!Race(FourthNearestEnemyOf(Myself),ELF)
-	CheckStatGT(FourthNearestEnemyOf(Myself),0,SAVEVSSPELL)
 	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
 	!CheckSpellState(FourthNearestEnemyOf(Myself),BARBARIAN_RAGE)
 	!CheckSpellState(FourthNearestEnemyOf(Myself),BERSERKER_RAGE)
@@ -1229,7 +1239,6 @@ IF
 	!General(FifthNearestEnemyOf(Myself),UNDEAD)
 	!Race(FifthNearestEnemyOf(Myself),DEMONIC)
 	!Race(FifthNearestEnemyOf(Myself),ELF)
-	CheckStatGT(FifthNearestEnemyOf(Myself),0,SAVEVSSPELL)
 	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMAGIC)
 	!CheckSpellState(FifthNearestEnemyOf(Myself),BARBARIAN_RAGE)
 	!CheckSpellState(FifthNearestEnemyOf(Myself),BERSERKER_RAGE)
@@ -1241,6 +1250,8 @@ IF
 	!StateCheck(NearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
+
+	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSWANDS)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1255,17 +1266,17 @@ IF
   	ActionListEmpty()
 	Class(Myself,MAGE_ALL)
 	HasItem("wand04",Myself)
-	See(NearestEnemyOf(Myself))
-	!CheckSpellState(LastSeenBy(Myself),HELD)
+	!CheckSpellState(NearestEnemyOf(Myself),HELD)
+	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSWANDS)
 	OR(4)
-		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
-		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
-		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
-		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+		CheckStatLT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
+		CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
+		CheckStatGT(NearestEnemyOf(Myself),75,MAXHITPOINTS)
+		CheckStatLT(NearestEnemyOf(Myself),10,THAC0)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,71432) // Wand: Paralyzation
-		UseItem("wand04",LastSeenBy(Myself))
+		UseItem("wand04",NearestEnemyOf(Myself))
 END
 
 /////////////////////////////////////////////////////////////////////////////////////// Turn Undead
@@ -1304,6 +1315,19 @@ THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,71392) // Spell: Animate Undead
 		Spell(Myself,CLERIC_ANIMATE_DEAD)
+END
+
+IF
+	ActionListEmpty()
+	HaveSpell(WIZARD_ANIMATE_DEAD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71392) // Spell: Animate Undead
+		Spell(Myself,WIZARD_ANIMATE_DEAD)
 END
 
 IF
@@ -1681,9 +1705,34 @@ END
 
 
 //////////////////////////////////////////////////////////////////////////// Decide On Next Target You Can See
+// Protect The Wizard
+IF
+	ActionListEmpty()
+
+	HPPercentGT(LastAttackerOf(PartySlot1),0)
+
+	See(LastAttackerOf(PartySlot1))
+
+	//HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+
+	//See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71443) // Helping Wizard
+		Continue()
+END
+
 // Help hurt allies
 IF
 	ActionListEmpty()
+
+	// Skip if protecting wizard
+	//OR(2)
+	//	!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+	//	!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+	OR(2)
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
 
 	HPPercentLT(MostDamagedOf(Myself),80)
 	HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
@@ -1692,24 +1741,6 @@ IF
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,71424) // Helping Allies
-		Continue()
-END
-
-// Protect The Wizard
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	OR(2)
-		!HPPercentLT(MostDamagedOf(Myself),80)
-		!See(LastAttackerOf(MostDamagedOf(Myself)))
-
-	HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
-
-	See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,71443) // Helping Wizard
 		Continue()
 END
 
@@ -1723,9 +1754,12 @@ IF
 		!See(LastAttackerOf(MostDamagedOf(Myself)))
 
 	// Skip if protecting wizard
+	//OR(2)
+	//	!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+	//	!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
 	OR(2)
-		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
-		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
 
 	HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
 	See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
@@ -1745,9 +1779,12 @@ IF
 		!See(LastAttackerOf(MostDamagedOf(Myself)))
 
 	// Skip if protecting wizard
+	//OR(2)
+	//	!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+	//	!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
 	OR(2)
-		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
-		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -1772,9 +1809,12 @@ IF
 		!See(LastAttackerOf(MostDamagedOf(Myself)))
 
 	// Skip if protecting wizard
+	//OR(2)
+	//	!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+	//	!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
 	OR(2)
-		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
-		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -1802,9 +1842,12 @@ IF
 		!See(LastAttackerOf(MostDamagedOf(Myself)))
 
 	// Skip if protecting wizard
+	//OR(2)
+	//	!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+	//	!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
 	OR(2)
-		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
-		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -1829,10 +1872,13 @@ END
 IF 
 	ActionListEmpty()
 
-	// Skip if helping hurt allies
+	// Skip if protecting wizard
+	//OR(2)
+	//	!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+	//	!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
 	OR(2)
-		!HPPercentLT(MostDamagedOf(Myself),80)
-		!See(LastAttackerOf(MostDamagedOf(Myself)))
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
 
 	// Skip if protecting wizard
 	OR(2)
@@ -1874,9 +1920,12 @@ IF
 		!See(LastAttackerOf(MostDamagedOf(Myself)))
 
 	// Skip if protecting wizard
+	//OR(2)
+	//	!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+	//	!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
 	OR(2)
-		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
-		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -1912,9 +1961,12 @@ IF
 		!See(LastAttackerOf(MostDamagedOf(Myself)))
 
 	// Skip if protecting wizard
+	//OR(2)
+	//	!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+	//	!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
 	OR(2)
-		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
-		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -1953,9 +2005,12 @@ IF
 		!See(LastAttackerOf(MostDamagedOf(Myself)))
 
 	// Skip if protecting wizard
+	//OR(2)
+	//	!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+	//	!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
 	OR(2)
-		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
-		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -1996,9 +2051,12 @@ IF
 		!See(LastAttackerOf(MostDamagedOf(Myself)))
 
 	// Skip if protecting wizard
+	//OR(2)
+	//	!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+	//	!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
 	OR(2)
-		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
-		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -2148,6 +2206,8 @@ IF
 	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
@@ -2284,6 +2344,8 @@ IF
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTFIRE)
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)
 
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
@@ -2379,6 +2441,7 @@ IF
 	Class(Myself,MAGE_ALL)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand06",Myself)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSWANDS)
 	OR(4)
 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
 		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
@@ -2395,6 +2458,7 @@ IF
 	Class(Myself,MAGE_ALL)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand03",Myself)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSWANDS)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,71431) // Wand: Magic Missile
@@ -2406,6 +2470,7 @@ IF
 	Class(Myself,CLERIC_ALL)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand11",Myself)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSWANDS)
 	OR(4)
 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
 		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
@@ -2456,6 +2521,7 @@ IF
 	Class(Myself,MAGE_ALL)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand06",Myself)
+	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSWANDS)
 	OR(4)
 		CheckStatLT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
 		CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
@@ -2472,6 +2538,7 @@ IF
 	Class(Myself,MAGE_ALL)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand03",Myself)
+	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSWANDS)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,71431) // Wand: Magic Missile
@@ -2483,6 +2550,7 @@ IF
 	Class(Myself,CLERIC_ALL)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand11",Myself)
+	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSWANDS)
 	OR(4)
 		CheckStatLT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
 		CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
