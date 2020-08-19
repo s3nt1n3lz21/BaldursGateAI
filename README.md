@@ -209,3 +209,5 @@ Creature Spawn List https://gamefaqs.gamespot.com/pc/75251-baldurs-gate/faqs/777
 Checking Spell States And Effects https://sorcerers.net/Games/BG2/SpellsReference/SpellEffects.htm
 
 How Scripts Work http://www.pocketplane.net/tutorials/simscript.html#EssVariables
+
+Wands And Saving Throws https://forums.beamdog.com/discussion/65851/save-vs-wand-a-k-a-save-vs-nothing
