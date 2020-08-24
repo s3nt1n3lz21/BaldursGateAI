@@ -1,20 +1,24 @@
 ////////////////////////////////////////////////////////////////// If poisoned use an antidote potion
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	StateCheck(Myself,STATE_POISONED) 
 	HasItem("potn20",Myself)  // Antidote
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71380) // Potion: Antidote
 		UseItem("potn20",Myself)  // Antidote
 END
 
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	StateCheck(Myself,STATE_POISONED)
 	HasItem("potn17",Myself)  // Elixir of health - cures disease and poisons
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71381) // Potion: Elixir Of Health
 		UseItem("potn17",Myself)  // Elixir of health - cures disease and poisons
 END
@@ -23,6 +27,7 @@ END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	OR(2)
 		HitBy([ENEMY],FIRE)
 		HitBy([ENEMY],MAGICFIRE)
@@ -31,12 +36,14 @@ IF
 	CheckStatLT(Myself,49,RESISTFIRE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71447) // Potion: Fire Resistance
 		UseItem("potn02",Myself)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	OR(2)
 		HitBy([ENEMY],COLD)
 		HitBy([ENEMY],MAGICCOLD)
@@ -45,18 +52,21 @@ IF
 	CheckStatLT(Myself,49,RESISTCOLD)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71448) // Potion: Cold Resistance
 		UseItem("potn22",Myself)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HitBy([ENEMY],ELECTRICITY)
 	DamageTakenGT(25)
 	HasItem("potn31",Myself)
 	CheckStatLT(Myself,49,RESISTELECTRICITY)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71449) // Potion: Insulation
 		UseItem("potn31",Myself)
 END
@@ -64,30 +74,36 @@ END
 //////////////////////////////////////////////////////////////////// If ally health is low and have heal spell, heal them
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),80)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71375) // Spell: Cure Light Wounds
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_LIGHT_WOUNDS)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),80) 
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71376) // Spell: Cure Medium Wounds
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_MEDIUM_WOUNDS)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),75)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71377) // Spell: Cure Serious Wounds
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_SERIOUS_WOUNDS)
 END
@@ -103,66 +119,78 @@ END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn52",Myself)  // Potion of Extra Healing
 	HPPercentLT(Myself,10) 
 	HPGT(Myself,3)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71379) // Potion: Extra Healing
 		UseItem("potn52",Myself)  // Potion of Extra Healing
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn52",Myself)  // Potion of Extra Healing
 	HPPercentLT(Myself,20) 
 	HPGT(Myself,7)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71379) // Potion: Extra Healing
 		UseItem("potn52",Myself)  // Potion of Extra Healing
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn52",Myself)  // Potion of Extra Healing
 	HPPercentLT(Myself,30) 
 	HPGT(Myself,12)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71379) // Potion: Extra Healing
 		UseItem("potn52",Myself)  // Potion of Extra Healing
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn52",Myself)  // Potion of Extra Healing
 	HPPercentLT(Myself,40) 
 	HPGT(Myself,18)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71379) // Potion: Extra Healing
 		UseItem("potn52",Myself)  // Potion of Extra Healing
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn52",Myself)  // Potion of Extra Healing
 	HPPercentLT(Myself,50) 
 	HPGT(Myself,27)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71379) // Potion: Extra Healing
 		UseItem("potn52",Myself)  // Potion of Extra Healing
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn52",Myself)  // Potion of Extra Healing
 	HPPercentLT(Myself,60) 
 	HPGT(Myself,41)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71379) // Potion: Extra Healing
 		UseItem("potn52",Myself)  // Potion of Extra Healing
 END
@@ -176,77 +204,91 @@ END
 
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn08",Myself)  // Potion of Healing
 	HPPercentLT(Myself,10) 
 	HPGT(Myself,1)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71378) // Potion: Healing
 		UseItem("potn08",Myself)  // Potion of Healing
 END
 
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn08",Myself)  // Potion of Healing
 	HPPercentLT(Myself,20) 
 	HPGT(Myself,2)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71378) // Potion: Healing
 		UseItem("potn08",Myself)  // Potion of Healing
 END
 
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn08",Myself)  // Potion of Healing
 	HPPercentLT(Myself,30) 
 	HPGT(Myself,4)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71378) // Potion: Healing
 		UseItem("potn08",Myself)  // Potion of Healing
 END
 
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn08",Myself)  // Potion of Healing
 	HPPercentLT(Myself,40) 
 	HPGT(Myself,6)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71378) // Potion: Healing
 		UseItem("potn08",Myself)  // Potion of Healing
 END
 
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn08",Myself)  // Potion of Healing
 	HPPercentLT(Myself,50) 
 	HPGT(Myself,9)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71378) // Potion: Healing
 		UseItem("potn08",Myself)  // Potion of Healing
 END
 
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn08",Myself)  // Potion of Healing
 	HPPercentLT(Myself,60) 
 	HPGT(Myself,14)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71378) // Potion: Healing
 		UseItem("potn08",Myself)  // Potion of Healing
 END
 
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn08",Myself)  // Potion of Healing
 	HPPercentLT(Myself,70) 
 	HPGT(Myself,21)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71378) // Potion: Healing
 		UseItem("potn08",Myself)  // Potion of Healing
 END
@@ -255,90 +297,127 @@ END
 
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn25",Myself)  // Potion of Healing
 	HPPercentLT(Myself,10) 
 	HPGT(Myself,1)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71378) // Potion: Healing
 		UseItem("potn25",Myself)  // Potion of Healing
 END
 
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn25",Myself)  // Potion of Healing
 	HPPercentLT(Myself,20) 
 	HPGT(Myself,2)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71378) // Potion: Healing
 		UseItem("potn25",Myself)  // Potion of Healing
 END
 
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn25",Myself)  // Potion of Healing
 	HPPercentLT(Myself,30) 
 	HPGT(Myself,4)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71378) // Potion: Healing
 		UseItem("potn25",Myself)  // Potion of Healing
 END
 
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn25",Myself)  // Potion of Healing
 	HPPercentLT(Myself,40) 
 	HPGT(Myself,6)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71378) // Potion: Healing
 		UseItem("potn25",Myself)  // Potion of Healing
 END
 
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn25",Myself)  // Potion of Healing
 	HPPercentLT(Myself,50) 
 	HPGT(Myself,9)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71378) // Potion: Healing
 		UseItem("potn25",Myself)  // Potion of Healing
 END
 
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn25",Myself)  // Potion of Healing
 	HPPercentLT(Myself,60) 
 	HPGT(Myself,14)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71378) // Potion: Healing
 		UseItem("potn25",Myself)  // Potion of Healing
 END
 
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("potn25",Myself)  // Potion of Healing
 	HPPercentLT(Myself,70) 
 	HPGT(Myself,21)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71378) // Potion: Healing
 		UseItem("potn25",Myself)  // Potion of Healing
+END
+
+////////////////////////////////////////////////////////////////// Share Healing Potions
+
+IF
+    !HasItem("potn08",Myself)
+    HPPercentLT(Myself,50)
+    !GlobalTimerNotExpired("shouted","LOCALS") // Only shout so often
+THEN
+    RESPONSE #100
+        SetGlobalTimer("shouted","LOCALS",10)
+        Shout(NEED_POTION_OF_HEALING) // Shout for help
+END
+
+IF
+    Heard([EVILCUTOFF],NEED_POTION_OF_HEALING) // If someone shouted for help
+    !HasItem("potn08",LastHeardBy(Myself))
+    HPPercentGT(Myself,50)
+THEN
+    RESPONSE #100
+        GiveItem("potn08",LastHeardBy(Myself)) // Pass them the item
 END
 
 ////////////////////////////////////////////////////////////////// if diseased use cure disease potion
 IF 
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	OR(2)
 		StateCheck(Myself,STATE_DISEASED) 
 		HPPercentLT(Myself,60) // If health is low use a potion
 	HasItem("potn17",Myself)  // Elixir of health - cures disease and poisons
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71381) // Potion: Elixir Of Health
 		UseItem("potn17",Myself)  // Elixir of health - cures disease and poisons
 END
@@ -384,19 +463,10 @@ END
 
 // If enemy and have set the same location timer and it has expired, continue with normal actions and attack
 
-//IF 
-//	ActionListEmpty()
-//	HPPercentLT(Myself,60)
-//	Range(NearestEnemyOf(Myself),10)
-//THEN
-//	RESPONSE #100
-//		DisplayStringHead(Myself,2914)
-//		RunAwayFrom(NearestEnemyOf(Myself),10)
-//END
-
 ////////////////////////////////////////////////////////////////////////////////////// Debuff/Control Spells
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ZONE_OF_SWEET_AIR)  // SPPR318.SPL (Zone of Sweet Air)
 	OR(9)
 		SpellCast([ANYONE],WIZARD_INCENDIARY_CLOUD)  // SPWI810.SPL (Incendiary Cloud)
@@ -413,6 +483,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+		SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71442) // Spell: Zone Of Sweet Air
 		Spell(Myself,CLERIC_ZONE_OF_SWEET_AIR)
 END
@@ -420,6 +491,7 @@ END
 // Level 2 - Alteration
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_SILENCE_15_FOOT)  // SPPR211.SPL (Silence, 15' Radius)
 	OR(4)
 		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
@@ -446,6 +518,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71383) // Spell: Silence
 		Spell(LastSeenBy(Myself),CLERIC_SILENCE_15_FOOT)  // SPPR211.SPL (Silence, 15' Radius)
 END
@@ -453,6 +526,7 @@ END
 // Level 4 - Abjuration
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_SECRET_WORD)
 	OR(4)
 		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
@@ -475,12 +549,15 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71384) // Spell: Secret Word
 		Spell(LastSeenBy(Myself),WIZARD_SECRET_WORD)
 END
 
 // Level 2 - Divination
 IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DETECT_INVISIBILITY)
 	OR(2)
 		SpellCast([EVILCUTOFF],WIZARD_INVISIBILITY)
@@ -495,12 +572,15 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71450) // Spell: Detect Invisibility
 		Spell(Myself,WIZARD_DETECT_INVISIBILITY)
 END
 
 // Level 5 - Enchantment
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_HOLD_MONSTER)
 	See(NearestEnemyOf(Myself))
 	!CheckSpellState(LastSeenBy(Myself),HELD)
@@ -519,6 +599,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71385) // Spell: Hold Monster
 		Spell(LastSeenBy(Myself),WIZARD_HOLD_MONSTER)
 END
@@ -526,6 +607,7 @@ END
 // Level 5 - Enchantment
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_CHAOS)  // SPPR211.SPL (Silence, 15' Radius)
 	NumCreatureVsPartyGT(Myself,3)
 
@@ -571,6 +653,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71386) // Spell: Chaos
 		Spell(LastSeenBy(Myself),WIZARD_CHAOS)
 END
@@ -578,6 +661,7 @@ END
 // Level 2 - Necromancy
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_HORROR)
 	NumCreatureVsPartyGT(Myself,4)
 
@@ -686,6 +770,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71387) // Spell: Horror
 		Spell(NearestEnemyOf(Myself),WIZARD_HORROR)
 END
@@ -694,6 +779,7 @@ END
 // Dispel Magic On Allies
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -716,12 +802,14 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
 
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -744,12 +832,14 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
 
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -772,12 +862,14 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
 
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -800,12 +892,14 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
 
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -828,12 +922,14 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
 
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -856,6 +952,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
@@ -863,6 +960,7 @@ END
 // Dispel Magic On Enemies
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
 	OR(4)
 		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
@@ -913,6 +1011,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
@@ -921,6 +1020,7 @@ END
 // Level 3 - Abjuration
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DISPEL_MAGIC)
 	OR(4)
 		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
@@ -971,6 +1071,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71388) // Spell: Remove Magic
 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
 END
@@ -980,6 +1081,7 @@ END
 // Dispel Magic On Allies
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1002,12 +1104,14 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1030,12 +1134,14 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1058,12 +1164,14 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1086,12 +1194,14 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1114,12 +1224,14 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1142,6 +1254,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
@@ -1149,6 +1262,7 @@ END
 // Dispel Magic On Enemies
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	OR(4)
 		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
@@ -1199,6 +1313,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
@@ -1206,6 +1321,7 @@ END
 // Level 3 - Enchantment
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_MISCAST_MAGIC)
 	OR(4)
 		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
@@ -1231,12 +1347,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71390) // Spell: Miscast Magic
 		Spell(LastSeenBy(Myself),CLERIC_MISCAST_MAGIC)
 END
 
 IF
  	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DOOM)
 	See(NearestEnemyOf(Myself))
 	OR(4)
@@ -1247,12 +1365,14 @@ IF
 	!CheckSpellState(LastSeenBy(Myself),DOOM)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71439) // Spell: Doom
 		Spell(LastSeenBy(Myself),CLERIC_DOOM)
 END
 
 IF
 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 //	NumCreatureVsPartyGT(Myself,3)
 	HaveSpell(WIZARD_GREATER_MALISON)
 
@@ -1282,6 +1402,7 @@ IF
 //	CheckStatLT(FourthNearestEnemyOf(Myself),10,THAC0)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71440) // Spell: Greater Malison
 		Spell(NearestEnemyOf(Myself),WIZARD_GREATER_MALISON)
 END
@@ -1289,6 +1410,7 @@ END
 /////////////////////////////////////////////////////////////////////////////////////// Debuff/Control Wands
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	Class(Myself,MAGE_ALL)
 	HasItem("wand02",Myself)
 	NumCreatureVsPartyGT(Myself,4)
@@ -1403,6 +1525,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71430) // Wand: Fear
 		UseItem("wand02",NearestEnemyOf(Myself))
 END
@@ -1515,12 +1638,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71435) // Wand: Sleep
 		UseItem("wand08",NearestEnemyOf(Myself))
 END
 
 IF
   	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	Class(Myself,MAGE_ALL)
 	HasItem("wand04",Myself)
 	!CheckSpellState(NearestEnemyOf(Myself),HELD)
@@ -1534,6 +1659,7 @@ IF
 		CheckStatLT(NearestEnemyOf(Myself),10,THAC0)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71432) // Wand: Paralyzation
 		UseItem("wand04",NearestEnemyOf(Myself))
 END
@@ -1644,6 +1770,7 @@ END
 /////////////////////////////////////////////////////////////////////////////////////// Summon spells
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMATE_DEAD)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -1651,12 +1778,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71392) // Spell: Animate Undead
 		Spell(Myself,CLERIC_ANIMATE_DEAD)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_ANIMATE_DEAD)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -1664,12 +1793,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71392) // Spell: Animate Undead
 		Spell(Myself,WIZARD_ANIMATE_DEAD)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CALL_WOODLAND_BEINGS)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -1677,12 +1808,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71393) // Spell: Call Woodland Beings
 		Spell(Myself,CLERIC_CALL_WOODLAND_BEINGS)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -1690,12 +1823,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71394) // Spell: Animal Summoning 3
 		Spell(Myself,CLERIC_ANIMAL_SUMMONING_3)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_2)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -1703,12 +1838,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71395) // Spell: Animal Summoning 2
 		Spell(Myself,CLERIC_ANIMAL_SUMMONING_2)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_1)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -1716,6 +1853,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71396) // Spell: Animal Summoning 1
 		Spell(Myself,CLERIC_ANIMAL_SUMMONING_1)
 END
@@ -1723,6 +1861,7 @@ END
 ////////////////////////////////////////////////////////////////////////////////// If have a buff spell use it
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BLESS)  // SPPR101.SPL (Bless)
 	//See(NearestEnemyOf(MySelf))
 	!StateCheck(Myself,STATE_BLESS)
@@ -1732,12 +1871,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71397) // Spell: Bless
 		Spell(Myself,CLERIC_BLESS)  // SPPR101.SPL (Bless)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CHANT)  // SPPR203.SPL (Chant)
 	//See(NearestEnemyOf(MySelf))
 	!StateCheck(Myself,STATE_CHANT)
@@ -1747,12 +1888,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71398) // Spell: Chant
 		Spell(Myself,CLERIC_CHANT)  // SPPR203.SPL (Chant)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DEFENSIVE_HARMONY)  // SPPR203.SPL (Chant)
 	!CheckStat(Myself,1,CLERIC_DEFENSIVE_HARMONY)
 
@@ -1761,12 +1904,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71399) // Spell: Defensive Harmony
 		Spell(Myself,CLERIC_DEFENSIVE_HARMONY)  // SPPR203.SPL (Chant)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_REMOVE_FEAR)  // SPPR203.SPL (Chant)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -1774,12 +1919,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71400) // Spell: Remove Fear
 		Spell(Myself,CLERIC_REMOVE_FEAR)  // SPPR203.SPL (Chant)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
 	!CheckSpellState(PartySlot2,PROTECTION_FROM_EVIL)
 
@@ -1788,12 +1935,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71401) // Spell: Protection From Evil
 		Spell(PartySlot2,CLERIC_PROTECT_FROM_EVIL)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
 	!CheckSpellState(Myself,PROTECTION_FROM_EVIL)
 
@@ -1802,12 +1951,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71402) // Spell: Protection Group From Evil
 		Spell(Myself,CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BARKSKIN)
 	!CheckSpellState(PartySlot2,BARKSKIN)
 
@@ -1816,12 +1967,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71403) // Spell: Barkskin
 		Spell(PartySlot2,CLERIC_BARKSKIN)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_AID)
 	!CheckSpellState(PartySlot2,AID)
 
@@ -1830,12 +1983,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71404) // Spell: Aid
 		Spell(PartySlot2,CLERIC_AID)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_CHAOS_SHIELD)
 	!CheckSpellState(Myself,CHAOS_SHIELD)
 
@@ -1844,12 +1999,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71405) // Spell: Chaos Shield
 		Spell(Myself,WIZARD_CHAOS_SHIELD)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_SHIELD)
 	!CheckSpellState(Myself,WIZARD_SHIELD)
 
@@ -1858,12 +2015,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71406) // Spell: Shield
 		Spell(Myself,WIZARD_SHIELD)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_SHILLELAGH)  // SPPR110.SPL (Shillelagh)
 	!HasItem("FBLADE",Myself)  // Flame Blade
 	!HasItem("SHILLE",Myself)  // Shillelagh
@@ -1877,12 +2036,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71407) // Spell: Shillelagh
 		Spell(Myself,CLERIC_SHILLELAGH)  // SPPR110.SPL (Shillelagh)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_FLAME_BLADE)
 	!HasItem("FBLADE",Myself)  // Flame Blade
 	!HasItem("SHILLE",Myself)  // Shillelagh
@@ -1896,12 +2057,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71408) // Spell: Flame Blade
 		Spell(Myself,CLERIC_FLAME_BLADE)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DRAW_UPON_HOLY_MIGHT)
 	!CheckSpellState(Myself,DRAW_UPON_HOLY_MIGHT)
 	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
@@ -1911,12 +2074,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71409) // Spell: Holy Might
 		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WHITE_HOLY_MIGHT)
 	!CheckSpellState(Myself,DRAW_UPON_HOLY_MIGHT)
 
@@ -1925,12 +2090,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71409) // Spell: Holy Might
 		Spell(Myself,WHITE_HOLY_MIGHT)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ARMOR_OF_FAITH)
 	!CheckSpellState(Myself,ARMOR_OF_FAITH)
 
@@ -1939,12 +2106,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71410) // Spell: Armor Of Faith
 		Spell(Myself,CLERIC_ARMOR_OF_FAITH)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_HOLY_POWER)
 	!CheckSpellState(Myself,HOLY_POWER)
 
@@ -1953,12 +2122,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71411) // Spell: Holy Power
 		Spell(Myself,CLERIC_HOLY_POWER)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_RESIST_FEAR)
 	!CheckSpellState(Myself,RESIST_FEAR)
 
@@ -1967,12 +2138,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71412) // Spell: Resist Fear
 		Spell(Myself,WIZARD_RESIST_FEAR)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_HASTE)
 	!StateCheck(Myself,STATE_HASTED)
 
@@ -1981,12 +2154,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71413) // Spell: Haste
 		Spell(Myself,WIZARD_HASTE)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MIRROR_IMAGE)
 	!StateCheck(Myself,STATE_MIRRORIMAGE)
 
@@ -1995,12 +2170,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71414) // Spell: Mirror Image
 		Spell(Myself,WIZARD_MIRROR_IMAGE)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
 	!CheckStat(Myself,1,MINORGLOBE)
 
@@ -2009,12 +2186,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71415) // Spell: Minor Globe Of Invulnerability
 		Spell(Myself,WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MINOR_SPELL_DEFLECTION)
 	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
 
@@ -2023,12 +2202,14 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71416) // Spell: Minor Spell Deflection
 		Spell(Myself,WIZARD_MINOR_SPELL_DEFLECTION)
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_IMPROVED_INVISIBILITY)
 	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
 
@@ -2037,6 +2218,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71417) // Spell: Improved Invisibility
 		Spell(Myself,WIZARD_IMPROVED_INVISIBILITY)
 END
@@ -2437,31 +2619,15 @@ IF
 	!TriggerOverride(FarthestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71418) // Spell: Fireball
 		Spell(FarthestEnemyOf(Myself),WIZARD_FIREBALL)
-END
-
-// Use Melfs Minute Meteors If Equipped
-IF
-	HasItem("MELFMET",Myself)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-	!InParty(LastSeenBy(Myself))
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-THEN
-	RESPONSE #100
-		DisplayStringHead(Myself,71446) // Melfs Minute Meteors
-		AttackOneRound(LastSeenBy(Myself))
 END
 
 // Level 3 - Evocation
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MELF_METEOR)
 	!HasItem("MELFMET",Myself)
 
@@ -2477,8 +2643,10 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71445) // Spell: Melfs Minute Meteors
 		Spell(Myself,WIZARD_MELF_METEOR)
 END
@@ -2486,6 +2654,7 @@ END
 // Level 1 - Evocation
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MAGIC_MISSILE)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -2504,8 +2673,10 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71419) // Spell: Magic Missile
 		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
 END
@@ -2513,6 +2684,7 @@ END
 // Level 3 - Conjuration
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_FLAME_ARROW)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -2533,8 +2705,10 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71420) // Spell: Flame Arrow
 		Spell(LastSeenBy(Myself),WIZARD_FLAME_ARROW)
 END
@@ -2542,6 +2716,7 @@ END
 // Level 2 - Conjuration
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MELF_ACID_ARROW)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -2560,8 +2735,10 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71421) // Spell: Melf Acid Arrow
 		Spell(LastSeenBy(Myself),WIZARD_MELF_ACID_ARROW)
 END
@@ -2569,6 +2746,7 @@ END
 // Level 2 - Evocation
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_AGANNAZAR_SCORCHER)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -2587,8 +2765,10 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71422) // Spell: Agannazar Scorcher
 		Spell(LastSeenBy(Myself),WIZARD_AGANNAZAR_SCORCHER)
 END
@@ -2596,6 +2776,7 @@ END
 // Level 3 - Necromancy
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_HOLY_SMITE)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -2613,8 +2794,10 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71423) // Spell: Holy Smite
 		Spell(LastSeenBy(Myself),CLERIC_HOLY_SMITE)
 END
@@ -2624,6 +2807,7 @@ END
 // Level 1 - Evocation
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MAGIC_MISSILE)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -2644,6 +2828,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71419) // Spell: Magic Missile
 		Spell(NearestEnemyOf(Myself),WIZARD_MAGIC_MISSILE)
 END
@@ -2651,6 +2836,7 @@ END
 // Level 3 - Conjuration
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_FLAME_ARROW)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -2666,13 +2852,14 @@ IF
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTFIRE)
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)
 
-	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71420) // Spell: Flame Arrow
 		Spell(NearestEnemyOf(Myself),WIZARD_FLAME_ARROW)
 END
@@ -2680,6 +2867,7 @@ END
 // Level 2 - Conjuration
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MELF_ACID_ARROW)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -2700,6 +2888,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71421) // Spell: Melf Acid Arrow
 		Spell(NearestEnemyOf(Myself),WIZARD_MELF_ACID_ARROW)
 END
@@ -2707,6 +2896,7 @@ END
 // Level 2 - Evocation
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_AGANNAZAR_SCORCHER)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -2727,6 +2917,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71422) // Spell: Agannazar Scorcher
 		Spell(NearestEnemyOf(Myself),WIZARD_AGANNAZAR_SCORCHER)
 END
@@ -2734,6 +2925,7 @@ END
 // Level 3 - Necromancy
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_HOLY_SMITE)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -2753,6 +2945,7 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71423) // Spell: Holy Smite
 		Spell(NearestEnemyOf(Myself),CLERIC_HOLY_SMITE)
 END
@@ -2760,6 +2953,7 @@ END
 //////////////////////////////////////////////////////////////////// Offensive Wands On Targets You Can See
 IF
     ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	Class(Myself,MAGE_ALL)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand06",Myself)
@@ -2769,26 +2963,32 @@ IF
 		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
 		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
 		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71434) // Wand: Frost
 		UseItem("wand06",LastSeenBy(Myself))
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	Class(Myself,MAGE_ALL)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand03",Myself)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSWANDS)
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71431) // Wand: Magic Missile
 		UseItem("wand03",LastSeenBy(Myself))
 END
 
 IF
   	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	Class(Myself,CLERIC_ALL)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand11",Myself)
@@ -2798,8 +2998,10 @@ IF
 		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
 		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
 		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71437) // Wand: Heavens
 		UseItem("wand11",LastSeenBy(Myself))
 END
@@ -2813,6 +3015,7 @@ IF
 	!TriggerOverride(FarthestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71433) // Wand: Fire
 		XEquipItem("wand05",Myself,SLOT_MISC0,EQUIP)
 		UseItemSlotAbility(FarthestEnemyOf(Myself),SLOT_MISC0,0)
@@ -2845,8 +3048,10 @@ IF
 		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
 		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
 		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71433) // Wand: Fire
 		XEquipItem("wand05",Myself,SLOT_MISC0,EQUIP)
 		UseItemSlotAbility(LastSeenBy(Myself),SLOT_MISC0,1)
@@ -2854,22 +3059,26 @@ END
 
 //IF
 //  ActionListEmpty()
+//    !GlobalTimerNotExpired("castnattack","LOCALS")
 //	Class(Myself,MAGE_ALL)
 //	HasItem("wand10",Myself)
 //	See(NearestEnemyOf(Myself))
 //THEN
 //	RESPONSE #100
+//        SetGlobalTimer("castnattack","LOCALS",6)
 //		DisplayStringHead(Myself,71436) // Wand: Monster Summoning
 //		UseItem("wand10",LastSeenBy(Myself))
 //END
 
 //IF
 //  ActionListEmpty()
+//    !GlobalTimerNotExpired("castnattack","LOCALS")
 //	Class(Myself,MAGE_ALL)
 //	HasItem("wand18",Myself)
 //	See(NearestEnemyOf(Myself))
 //THEN
 //	RESPONSE #100
+//        SetGlobalTimer("castnattack","LOCALS",6)
 //		DisplayStringHead(Myself,71438) // Wand: Spell Striking
 //		UseItem("wand18",LastSeenBy(Myself))
 //END
@@ -2877,6 +3086,7 @@ END
 //////////////////////////////////////////////////////////////////// Offensive Wands On Targets You Can't See
 IF
     ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	Class(Myself,MAGE_ALL)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand06",Myself)
@@ -2888,24 +3098,28 @@ IF
 		CheckStatLT(NearestEnemyOf(Myself),10,THAC0)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71434) // Wand: Frost
 		UseItem("wand06",NearestEnemyOf(Myself))
 END
 
 IF
 	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	Class(Myself,MAGE_ALL)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand03",Myself)
 	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSWANDS)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71431) // Wand: Magic Missile
 		UseItem("wand03",NearestEnemyOf(Myself))
 END
 
 IF
   	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	Class(Myself,CLERIC_ALL)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand11",Myself)
@@ -2917,6 +3131,7 @@ IF
 		CheckStatLT(NearestEnemyOf(Myself),10,THAC0)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71437) // Wand: Heavens
 		UseItem("wand11",NearestEnemyOf(Myself))
 END
@@ -2940,6 +3155,27 @@ END
 //		SelectWeaponAbility(SLOT_WEAPON2,0)
 //END
 // Need function to equip weapon by slot number
+
+/////////////////////////////////////////////////////////// Use Melfs Minute Meteors If Equipped
+
+IF
+	ActionListEmpty()
+	HasItem("MELFMET",Myself)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+	!InParty(LastSeenBy(Myself))
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71446) // Melfs Minute Meteors
+		AttackOneRound(LastSeenBy(Myself))
+END
 
 ///////////////////////////////////////////////////////// Melee/Ranged Non-Spell Attack
 // Attack enemies that have been targeted
