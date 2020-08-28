@@ -1,3 +1,41 @@
+////////////////////////////////////////////////////////////////// Cancel Fireball If Enemy Has Moved Closer
+// If casting a fireball and target is within 17ft cancel it
+IF
+	GlobalTimerNotExpired("castingfireball","LOCALS")
+	Range(LastSeenBy(Myself),17)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71459) // Cancelling Fireball
+		SetGlobalTimer("castingfireball","LOCALS",0)
+		ClearAllActions()
+END
+
+// If casting fireball and target still far away, continue until cast and don't continue with other actions
+IF
+	GlobalTimerNotExpired("castingfireball","LOCALS")
+THEN
+	RESPONSE #100
+		// Continue with current action
+END
+
+////////////////////////////////////////////////////////////////// Status Messages
+IF
+	!GlobalTimerNotExpired("statusmessages","LOCALS")
+	CheckStatGT(Myself,0,LEVELDRAIN)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71451) // Status: Energy Level Drained
+		Continue()
+END
+
+IF
+	!GlobalTimerNotExpired("statusmessages","LOCALS")
+THEN
+	RESPONSE #100
+		SetGlobalTimer("statusmessages","LOCALS",10)
+		Continue()
+END
+
 ////////////////////////////////////////////////////////////////// If poisoned use an antidote potion
 IF 
 	ActionListEmpty()
@@ -389,21 +427,25 @@ END
 ////////////////////////////////////////////////////////////////// Share Healing Potions
 
 IF
+	ActionListEmpty()
     !HasItem("potn08",Myself)
     HPPercentLT(Myself,50)
     !GlobalTimerNotExpired("shouted","LOCALS") // Only shout so often
 THEN
     RESPONSE #100
         SetGlobalTimer("shouted","LOCALS",10)
+		DisplayStringHead(Myself,71457) // Help: Need Potion Of Healing
         Shout(NEED_POTION_OF_HEALING) // Shout for help
 END
 
 IF
-    Heard([EVILCUTOFF],NEED_POTION_OF_HEALING) // If someone shouted for help
+	ActionListEmpty()
+    Heard([ANYONE],NEED_POTION_OF_HEALING) // If someone shouted for help
     !HasItem("potn08",LastHeardBy(Myself))
-    HPPercentGT(Myself,50)
+	HasItem("potn08",Myself)
 THEN
     RESPONSE #100
+		DisplayStringHead(Myself,71458) // Giving Healing Potion
         GiveItem("potn08",LastHeardBy(Myself)) // Pass them the item
 END
 
@@ -775,6 +817,66 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71387) // Spell: Horror
 		Spell(NearestEnemyOf(Myself),WIZARD_HORROR)
+END
+
+
+// Dispel Magic On Enemies
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_BREACH)
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(26)
+		CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_SHIELD)
+		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
+		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+		CheckStatGT(LastSeenBy(Myself),0,IMPROVEDHASTE)
+		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
+		CheckStatGT(LastSeenBy(Myself),0,TRUE_SIGHT)
+		CheckStatGT(LastSeenBy(Myself),0,CLERIC_DEFENSIVE_HARMONY)
+		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+		CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
+		CheckStatGT(LastSeenBy(Myself),0,DEATH_WARD)
+		CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)
+		CheckStatGT(LastSeenBy(Myself),0,STRENGTH_MODIFIER)
+		CheckStatGT(LastSeenBy(Myself),3,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
+		CheckSpellState(LastSeenBy(Myself),POTION_OF_MAGIC_BLOCKING)
+		CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
+		CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
+		CheckSpellState(LastSeenBy(Myself),BUFF_PRO_WEAPONS)
+		CheckSpellState(LastSeenBy(Myself),BUFF_PRO_EFFECTS)
+		CheckSpellState(LastSeenBy(Myself),RESIST_FEAR)
+		CheckSpellState(LastSeenBy(Myself),SCROLL_OF_PROTECTION_FROM_MAGIC)
+		StateCheck(LastSeenBy(Myself),STATE_HASTED)
+		StateCheck(LastSeenBy(Myself),STATE_BLESS)
+		StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
+		StateCheck(LastSeenBy(Myself),STATE_BLUR)
+		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),5)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71452) // Spell: Breach
+		Spell(LastSeenBy(Myself),WIZARD_BREACH)
 END
 
 // Wizard True Dispel Magic = Dispel Magic
@@ -2225,6 +2327,86 @@ THEN
 		Spell(Myself,WIZARD_IMPROVED_INVISIBILITY)
 END
 
+// Level 3 - Evocation
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MELF_METEOR)
+	!HasItem("MELFMET",Myself)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71445) // Spell: Melfs Minute Meteors
+		Spell(Myself,WIZARD_MELF_METEOR)
+END
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_IRONSKIN)
+	!CheckSpellState(Myself,IRON_SKINS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71453) // Spell: Iron Skins
+		Spell(Myself,CLERIC_IRONSKIN)
+END
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_STRENGTH_OF_ONE)
+	CheckStatLT(WeakestOf(Myself),18,STRENGTH_MODIFIER)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71454) // Spell: Strength Of One
+		Spell(WeakestOf(Myself),CLERIC_STRENGTH_OF_ONE)
+END
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_STRENGTH)
+	CheckStatLT(WeakestOf(Myself),18,STRENGTH_MODIFIER)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71455) // Spell: Strength
+		Spell(WeakestOf(Myself),WIZARD_STRENGTH)
+END
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CHAMPIONS_STRENGTH)
+	CheckStatLT(WeakestOf(Myself),18,STRENGTH_MODIFIER)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71456) // Spell: Champions Strength
+		Spell(WeakestOf(Myself),CLERIC_CHAMPIONS_STRENGTH)
+END
 
 //////////////////////////////////////////////////////////////////////////// Decide On Next Target You Can See
 // Protect The Wizard
@@ -2615,42 +2797,17 @@ END
 IF
 	Class(Myself,MAGE_ALL)
 	HaveSpell(WIZARD_FIREBALL)
-	!Range(FarthestEnemyOf(Myself),15)
+	!Range(FarthestEnemyOf(Myself),17)
 	!StateCheck(FarthestEnemyOf(Myself),STATE_REALLY_DEAD)
 	TriggerOverride(FarthestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
 	!TriggerOverride(FarthestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
+	See(FarthestEnemyOf(Myself)) // Target the fireball target
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		SetGlobalTimer("castingfireball","LOCALS",6) // Starting fireball
 		DisplayStringHead(Myself,71418) // Spell: Fireball
 		Spell(FarthestEnemyOf(Myself),WIZARD_FIREBALL)
-END
-
-// Level 3 - Evocation
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MELF_METEOR)
-	!HasItem("MELFMET",Myself)
-
-	HPPercentGT(NearestEnemyOf(Myself),0)
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71445) // Spell: Melfs Minute Meteors
-		Spell(Myself,WIZARD_MELF_METEOR)
 END
 
 // Level 1 - Evocation
@@ -3011,21 +3168,23 @@ END
 IF
 	Class(Myself,MAGE_ALL)
 	HasItem("wand05",Myself)
-	!Range(FarthestEnemyOf(Myself),15)
+	!Range(FarthestEnemyOf(Myself),17)
 	!StateCheck(FarthestEnemyOf(Myself),STATE_REALLY_DEAD)
 	TriggerOverride(FarthestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
 	!TriggerOverride(FarthestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
+	See(FarthestEnemyOf(Myself)) // Target the fireball target
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		SetGlobalTimer("castingfireball","LOCALS",6) // Starting fireball
 		DisplayStringHead(Myself,71433) // Wand: Fire
 		XEquipItem("wand05",Myself,SLOT_MISC0,EQUIP)
 		UseItemSlotAbility(FarthestEnemyOf(Myself),SLOT_MISC0,0)
 END
 
-IF
-	Class(Myself,MAGE_ALL)
-	HasItem("wand05",Myself)
+//IF
+//	Class(Myself,MAGE_ALL)
+//	HasItem("wand05",Myself)
 	//!InLine(LastSeenBy(Myself),PartySlot1)
 	//!InLine(LastSeenBy(Myself),PartySlot2)
 	//!InLine(LastSeenBy(Myself),PartySlot3)
@@ -3033,31 +3192,31 @@ IF
 	//!InLine(LastSeenBy(Myself),PartySlot5)
 	//!InLine(LastSeenBy(Myself),PartySlot6)
 
-	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
+//	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+//	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) 
+//	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+//	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
 
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+//	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+//	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+//	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+//	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
+//	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-	OR(4)
-		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
-		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
-		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
-		CheckStatLT(LastSeenBy(Myself),10,THAC0)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71433) // Wand: Fire
-		XEquipItem("wand05",Myself,SLOT_MISC0,EQUIP)
-		UseItemSlotAbility(LastSeenBy(Myself),SLOT_MISC0,1)
-END
+//	OR(4)
+//		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
+//		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+//		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
+//		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+//	!InParty(LastSeenBy(Myself))
+//THEN
+//	RESPONSE #100
+//        SetGlobalTimer("castnattack","LOCALS",6)
+//		DisplayStringHead(Myself,71433) // Wand: Fire
+//		XEquipItem("wand05",Myself,SLOT_MISC0,EQUIP)
+//		UseItemSlotAbility(LastSeenBy(Myself),SLOT_MISC0,1)
+//END
 
 //IF
 //  ActionListEmpty()
@@ -3138,25 +3297,113 @@ THEN
 		UseItem("wand11",NearestEnemyOf(Myself))
 END
 
-//////////////////////////////////////////////////////////////////// Check Weapon Is Effective
-// Randomly Change Weapon If Weapon Not Effective
+//////////////////////////////////////////////////////////////////// Change Melee Weapon If Not Effective
+
 //IF
 //	ActionListEmpty()
-//	See(NearestEnemyOf(Myself))
-//	!WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
-//	//!WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
+//	//!GlobalTimerNotExpired("checkweapon0","LOCALS")
+//	!IsWeaponRanged(Myself)
+//	HPPercentGT(LastSeenBy(Myself),0)
+//	!CheckWeaponCanDamageV2(LastSeenBy(Myself),BOTH)
 //THEN
 //	RESPONSE #100
 //		DisplayStringHead(Myself,71441) // Changing Weapon
 //		SelectWeaponAbility(SLOT_WEAPON0,0)
-//	RESPONSE #30
+//		//SetGlobalTimer("checkweapon0","LOCALS",20)
+//END
+
+//IF
+//	ActionListEmpty()
+//	//!GlobalTimerNotExpired("checkweapon1","LOCALS")
+//	!IsWeaponRanged(Myself)
+//	HPPercentGT(LastSeenBy(Myself),0)
+//	!WeaponCanDamage(LastSeenBy(Myself),BOTH)
+//THEN
+//	RESPONSE #100
 //		DisplayStringHead(Myself,71441) // Changing Weapon
 //		SelectWeaponAbility(SLOT_WEAPON1,0)
-//	RESPONSE #30
+//		//SetGlobalTimer("checkweapon1","LOCALS",20)
+//END
+
+//IF
+//	ActionListEmpty()
+//	!GlobalTimerNotExpired("checkweapon2","LOCALS")
+//	!IsWeaponRanged(Myself)
+//	HPPercentGT(LastSeenBy(Myself),0)
+//	!WeaponCanDamage(LastSeenBy(Myself),BOTH)
+//THEN
+//	RESPONSE #100
 //		DisplayStringHead(Myself,71441) // Changing Weapon
 //		SelectWeaponAbility(SLOT_WEAPON2,0)
+//		SetGlobalTimer("checkweapon2","LOCALS",20)
 //END
-// Need function to equip weapon by slot number
+
+//IF
+//	ActionListEmpty()
+//	!GlobalTimerNotExpired("checkweapon3","LOCALS")
+//	!IsWeaponRanged(Myself)
+//	HPPercentGT(LastSeenBy(Myself),0)
+//	!WeaponCanDamage(LastSeenBy(Myself),BOTH)
+//THEN
+//	RESPONSE #100
+//		DisplayStringHead(Myself,71441) // Changing Weapon
+//		SelectWeaponAbility(SLOT_WEAPON3,0)
+//		SetGlobalTimer("checkweapon3","LOCALS",20)
+//END
+
+/////////////////////////////////////////////////////////// Change Ranged Ammo If Not Effective
+
+IF
+	ActionListEmpty()
+	IsWeaponRanged(Myself)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+	!WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
+	//!WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71441) // Changing Weapon
+		SelectWeaponAbility(SLOT_AMMO0,0)
+		Continue()
+END
+
+IF
+	ActionListEmpty()
+	IsWeaponRanged(Myself)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+	!WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
+	//!WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71441) // Changing Weapon
+		SelectWeaponAbility(SLOT_AMMO1,0)
+		Continue()
+END
+
+IF
+	ActionListEmpty()
+	IsWeaponRanged(Myself)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+	!WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
+	//!WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71441) // Changing Weapon
+		SelectWeaponAbility(SLOT_AMMO2,0)
+		Continue()
+END
+
+IF
+	ActionListEmpty()
+	IsWeaponRanged(Myself)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+	!WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
+	//!WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71441) // Changing Weapon
+		SelectWeaponAbility(SLOT_AMMO3,0)
+		Continue()
+END
 
 /////////////////////////////////////////////////////////// Use Melfs Minute Meteors If Equipped
 
@@ -3183,9 +3430,7 @@ END
 // Attack enemies that have been targeted
 IF
 	ActionListEmpty()
-	OR(2)
-		!Class(Myself,MAGE_ALL)
-		IsWeaponRanged(Myself)
+	//IsWeaponRanged(Myself)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HPPercentGT(LastSeenBy(Myself),0)
 	!InParty(LastSeenBy(Myself))
@@ -3198,9 +3443,7 @@ END
 // If cant see nearby enemy go and attack the nearest
 IF
 	ActionListEmpty()
-	OR(2)
-		!Class(Myself,MAGE_ALL)
-		IsWeaponRanged(Myself)
+	//IsWeaponRanged(Myself)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 THEN
 	RESPONSE #100
