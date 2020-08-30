@@ -19,20 +19,14 @@ THEN
 END
 
 ////////////////////////////////////////////////////////////////// Status Messages
+
 IF
-	!GlobalTimerNotExpired("statusmessages","LOCALS")
+	!GlobalTimerNotExpired("energyleveldrained","LOCALS")
 	CheckStatGT(Myself,0,LEVELDRAIN)
 THEN
 	RESPONSE #100
+		SetGlobalTimer("energyleveldrained","LOCALS",3)
 		DisplayStringHead(Myself,71451) // Status: Energy Level Drained
-		Continue()
-END
-
-IF
-	!GlobalTimerNotExpired("statusmessages","LOCALS")
-THEN
-	RESPONSE #100
-		SetGlobalTimer("statusmessages","LOCALS",10)
 		Continue()
 END
 
@@ -59,6 +53,41 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71381) // Potion: Elixir Of Health
 		UseItem("potn17",Myself)  // Elixir of health - cures disease and poisons
+END
+
+////////////////////////////////////////////////////////////////// Share Antidotes
+
+IF
+	ActionListEmpty()
+    StateCheck(Myself,STATE_POISONED)
+	!HasItem("potn17",Myself)
+    !HasItem("potn20",Myself)
+THEN
+    RESPONSE #100
+		DisplayStringHead(Myself,71462) // Help: Need Antidote
+        Shout(NEED_ANTIDOTE) // Shout for help
+END
+
+IF
+	ActionListEmpty()
+    Heard([ANYONE],NEED_ANTIDOTE) // If someone shouted for help
+    !HasItem("potn20",LastHeardBy(Myself))
+	HasItem("potn20",Myself)
+THEN
+    RESPONSE #100
+		DisplayStringHead(Myself,71463) // Giving Antidote
+        GiveItem("potn20",LastHeardBy(Myself))
+END
+
+IF
+	ActionListEmpty()
+    Heard([ANYONE],NEED_ANTIDOTE) // If someone shouted for help
+    !HasItem("potn17",LastHeardBy(Myself))
+	HasItem("potn17",Myself)
+THEN
+    RESPONSE #100
+		DisplayStringHead(Myself,71463) // Giving Antidote
+        GiveItem("potn17",LastHeardBy(Myself))
 END
 
 ////////////////////////////////////////////////////////////////////////////////////// Buff Potions
@@ -115,6 +144,10 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),80)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -127,6 +160,10 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),80) 
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -139,11 +176,31 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),75)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71377) // Spell: Cure Serious Wounds
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_SERIOUS_WOUNDS)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_MASS_CURE)  // SPPR514.SPL (Mass Cure)
+	HPPercentLT(MostDamagedOf(Myself),65)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71461) // Spell: Mass Cure
+		Spell(MostDamagedOf(Myself),CLERIC_MASS_CURE)
 END
 
 /////////////////////////////////////////////////////////////////// If health is low use a healing potion
@@ -430,10 +487,8 @@ IF
 	ActionListEmpty()
     !HasItem("potn08",Myself)
     HPPercentLT(Myself,50)
-    !GlobalTimerNotExpired("shouted","LOCALS") // Only shout so often
 THEN
     RESPONSE #100
-        SetGlobalTimer("shouted","LOCALS",10)
 		DisplayStringHead(Myself,71457) // Help: Need Potion Of Healing
         Shout(NEED_POTION_OF_HEALING) // Shout for help
 END
@@ -464,22 +519,8 @@ THEN
 		UseItem("potn17",Myself)  // Elixir of health - cures disease and poisons
 END
 
-///////////////////////////////////////////////////////////////// Move out of the way of allies
-//IF 
-//	PersonalSpaceDistance(NearestAllyOf(Myself),1)
-//THEN
-//	RESPONSE #25
-//		MoveToOffset([1.1])
-//	RESPONSE #25
-//		MoveToOffset([1.-1])
-//	RESPONSE #25
-//		MoveToOffset([-1.1])
-//	RESPONSE #25
-//		MoveToOffset([-1.-1])
-//END
-
-//////////////////////////////////////////////////////////////// Run away from nearby enemies
-// If enemy and not set same location timer, then start the timer and run away
+//////////////////////////////////////////////////////////////// Run away from nearby enemies if health is low
+// If an enemy is nearby and the same location timer isn't running, then start the timer and run away
 IF 
 	ActionListEmpty()
 	!GlobalTimerExpired("locMeSame","LOCALS")
@@ -489,10 +530,22 @@ THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,71382) // Running Away
 		SetGlobalTimer("locMeSame","LOCALS",3)
-		RunAwayFrom(NearestEnemyOf(Myself),15)
+		RunAwayFrom(NearestEnemyOf(Myself),20)
 END
 
-// If enemy and have set the same location timer and its not expired, then run away
+IF 
+	ActionListEmpty()
+	!GlobalTimerExpired("locMeSame","LOCALS")
+	!GlobalTimerNotExpired("locMeSame","LOCALS")
+	Range(NearestEnemyOf(Myself),10)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71382) // Running Away
+		SetGlobalTimer("locMeSame","LOCALS",3)
+		RunAwayFrom(NearestEnemyOf(Myself),25)
+END
+
+// If an enemy is nearby and the same location timer is running but hasn't expired, then run away
 IF 
 	ActionListEmpty()
 	GlobalTimerNotExpired("locMeSame","LOCALS")
@@ -503,7 +556,7 @@ THEN
 		RunAwayFrom(NearestEnemyOf(Myself),15)
 END
 
-// If enemy and have set the same location timer and it has expired, continue with normal actions and attack
+// If an enemy is nearby and the same location timer has expired (have been in the same spot for a while), continue with normal actions and attack
 
 ////////////////////////////////////////////////////////////////////////////////////// Debuff/Control Spells
 IF
@@ -520,9 +573,11 @@ IF
 		SpellCast([ANYONE],WIZARD_CLOUDKILL)  // SPWI502.SPL (Cloudkill)
 		SpellCast([ANYONE],WIZARD_DEATH_FOG)  // SPWI614.SPL (Death Fog)
 		SpellCast([ANYONE],CLERIC_WRITHING_FOG)  // SPPR250.SPL (Writhing Fog)
+		SpellCast([ANYONE],TRAP_STINKING_CLOUD)
+		SpellCast([ANYONE],TRAP_CLOUDKILL)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("castnattack","LOCALS",6)
@@ -557,7 +612,9 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -589,6 +646,8 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -619,6 +678,86 @@ THEN
 		Spell(Myself,WIZARD_DETECT_INVISIBILITY)
 END
 
+// Level 2 - Enchantment
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_HOLD_PERSON)
+	See([EVILCUTOFF.HUMANOID])
+	!CheckSpellState(LastSeenBy(Myself),HELD)
+	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+	!CheckSpellState(LastSeenBy(Myself),BARBARIAN_RAGE)
+	!CheckSpellState(LastSeenBy(Myself),BERSERKER_RAGE)
+	!CheckSpellState(LastSeenBy(Myself),MINSC_BERSERK)
+	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
+	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
+	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself))  // Spider's Bane +2
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71460) // Spell: Hold Person
+		Spell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)
+END
+
+// Level 3 - Enchantment
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_HOLD_PERSON)
+	See([EVILCUTOFF.HUMANOID])
+	!CheckSpellState(LastSeenBy(Myself),HELD)
+	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+	!CheckSpellState(LastSeenBy(Myself),BARBARIAN_RAGE)
+	!CheckSpellState(LastSeenBy(Myself),BERSERKER_RAGE)
+	!CheckSpellState(LastSeenBy(Myself),MINSC_BERSERK)
+	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
+	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
+	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself))  // Spider's Bane +2
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71460) // Spell: Hold Person
+		Spell(LastSeenBy(Myself),WIZARD_HOLD_PERSON)
+END
+
 // Level 5 - Enchantment
 IF
 	ActionListEmpty()
@@ -636,9 +775,22 @@ IF
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+	!CheckSpellState(LastSeenBy(Myself),BARBARIAN_RAGE)
+	!CheckSpellState(LastSeenBy(Myself),BERSERKER_RAGE)
+	!CheckSpellState(LastSeenBy(Myself),MINSC_BERSERK)
+	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
+	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
+	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself))  // Spider's Bane +2
+
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -686,6 +838,7 @@ IF
 	CheckStatGT(FourthNearestEnemyOf(Myself),5,SAVEVSSPELL)
 
 	See(NearestEnemyOf(Myself))
+
 	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
 	!StateCheck(NearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
@@ -693,6 +846,8 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -810,6 +965,8 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -870,6 +1027,8 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -883,9 +1042,6 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	OR(11)
 		CheckSpellState(PartySlot1,HOPELESSNESS)
 		CheckSpellState(PartySlot1,ENFEEBLED)
@@ -902,6 +1058,10 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -913,9 +1073,6 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	OR(11)
 		CheckSpellState(PartySlot2,HOPELESSNESS)
 		CheckSpellState(PartySlot2,ENFEEBLED)
@@ -932,6 +1089,10 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -943,9 +1104,6 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	OR(11)
 		CheckSpellState(PartySlot3,HOPELESSNESS)
 		CheckSpellState(PartySlot3,ENFEEBLED)
@@ -962,6 +1120,10 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -973,9 +1135,6 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	OR(11)
 		CheckSpellState(PartySlot4,HOPELESSNESS)
 		CheckSpellState(PartySlot4,ENFEEBLED)
@@ -992,6 +1151,10 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1003,9 +1166,6 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	OR(11)
 		CheckSpellState(PartySlot5,HOPELESSNESS)
 		CheckSpellState(PartySlot5,ENFEEBLED)
@@ -1022,6 +1182,10 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1033,9 +1197,6 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	OR(11)
 		CheckSpellState(PartySlot6,HOPELESSNESS)
 		CheckSpellState(PartySlot6,ENFEEBLED)
@@ -1052,6 +1213,10 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1105,12 +1270,15 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1165,12 +1333,15 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1185,9 +1356,6 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	OR(11)
 		CheckSpellState(PartySlot1,HOPELESSNESS)
 		CheckSpellState(PartySlot1,ENFEEBLED)
@@ -1204,6 +1372,10 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1215,9 +1387,6 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	OR(11)
 		CheckSpellState(PartySlot2,HOPELESSNESS)
 		CheckSpellState(PartySlot2,ENFEEBLED)
@@ -1234,6 +1403,10 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1245,9 +1418,6 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	OR(11)
 		CheckSpellState(PartySlot3,HOPELESSNESS)
 		CheckSpellState(PartySlot3,ENFEEBLED)
@@ -1264,6 +1434,10 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1275,9 +1449,6 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	OR(11)
 		CheckSpellState(PartySlot4,HOPELESSNESS)
 		CheckSpellState(PartySlot4,ENFEEBLED)
@@ -1294,6 +1465,10 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1305,9 +1480,6 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	OR(11)
 		CheckSpellState(PartySlot5,HOPELESSNESS)
 		CheckSpellState(PartySlot5,ENFEEBLED)
@@ -1324,6 +1496,10 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1335,9 +1511,6 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	OR(11)
 		CheckSpellState(PartySlot6,HOPELESSNESS)
 		CheckSpellState(PartySlot6,ENFEEBLED)
@@ -1354,6 +1527,10 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1407,12 +1584,15 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1446,7 +1626,9 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1465,6 +1647,12 @@ IF
 		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
 		CheckStatLT(LastSeenBy(Myself),10,THAC0)
 	!CheckSpellState(LastSeenBy(Myself),DOOM)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1475,9 +1663,8 @@ END
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
-//	NumCreatureVsPartyGT(Myself,3)
 	HaveSpell(WIZARD_GREATER_MALISON)
-
+	See(NearestEnemyOf(Myself))
 	!CheckSpellState(NearestEnemyOf(Myself),MALISON)
 	OR(4)
 		CheckStatLT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
@@ -1485,23 +1672,11 @@ IF
 		CheckStatGT(NearestEnemyOf(Myself),75,MAXHITPOINTS)
 		CheckStatLT(NearestEnemyOf(Myself),10,THAC0)
 
-//	!CheckSpellState(SecondNearestEnemyOf(Myself),MALISON)
-//	CheckStatLT(SecondNearestEnemyOf(Myself),5,SAVEVSSPELL)
-//	CheckStatLT(SecondNearestEnemyOf(Myself),0,ARMORCLASS)
-//	CheckStatGT(SecondNearestEnemyOf(Myself),75,MAXHITPOINTS)
-//	CheckStatLT(SecondNearestEnemyOf(Myself),10,THAC0)
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
-//	!CheckSpellState(ThirdNearestEnemyOf(Myself),MALISON)
-//	CheckStatLT(ThirdNearestEnemyOf(Myself),5,SAVEVSSPELL)
-//	CheckStatLT(ThirdNearestEnemyOf(Myself),0,ARMORCLASS)
-//	CheckStatGT(ThirdNearestEnemyOf(Myself),75,MAXHITPOINTS)
-//	CheckStatLT(ThirdNearestEnemyOf(Myself),10,THAC0)
-
-//	!CheckSpellState(FourthNearestEnemyOf(Myself),MALISON)
-//	CheckStatLT(FourthNearestEnemyOf(Myself),5,SAVEVSSPELL)
-//	CheckStatLT(FourthNearestEnemyOf(Myself),0,ARMORCLASS)
-//	CheckStatGT(FourthNearestEnemyOf(Myself),75,MAXHITPOINTS)
-//	CheckStatLT(FourthNearestEnemyOf(Myself),10,THAC0)
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1622,9 +1797,7 @@ IF
 	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1735,9 +1908,7 @@ IF
 
 	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSWANDS)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1759,6 +1930,7 @@ IF
 		CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
 		CheckStatGT(NearestEnemyOf(Myself),75,MAXHITPOINTS)
 		CheckStatLT(NearestEnemyOf(Myself),10,THAC0)
+	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1877,7 +2049,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1907,7 +2079,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1922,7 +2094,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1937,7 +2109,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1952,7 +2124,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1965,12 +2137,11 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BLESS)  // SPPR101.SPL (Bless)
-	//See(NearestEnemyOf(MySelf))
 	!StateCheck(Myself,STATE_BLESS)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -1982,12 +2153,11 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CHANT)  // SPPR203.SPL (Chant)
-	//See(NearestEnemyOf(MySelf))
 	!StateCheck(Myself,STATE_CHANT)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -2003,7 +2173,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -2018,7 +2188,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -2034,7 +2204,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -2050,7 +2220,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -2066,7 +2236,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -2082,7 +2252,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -2135,7 +2305,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -2156,7 +2326,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -2173,7 +2343,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -2189,7 +2359,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -2205,7 +2375,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -2221,7 +2391,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -2350,7 +2520,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
@@ -2366,7 +2536,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
@@ -2398,12 +2568,27 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71456) // Spell: Champions Strength
 		Spell(WeakestOf(Myself),CLERIC_CHAMPIONS_STRENGTH)
+END
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_RIGHTEOUS_MAGIC)  // SPPR513.SPL (Righteous Magic)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71464) // Spell: Righteous Magic
+		Spell(WeakestOf(Myself),CLERIC_RIGHTEOUS_MAGIC)
 END
 
 //////////////////////////////////////////////////////////////////////////// Decide On Next Target You Can See
@@ -2800,6 +2985,7 @@ IF
 	TriggerOverride(FarthestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
 	!TriggerOverride(FarthestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
 	See(FarthestEnemyOf(Myself)) // Target the fireball target
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -2950,7 +3136,7 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
@@ -2983,6 +3169,8 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -3014,6 +3202,8 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -3043,6 +3233,8 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -3072,6 +3264,8 @@ IF
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -3099,7 +3293,9 @@ IF
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+
+	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -3171,6 +3367,7 @@ IF
 	TriggerOverride(FarthestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
 	!TriggerOverride(FarthestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
 	See(FarthestEnemyOf(Myself)) // Target the fireball target
+	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -3255,6 +3452,7 @@ IF
 		CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
 		CheckStatGT(NearestEnemyOf(Myself),75,MAXHITPOINTS)
 		CheckStatLT(NearestEnemyOf(Myself),10,THAC0)
+	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -3269,6 +3467,7 @@ IF
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand03",Myself)
 	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSWANDS)
+	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -3288,6 +3487,7 @@ IF
 		CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
 		CheckStatGT(NearestEnemyOf(Myself),75,MAXHITPOINTS)
 		CheckStatLT(NearestEnemyOf(Myself),10,THAC0)
+	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -3348,6 +3548,98 @@ END
 //		SelectWeaponAbility(SLOT_WEAPON3,0)
 //		SetGlobalTimer("checkweapon3","LOCALS",20)
 //END
+
+/////////////////////////////////////////////////////////// Equip Arrows If Out Of Ammo
+
+//IF
+//	!HasItemEquiped("AROW01",Myself)
+//THEN
+//	RESPONSE #100
+///		DisplayStringHead(Myself,10)
+//END
+
+IF
+	!HasItemEquiped("AROW01",Myself) // passing for both
+	HasItemCategory(Myself,BOW,FALSE) // passing for both when false, neither when true
+	HasItem("AROW01",Myself) // Arrow
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,71467) // Equipping Arrows
+		XEquipItem("AROW01",Myself,SLOT_AMMO0,EQUIP)
+		Continue()
+END
+
+//	HasItem("AROW02",Myself) // Arrow + 1
+//	HasItem("AROW03",Myself) // Arrow Of Slaying
+//	HasItem("AROW04",Myself) // Acid Arrow + 1
+//	HasItem("AROW05",Myself) // Arrow Of Biting
+//	HasItem("AROW06",Myself) // Arrow Of Detonation
+//	HasItem("AROW07",Myself) // Arrow Of Dispelling
+//	HasItem("AROW08",Myself) // Arrow Of Fire + 2
+//	HasItem("AROW09",Myself) // Arrow Of Ice
+//	HasItem("AROW10",Myself) // Arrow Of Piercing + 1
+//	HasItem("AROW11",Myself) // Arrow + 2
+//	HasItem("AROW12",Myself) // Arrow Of Biting
+//	HasItem("AROW14",Myself) // Poisoned Arrow
+//	HasItem("AROW15",Myself) // Arrow Of Ice
+//	HasItem("AROW16",Myself) // Arrow Of Ice
+//	HasItem("ANGAROW",Myself) // Arrow Of Fire + 2
+//	HasItem("AROW1A",Myself) // Arrow + 2
+//	HasItem("AROWKC",Myself) // Arrow Of Fire + 2
+//	HasItem("ARROPHE2",Myself) // Arrow Of Fire + 2
+//	HasItem("bdarow01",Myself) // Arrow Of Antimagic + 1
+//	HasItem("bdarow03",Myself) // Flaming Arrow
+//	HasItem("bdarow04",Myself) // Arrow + 3
+//	HasItem("CUTAROW1",Myself) // Arrow Of Ice
+//	HasItem("IAROW01",Myself) // Arrow
+//	HasItem("QUIV01",Myself) // Arrow
+
+//////////////////////////////////////////////////////// Share Ammo
+
+IF
+	!HasItem("AROW01",Myself) // Arrow
+	!HasItem("AROW02",Myself) // Arrow + 1
+	!HasItem("AROW03",Myself) // Arrow Of Slaying
+	!HasItem("AROW04",Myself) // Acid Arrow + 1
+	!HasItem("AROW05",Myself) // Arrow Of Biting
+	!HasItem("AROW06",Myself) // Arrow Of Detonation
+	!HasItem("AROW07",Myself) // Arrow Of Dispelling
+	!HasItem("AROW08",Myself) // Arrow Of Fire + 2
+	!HasItem("AROW09",Myself) // Arrow Of Ice
+	!HasItem("AROW10",Myself) // Arrow Of Piercing + 1
+	!HasItem("AROW11",Myself) // Arrow + 2
+	!HasItem("AROW12",Myself) // Arrow Of Biting
+	!HasItem("AROW14",Myself) // Poisoned Arrow
+	!HasItem("AROW15",Myself) // Arrow Of Ice
+	!HasItem("AROW16",Myself) // Arrow Of Ice
+	!HasItem("ANGAROW",Myself) // Arrow Of Fire + 2
+	!HasItem("AROW1A",Myself) // Arrow + 2
+	!HasItem("AROWKC",Myself) // Arrow Of Fire + 2
+	!HasItem("ARROPHE2",Myself) // Arrow Of Fire + 2
+	!HasItem("bdarow01",Myself) // Arrow Of Antimagic + 1
+	!HasItem("bdarow03",Myself) // Flaming Arrow
+	!HasItem("bdarow04",Myself) // Arrow + 3
+	!HasItem("CUTAROW1",Myself) // Arrow Of Ice
+	!HasItem("IAROW01",Myself) // Arrow
+	!HasItem("QUIV01",Myself) // Arrow
+	HasItemCategory(Myself,BOW,FALSE)
+THEN
+    RESPONSE #100
+		DisplayStringHead(Myself,71465) // Help: Need Arrows
+        Shout(NEED_ARROWS) // Shout for help
+		Continue()
+END
+
+IF
+    Heard([ANYONE],NEED_ARROWS) // If someone shouted for help
+    !HasItem("AROW01",LastHeardBy(Myself))
+	HasItem("AROW01",Myself)
+THEN
+    RESPONSE #100
+		DisplayStringHead(Myself,71466) // Giving Arrows
+        GiveItem("AROW01",LastHeardBy(Myself))
+		Continue()
+END
 
 /////////////////////////////////////////////////////////// Change Ranged Ammo If Not Effective
 
@@ -3460,27 +3752,163 @@ THEN
 END
 
 /////////////////////////////////////////////////////////// Remove Traps
-//IF
-//  OR()
-//  	See("Trap01")
-//		See("Lightningtrap")
-//		See("Hold_persontrap1")
-//		See("Flamestriketrap1")
-//		See("Speartrap1")
-//		See("Speartrap2")
-//		See("Speartrap3")
-//		See("Speartrap4")
-//		See("Speartrap5")
-//		See("Speartrap6")
-//		See("Speartrap7")
-//		See("Speartrap8")
-//		See("Speartrap9")
-//		See("Speartrap10")
-//  	Class(Myself,THIEF_ALL)
-//THEN
-//  RESPONSE #100
-//    	RemoveTraps(LastSeenBy(Myself))
-//END
+IF
+	ActionListEmpty()
+	Class(Myself,THIEF_ALL)
+  	OR(147)
+		See("Door0146")
+		See("Firedrake1")
+		See("Firedrake2")
+		See("Firedrake3")
+		See("Firedrake4")
+		See("Firedrake5")
+		See("Firedrake6")
+		See("Door1801")
+		See("DOOR2012")
+		See("Door2643")
+		See("Door5401")
+		See("Trigger Point 1")
+		See("Dead Body")
+		See("TranBD0101")
+		See("TranBD0010")
+		See("imoeninfo1")
+		See("imoeninfo2")
+		See("Bed_info")
+		See("Info_SDD123")
+		See("Tranbd0130rope")
+		See("Tranbd0120rope")
+		See("Lever_machine_stuck")
+		See("TranBD1100")
+		See("FORCEWALL")
+		See("drawbridge_info")
+		See("boaresky_blockade")
+		See("BD2100GL")
+		See("MDD1102")
+		See("Lightningtrap")
+		See("Hold_persontrap1")
+		See("Flamestriketrap1")
+		See("Speartrap1")
+		See("Speartrap2")
+		See("Speartrap3")
+		See("Speartrap4")
+		See("Speartrap5")
+		See("Speartrap6")
+		See("Speartrap7")
+		See("Speartrap8")
+		See("Speartrap9")
+		See("Speartrap10")
+		See("stone_icon")
+		See("Wine Barrels")
+		See("Mdd1233a")
+		See("Mdd1233b")
+		See("Mdd1233c")
+		See("water_supplies")
+		See("Infopoint16")
+		See("TranBD4600")
+		See("hidden_thief_cache")
+		See("Trap 1")
+		See("Info_ettin")
+		See("BD4300Entrance")
+		See("Lift_ropes")
+		See("Dog Cage")
+		See("belladonna1_inactive")
+		See("belladonna1_active")
+		See("belladonna2_inactive")
+		See("belladonna2_active")
+		See("belladonna3_inactive")
+		See("belladonna3_active")
+		See("dsc_gate_inner")
+		See("TransBD4100")
+		See("BD5200Entrance")
+		See("TransBD4000")
+		See("TransBD4300")
+		See("InfoBDStairs")
+		See("Infobdstairs_epilogue")
+		See("Mdd1205")
+		See("map_table")
+		See("wall_breach")
+		See("food_supplies")
+		See("STAIRS")
+		See("Light_Torch")
+		See("Door02_info")
+		See("Mask_wall")
+		See("Mask1")
+		See("Mask2")
+		See("Mask3")
+		See("Mask4")
+		See("Mask5")
+		See("Mask6")
+		See("Phylactery2")
+		See("Phylactery3")
+		See("Phylactery4")
+		See("Phylactery5")
+		See("Phylactery6")
+		See("BDPILL01")
+		See("BDPILL02")
+		See("BDPILL03")
+		See("BDPILL04")
+		See("Tranbd0062")
+		See("Bd_pool")
+		See("Ogre_cage1")
+		See("Ogre_cage2")
+		See("Ogre_cage3")
+		See("Phylactery1")
+		See("Jelly_globe01")
+		See("Jelly_globe02")
+		See("spidersilk1")
+		See("spidersilk2")
+		See("spidersilk3")
+		See("spidersilk4")
+		See("Infopoint06")
+		See("Infravision_text")
+		See("TransBD0067")
+		//See("Hole_info")
+		See("info_bridge")
+		See("portal")
+		See("Door4101a")
+		See("GuardTrigger1")
+		See("GuardTrigger2")
+		See("GuardTrigger3")
+		See("GuardTrigger4")
+		See("RILSATRIGGER")
+		See("GREASETRAP")
+		See("ARROWTRAP1")
+		See("ARROWTRAP2")
+		See("ARROWTRAP3")
+		See("ARROWTRAP4")
+		See("ARROWTRAP5")
+		See("ARROWTRAP6")
+		See("STINKYTRAP")
+		See("JERKTRAP")
+		See("Door0200")
+		See("Door0109a")
+		See("Door0109b")
+		See("Door0111")
+		See("Bullrushtrap")
+		See("Itachtrap")
+		See("Meialatrap")
+		See("Moorlochtrap")
+		See("deathtrap1")
+		See("deathtrap2")
+		See("deathtrap3")
+		See("Tarnortrap")
+		See("TRAN0016a")
+		See("TRAN0016b")
+		See("TRAN0018")
+		See("INFO0016a")
+		See("INFO0016b")
+		See("INFO0018")
+		See("TRAN0017a")
+		See("TRAN0017b")
+		See("INFO0017a")
+		See("INFO0017b")
+		See("Teleport1")
+		See("Teleport2")
+THEN
+  RESPONSE #100
+  		DisplayStringHead(Myself,71468) // Removing Traps
+    	RemoveTraps(LastSeenBy(Myself))
+END
 
 /////////////////////////////////////////////////////////// Find traps
 IF
