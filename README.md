@@ -193,10 +193,11 @@ We also check nothing is stopping us from casting spells
 !StateCheck(Myself,STATE_SILENCED)  
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)  
 
- ### Testing Creatures
+ ### Testing
  
  CLUAConsole:CreateCreature("skelet") Skeleton   
  CLUAConsole:CreateCreature("werewogr") Greater Werewolf
+ CLUAConsole:CreateItem("?")
 
  ### Useful links
 
