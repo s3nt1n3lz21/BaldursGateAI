@@ -30,6 +30,36 @@ THEN
 		Continue()
 END
 
+////////////////////////////////////////////////////////////////// Take Note Of My Current Weapon So I Can Switch Back To It
+
+//IF
+//
+//THEN
+//	RESPONSE #100
+//		
+//		DisplayStringHead(Myself,10)
+//END
+
+// FillSlot(SLOT_WEAPON0) Equips the next available item in your inventory replacing what you currently have equipped and swapping between just those two weapons.
+
+// Note: You can only save to global variables, so we have one variable for each member in your party.
+// We save the currently equipped weapon to a variable so you can switch back to it later.
+// Only save our weapon if we haven't already switched our weapon.
+
+// PartySlot1
+//IF
+//	Global("PartySlot1SwitchedWeapon","LOCAL",0) // 0 false, 1 true
+//THEN
+//	RESPONSE #100
+//		SetTokenObject("PartySlot1OriginalWeapon",Myself)
+//END
+//
+
+//  [EA.GENERAL.RACE.CLASS.SPECIFIC.GENDER.ALIGN]
+//  [ALLY.0.0.0.0.SUMMONED.0]
+
+
+
 ////////////////////////////////////////////////////////////////// If poisoned use an antidote potion
 IF 
 	ActionListEmpty()
@@ -58,7 +88,6 @@ END
 ////////////////////////////////////////////////////////////////// Share Antidotes
 
 IF
-	ActionListEmpty()
     StateCheck(Myself,STATE_POISONED)
 	!HasItem("potn17",Myself)
     !HasItem("potn20",Myself)
@@ -69,7 +98,6 @@ THEN
 END
 
 IF
-	ActionListEmpty()
     Heard([ANYONE],NEED_ANTIDOTE) // If someone shouted for help
     !HasItem("potn20",LastHeardBy(Myself))
 	HasItem("potn20",Myself)
@@ -80,7 +108,6 @@ THEN
 END
 
 IF
-	ActionListEmpty()
     Heard([ANYONE],NEED_ANTIDOTE) // If someone shouted for help
     !HasItem("potn17",LastHeardBy(Myself))
 	HasItem("potn17",Myself)
@@ -594,7 +621,7 @@ THEN
 		UseItem("potn17",Myself)  // Elixir of health - cures disease and poisons
 END
 
-//////////////////////////////////////////////////////////////// Run away from nearby enemies if health is low
+//////////////////////////////////////////////////////////////// Run away from nearby enemies
 // If an enemy is nearby and the same location timer isn't running, then start the timer and run away
 IF 
 	ActionListEmpty()
@@ -1124,6 +1151,7 @@ IF
 		CheckSpellState(PartySlot1,ENTANGLE)
 		CheckSpellState(PartySlot1,WEB)
 		CheckSpellState(PartySlot1,DOOM)
+		CheckSpellState(PartySlot1,MISCAST_MAGIC)
 		StateCheck(PartySlot1,STATE_PANIC)
 		StateCheck(PartySlot1,STATE_CHARMED)
 		StateCheck(PartySlot1,STATE_CONFUSED)
@@ -1155,6 +1183,7 @@ IF
 		CheckSpellState(PartySlot2,ENTANGLE)
 		CheckSpellState(PartySlot2,WEB)
 		CheckSpellState(PartySlot2,DOOM)
+		CheckSpellState(PartySlot2,MISCAST_MAGIC)
 		StateCheck(PartySlot2,STATE_PANIC)
 		StateCheck(PartySlot2,STATE_CHARMED)
 		StateCheck(PartySlot2,STATE_CONFUSED)
@@ -1186,6 +1215,7 @@ IF
 		CheckSpellState(PartySlot3,ENTANGLE)
 		CheckSpellState(PartySlot3,WEB)
 		CheckSpellState(PartySlot3,DOOM)
+		CheckSpellState(PartySlot3,MISCAST_MAGIC)
 		StateCheck(PartySlot3,STATE_PANIC)
 		StateCheck(PartySlot3,STATE_CHARMED)
 		StateCheck(PartySlot3,STATE_CONFUSED)
@@ -1217,6 +1247,7 @@ IF
 		CheckSpellState(PartySlot4,ENTANGLE)
 		CheckSpellState(PartySlot4,WEB)
 		CheckSpellState(PartySlot4,DOOM)
+		CheckSpellState(PartySlot4,MISCAST_MAGIC)
 		StateCheck(PartySlot4,STATE_PANIC)
 		StateCheck(PartySlot4,STATE_CHARMED)
 		StateCheck(PartySlot4,STATE_CONFUSED)
@@ -1248,6 +1279,7 @@ IF
 		CheckSpellState(PartySlot5,ENTANGLE)
 		CheckSpellState(PartySlot5,WEB)
 		CheckSpellState(PartySlot5,DOOM)
+		CheckSpellState(PartySlot5,MISCAST_MAGIC)
 		StateCheck(PartySlot5,STATE_PANIC)
 		StateCheck(PartySlot5,STATE_CHARMED)
 		StateCheck(PartySlot5,STATE_CONFUSED)
@@ -1279,6 +1311,7 @@ IF
 		CheckSpellState(PartySlot6,ENTANGLE)
 		CheckSpellState(PartySlot6,WEB)
 		CheckSpellState(PartySlot6,DOOM)
+		CheckSpellState(PartySlot6,MISCAST_MAGIC)
 		StateCheck(PartySlot6,STATE_PANIC)
 		StateCheck(PartySlot6,STATE_CHARMED)
 		StateCheck(PartySlot6,STATE_CONFUSED)
@@ -1438,6 +1471,7 @@ IF
 		CheckSpellState(PartySlot1,ENTANGLE)
 		CheckSpellState(PartySlot1,WEB)
 		CheckSpellState(PartySlot1,DOOM)
+		CheckSpellState(PartySlot1,MISCAST_MAGIC)
 		StateCheck(PartySlot1,STATE_PANIC)
 		StateCheck(PartySlot1,STATE_CHARMED)
 		StateCheck(PartySlot1,STATE_CONFUSED)
@@ -1469,6 +1503,7 @@ IF
 		CheckSpellState(PartySlot2,ENTANGLE)
 		CheckSpellState(PartySlot2,WEB)
 		CheckSpellState(PartySlot2,DOOM)
+		CheckSpellState(PartySlot2,MISCAST_MAGIC)
 		StateCheck(PartySlot2,STATE_PANIC)
 		StateCheck(PartySlot2,STATE_CHARMED)
 		StateCheck(PartySlot2,STATE_CONFUSED)
@@ -1500,6 +1535,7 @@ IF
 		CheckSpellState(PartySlot3,ENTANGLE)
 		CheckSpellState(PartySlot3,WEB)
 		CheckSpellState(PartySlot3,DOOM)
+		CheckSpellState(PartySlot3,MISCAST_MAGIC)
 		StateCheck(PartySlot3,STATE_PANIC)
 		StateCheck(PartySlot3,STATE_CHARMED)
 		StateCheck(PartySlot3,STATE_CONFUSED)
@@ -1531,6 +1567,7 @@ IF
 		CheckSpellState(PartySlot4,ENTANGLE)
 		CheckSpellState(PartySlot4,WEB)
 		CheckSpellState(PartySlot4,DOOM)
+		CheckSpellState(PartySlot4,MISCAST_MAGIC)
 		StateCheck(PartySlot4,STATE_PANIC)
 		StateCheck(PartySlot4,STATE_CHARMED)
 		StateCheck(PartySlot4,STATE_CONFUSED)
@@ -1562,6 +1599,7 @@ IF
 		CheckSpellState(PartySlot5,ENTANGLE)
 		CheckSpellState(PartySlot5,WEB)
 		CheckSpellState(PartySlot5,DOOM)
+		CheckSpellState(PartySlot5,MISCAST_MAGIC)
 		StateCheck(PartySlot5,STATE_PANIC)
 		StateCheck(PartySlot5,STATE_CHARMED)
 		StateCheck(PartySlot5,STATE_CONFUSED)
@@ -1593,6 +1631,7 @@ IF
 		CheckSpellState(PartySlot6,ENTANGLE)
 		CheckSpellState(PartySlot6,WEB)
 		CheckSpellState(PartySlot6,DOOM)
+		CheckSpellState(PartySlot6,MISCAST_MAGIC)
 		StateCheck(PartySlot6,STATE_PANIC)
 		StateCheck(PartySlot6,STATE_CHARMED)
 		StateCheck(PartySlot6,STATE_CONFUSED)
@@ -2119,6 +2158,7 @@ END
 /////////////////////////////////////////////////////////////////////////////////////// Summon spells
 IF
 	ActionListEmpty()
+	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMATE_DEAD)
 
@@ -2134,6 +2174,7 @@ END
 
 IF
 	ActionListEmpty()
+	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_ANIMATE_DEAD)
 
@@ -2149,6 +2190,7 @@ END
 
 IF
 	ActionListEmpty()
+	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CALL_WOODLAND_BEINGS)
 
@@ -2164,6 +2206,7 @@ END
 
 IF
 	ActionListEmpty()
+	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
 
@@ -2179,6 +2222,7 @@ END
 
 IF
 	ActionListEmpty()
+	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_2)
 
@@ -2194,6 +2238,7 @@ END
 
 IF
 	ActionListEmpty()
+	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_1)
 
@@ -2205,6 +2250,38 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71396) // Spell: Animal Summoning 1
 		Spell(Myself,CLERIC_ANIMAL_SUMMONING_1)
+END
+
+IF
+	ActionListEmpty()
+	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CONJURE_ANIMALS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71481) // Spell: Conjure Animals
+		Spell(Myself,CLERIC_CONJURE_ANIMALS)
+END
+
+IF
+	ActionListEmpty()
+	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CONJURE_FIRE_ELEMENTAL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71482) // Spell: Conjure Fire Elemental
+		Spell(Myself,CLERIC_CONJURE_FIRE_ELEMENTAL)
 END
 
 ////////////////////////////////////////////////////////////////////////////////// If have a buff spell use it
@@ -2393,6 +2470,22 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71469) // Spell: Protection From Lightning
 		Spell(PartySlot2,CLERIC_PROTECTION_FROM_LIGHTNING)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_PROTECTION_FROM_FIRE)
+	CheckStatLT(PartySlot2,99,RESISTFIRE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71480) // Spell: Protection From Fire
+		Spell(PartySlot2,CLERIC_PROTECTION_FROM_FIRE)
 END
 
 IF
@@ -2690,6 +2783,22 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_PROTECTION_FROM_FIRE)
+	CheckStatLT(PartySlot2,99,RESISTFIRE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71480) // Spell: Protection From Fire
+		Spell(PartySlot2,WIZARD_PROTECTION_FROM_FIRE)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_HASTE)
 	!StateCheck(Myself,STATE_HASTED)
 
@@ -2741,6 +2850,7 @@ IF
 	ActionListEmpty()
 
 	HPPercentGT(LastAttackerOf(PartySlot1),0)
+	!InParty(LastAttackerOf(PartySlot1))
 
 	!CheckSpellState(LastAttackerOf(PartySlot1),HOPELESSNESS)
 	!CheckSpellState(LastAttackerOf(PartySlot1),HELD)
@@ -3405,6 +3515,35 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71419) // Spell: Magic Missile
 		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
+END
+
+// Level 1 - Evocation
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_CHROMATIC_ORB)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71479) // Spell: Chromatic Orb
+		Spell(LastSeenBy(Myself),WIZARD_CHROMATIC_ORB)
 END
 
 // Level 3 - Conjuration
