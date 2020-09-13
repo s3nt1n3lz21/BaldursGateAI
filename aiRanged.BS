@@ -293,7 +293,7 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_MASS_CURE)  // SPPR514.SPL (Mass Cure)
-	HPPercentLT(MostDamagedOf(Myself),65)
+	HPPercentLT(MostDamagedOf(Myself),70)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -593,6 +593,7 @@ THEN
     RESPONSE #100
 		DisplayStringHead(Myself,71457) // Help: Need Potion Of Healing
         Shout(NEED_POTION_OF_HEALING) // Shout for help
+		Continue()
 END
 
 IF
@@ -621,7 +622,7 @@ THEN
 		UseItem("potn17",Myself)  // Elixir of health - cures disease and poisons
 END
 
-//////////////////////////////////////////////////////////////// Run away from nearby enemies
+//////////////////////////////////////////////////////////////// Run away from nearby enemies if health is low
 // If an enemy is nearby and the same location timer isn't running, then start the timer and run away
 IF 
 	ActionListEmpty()
@@ -724,6 +725,38 @@ THEN
 		Spell(LastSeenBy(Myself),CLERIC_SILENCE_15_FOOT)  // SPPR211.SPL (Silence, 15' Radius)
 END
 
+// Level 5 - Abjuration
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_LOWER_RESISTANCE)
+	See(NearestEnemyOf(Myself))
+
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+
+	!ImmuneToSpellLevel(LastSeenBy(Myself),5)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatGT(LastSeenBy(Myself),35,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71485) // Spell: Lower Resistance
+		Spell(LastSeenBy(Myself),WIZARD_LOWER_RESISTANCE)
+END
+
 // Level 4 - Abjuration
 IF
 	ActionListEmpty()
@@ -819,6 +852,48 @@ THEN
 		DisplayStringHead(Myself,71460) // Spell: Hold Person
 		Spell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)
 END
+
+// Level 1 - Enchantment
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SLEEP)
+	See([EVILCUTOFF.HUMANOID])
+	!StateCheck(LastSeenBy(Myself),STATE_SLEEPING)
+	!CheckSpellState(LastSeenBy(Myself),HELD)
+	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+	!CheckSpellState(LastSeenBy(Myself),BARBARIAN_RAGE)
+	!CheckSpellState(LastSeenBy(Myself),BERSERKER_RAGE)
+	!CheckSpellState(LastSeenBy(Myself),MINSC_BERSERK)
+	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
+	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
+	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself))  // Spider's Bane +2
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71487) // Spell: Sleep
+		Spell(LastSeenBy(Myself),WIZARD_SLEEP)
+END
+
 
 // Level 3 - Enchantment
 IF
@@ -1157,6 +1232,7 @@ IF
 		StateCheck(PartySlot1,STATE_CONFUSED)
 		StateCheck(PartySlot1,STATE_SLEEPING)
 		StateCheck(PartySlot1,STATE_SLOWED)
+		StateCheck(PartySlot1,STATE_FEEBLEMINDED)
 	See(PartySlot1)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -1189,6 +1265,7 @@ IF
 		StateCheck(PartySlot2,STATE_CONFUSED)
 		StateCheck(PartySlot2,STATE_SLEEPING)
 		StateCheck(PartySlot2,STATE_SLOWED)
+		StateCheck(PartySlot2,STATE_FEEBLEMINDED)
 	See(PartySlot2)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -1221,6 +1298,7 @@ IF
 		StateCheck(PartySlot3,STATE_CONFUSED)
 		StateCheck(PartySlot3,STATE_SLEEPING)
 		StateCheck(PartySlot3,STATE_SLOWED)
+		StateCheck(PartySlot3,STATE_FEEBLEMINDED)
 	See(PartySlot3)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -1253,6 +1331,7 @@ IF
 		StateCheck(PartySlot4,STATE_CONFUSED)
 		StateCheck(PartySlot4,STATE_SLEEPING)
 		StateCheck(PartySlot4,STATE_SLOWED)
+		StateCheck(PartySlot4,STATE_FEEBLEMINDED)
 	See(PartySlot4)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -1285,6 +1364,7 @@ IF
 		StateCheck(PartySlot5,STATE_CONFUSED)
 		StateCheck(PartySlot5,STATE_SLEEPING)
 		StateCheck(PartySlot5,STATE_SLOWED)
+		StateCheck(PartySlot5,STATE_FEEBLEMINDED)
 	See(PartySlot5)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -1317,6 +1397,7 @@ IF
 		StateCheck(PartySlot6,STATE_CONFUSED)
 		StateCheck(PartySlot6,STATE_SLEEPING)
 		StateCheck(PartySlot6,STATE_SLOWED)
+		StateCheck(PartySlot6,STATE_FEEBLEMINDED)
 	See(PartySlot6)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -1477,6 +1558,7 @@ IF
 		StateCheck(PartySlot1,STATE_CONFUSED)
 		StateCheck(PartySlot1,STATE_SLEEPING)
 		StateCheck(PartySlot1,STATE_SLOWED)
+		StateCheck(PartySlot1,STATE_FEEBLEMINDED)
 	See(PartySlot1)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -1509,6 +1591,7 @@ IF
 		StateCheck(PartySlot2,STATE_CONFUSED)
 		StateCheck(PartySlot2,STATE_SLEEPING)
 		StateCheck(PartySlot2,STATE_SLOWED)
+		StateCheck(PartySlot2,STATE_FEEBLEMINDED)
 	See(PartySlot2)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -1541,6 +1624,7 @@ IF
 		StateCheck(PartySlot3,STATE_CONFUSED)
 		StateCheck(PartySlot3,STATE_SLEEPING)
 		StateCheck(PartySlot3,STATE_SLOWED)
+		StateCheck(PartySlot3,STATE_FEEBLEMINDED)
 	See(PartySlot3)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -1573,6 +1657,7 @@ IF
 		StateCheck(PartySlot4,STATE_CONFUSED)
 		StateCheck(PartySlot4,STATE_SLEEPING)
 		StateCheck(PartySlot4,STATE_SLOWED)
+		StateCheck(PartySlot4,STATE_FEEBLEMINDED)
 	See(PartySlot4)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -1605,6 +1690,7 @@ IF
 		StateCheck(PartySlot5,STATE_CONFUSED)
 		StateCheck(PartySlot5,STATE_SLEEPING)
 		StateCheck(PartySlot5,STATE_SLOWED)
+		StateCheck(PartySlot5,STATE_FEEBLEMINDED)
 	See(PartySlot5)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -1637,6 +1723,7 @@ IF
 		StateCheck(PartySlot6,STATE_CONFUSED)
 		StateCheck(PartySlot6,STATE_SLEEPING)
 		StateCheck(PartySlot6,STATE_SLOWED)
+		StateCheck(PartySlot6,STATE_FEEBLEMINDED)
 	See(PartySlot6)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -2284,6 +2371,27 @@ THEN
 		Spell(Myself,CLERIC_CONJURE_FIRE_ELEMENTAL)
 END
 
+////////////////////////////////////////////////////////////////////////////////// Buff Items
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	Global("cloakGargoyle","GLOBAL",1)
+	HasItem("bdclck05",Myself) // Cloak Of The Gargoyle - Stone Form Once Per Day
+	//CheckStat(Myself,0,STONESKINS)
+	//CheckStat(Myself,0,STONESKINSGOLEM)
+	//!CheckSpellState(Myself,STONESKIN)
+THEN
+	RESPONSE #100
+      SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71483) // Item: Cloak Of The Gargoyle
+		SetGlobal("cloakGargoyle","GLOBAL",0)
+		UseItemSlotAbility(Myself,SLOT_CLOAK,1)
+END
+
+// Cant figure out how to check we already used the item. It casts a spell that isn't in the spellstate list.
+// Can we add the spellstate to the list compare to another spell with a spellstate in the list e.g. Bless
+
 ////////////////////////////////////////////////////////////////////////////////// If have a buff spell use it
 
 IF
@@ -2306,6 +2414,7 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
 	!CheckSpellState(PartySlot2,PROTECTION_FROM_EVIL)
+	!CheckStatGT(PartySlot2,0,PROTECTION_FROM_EVIL)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2315,6 +2424,91 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71401) // Spell: Protection From Evil
 		Spell(PartySlot2,CLERIC_PROTECT_FROM_EVIL)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
+	!CheckSpellState(PartySlot1,PROTECTION_FROM_EVIL)
+	!CheckStatGT(PartySlot1,0,PROTECTION_FROM_EVIL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71401) // Spell: Protection From Evil
+		Spell(PartySlot1,CLERIC_PROTECT_FROM_EVIL)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
+	!CheckSpellState(PartySlot3,PROTECTION_FROM_EVIL)
+	!CheckStatGT(PartySlot3,0,PROTECTION_FROM_EVIL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71401) // Spell: Protection From Evil
+		Spell(PartySlot3,CLERIC_PROTECT_FROM_EVIL)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
+	!CheckSpellState(PartySlot4,PROTECTION_FROM_EVIL)
+	!CheckStatGT(PartySlot4,0,PROTECTION_FROM_EVIL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71401) // Spell: Protection From Evil
+		Spell(PartySlot4,CLERIC_PROTECT_FROM_EVIL)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
+	!CheckSpellState(PartySlot5,PROTECTION_FROM_EVIL)
+	!CheckStatGT(PartySlot5,0,PROTECTION_FROM_EVIL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71401) // Spell: Protection From Evil
+		Spell(PartySlot5,CLERIC_PROTECT_FROM_EVIL)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
+	!CheckSpellState(PartySlot6,PROTECTION_FROM_EVIL)
+	!CheckStatGT(PartySlot6,0,PROTECTION_FROM_EVIL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71401) // Spell: Protection From Evil
+		Spell(PartySlot6,CLERIC_PROTECT_FROM_EVIL)
 END
 
 IF
@@ -2389,6 +2583,22 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71408) // Spell: Flame Blade
 		Spell(Myself,CLERIC_FLAME_BLADE)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(PartySlot2,0,CLERIC_CHAOTIC_COMMANDS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71486) // Spell: Chaotic Commands
+		Spell(PartySlot2,CLERIC_CHAOTIC_COMMANDS)
 END
 
 IF
@@ -2794,6 +3004,23 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71480) // Spell: Protection From Fire
 		Spell(PartySlot2,WIZARD_PROTECTION_FROM_FIRE)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_STONE_SKIN)
+	!CheckSpellState(Myself,STONESKIN)
+	!CheckStatGT(Myself,0,STONESKINS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71484) // Spell: Stoneskin
+		Spell(PartySlot2,WIZARD_STONE_SKIN)
 END
 
 IF
@@ -4257,9 +4484,71 @@ IF
 	ActionListEmpty()
 	IsWeaponRanged(Myself)
 	HPPercentGT(NearestEnemyOf(Myself),0)
+	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
 		AttackOneRound(NearestEnemyOf(Myself))
+END
+
+// If no nearby enemies, attack attackers of allies
+IF
+	ActionListEmpty()
+	HPPercentGT(LastAttackerOf(PartySlot1),0)
+	!InParty(LastAttackerOf(PartySlot1))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastAttackerOf(PartySlot1))
+		DisplayStringHead(Myself,71424) // Helping Allies
+END
+
+IF
+	ActionListEmpty()
+	HPPercentGT(LastAttackerOf(PartySlot2),0)
+	!InParty(LastAttackerOf(PartySlot2))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastAttackerOf(PartySlot2))
+		DisplayStringHead(Myself,71424) // Helping Allies
+END
+
+IF
+	ActionListEmpty()
+	HPPercentGT(LastAttackerOf(PartySlot3),0)
+	!InParty(LastAttackerOf(PartySlot3))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastAttackerOf(PartySlot3))
+		DisplayStringHead(Myself,71424) // Helping Allies
+END
+
+IF
+	ActionListEmpty()
+	HPPercentGT(LastAttackerOf(PartySlot4),0)
+	!InParty(LastAttackerOf(PartySlot4))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastAttackerOf(PartySlot4))
+		DisplayStringHead(Myself,71424) // Helping Allies
+END
+
+IF
+	ActionListEmpty()
+	HPPercentGT(LastAttackerOf(PartySlot5),0)
+	!InParty(LastAttackerOf(PartySlot5))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastAttackerOf(PartySlot5))
+		DisplayStringHead(Myself,71424) // Helping Allies
+END
+
+IF
+	ActionListEmpty()
+	HPPercentGT(LastAttackerOf(PartySlot6),0)
+	!InParty(LastAttackerOf(PartySlot6))
+THEN
+	RESPONSE #100
+		AttackOneRound(LastAttackerOf(PartySlot6))
+		DisplayStringHead(Myself,71424) // Helping Allies
 END
 
 ////////////////////////////////////////////////////////// Regroup if far away from each other
@@ -4271,165 +4560,6 @@ THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,71428) // Regrouping
 		MoveToObjectFollow(PartySlot2)
-END
-
-/////////////////////////////////////////////////////////// Remove Traps
-IF
-	ActionListEmpty()
-	Class(Myself,THIEF_ALL)
-  	OR(147)
-		See("Door0146")
-		See("Firedrake1")
-		See("Firedrake2")
-		See("Firedrake3")
-		See("Firedrake4")
-		See("Firedrake5")
-		See("Firedrake6")
-		See("Door1801")
-		See("DOOR2012")
-		See("Door2643")
-		See("Door5401")
-		See("Trigger Point 1")
-		See("Dead Body")
-		See("TranBD0101")
-		See("TranBD0010")
-		See("imoeninfo1")
-		See("imoeninfo2")
-		See("Bed_info")
-		See("Info_SDD123")
-		See("Tranbd0130rope")
-		See("Tranbd0120rope")
-		See("Lever_machine_stuck")
-		See("TranBD1100")
-		See("FORCEWALL")
-		See("drawbridge_info")
-		See("boaresky_blockade")
-		See("BD2100GL")
-		See("MDD1102")
-		See("Lightningtrap")
-		See("Hold_persontrap1")
-		See("Flamestriketrap1")
-		See("Speartrap1")
-		See("Speartrap2")
-		See("Speartrap3")
-		See("Speartrap4")
-		See("Speartrap5")
-		See("Speartrap6")
-		See("Speartrap7")
-		See("Speartrap8")
-		See("Speartrap9")
-		See("Speartrap10")
-		See("stone_icon")
-		See("Wine Barrels")
-		See("Mdd1233a")
-		See("Mdd1233b")
-		See("Mdd1233c")
-		See("water_supplies")
-		See("Infopoint16")
-		See("TranBD4600")
-		See("hidden_thief_cache")
-		See("Trap 1")
-		See("Info_ettin")
-		See("BD4300Entrance")
-		See("Lift_ropes")
-		See("Dog Cage")
-		See("belladonna1_inactive")
-		See("belladonna1_active")
-		See("belladonna2_inactive")
-		See("belladonna2_active")
-		See("belladonna3_inactive")
-		See("belladonna3_active")
-		See("dsc_gate_inner")
-		See("TransBD4100")
-		See("BD5200Entrance")
-		See("TransBD4000")
-		See("TransBD4300")
-		See("InfoBDStairs")
-		See("Infobdstairs_epilogue")
-		See("Mdd1205")
-		See("map_table")
-		See("wall_breach")
-		See("food_supplies")
-		See("STAIRS")
-		See("Light_Torch")
-		See("Door02_info")
-		See("Mask_wall")
-		See("Mask1")
-		See("Mask2")
-		See("Mask3")
-		See("Mask4")
-		See("Mask5")
-		See("Mask6")
-		See("Phylactery2")
-		See("Phylactery3")
-		See("Phylactery4")
-		See("Phylactery5")
-		See("Phylactery6")
-		See("BDPILL01")
-		See("BDPILL02")
-		See("BDPILL03")
-		See("BDPILL04")
-		See("Tranbd0062")
-		See("Bd_pool")
-		See("Ogre_cage1")
-		See("Ogre_cage2")
-		See("Ogre_cage3")
-		See("Phylactery1")
-		See("Jelly_globe01")
-		See("Jelly_globe02")
-		See("spidersilk1")
-		See("spidersilk2")
-		See("spidersilk3")
-		See("spidersilk4")
-		See("Infopoint06")
-		See("Infravision_text")
-		See("TransBD0067")
-		//See("Hole_info")
-		See("info_bridge")
-		See("portal")
-		See("Door4101a")
-		See("GuardTrigger1")
-		See("GuardTrigger2")
-		See("GuardTrigger3")
-		See("GuardTrigger4")
-		See("RILSATRIGGER")
-		See("GREASETRAP")
-		See("ARROWTRAP1")
-		See("ARROWTRAP2")
-		See("ARROWTRAP3")
-		See("ARROWTRAP4")
-		See("ARROWTRAP5")
-		See("ARROWTRAP6")
-		See("STINKYTRAP")
-		See("JERKTRAP")
-		See("Door0200")
-		See("Door0109a")
-		See("Door0109b")
-		See("Door0111")
-		See("Bullrushtrap")
-		See("Itachtrap")
-		See("Meialatrap")
-		See("Moorlochtrap")
-		See("deathtrap1")
-		See("deathtrap2")
-		See("deathtrap3")
-		See("Tarnortrap")
-		See("TRAN0016a")
-		See("TRAN0016b")
-		See("TRAN0018")
-		See("INFO0016a")
-		See("INFO0016b")
-		See("INFO0018")
-		See("TRAN0017a")
-		See("TRAN0017b")
-		See("INFO0017a")
-		See("INFO0017b")
-		See("Teleport1")
-		See("Teleport2")
-THEN
-  RESPONSE #100
-  		DisplayStringHead(Myself,71468) // Removing Traps
-    	RemoveTraps(LastSeenBy(Myself))
 END
 
 /////////////////////////////////////////////////////////// Find traps

@@ -1,0 +1,116 @@
+IF
+	OR(2)
+		Global("bd_cant_rest","myarea",1)
+		Global("bd_no_camp_rest","myarea",1)
+THEN
+	RESPONSE #100
+		DisplayStringNoName(Player1,69033)  // ^RYou may not rest in this place.^-
+END
+
+IF
+	GlobalGT("chapter","global",7)
+	GlobalLT("chapter","global",13)
+	!GlobalTimerNotExpired("bd_dream_timer","global")
+	Global("bd_ddd","global",0)
+THEN
+	RESPONSE #100
+		SetGlobal("bd_ddd","global",1)
+		StartCutSceneMode()
+		FadeToColor([30.0],0)
+		SmallWait(20)
+		AdvanceTime(EIGHT_HOURS)
+		SetGlobalTimer("bd_dream_timer","global",TWELVE_HOURS)
+		ApplySpellRES("bdrejuve",Player1)  // No such index
+		ApplySpellRES("bdrejuve",Player2)  // No such index
+		ApplySpellRES("bdrejuve",Player3)  // No such index
+		ApplySpellRES("bdrejuve",Player4)  // No such index
+		ApplySpellRES("bdrejuve",Player5)  // No such index
+		ApplySpellRES("bdrejuve",Player6)  // No such index
+		StartCutSceneEx("bdddd1a",TRUE)
+END
+
+IF
+	GlobalGT("chapter","global",8)
+	GlobalLT("chapter","global",13)
+	!GlobalTimerNotExpired("bd_dream_timer","global")
+	Global("bd_ddd","global",1)
+THEN
+	RESPONSE #100
+		SetGlobal("bd_ddd","global",2)
+		StartCutSceneMode()
+		FadeToColor([30.0],0)
+		SmallWait(20)
+		AdvanceTime(EIGHT_HOURS)
+		SetGlobalTimer("bd_dream_timer","global",TWELVE_HOURS)
+		ApplySpellRES("bdrejuve",Player1)  // No such index
+		ApplySpellRES("bdrejuve",Player2)  // No such index
+		ApplySpellRES("bdrejuve",Player3)  // No such index
+		ApplySpellRES("bdrejuve",Player4)  // No such index
+		ApplySpellRES("bdrejuve",Player5)  // No such index
+		ApplySpellRES("bdrejuve",Player6)  // No such index
+		StartCutSceneEx("bdddd2a",TRUE)
+END
+
+IF
+	GlobalGT("chapter","global",9)
+	GlobalLT("chapter","global",13)
+	!GlobalTimerNotExpired("bd_dream_timer","global")
+	Global("bd_ddd","global",2)
+THEN
+	RESPONSE #100
+		SetGlobal("bd_ddd","global",3)
+		StartCutSceneMode()
+		FadeToColor([30.0],0)
+		SmallWait(20)
+		AdvanceTime(EIGHT_HOURS)
+		SetGlobalTimer("bd_dream_timer","global",TWELVE_HOURS)
+		ApplySpellRES("bdrejuve",Player1)  // No such index
+		ApplySpellRES("bdrejuve",Player2)  // No such index
+		ApplySpellRES("bdrejuve",Player3)  // No such index
+		ApplySpellRES("bdrejuve",Player4)  // No such index
+		ApplySpellRES("bdrejuve",Player5)  // No such index
+		ApplySpellRES("bdrejuve",Player6)  // No such index
+		StartCutSceneEx("bdddd3a",TRUE)
+END
+
+IF
+	GlobalGT("chapter","global",10)
+	GlobalLT("chapter","global",13)
+	!GlobalTimerNotExpired("bd_dream_timer","global")
+	Global("bd_ddd","global",3)
+THEN
+	RESPONSE #100
+		SetGlobal("bd_ddd","global",4)
+		StartCutSceneMode()
+		FadeToColor([30.0],0)
+		SmallWait(20)
+		AdvanceTime(EIGHT_HOURS)
+		SetGlobalTimer("bd_dream_timer","global",TWELVE_HOURS)
+		ApplySpellRES("bdrejuve",Player1)  // No such index
+		ApplySpellRES("bdrejuve",Player2)  // No such index
+		ApplySpellRES("bdrejuve",Player3)  // No such index
+		ApplySpellRES("bdrejuve",Player4)  // No such index
+		ApplySpellRES("bdrejuve",Player5)  // No such index
+		ApplySpellRES("bdrejuve",Player6)  // No such index
+		StartCutSceneEx("bdddd4a",TRUE)
+END
+
+IF
+	AreaCheck("bd0104")  // Flaming Fist HQ
+	GlobalGT("bd_jail_visitors","bd0104",11)  // Flaming Fist HQ
+	GlobalLT("bd_plot","global",615)
+THEN
+	RESPONSE #100
+		StartCutSceneMode()
+		SetGlobal("bd_plot","global",615)
+		ClearAllActions()
+		StartCutSceneEx("bdcut64",TRUE)
+END
+
+// Reset Item Variables On Rest
+//IF
+//THEN
+//    RESPONSE #100
+//        //DisplayStringHead(Myself,?) // Item Variables Reset
+//        SetGlobal("cloakGargoyle","GLOBAL",1)
+//END
