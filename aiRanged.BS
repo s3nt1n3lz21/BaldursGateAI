@@ -95,6 +95,7 @@ THEN
     RESPONSE #100
 		DisplayStringHead(Myself,71462) // Help: Need Antidote
         Shout(NEED_ANTIDOTE) // Shout for help
+		Continue()
 END
 
 IF
@@ -1234,6 +1235,9 @@ IF
 		StateCheck(PartySlot1,STATE_SLOWED)
 		StateCheck(PartySlot1,STATE_FEEBLEMINDED)
 	See(PartySlot1)
+
+	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1245,6 +1249,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
 
@@ -1267,6 +1272,9 @@ IF
 		StateCheck(PartySlot2,STATE_SLOWED)
 		StateCheck(PartySlot2,STATE_FEEBLEMINDED)
 	See(PartySlot2)
+
+	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1278,6 +1286,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
 
@@ -1300,6 +1309,9 @@ IF
 		StateCheck(PartySlot3,STATE_SLOWED)
 		StateCheck(PartySlot3,STATE_FEEBLEMINDED)
 	See(PartySlot3)
+
+	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1311,6 +1323,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
 
@@ -1333,6 +1346,9 @@ IF
 		StateCheck(PartySlot4,STATE_SLOWED)
 		StateCheck(PartySlot4,STATE_FEEBLEMINDED)
 	See(PartySlot4)
+
+	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1344,6 +1360,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
 
@@ -1366,6 +1383,9 @@ IF
 		StateCheck(PartySlot5,STATE_SLOWED)
 		StateCheck(PartySlot5,STATE_FEEBLEMINDED)
 	See(PartySlot5)
+
+	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1377,6 +1397,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
 
@@ -1399,6 +1420,9 @@ IF
 		StateCheck(PartySlot6,STATE_SLOWED)
 		StateCheck(PartySlot6,STATE_FEEBLEMINDED)
 	See(PartySlot6)
+
+	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1410,6 +1434,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
 
@@ -1456,6 +1481,8 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 
+	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ENEMY)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1472,6 +1499,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Shout(CASTING_DISPEL_MAGIC_ENEMY)
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
 
@@ -1519,6 +1547,8 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 
+	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ENEMY)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1535,6 +1565,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71388) // Spell: Remove Magic
+		Shout(CASTING_DISPEL_MAGIC_ENEMY)
 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
 END
 
@@ -1560,6 +1591,9 @@ IF
 		StateCheck(PartySlot1,STATE_SLOWED)
 		StateCheck(PartySlot1,STATE_FEEBLEMINDED)
 	See(PartySlot1)
+
+	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1571,6 +1605,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
@@ -1593,6 +1628,9 @@ IF
 		StateCheck(PartySlot2,STATE_SLOWED)
 		StateCheck(PartySlot2,STATE_FEEBLEMINDED)
 	See(PartySlot2)
+
+	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1604,6 +1642,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
@@ -1626,6 +1665,9 @@ IF
 		StateCheck(PartySlot3,STATE_SLOWED)
 		StateCheck(PartySlot3,STATE_FEEBLEMINDED)
 	See(PartySlot3)
+
+	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1637,6 +1679,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
@@ -1659,6 +1702,9 @@ IF
 		StateCheck(PartySlot4,STATE_SLOWED)
 		StateCheck(PartySlot4,STATE_FEEBLEMINDED)
 	See(PartySlot4)
+
+	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1670,6 +1716,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
@@ -1692,6 +1739,9 @@ IF
 		StateCheck(PartySlot5,STATE_SLOWED)
 		StateCheck(PartySlot5,STATE_FEEBLEMINDED)
 	See(PartySlot5)
+
+	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1703,6 +1753,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
@@ -1725,6 +1776,9 @@ IF
 		StateCheck(PartySlot6,STATE_SLOWED)
 		StateCheck(PartySlot6,STATE_FEEBLEMINDED)
 	See(PartySlot6)
+
+	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1736,6 +1790,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
@@ -1782,6 +1837,8 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 
+	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ENEMY)
+
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
@@ -1798,6 +1855,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		Shout(CASTING_DISPEL_MAGIC_ENEMY)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
@@ -2245,6 +2303,9 @@ END
 /////////////////////////////////////////////////////////////////////////////////////// Summon spells
 IF
 	ActionListEmpty()
+
+	HotKey(Q)
+
 	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMATE_DEAD)
@@ -2261,6 +2322,9 @@ END
 
 IF
 	ActionListEmpty()
+
+	HotKey(Q)
+
 	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_ANIMATE_DEAD)
@@ -2277,6 +2341,9 @@ END
 
 IF
 	ActionListEmpty()
+
+	HotKey(Q)
+
 	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CALL_WOODLAND_BEINGS)
@@ -2293,6 +2360,9 @@ END
 
 IF
 	ActionListEmpty()
+
+	HotKey(Q)
+
 	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
@@ -2309,6 +2379,9 @@ END
 
 IF
 	ActionListEmpty()
+
+	HotKey(Q)
+
 	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_2)
@@ -2325,6 +2398,9 @@ END
 
 IF
 	ActionListEmpty()
+
+	HotKey(Q)
+
 	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_1)
@@ -2341,6 +2417,9 @@ END
 
 IF
 	ActionListEmpty()
+
+	HotKey(Q)
+
 	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CONJURE_ANIMALS)
@@ -2357,6 +2436,9 @@ END
 
 IF
 	ActionListEmpty()
+
+	HotKey(Q)
+
 	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CONJURE_FIRE_ELEMENTAL)
@@ -2373,21 +2455,21 @@ END
 
 ////////////////////////////////////////////////////////////////////////////////// Buff Items
 
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	Global("cloakGargoyle","GLOBAL",1)
-	HasItem("bdclck05",Myself) // Cloak Of The Gargoyle - Stone Form Once Per Day
-	//CheckStat(Myself,0,STONESKINS)
-	//CheckStat(Myself,0,STONESKINSGOLEM)
-	//!CheckSpellState(Myself,STONESKIN)
-THEN
-	RESPONSE #100
-      SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71483) // Item: Cloak Of The Gargoyle
-		SetGlobal("cloakGargoyle","GLOBAL",0)
-		UseItemSlotAbility(Myself,SLOT_CLOAK,1)
-END
+//IF
+//	ActionListEmpty()
+//    !GlobalTimerNotExpired("castnattack","LOCALS")
+//	Global("cloakGargoyle","GLOBAL",1)
+//	HasItem("bdclck05",Myself) // Cloak Of The Gargoyle - Stone Form Once Per Day
+//	//CheckStat(Myself,0,STONESKINS)
+//	//CheckStat(Myself,0,STONESKINSGOLEM)
+//	//!CheckSpellState(Myself,STONESKIN)
+//THEN
+//	RESPONSE #100
+//      SetGlobalTimer("castnattack","LOCALS",6)
+//		DisplayStringHead(Myself,71483) // Item: Cloak Of The Gargoyle
+//		SetGlobal("cloakGargoyle","GLOBAL",0)
+//		UseItemSlotAbility(Myself,SLOT_CLOAK,1)
+//END
 
 // Cant figure out how to check we already used the item. It casts a spell that isn't in the spellstate list.
 // Can we add the spellstate to the list compare to another spell with a spellstate in the list e.g. Bless
@@ -2546,6 +2628,101 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_BARKSKIN)
+	!CheckSpellState(PartySlot1,BARKSKIN)
+
+	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71403) // Spell: Barkskin
+		Shout(CASTING_BARKSKIN) // Casting Barksin
+		Spell(PartySlot1,CLERIC_BARKSKIN)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_BARKSKIN)
+	!CheckSpellState(PartySlot3,BARKSKIN)
+
+	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71403) // Spell: Barkskin
+		Shout(CASTING_BARKSKIN) // Casting Barksin
+		Spell(PartySlot3,CLERIC_BARKSKIN)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_BARKSKIN)
+	!CheckSpellState(PartySlot4,BARKSKIN)
+
+	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71403) // Spell: Barkskin
+		Shout(CASTING_BARKSKIN) // Casting Barksin
+		Spell(PartySlot4,CLERIC_BARKSKIN)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_BARKSKIN)
+	!CheckSpellState(PartySlot5,BARKSKIN)
+
+	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71403) // Spell: Barkskin
+		Shout(CASTING_BARKSKIN) // Casting Barksin
+		Spell(PartySlot5,CLERIC_BARKSKIN)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_BARKSKIN)
+	!CheckSpellState(PartySlot6,BARKSKIN)
+
+	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71403) // Spell: Barkskin
+		Shout(CASTING_BARKSKIN) // Casting Barksin
+		Spell(PartySlot6,CLERIC_BARKSKIN)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_SHILLELAGH)  // SPPR110.SPL (Shillelagh)
 	!HasItem("FBLADE",Myself)  // Flame Blade
 	!HasItem("SHILLE",Myself)  // Shillelagh
@@ -2618,21 +2795,21 @@ THEN
 		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
 END
 
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WHITE_HOLY_MIGHT)
-	!CheckSpellState(Myself,DRAW_UPON_HOLY_MIGHT)
+//IF
+//	ActionListEmpty()
+//    !GlobalTimerNotExpired("castnattack","LOCALS")
+//	HaveSpell(WHITE_HOLY_MIGHT)
+//	!CheckSpellState(Myself,DRAW_UPON_HOLY_MIGHT)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71409) // Spell: Holy Might
-		Spell(Myself,WHITE_HOLY_MIGHT)
-END
+//	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+//	!StateCheck(Myself,STATE_SILENCED)
+//	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+//THEN
+//	RESPONSE #100
+//      SetGlobalTimer("castnattack","LOCALS",6)
+//		DisplayStringHead(Myself,71409) // Spell: Holy Might
+//		Spell(Myself,WHITE_HOLY_MIGHT)
+//END
 
 IF
 	ActionListEmpty()
@@ -4365,10 +4542,10 @@ IF
 	!HasItem("AROW1A",Myself) // Arrow + 2
 	!HasItem("AROWKC",Myself) // Arrow Of Fire + 2
 	!HasItem("ARROPHE2",Myself) // Arrow Of Fire + 2
-	!HasItem("bdarow01",Myself) // Arrow Of Antimagic + 1
-	!HasItem("bdarow03",Myself) // Flaming Arrow
-	!HasItem("bdarow04",Myself) // Arrow + 3
-	!HasItem("CUTAROW1",Myself) // Arrow Of Ice
+//	!HasItem("bdarow01",Myself) // Arrow Of Antimagic + 1
+//	!HasItem("bdarow03",Myself) // Flaming Arrow
+//	!HasItem("bdarow04",Myself) // Arrow + 3
+//	!HasItem("CUTAROW1",Myself) // Arrow Of Ice
 	!HasItem("IAROW01",Myself) // Arrow
 	!HasItem("QUIV01",Myself) // Arrow
 	HasItemCategory(Myself,BOW,FALSE)
