@@ -5,7 +5,7 @@ IF
 	Range(LastSeenBy(Myself),17)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71459) // Cancelling Fireball
+		DisplayStringHead(Myself,103241) // Cancelling Fireball
 		SetGlobalTimer("castingfireball","LOCALS",0)
 		ClearAllActions()
 END
@@ -26,7 +26,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("energyleveldrained","LOCALS",30)
-		DisplayStringHead(Myself,71451) // Status: Energy Level Drained
+		DisplayStringHead(Myself,103242) // Status: Energy Level Drained
 		Continue()
 END
 
@@ -69,7 +69,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71380) // Potion: Antidote
+		DisplayStringHead(Myself,103243) // Potion: Antidote
 		UseItem("potn20",Myself)  // Antidote
 END
 
@@ -81,7 +81,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71381) // Potion: Elixir Of Health
+		DisplayStringHead(Myself,103244) // Potion: Elixir Of Health
 		UseItem("potn17",Myself)  // Elixir of health - cures disease and poisons
 END
 
@@ -93,7 +93,7 @@ IF
     !HasItem("potn20",Myself)
 THEN
     RESPONSE #100
-		DisplayStringHead(Myself,71462) // Help: Need Antidote
+		DisplayStringHead(Myself,103245) // Help: Need Antidote
         Shout(NEED_ANTIDOTE) // Shout for help
 		Continue()
 END
@@ -104,7 +104,7 @@ IF
 	HasItem("potn20",Myself)
 THEN
     RESPONSE #100
-		DisplayStringHead(Myself,71463) // Giving Antidote
+		DisplayStringHead(Myself,103246) // Giving Antidote
         GiveItem("potn20",LastHeardBy(Myself))
 END
 
@@ -114,7 +114,7 @@ IF
 	HasItem("potn17",Myself)
 THEN
     RESPONSE #100
-		DisplayStringHead(Myself,71463) // Giving Antidote
+		DisplayStringHead(Myself,103246) // Giving Antidote
         GiveItem("potn17",LastHeardBy(Myself))
 END
 
@@ -132,7 +132,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71447) // Potion: Fire Resistance
+		DisplayStringHead(Myself,103352) // Potion: Fire Resistance
 		UseItem("potn02",Myself)
 END
 
@@ -145,7 +145,7 @@ IF
 	CheckStatLT(Myself,49,RESISTFIRE)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71475) // Help: Need Potion Fire Resistance
+		DisplayStringHead(Myself,103351) // Help: Need Potion Fire Resistance
         Shout(NEED_POTION_FIRE_RESISTANCE) // Shout for help
 		Continue()
 END
@@ -162,7 +162,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71448) // Potion: Cold Resistance
+		DisplayStringHead(Myself,103350) // Potion: Cold Resistance
 		UseItem("potn22",Myself)
 END
 
@@ -175,7 +175,7 @@ IF
 	CheckStatLT(Myself,49,RESISTCOLD)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71476) // Help: Need Potion Cold Resistance
+		DisplayStringHead(Myself,103349) // Help: Need Potion Cold Resistance
         Shout(NEED_POTION_COLD_RESISTANCE) // Shout for help
 		Continue()
 END
@@ -190,7 +190,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71449) // Potion: Insulation
+		DisplayStringHead(Myself,103348) // Potion: Insulation
 		UseItem("potn31",Myself)
 END
 
@@ -201,7 +201,7 @@ IF
 	CheckStatLT(Myself,49,RESISTELECTRICITY)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71477) // Help: Need Potion Insulation
+		DisplayStringHead(Myself,103347) // Help: Need Potion Insulation
         Shout(NEED_POTION_INSULATION) // Shout for help
 		Continue()
 END
@@ -215,7 +215,7 @@ IF
 	HasItem("potn02",Myself)
 THEN
     RESPONSE #100
-		DisplayStringHead(Myself,71472) // Giving Potion Fire Resistance
+		DisplayStringHead(Myself,103346) // Giving Potion Fire Resistance
         GiveItem("potn02",LastHeardBy(Myself))
 END
 
@@ -226,7 +226,7 @@ IF
 	HasItem("potn22",Myself)
 THEN
     RESPONSE #100
-		DisplayStringHead(Myself,71473) // Giving Potion Cold Resistance
+		DisplayStringHead(Myself,103345) // Giving Potion Cold Resistance
         GiveItem("potn22",LastHeardBy(Myself))
 END
 
@@ -237,7 +237,7 @@ IF
 	HasItem("potn31",Myself)
 THEN
     RESPONSE #100
-		DisplayStringHead(Myself,71474) // Giving Potion Insulation
+		DisplayStringHead(Myself,103344) // Giving Potion Insulation
         GiveItem("potn31",LastHeardBy(Myself))
 END
 
@@ -254,7 +254,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71375) // Spell: Cure Light Wounds
+		DisplayStringHead(Myself,103343) // Spell: Cure Light Wounds
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_LIGHT_WOUNDS)
 END
 
@@ -270,7 +270,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71376) // Spell: Cure Medium Wounds
+		DisplayStringHead(Myself,103342) // Spell: Cure Medium Wounds
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_MEDIUM_WOUNDS)
 END
 
@@ -286,7 +286,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71377) // Spell: Cure Serious Wounds
+		DisplayStringHead(Myself,103341) // Spell: Cure Serious Wounds
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_SERIOUS_WOUNDS)
 END
 
@@ -302,7 +302,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71461) // Spell: Mass Cure
+		DisplayStringHead(Myself,103340) // Spell: Mass Cure
 		Spell(MostDamagedOf(Myself),CLERIC_MASS_CURE)
 END
 
@@ -324,7 +324,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71379) // Potion: Extra Healing
+		DisplayStringHead(Myself,103339) // Potion: Extra Healing
 		UseItem("potn52",Myself)  // Potion of Extra Healing
 END
 
@@ -337,7 +337,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71379) // Potion: Extra Healing
+		DisplayStringHead(Myself,103339) // Potion: Extra Healing
 		UseItem("potn52",Myself)  // Potion of Extra Healing
 END
 
@@ -350,7 +350,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71379) // Potion: Extra Healing
+		DisplayStringHead(Myself,103339) // Potion: Extra Healing
 		UseItem("potn52",Myself)  // Potion of Extra Healing
 END
 
@@ -363,7 +363,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71379) // Potion: Extra Healing
+		DisplayStringHead(Myself,103339) // Potion: Extra Healing
 		UseItem("potn52",Myself)  // Potion of Extra Healing
 END
 
@@ -376,7 +376,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71379) // Potion: Extra Healing
+		DisplayStringHead(Myself,103339) // Potion: Extra Healing
 		UseItem("potn52",Myself)  // Potion of Extra Healing
 END
 
@@ -389,7 +389,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71379) // Potion: Extra Healing
+		DisplayStringHead(Myself,103339) // Potion: Extra Healing
 		UseItem("potn52",Myself)  // Potion of Extra Healing
 END
 
@@ -409,7 +409,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71378) // Potion: Healing
+		DisplayStringHead(Myself,103338) // Potion: Healing
 		UseItem("potn08",Myself)  // Potion of Healing
 END
 
@@ -422,7 +422,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71378) // Potion: Healing
+		DisplayStringHead(Myself,103338) // Potion: Healing
 		UseItem("potn08",Myself)  // Potion of Healing
 END
 
@@ -435,7 +435,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71378) // Potion: Healing
+		DisplayStringHead(Myself,103338) // Potion: Healing
 		UseItem("potn08",Myself)  // Potion of Healing
 END
 
@@ -448,7 +448,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71378) // Potion: Healing
+		DisplayStringHead(Myself,103338) // Potion: Healing
 		UseItem("potn08",Myself)  // Potion of Healing
 END
 
@@ -461,7 +461,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71378) // Potion: Healing
+		DisplayStringHead(Myself,103338) // Potion: Healing
 		UseItem("potn08",Myself)  // Potion of Healing
 END
 
@@ -474,7 +474,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71378) // Potion: Healing
+		DisplayStringHead(Myself,103338) // Potion: Healing
 		UseItem("potn08",Myself)  // Potion of Healing
 END
 
@@ -487,7 +487,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71378) // Potion: Healing
+		DisplayStringHead(Myself,103338) // Potion: Healing
 		UseItem("potn08",Myself)  // Potion of Healing
 END
 
@@ -502,7 +502,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71378) // Potion: Healing
+		DisplayStringHead(Myself,103338) // Potion: Healing
 		UseItem("potn25",Myself)  // Potion of Healing
 END
 
@@ -515,7 +515,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71378) // Potion: Healing
+		DisplayStringHead(Myself,103338) // Potion: Healing
 		UseItem("potn25",Myself)  // Potion of Healing
 END
 
@@ -528,7 +528,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71378) // Potion: Healing
+		DisplayStringHead(Myself,103338) // Potion: Healing
 		UseItem("potn25",Myself)  // Potion of Healing
 END
 
@@ -541,7 +541,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71378) // Potion: Healing
+		DisplayStringHead(Myself,103338) // Potion: Healing
 		UseItem("potn25",Myself)  // Potion of Healing
 END
 
@@ -554,7 +554,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71378) // Potion: Healing
+		DisplayStringHead(Myself,103338) // Potion: Healing
 		UseItem("potn25",Myself)  // Potion of Healing
 END
 
@@ -567,7 +567,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71378) // Potion: Healing
+		DisplayStringHead(Myself,103338) // Potion: Healing
 		UseItem("potn25",Myself)  // Potion of Healing
 END
 
@@ -580,7 +580,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71378) // Potion: Healing
+		DisplayStringHead(Myself,103338) // Potion: Healing
 		UseItem("potn25",Myself)  // Potion of Healing
 END
 
@@ -592,7 +592,7 @@ IF
     HPPercentLT(Myself,50)
 THEN
     RESPONSE #100
-		DisplayStringHead(Myself,71457) // Help: Need Potion Of Healing
+		DisplayStringHead(Myself,103337) // Help: Need Potion Of Healing
         Shout(NEED_POTION_OF_HEALING) // Shout for help
 		Continue()
 END
@@ -604,7 +604,7 @@ IF
 	HasItem("potn08",Myself)
 THEN
     RESPONSE #100
-		DisplayStringHead(Myself,71458) // Giving Healing Potion
+		DisplayStringHead(Myself,103336) // Giving Healing Potion
         GiveItem("potn08",LastHeardBy(Myself)) // Pass them the item
 END
 
@@ -619,7 +619,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71381) // Potion: Elixir Of Health
+		DisplayStringHead(Myself,103244) // Potion: Elixir Of Health
 		UseItem("potn17",Myself)  // Elixir of health - cures disease and poisons
 END
 
@@ -632,7 +632,7 @@ IF
 	Range(NearestEnemyOf(Myself),5)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71382) // Running Away
+		DisplayStringHead(Myself,103335) // Running Away
 		SetGlobalTimer("locMeSame","LOCALS",3)
 		RunAwayFrom(NearestEnemyOf(Myself),20)
 END
@@ -644,7 +644,7 @@ IF
 	Range(NearestEnemyOf(Myself),10)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71382) // Running Away
+		DisplayStringHead(Myself,103335) // Running Away
 		SetGlobalTimer("locMeSame","LOCALS",3)
 		RunAwayFrom(NearestEnemyOf(Myself),25)
 END
@@ -656,7 +656,7 @@ IF
 	Range(NearestEnemyOf(Myself),5)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71382) // Running Away
+		DisplayStringHead(Myself,103335) // Running Away
 		RunAwayFrom(NearestEnemyOf(Myself),15)
 END
 
@@ -685,7 +685,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71442) // Spell: Zone Of Sweet Air
+		DisplayStringHead(Myself,103334) // Spell: Zone Of Sweet Air
 		Spell(Myself,CLERIC_ZONE_OF_SWEET_AIR)
 END
 
@@ -722,7 +722,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71383) // Spell: Silence
+		DisplayStringHead(Myself,103333) // Spell: Silence
 		Spell(LastSeenBy(Myself),CLERIC_SILENCE_15_FOOT)  // SPPR211.SPL (Silence, 15' Radius)
 END
 
@@ -754,7 +754,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71485) // Spell: Lower Resistance
+		DisplayStringHead(Myself,103332) // Spell: Lower Resistance
 		Spell(LastSeenBy(Myself),WIZARD_LOWER_RESISTANCE)
 END
 
@@ -787,7 +787,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71384) // Spell: Secret Word
+		DisplayStringHead(Myself,103331) // Spell: Secret Word
 		Spell(LastSeenBy(Myself),WIZARD_SECRET_WORD)
 END
 
@@ -810,7 +810,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71450) // Spell: Detect Invisibility
+		DisplayStringHead(Myself,103330) // Spell: Detect Invisibility
 		Spell(Myself,WIZARD_DETECT_INVISIBILITY)
 END
 
@@ -850,7 +850,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71460) // Spell: Hold Person
+		DisplayStringHead(Myself,103328) // Spell: Hold Person
 		Spell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)
 END
 
@@ -891,7 +891,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71487) // Spell: Sleep
+		DisplayStringHead(Myself,103329) // Spell: Sleep
 		Spell(LastSeenBy(Myself),WIZARD_SLEEP)
 END
 
@@ -932,7 +932,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71460) // Spell: Hold Person
+		DisplayStringHead(Myself,103328) // Spell: Hold Person
 		Spell(LastSeenBy(Myself),WIZARD_HOLD_PERSON)
 END
 
@@ -972,7 +972,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71385) // Spell: Hold Monster
+		DisplayStringHead(Myself,103327) // Spell: Hold Monster
 		Spell(LastSeenBy(Myself),WIZARD_HOLD_MONSTER)
 END
 
@@ -1029,7 +1029,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71386) // Spell: Chaos
+		DisplayStringHead(Myself,103326) // Spell: Chaos
 		Spell(LastSeenBy(Myself),WIZARD_CHAOS)
 END
 
@@ -1148,7 +1148,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71387) // Spell: Horror
+		DisplayStringHead(Myself,103325) // Spell: Horror
 		Spell(NearestEnemyOf(Myself),WIZARD_HORROR)
 END
 
@@ -1210,7 +1210,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71452) // Spell: Breach
+		DisplayStringHead(Myself,103324) // Spell: Breach
 		Spell(LastSeenBy(Myself),WIZARD_BREACH)
 END
 
@@ -1248,7 +1248,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		DisplayStringHead(Myself,103322) // Spell: Dispel Magic
 		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
@@ -1285,7 +1285,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		DisplayStringHead(Myself,103322) // Spell: Dispel Magic
 		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
@@ -1322,7 +1322,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		DisplayStringHead(Myself,103322) // Spell: Dispel Magic
 		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
@@ -1359,7 +1359,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		DisplayStringHead(Myself,103322) // Spell: Dispel Magic
 		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
@@ -1396,7 +1396,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		DisplayStringHead(Myself,103322) // Spell: Dispel Magic
 		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
@@ -1433,7 +1433,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		DisplayStringHead(Myself,103322) // Spell: Dispel Magic
 		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
@@ -1498,7 +1498,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		DisplayStringHead(Myself,103322) // Spell: Dispel Magic
 		Shout(CASTING_DISPEL_MAGIC_ENEMY)
 		Spell(LastSeenBy(Myself),WIZARD_TRUE_DISPEL_MAGIC)
 END
@@ -1564,7 +1564,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71388) // Spell: Remove Magic
+		DisplayStringHead(Myself,103323) // Spell: Remove Magic
 		Shout(CASTING_DISPEL_MAGIC_ENEMY)
 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
 END
@@ -1604,7 +1604,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		DisplayStringHead(Myself,103322) // Spell: Dispel Magic
 		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
@@ -1641,7 +1641,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		DisplayStringHead(Myself,103322) // Spell: Dispel Magic
 		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
@@ -1678,7 +1678,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		DisplayStringHead(Myself,103322) // Spell: Dispel Magic
 		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
@@ -1715,7 +1715,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		DisplayStringHead(Myself,103322) // Spell: Dispel Magic
 		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
@@ -1752,7 +1752,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		DisplayStringHead(Myself,103322) // Spell: Dispel Magic
 		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
@@ -1789,7 +1789,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		DisplayStringHead(Myself,103322) // Spell: Dispel Magic
 		Shout(CASTING_DISPEL_MAGIC_ALLY)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
@@ -1854,7 +1854,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71389) // Spell: Dispel Magic
+		DisplayStringHead(Myself,103322) // Spell: Dispel Magic
 		Shout(CASTING_DISPEL_MAGIC_ENEMY)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
@@ -1891,7 +1891,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71390) // Spell: Miscast Magic
+		DisplayStringHead(Myself,103321) // Spell: Miscast Magic
 		Spell(LastSeenBy(Myself),CLERIC_MISCAST_MAGIC)
 END
 
@@ -1915,7 +1915,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71439) // Spell: Doom
+		DisplayStringHead(Myself,103320) // Spell: Doom
 		Spell(LastSeenBy(Myself),CLERIC_DOOM)
 END
 
@@ -1939,7 +1939,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71440) // Spell: Greater Malison
+		DisplayStringHead(Myself,103319) // Spell: Greater Malison
 		Spell(NearestEnemyOf(Myself),WIZARD_GREATER_MALISON)
 END
 
@@ -2060,7 +2060,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71430) // Wand: Fear
+		DisplayStringHead(Myself,103318) // Wand: Fear
 		UseItem("wand02",NearestEnemyOf(Myself))
 END
 
@@ -2171,7 +2171,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71435) // Wand: Sleep
+		DisplayStringHead(Myself,103317) // Wand: Sleep
 		UseItem("wand08",NearestEnemyOf(Myself))
 END
 
@@ -2193,7 +2193,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71432) // Wand: Paralyzation
+		DisplayStringHead(Myself,103316) // Wand: Paralyzation
 		UseItem("wand04",NearestEnemyOf(Myself))
 END
 
@@ -2207,7 +2207,7 @@ IF
 	!ButtonDisabled(BUTTON_TURNUNDEAD)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71391) // Turn Undead
+		DisplayStringHead(Myself,103315) // Turn Undead
 		Turn()
 END
 
@@ -2219,7 +2219,7 @@ IF
 	!ButtonDisabled(BUTTON_TURNUNDEAD)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71391) // Turn Undead
+		DisplayStringHead(Myself,103315) // Turn Undead
 		Turn()
 END
 
@@ -2231,7 +2231,7 @@ IF
 	!ButtonDisabled(BUTTON_TURNUNDEAD)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71391) // Turn Undead
+		DisplayStringHead(Myself,103315) // Turn Undead
 		Turn()
 END
 
@@ -2243,7 +2243,7 @@ IF
 	!ButtonDisabled(BUTTON_TURNUNDEAD)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71391) // Turn Undead
+		DisplayStringHead(Myself,103315) // Turn Undead
 		Turn()
 END
 
@@ -2255,7 +2255,7 @@ IF
 	!ButtonDisabled(BUTTON_TURNUNDEAD)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71391) // Turn Undead
+		DisplayStringHead(Myself,103315) // Turn Undead
 		Turn()
 END
 
@@ -2267,7 +2267,7 @@ IF
 	!ButtonDisabled(BUTTON_TURNUNDEAD)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71391) // Turn Undead
+		DisplayStringHead(Myself,103315) // Turn Undead
 		Turn()
 END
 
@@ -2279,7 +2279,7 @@ IF
 	!ButtonDisabled(BUTTON_TURNUNDEAD)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71391) // Turn Undead
+		DisplayStringHead(Myself,103315) // Turn Undead
 		Turn()
 END
 
@@ -2316,7 +2316,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71392) // Spell: Animate Undead
+		DisplayStringHead(Myself,103313) // Spell: Animate Undead
 		Spell(Myself,CLERIC_ANIMATE_DEAD)
 END
 
@@ -2335,7 +2335,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71392) // Spell: Animate Undead
+		DisplayStringHead(Myself,103313) // Spell: Animate Undead
 		Spell(Myself,WIZARD_ANIMATE_DEAD)
 END
 
@@ -2354,7 +2354,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71393) // Spell: Call Woodland Beings
+		DisplayStringHead(Myself,103312) // Spell: Call Woodland Beings
 		Spell(Myself,CLERIC_CALL_WOODLAND_BEINGS)
 END
 
@@ -2373,7 +2373,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71394) // Spell: Animal Summoning 3
+		DisplayStringHead(Myself,103311) // Spell: Animal Summoning 3
 		Spell(Myself,CLERIC_ANIMAL_SUMMONING_3)
 END
 
@@ -2392,7 +2392,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71395) // Spell: Animal Summoning 2
+		DisplayStringHead(Myself,103310) // Spell: Animal Summoning 2
 		Spell(Myself,CLERIC_ANIMAL_SUMMONING_2)
 END
 
@@ -2411,7 +2411,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71396) // Spell: Animal Summoning 1
+		DisplayStringHead(Myself,103309) // Spell: Animal Summoning 1
 		Spell(Myself,CLERIC_ANIMAL_SUMMONING_1)
 END
 
@@ -2430,7 +2430,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71481) // Spell: Conjure Animals
+		DisplayStringHead(Myself,103308) // Spell: Conjure Animals
 		Spell(Myself,CLERIC_CONJURE_ANIMALS)
 END
 
@@ -2449,7 +2449,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71482) // Spell: Conjure Fire Elemental
+		DisplayStringHead(Myself,103307) // Spell: Conjure Fire Elemental
 		Spell(Myself,CLERIC_CONJURE_FIRE_ELEMENTAL)
 END
 
@@ -2487,7 +2487,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71400) // Spell: Remove Fear
+		DisplayStringHead(Myself,103306) // Spell: Remove Fear
 		Spell(Myself,CLERIC_REMOVE_FEAR)
 END
 
@@ -2504,7 +2504,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71401) // Spell: Protection From Evil
+		DisplayStringHead(Myself,103305) // Spell: Protection From Evil
 		Spell(PartySlot2,CLERIC_PROTECT_FROM_EVIL)
 END
 
@@ -2521,7 +2521,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71401) // Spell: Protection From Evil
+		DisplayStringHead(Myself,103305) // Spell: Protection From Evil
 		Spell(PartySlot1,CLERIC_PROTECT_FROM_EVIL)
 END
 
@@ -2538,7 +2538,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71401) // Spell: Protection From Evil
+		DisplayStringHead(Myself,103305) // Spell: Protection From Evil
 		Spell(PartySlot3,CLERIC_PROTECT_FROM_EVIL)
 END
 
@@ -2555,7 +2555,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71401) // Spell: Protection From Evil
+		DisplayStringHead(Myself,103305) // Spell: Protection From Evil
 		Spell(PartySlot4,CLERIC_PROTECT_FROM_EVIL)
 END
 
@@ -2572,7 +2572,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71401) // Spell: Protection From Evil
+		DisplayStringHead(Myself,103305) // Spell: Protection From Evil
 		Spell(PartySlot5,CLERIC_PROTECT_FROM_EVIL)
 END
 
@@ -2589,7 +2589,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71401) // Spell: Protection From Evil
+		DisplayStringHead(Myself,103305) // Spell: Protection From Evil
 		Spell(PartySlot6,CLERIC_PROTECT_FROM_EVIL)
 END
 
@@ -2605,7 +2605,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71402) // Spell: Protection Group From Evil
+		DisplayStringHead(Myself,103304) // Spell: Protection Group From Evil
 		Spell(Myself,CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
 END
 
@@ -2621,7 +2621,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71403) // Spell: Barkskin
+		DisplayStringHead(Myself,103303) // Spell: Barkskin
 		Spell(PartySlot2,CLERIC_BARKSKIN)
 END
 
@@ -2639,7 +2639,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71403) // Spell: Barkskin
+		DisplayStringHead(Myself,103303) // Spell: Barkskin
 		Shout(CASTING_BARKSKIN) // Casting Barksin
 		Spell(PartySlot1,CLERIC_BARKSKIN)
 END
@@ -2658,7 +2658,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71403) // Spell: Barkskin
+		DisplayStringHead(Myself,103303) // Spell: Barkskin
 		Shout(CASTING_BARKSKIN) // Casting Barksin
 		Spell(PartySlot3,CLERIC_BARKSKIN)
 END
@@ -2677,7 +2677,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71403) // Spell: Barkskin
+		DisplayStringHead(Myself,103303) // Spell: Barkskin
 		Shout(CASTING_BARKSKIN) // Casting Barksin
 		Spell(PartySlot4,CLERIC_BARKSKIN)
 END
@@ -2696,7 +2696,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71403) // Spell: Barkskin
+		DisplayStringHead(Myself,103303) // Spell: Barkskin
 		Shout(CASTING_BARKSKIN) // Casting Barksin
 		Spell(PartySlot5,CLERIC_BARKSKIN)
 END
@@ -2715,7 +2715,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71403) // Spell: Barkskin
+		DisplayStringHead(Myself,103303) // Spell: Barkskin
 		Shout(CASTING_BARKSKIN) // Casting Barksin
 		Spell(PartySlot6,CLERIC_BARKSKIN)
 END
@@ -2737,7 +2737,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71407) // Spell: Shillelagh
+		DisplayStringHead(Myself,103302) // Spell: Shillelagh
 		Spell(Myself,CLERIC_SHILLELAGH)  // SPPR110.SPL (Shillelagh)
 END
 
@@ -2758,7 +2758,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71408) // Spell: Flame Blade
+		DisplayStringHead(Myself,103301) // Spell: Flame Blade
 		Spell(Myself,CLERIC_FLAME_BLADE)
 END
 
@@ -2774,7 +2774,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71486) // Spell: Chaotic Commands
+		DisplayStringHead(Myself,103300) // Spell: Chaotic Commands
 		Spell(PartySlot2,CLERIC_CHAOTIC_COMMANDS)
 END
 
@@ -2791,7 +2791,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71409) // Spell: Holy Might
+		DisplayStringHead(Myself,103299) // Spell: Holy Might
 		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
 END
 
@@ -2823,7 +2823,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71410) // Spell: Armor Of Faith
+		DisplayStringHead(Myself,103298) // Spell: Armor Of Faith
 		Spell(Myself,CLERIC_ARMOR_OF_FAITH)
 END
 
@@ -2839,7 +2839,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71411) // Spell: Holy Power
+		DisplayStringHead(Myself,103297) // Spell: Holy Power
 		Spell(Myself,CLERIC_HOLY_POWER)
 END
 
@@ -2855,7 +2855,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71469) // Spell: Protection From Lightning
+		DisplayStringHead(Myself,103296) // Spell: Protection From Lightning
 		Spell(PartySlot2,CLERIC_PROTECTION_FROM_LIGHTNING)
 END
 
@@ -2871,7 +2871,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71480) // Spell: Protection From Fire
+		DisplayStringHead(Myself,103295) // Spell: Protection From Fire
 		Spell(PartySlot2,CLERIC_PROTECTION_FROM_FIRE)
 END
 
@@ -2887,7 +2887,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71470) // Spell: Magic Resistance
+		DisplayStringHead(Myself,103294) // Spell: Magic Resistance
 		Spell(PartySlot2,CLERIC_MAGIC_RESISTANCE)
 END
 
@@ -2907,7 +2907,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71471) // Spell: Resist Fire And Cold
+		DisplayStringHead(Myself,103293) // Spell: Resist Fire And Cold
 		Spell(PartySlot2,CLERIC_RESIST_FIRE)
 END
 
@@ -2923,7 +2923,7 @@ IF
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71453) // Spell: Iron Skins
+		DisplayStringHead(Myself,103292) // Spell: Iron Skins
 		Spell(Myself,CLERIC_IRONSKIN)
 END
 
@@ -2939,7 +2939,7 @@ IF
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71454) // Spell: Strength Of One
+		DisplayStringHead(Myself,103291) // Spell: Strength Of One
 		Spell(WeakestOf(Myself),CLERIC_STRENGTH_OF_ONE)
 END
 
@@ -2954,7 +2954,7 @@ IF
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71464) // Spell: Righteous Magic
+		DisplayStringHead(Myself,103290) // Spell: Righteous Magic
 		Spell(WeakestOf(Myself),CLERIC_RIGHTEOUS_MAGIC)
 END
 
@@ -2970,7 +2970,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71399) // Spell: Defensive Harmony
+		DisplayStringHead(Myself,103289) // Spell: Defensive Harmony
 		Spell(Myself,CLERIC_DEFENSIVE_HARMONY)
 END
 
@@ -2986,7 +2986,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71404) // Spell: Aid
+		DisplayStringHead(Myself,103288) // Spell: Aid
 		Spell(PartySlot2,CLERIC_AID)
 END
 
@@ -3002,7 +3002,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71397) // Spell: Bless
+		DisplayStringHead(Myself,103287) // Spell: Bless
 		Spell(Myself,CLERIC_BLESS)  // SPPR101.SPL (Bless)
 END
 
@@ -3018,7 +3018,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71398) // Spell: Chant
+		DisplayStringHead(Myself,103286) // Spell: Chant
 		Spell(Myself,CLERIC_CHANT)  // SPPR203.SPL (Chant)
 END
 
@@ -3034,7 +3034,7 @@ IF
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71456) // Spell: Champions Strength
+		DisplayStringHead(Myself,103285) // Spell: Champions Strength
 		Spell(WeakestOf(Myself),CLERIC_CHAMPIONS_STRENGTH)
 END
 
@@ -3050,7 +3050,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71405) // Spell: Chaos Shield
+		DisplayStringHead(Myself,103284) // Spell: Chaos Shield
 		Spell(Myself,WIZARD_CHAOS_SHIELD)
 END
 
@@ -3066,7 +3066,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71412) // Spell: Resist Fear
+		DisplayStringHead(Myself,103283) // Spell: Resist Fear
 		Spell(Myself,WIZARD_RESIST_FEAR)
 END
 
@@ -3082,7 +3082,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71414) // Spell: Mirror Image
+		DisplayStringHead(Myself,103282) // Spell: Mirror Image
 		Spell(Myself,WIZARD_MIRROR_IMAGE)
 END
 
@@ -3098,7 +3098,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71406) // Spell: Shield
+		DisplayStringHead(Myself,103281) // Spell: Shield
 		Spell(Myself,WIZARD_SHIELD)
 END
 
@@ -3114,7 +3114,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71417) // Spell: Improved Invisibility
+		DisplayStringHead(Myself,103280) // Spell: Improved Invisibility
 		Spell(Myself,WIZARD_IMPROVED_INVISIBILITY)
 END
 
@@ -3131,7 +3131,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71445) // Spell: Melfs Minute Meteors
+		DisplayStringHead(Myself,103279) // Spell: Melfs Minute Meteors
 		Spell(Myself,WIZARD_MELF_METEOR)
 END
 
@@ -3147,7 +3147,7 @@ IF
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71455) // Spell: Strength
+		DisplayStringHead(Myself,103278) // Spell: Strength
 		Spell(WeakestOf(Myself),WIZARD_STRENGTH)
 END
 
@@ -3163,7 +3163,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71478) // Spell: Protection From Acid
+		DisplayStringHead(Myself,103277) // Spell: Protection From Acid
 		Spell(PartySlot2,WIZARD_PROTECTION_FROM_ACID)
 END
 
@@ -3179,7 +3179,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71480) // Spell: Protection From Fire
+		DisplayStringHead(Myself,103276) // Spell: Protection From Fire
 		Spell(PartySlot2,WIZARD_PROTECTION_FROM_FIRE)
 END
 
@@ -3196,7 +3196,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71484) // Spell: Stoneskin
+		DisplayStringHead(Myself,103275) // Spell: Stoneskin
 		Spell(PartySlot2,WIZARD_STONE_SKIN)
 END
 
@@ -3212,7 +3212,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71413) // Spell: Haste
+		DisplayStringHead(Myself,103274) // Spell: Haste
 		Spell(Myself,WIZARD_HASTE)
 END
 
@@ -3228,7 +3228,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71415) // Spell: Minor Globe Of Invulnerability
+		DisplayStringHead(Myself,103273) // Spell: Minor Globe Of Invulnerability
 		Spell(Myself,WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
 END
 
@@ -3244,7 +3244,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71416) // Spell: Minor Spell Deflection
+		DisplayStringHead(Myself,103272) // Spell: Minor Spell Deflection
 		Spell(Myself,WIZARD_MINOR_SPELL_DEFLECTION)
 END
 
@@ -3270,7 +3270,7 @@ IF
 	See(LastAttackerOf(PartySlot1))
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71443) // Helping Wizard
+		DisplayStringHead(Myself,103271) // Helping Wizard
 		Continue()
 END
 
@@ -3300,7 +3300,7 @@ IF
 	See(LastAttackerOf(MostDamagedOf(Myself)))
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71424) // Helping Allies
+		DisplayStringHead(Myself,103247) // Helping Allies
 		Continue()
 END
 
@@ -3334,7 +3334,7 @@ IF
 	See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71444) // Attacking Spellcasters
+		DisplayStringHead(Myself,103270) // Attacking Spellcasters
 		Continue()
 END
 
@@ -3372,7 +3372,7 @@ IF
 	See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71444) // Attacking Spellcasters
+		DisplayStringHead(Myself,103270) // Attacking Spellcasters
 		Continue()
 END
 
@@ -3413,7 +3413,7 @@ IF
 	See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71444) // Attacking Spellcasters
+		DisplayStringHead(Myself,103270) // Attacking Spellcasters
 		Continue()
 END
 
@@ -3457,7 +3457,7 @@ IF
 	See(NearestEnemyOfType([0.0.0.BARD_ALL]))
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71444) // Attacking Spellcasters
+		DisplayStringHead(Myself,103270) // Attacking Spellcasters
 		Continue()
 END
 
@@ -3506,7 +3506,7 @@ IF
 	See(LastAttackerOf(Myself))
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71425) // Attacking My Attacker
+		DisplayStringHead(Myself,103269) // Attacking My Attacker
 		Continue()
 END
 
@@ -3557,7 +3557,7 @@ IF
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71426) // Attacking Weakest Enemy
+		DisplayStringHead(Myself,103268) // Attacking Weakest Enemy
 		Continue()
 END
 
@@ -3610,7 +3610,7 @@ IF
 	See(SecondNearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71426) // Attacking Weakest Enemy
+		DisplayStringHead(Myself,103268) // Attacking Weakest Enemy
 		Continue()
 END
 
@@ -3664,7 +3664,7 @@ IF
 	See(ThirdNearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71426) // Attacking Weakest Enemy
+		DisplayStringHead(Myself,103268) // Attacking Weakest Enemy
 		Continue()
 END
 
@@ -3718,7 +3718,7 @@ IF
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71427) // Attacking Nearby Enemies
+		DisplayStringHead(Myself,103267) // Attacking Nearby Enemies
 		Continue()
 END
 
@@ -3771,7 +3771,7 @@ IF
 	See(SecondNearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71427) // Attacking Nearby Enemies
+		DisplayStringHead(Myself,103267) // Attacking Nearby Enemies
 		Continue()
 END
 
@@ -3824,7 +3824,7 @@ IF
 	See(ThirdNearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71427) // Attacking Nearby Enemies
+		DisplayStringHead(Myself,103267) // Attacking Nearby Enemies
 		Continue()
 END
 
@@ -3867,7 +3867,7 @@ IF
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71427) // Attacking Nearby Enemies
+		DisplayStringHead(Myself,103267) // Attacking Nearby Enemies
 		Continue()
 END
 
@@ -3887,7 +3887,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		SetGlobalTimer("castingfireball","LOCALS",6) // Starting fireball
-		DisplayStringHead(Myself,71418) // Spell: Fireball
+		DisplayStringHead(Myself,103266) // Spell: Fireball
 		Spell(FarthestEnemyOf(Myself),WIZARD_FIREBALL)
 END
 
@@ -3917,7 +3917,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71419) // Spell: Magic Missile
+		DisplayStringHead(Myself,103264) // Spell: Magic Missile
 		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
 END
 
@@ -3946,7 +3946,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71479) // Spell: Chromatic Orb
+		DisplayStringHead(Myself,103265) // Spell: Chromatic Orb
 		Spell(LastSeenBy(Myself),WIZARD_CHROMATIC_ORB)
 END
 
@@ -3978,7 +3978,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71420) // Spell: Flame Arrow
+		DisplayStringHead(Myself,103263) // Spell: Flame Arrow
 		Spell(LastSeenBy(Myself),WIZARD_FLAME_ARROW)
 END
 
@@ -4008,7 +4008,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71421) // Spell: Melf Acid Arrow
+		DisplayStringHead(Myself,103262) // Spell: Melf Acid Arrow
 		Spell(LastSeenBy(Myself),WIZARD_MELF_ACID_ARROW)
 END
 
@@ -4038,7 +4038,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71422) // Spell: Agannazar Scorcher
+		DisplayStringHead(Myself,103261) // Spell: Agannazar Scorcher
 		Spell(LastSeenBy(Myself),WIZARD_AGANNAZAR_SCORCHER)
 END
 
@@ -4067,7 +4067,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71423) // Spell: Holy Smite
+		DisplayStringHead(Myself,103260) // Spell: Holy Smite
 		Spell(LastSeenBy(Myself),CLERIC_HOLY_SMITE)
 END
 
@@ -4100,7 +4100,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71419) // Spell: Magic Missile
+		DisplayStringHead(Myself,103264) // Spell: Magic Missile
 		Spell(NearestEnemyOf(Myself),WIZARD_MAGIC_MISSILE)
 END
 
@@ -4133,7 +4133,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71420) // Spell: Flame Arrow
+		DisplayStringHead(Myself,103263) // Spell: Flame Arrow
 		Spell(NearestEnemyOf(Myself),WIZARD_FLAME_ARROW)
 END
 
@@ -4164,7 +4164,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71421) // Spell: Melf Acid Arrow
+		DisplayStringHead(Myself,103262) // Spell: Melf Acid Arrow
 		Spell(NearestEnemyOf(Myself),WIZARD_MELF_ACID_ARROW)
 END
 
@@ -4195,7 +4195,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71422) // Spell: Agannazar Scorcher
+		DisplayStringHead(Myself,103261) // Spell: Agannazar Scorcher
 		Spell(NearestEnemyOf(Myself),WIZARD_AGANNAZAR_SCORCHER)
 END
 
@@ -4225,7 +4225,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71423) // Spell: Holy Smite
+		DisplayStringHead(Myself,103260) // Spell: Holy Smite
 		Spell(NearestEnemyOf(Myself),CLERIC_HOLY_SMITE)
 END
 
@@ -4246,7 +4246,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71434) // Wand: Frost
+		DisplayStringHead(Myself,103257) // Wand: Frost
 		UseItem("wand06",LastSeenBy(Myself))
 END
 
@@ -4261,7 +4261,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71431) // Wand: Magic Missile
+		DisplayStringHead(Myself,103256) // Wand: Magic Missile
 		UseItem("wand03",LastSeenBy(Myself))
 END
 
@@ -4281,7 +4281,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71437) // Wand: Heavens
+		DisplayStringHead(Myself,103255) // Wand: Heavens
 		UseItem("wand11",LastSeenBy(Myself))
 END
 
@@ -4298,7 +4298,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		SetGlobalTimer("castingfireball","LOCALS",6) // Starting fireball
-		DisplayStringHead(Myself,71433) // Wand: Fire
+		DisplayStringHead(Myself,103259) // Wand: Fire
 		XEquipItem("wand05",Myself,SLOT_MISC0,EQUIP)
 		UseItemSlotAbility(FarthestEnemyOf(Myself),SLOT_MISC0,0)
 END
@@ -4361,7 +4361,7 @@ END
 //THEN
 //	RESPONSE #100
 //        SetGlobalTimer("castnattack","LOCALS",6)
-//		DisplayStringHead(Myself,71438) // Wand: Spell Striking
+//		DisplayStringHead(Myself,103258) // Wand: Spell Striking
 //		UseItem("wand18",LastSeenBy(Myself))
 //END
 
@@ -4382,7 +4382,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71434) // Wand: Frost
+		DisplayStringHead(Myself,103257) // Wand: Frost
 		UseItem("wand06",NearestEnemyOf(Myself))
 END
 
@@ -4397,7 +4397,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71431) // Wand: Magic Missile
+		DisplayStringHead(Myself,103256) // Wand: Magic Missile
 		UseItem("wand03",NearestEnemyOf(Myself))
 END
 
@@ -4417,7 +4417,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,71437) // Wand: Heavens
+		DisplayStringHead(Myself,103255) // Wand: Heavens
 		UseItem("wand11",NearestEnemyOf(Myself))
 END
 
@@ -4490,7 +4490,7 @@ IF
 	HasItem("AROW01",Myself) // Arrow
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71467) // Equipping Arrows
+		DisplayStringHead(Myself,103254) // Equipping Arrows
 		XEquipItem("AROW01",Myself,SLOT_AMMO0,EQUIP)
 		Continue()
 END
@@ -4551,7 +4551,7 @@ IF
 	HasItemCategory(Myself,BOW,FALSE)
 THEN
     RESPONSE #100
-		DisplayStringHead(Myself,71465) // Help: Need Arrows
+		DisplayStringHead(Myself,103253) // Help: Need Arrows
         Shout(NEED_ARROWS) // Shout for help
 		Continue()
 END
@@ -4562,7 +4562,7 @@ IF
 	HasItem("AROW01",Myself)
 THEN
     RESPONSE #100
-		DisplayStringHead(Myself,71466) // Giving Arrows
+		DisplayStringHead(Myself,103252) // Giving Arrows
         GiveItem("AROW01",LastHeardBy(Myself))
 		Continue()
 END
@@ -4577,7 +4577,7 @@ IF
 	//!WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71441) // Changing Weapon
+		DisplayStringHead(Myself,103251) // Changing Weapon
 		SelectWeaponAbility(SLOT_AMMO0,0)
 		Continue()
 END
@@ -4590,7 +4590,7 @@ IF
 	//!WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71441) // Changing Weapon
+		DisplayStringHead(Myself,103251) // Changing Weapon
 		SelectWeaponAbility(SLOT_AMMO1,0)
 		Continue()
 END
@@ -4603,7 +4603,7 @@ IF
 	//!WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71441) // Changing Weapon
+		DisplayStringHead(Myself,103251) // Changing Weapon
 		SelectWeaponAbility(SLOT_AMMO2,0)
 		Continue()
 END
@@ -4616,7 +4616,7 @@ IF
 	//!WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71441) // Changing Weapon
+		DisplayStringHead(Myself,103251) // Changing Weapon
 		SelectWeaponAbility(SLOT_AMMO3,0)
 		Continue()
 END
@@ -4638,7 +4638,7 @@ IF
 	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71446) // Melfs Minute Meteors
+		DisplayStringHead(Myself,103250) // Melfs Minute Meteors
 		AttackOneRound(LastSeenBy(Myself))
 END
 
@@ -4675,7 +4675,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot1))
-		DisplayStringHead(Myself,71424) // Helping Allies
+		DisplayStringHead(Myself,103247) // Helping Allies
 END
 
 IF
@@ -4685,7 +4685,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot2))
-		DisplayStringHead(Myself,71424) // Helping Allies
+		DisplayStringHead(Myself,103247) // Helping Allies
 END
 
 IF
@@ -4695,7 +4695,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot3))
-		DisplayStringHead(Myself,71424) // Helping Allies
+		DisplayStringHead(Myself,103247) // Helping Allies
 END
 
 IF
@@ -4705,7 +4705,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot4))
-		DisplayStringHead(Myself,71424) // Helping Allies
+		DisplayStringHead(Myself,103247) // Helping Allies
 END
 
 IF
@@ -4715,7 +4715,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot5))
-		DisplayStringHead(Myself,71424) // Helping Allies
+		DisplayStringHead(Myself,103247) // Helping Allies
 END
 
 IF
@@ -4725,7 +4725,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot6))
-		DisplayStringHead(Myself,71424) // Helping Allies
+		DisplayStringHead(Myself,103247) // Helping Allies
 END
 
 ////////////////////////////////////////////////////////// Regroup if far away from each other
@@ -4735,7 +4735,7 @@ IF
 	!Range(PartySlot2,80)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71428) // Regrouping
+		DisplayStringHead(Myself,103249) // Regrouping
 		MoveToObjectFollow(PartySlot2)
 END
 
@@ -4746,7 +4746,7 @@ IF
 	!ModalState(DETECTTRAPS)
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,71429) // Finding Traps
+		DisplayStringHead(Myself,103248) // Finding Traps
 		FindTraps()
 END
 
