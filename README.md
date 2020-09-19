@@ -247,7 +247,7 @@ CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
 #### Attack Inbetween Actions
 
-Using a normal melee or ranged attack does not count as an action. You can only perform one action per round (6 seconds) and so we use a normal attack inbetween actions instead of standing still doing nothing before our next action.
+Using a normal melee or ranged attack does not count as an action. You can only perform one action per round (6 seconds) and so we use a normal attack inbetween actions instead of standing still doing nothing before our next action. We implement this by using a timer. When we perform an action we start a 6 second timer and check that the timer has expired first before trying to perform another action.
 
 | Action                          | Not An Action        |
 |---------------------------------|----------------------|
