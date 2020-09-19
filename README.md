@@ -33,14 +33,32 @@ To add the script files to your game, find the folder *Scripts* within Near Infi
 The file ai.BS is used for all melee fighters and the file aiRanged.BS is used for all ranged characters like wizards and archers. The only difference between the two is that aiRanged.BS makes the characters move away from enemies whenever enemies come near rather than just at low health to keep them at a distance.
 
 In order of priority of actions the AI takes
+1. Cancel Fireball If Enemy Has Moved Closer
+1. Status Messages
+   
+   1. Display Energy Level Drained - If Energy Level Drained
+2. Use And Share Antidote Potions
 
+   3. Antidote - If Poisoned
+   4. Elixir of Health - If Poisoned
+2. Use And Share Cure Disease Potions
+
+   1. Elixir of Health - If Diseased
+2. Use And Share Buff Potions
+   
+   1. Potion: Fire Resistance - If Taken Lots Of Fire Damage
+   2. Potion: Cold Resistance - If Taken Lots Of Cold Damage
+   3. Potion: Insulation - If Taken Lots Of Electricity Damage
 1. Healing Spells 
 
-   1. Cleric - Cure Light Wounds - If Health Low
-   2. Cleric - Cure Medium Wounds - If Health Low
-   3. Cleric - Cure Serious Wounds - If Health Low
+   1. Cleric - Cure Light Wounds - If Ally Health Low
+   2. Cleric - Cure Medium Wounds - If Ally Health Low
+   3. Cleric - Cure Serious Wounds - If Ally Health Low
+   4. Cleric - Mass Cure - If Ally Health Low
 2. Healing Potions 
 
+
+   4. Elixir of Health - If Poisoned or Diseased
    1. Potion of Healing - If Health Low
    2. Potion of Extra Healing - If Health Low
    3. Antidote - If Poisoned
