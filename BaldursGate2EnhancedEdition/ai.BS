@@ -3344,21 +3344,21 @@ END
 IF
 	ActionListEmpty()
 
-	HPPercentGT(LastAttackerOf(PartySlot1),0)
-	!InParty(LastAttackerOf(PartySlot1))
+	HPPercentGT(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0]))),0)
+	!InParty(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0]))))
 
-	!CheckSpellState(LastAttackerOf(PartySlot1),HOPELESSNESS)
-	!CheckSpellState(LastAttackerOf(PartySlot1),HELD)
-	!CheckSpellState(LastAttackerOf(PartySlot1),ENTANGLE)
-	!CheckSpellState(LastAttackerOf(PartySlot1),WEB)
-	!StateCheck(LastAttackerOf(PartySlot1),STATE_CHARMED)
-	!StateCheck(LastAttackerOf(PartySlot1),STATE_CONFUSED)
-	!StateCheck(LastAttackerOf(PartySlot1),STATE_SLEEPING)
-	!StateCheck(LastAttackerOf(PartySlot1),STATE_DISABLED)
-	!StateCheck(LastAttackerOf(PartySlot1),STATE_PANIC)
-	!StateCheck(LastAttackerOf(PartySlot1),STATE_NOT_TARGETABLE)
+	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0]))),HOPELESSNESS)
+	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0]))),HELD)
+	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0]))),ENTANGLE)
+	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0]))),WEB)
+	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0]))),STATE_CHARMED)
+	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0]))),STATE_CONFUSED)
+	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0]))),STATE_SLEEPING)
+	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0]))),STATE_DISABLED)
+	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0]))),STATE_PANIC)
+	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0]))),STATE_NOT_TARGETABLE)
 
-	See(LastAttackerOf(PartySlot1))
+	See(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0]))))
 THEN
 	RESPONSE #100
 		//DisplayStringHead(Myself,103271) // Helping Wizard
