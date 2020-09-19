@@ -1,6 +1,6 @@
-# Party AI Scripts For Baldurs Gate
+# Party AI Scripts For Baldurs Gate Games
 
-My own scripts for the AI in Baldurs Gate Enhanced Edition. I was getting annoyed at the party AI casting healing spells too late, as well as some other things, so I started looking into changing the AI and got a bit carried away with it. I used the software Near Infinity to edit the scripts. I'll take you through how you can apply these scripts to your game or even make your own. I'm using the enhanced edition of Baldur's Gate from steam, I can't promise this will work if you don't have all the expansions.
+My own scripts for the Party AI in Baldurs Gate Enhanced Edition and Baldurs Gate 2 Enhanced Edition. I was getting annoyed at the party AI casting healing spells too late, as well as some other things, so I started looking into changing the AI and got a bit carried away with it. I used the software Near Infinity to edit the scripts. I'll take you through how you can apply these scripts to your game or even make your own. I'm using the enhanced edition of Baldur's Gate from steam, I can't promise this will work if you don't have all the expansions.
 
 # Install Near Infinity
 
@@ -8,15 +8,19 @@ You can apply them using [Near Infinity](https://baldursgate.fandom.com/wiki/Nea
 
 ![Near Infinity](./images/nearInfinity.png)
 
-# Run Modmerge
+# Add Overhead Messages
 
 I've also added messages that appear above the party members heads that tell you what their next action is. e.g. 'Attacking Nearest Enemy'. To do this I've had to add new text strings to the game by editing the dialog.tlk file which is a list of all the different text in the game. This is mostly for debugging to make sure they are doing the right thing and can be useful for when you want to write your own scripts. If you don't want these messages to appear, then you can just use find and replace to comment out or remove all the lines with *DisplayStringHead(Myself,[number])* and skip this step.
 
-To get these messages to appear you will need to download Modmerge from [here](https://github.com/ScottBrooks/modmerge/releases) and place the modmerge.exe into your root Baldur's Gate Folder, the folder with the Baldur.exe. Then run modmerge.exe and this will allow the dialog.tlk file to become editable and for NearInfinity to recognize changes to the dialog.tlk. You can then replace the dialog.tlk file in the lang\en_US folder with the one included in this repo. To make sure its working, you can load up NearInfinity and go to *Edit* -> *String table* to see the dialog.tlk file. There should be more than 71374 different text strings now.
+To get these messages to appear you will need to download Modmerge from [here](https://github.com/ScottBrooks/modmerge/releases) and place the modmerge.exe into your root Baldur's Gate Folder, the folder with the Baldur.exe. Then double click modmerge.exe to run modmerge and this will allow the dialog.tlk file to become editable and for NearInfinity to recognize changes to the dialog.tlk. You can then replace the dialog.tlk file in the lang\en_US folder with the one included in this repo. To make sure its working, you can load up NearInfinity and go to *Edit* -> *String table* to see the dialog.tlk file.
 
 ![Dialog.tlk](./images/dialog.tlk.png)
 
 Avoid updating the game through steam or backing it up through steam as it will change some of the files as it verifies the files. This may cause the new strings in the dialog.tlk to not be recognized again and you will end up with messages like 'Invalid: 71400'. To fix this you will have to run modmerge again. However, modmerge will think it doesn't need to be run as some of the files it creates, have already been created. To make modmerge run again you will have to delete some files as mentioned here. https://forums.beamdog.com/discussion/comment/1005105/#Comment_1005105. Delete the files sod-dlc.disabled, sod-dlc.key, chitin.key.bak and the folder sod-dlc. Then try running modmerge again. Otherwise it should work again if you reinstall and follow these steps again.
+
+# Add Shouts
+
+Shouts allow the Party AI to communicate with each other. Here, shouts are used to share items and potions. For example when one party member has low health but has run out of potions they will shout to the others that they need a healing potion. The others are constantly listening, hear them shout and respond by giving them a healing potion. This way you dont have to worry about passing potions between the AI. To enable this we just need to replace the contents of the SHOUTIDS.IDS file in NearInfinity within the IDS folder with the one in this repo.
 
 # Add The New AI Scripts
 
