@@ -30,7 +30,7 @@ To add the script files to your game, find the folder *Scripts* within Near Infi
 
 # The AI Actions
 
-The file ai.BS is used for all melee fighters and the file aiRanged.BS is used for all ranged characters like wizards and archers. The only difference between the two is that aiRanged.BS makes the characters move away from enemies whenever enemies come near rather than just at low health to keep them at a distance.
+The file ai.BS is used for all melee fighters and the file aiRanged.BS is used for all ranged characters like wizards and archers. The only differences between the two is that aiRanged.BS makes the characters move away from enemies whenever enemies come near rather than just at low health to keep them at a distance and aiRanged.BS only use ranged weapons.
 
 In order of priority of actions the AI takes
 1. Cancel Fireball If Enemy Has Moved Closer
