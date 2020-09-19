@@ -245,6 +245,10 @@ We also check nothing is stopping us from casting spells
 !StateCheck(Myself,STATE_SILENCED)  
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)  
 
+#### Similar Spells
+
+There are several spells that a Cleric and Mage have that are similar. This table lists those spells and their differences. Most of the time the cleric version of a buff spell is better or can be cast at a lower level and its best to leave the casting of those spells to the Cleric.
+
 #### Attack Inbetween Actions
 
 Using a normal melee or ranged attack does not count as an action. You can only perform one action per round (6 seconds) and so we use a normal attack inbetween actions instead of standing still doing nothing before our next action. We implement this by using a timer. When we perform an action we start a 6 second timer and check that the timer has expired first before trying to perform another action.
