@@ -143,11 +143,14 @@ In order of priority of actions the AI takes
    15. Wizard - Spell Deflection
    15. Wizard - Minor Spell Turning
    15. Wizard - Spell Turning
-9. Target Next Enemies (Target one of the following, then continue to next block)
+9. Target Next Enemies (Target one of the following in order of priority, then continue to next block)
 
+   1. Target Attacker Of Wizard Allies
    1. Target Attackers Of Hurt Allies
-   2. Target My Attacker  
-   3. Target Weakest Nearby Enemies
+   1. Target Enemy Spellcasters
+   2. Target My Attacker If They Are Not Disabled (Panic, Confusion etc.)
+   3. Target Weakest Nearby Enemies If They Are Not Disabled (Panic, Confusion etc.)
+   2. Target Nearby Enemies
 9. Offensive Spells On Chosen Target
 
    1. Wizard - Magic Missile
