@@ -245,10 +245,24 @@ We also check nothing is stopping us from casting spells
 !StateCheck(Myself,STATE_SILENCED)  
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)  
 
+#### Attack Inbetween Actions
+
+Using a normal melee or ranged attack does not count as an action. You can only perform one action per round (6 seconds) and so we use a normal attack inbetween actions instead of standing still doing nothing before our next action.
+
+| Action                          | Not An Action        |
+|---------------------------------|----------------------|
+| Casting A Spell                 | Normal Attacks       |
+| Using An Item's Special Ability | Using Melf's Meteors |
+| Using A Potion                  | Giving Items         |
+| Using A Wand                    | Equipping Items      |
+|                                 | Shouting             |
+|                                 | Targeting An Enemy   |
+|                                 | Displaying Messages  |
+
  ### Testing
  
  CLUAConsole:CreateCreature("skelet") Skeleton   
- CLUAConsole:CreateCreature("werewogr") Greater Werewolf
+ CLUAConsole:CreateCreature("werewogr") Greater Werewolf   
  CLUAConsole:CreateItem("?")
 
  ### Useful links
