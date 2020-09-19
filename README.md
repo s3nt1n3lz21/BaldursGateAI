@@ -249,6 +249,16 @@ CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
 There are several spells that a Cleric and Mage have that are similar. This table lists those spells and their differences. Most of the time the cleric version of a buff spell is better or can be cast at a lower level and its best to leave the casting of those spells to the Cleric.
 
+| Cleric                    |                                                                                                    | Mage                        |                                                                                 |
+|---------------------------|----------------------------------------------------------------------------------------------------|-----------------------------|---------------------------------------------------------------------------------|
+| __Remove Fear__           | Level 1  <br/> 15ft Radius <br/> 1 Hour                                                            | Resist Fear                 | Level 2  <br/> 15ft Radius <br/>  1 Hour                                        |
+| Protection From Lightning | Level 4  <br/> 1 Creature  <br/> 30 Seconds/Level                                                  | Protection From Electricity | Level 5  <br/> 1 Creature  <br/> 60 Seconds/Level                               |
+| __Protection From Evil__  | Level 1  <br/> 1 Creature  <br/> 18 Seconds/Level                                                  | Protection From Evil        | Level 1  <br/> 1 Creature  <br/> 12 Seconds/Level                               |
+| Protection From Fire      | Level 3  <br/> 1 Creature  <br/> 18 Seconds + 6 Seconds/Level  <br/> 100% Fire Resistance          | __Protection From Fire__    | Level 3  <br/> 1 Creature  <br/> 60 Seconds/Level  <br/> 100% Fire Resistance   |
+|                           |                                                                                                    | Protection From Cold        | Level 3 <br/> 1 Creature <br/> 60 Seconds/Level <br/> 100% Cold Resistance      |
+| Resist Fire And Cold      | Level 2 <br/> 1 Creature <br/> 6 Seconds/Level <br/> 50% Fire Resistance <br/> 50% Cold Resistance |                             |                                                                                 |
+|                           |                                                                                                    | Protection From Acid        | Level 5 <br/> 1 Creature <br/> 60 Seconds/Level <br/> 100% Acid Resistance      |
+
 #### Attack Inbetween Actions
 
 Using a normal melee or ranged attack does not count as an action. You can only perform one action per round (6 seconds) and so we use a normal attack inbetween actions instead of standing still doing nothing before our next action. We implement this by using a timer. When we perform an action we start a 6 second timer and check that the timer has expired first before trying to perform another action. There is a wizard spell, Improved Aclarity, that will lift this restriction for spells temporarily and allow the wizard to cast spells continuously for a short while.
