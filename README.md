@@ -30,35 +30,54 @@ To add the script files to your game, find the folder *Scripts* within Near Infi
 
 # The AI Actions
 
-The file ai.BS is used for all melee fighters and the file aiRanged.BS is used for all ranged characters like wizards and archers. The only difference between the two is that aiRanged.BS makes the characters move away from enemies whenever enemies come near rather than just at low health to keep them at a distance.
+The file ai.BS is used for all melee fighters and the file aiRanged.BS is used for all ranged characters like wizards and archers. The only differences between the two is that aiRanged.BS makes the characters move away from enemies whenever enemies come near rather than just at low health to keep them at a distance and aiRanged.BS only use ranged weapons.
 
 In order of priority of actions the AI takes
+1. Cancel Fireball If Enemy Has Moved Closer
+1. Status Messages
+   
+   1. Display Energy Level Drained - If Energy Level Drained
+   1. Display Fatigued - If Fatigued
+2. Use And Share Antidote Potions
 
+   3. Antidote - If Poisoned
+   4. Elixir of Health - If Poisoned
+2. Use And Share Cure Disease Potions
+
+   1. Elixir of Health - If Diseased
+2. Use And Share Buff Potions
+   
+   1. Potion: Fire Resistance - If Taken Lots Of Fire Damage
+   2. Potion: Cold Resistance - If Taken Lots Of Cold Damage
+   3. Potion: Insulation - If Taken Lots Of Electricity Damage
 1. Healing Spells 
 
-   1. Cleric - Cure Light Wounds - If Health Low
-   2. Cleric - Cure Medium Wounds - If Health Low
-   3. Cleric - Cure Serious Wounds - If Health Low
-2. Healing Potions 
+   1. Cleric - Cure Light Wounds - If Ally Health Low
+   2. Cleric - Cure Medium Wounds - If Ally Health Low
+   3. Cleric - Cure Serious Wounds - If Ally Health Low
+   4. Cleric - Mass Cure - If Ally Health Low
+2. Use And Share Healing Potions 
 
-   1. Potion of Healing - If Health Low
-   2. Potion of Extra Healing - If Health Low
-   3. Antidote - If Poisoned
-   4. Elixir of Health - If Health Low, Poisoned or Diseased
-   
-5. Run Away If Health Is Low  
+   2. Potion of Extra Healing (27 Hit Points) - If Lost 27 Hit Points And < 60% Health
+   1. Potion of Healing (9 Hit Points) - If Lost 9 Hit Points And < 70% Health
+5. Run Away If Health Is Low (AIRanged Will Run Away As Soon As An Enemy Comes Near)
 
-   1. If enemy nearby and space to run away, run away
-   2. If enemy nearby and no space to run away, continue with normal actions
+   1. If Enemy Nearby And Space To Run Away, Run Away
+   2. If Enemy Nearby And No Space To Run Away, Continue With Normal Actions
 6. Debuff/Control Spells  
 
    1. Cleric - Zone Of Sweet Air - If Gas/Cloud Spell In Area
    1. Cleric - Silence - If Enemy Spellcasters
+   1. Wizard - Lower Resistance - If Enemy Has High Magical Resistance
    2. Wizard - Secret Word - If Spellcaster With Spell Blocking Spell
    2. Wizard - Detect Invisibility - If Enemy Casts Invisibility Spell
+   2. Cleric - Hold Person
+   2. Wizard - Sleep
+   2. Wizard - Hold Person
    2. Wizard - Hold Monster - If Many Enemies
    2. Wizard - Chaos - If Many Enemies
    2. Wizard - Horror - If Many Enemies
+   2. Wizard - Breach - If Enemy With Magical Buff
    3. Wizard - Dispel Magic - If Ally With Magical Debuff
    3. Wizard - Dispel Magic - If Enemy With Magical Buff
    3. Wizard - Remove Magic - If Enemy With Magical Buff
@@ -70,57 +89,86 @@ In order of priority of actions the AI takes
 6. Debuff Wands
 
    1. Wizard - Wand Of Fear - If Many Enemies
+   1. Wizard - Wand Of Sleep - If Many Enemies
    2. Wizard - Wand Of Paralyzation- If Tough Enemy 
 6. Cleric - Turn Undead
 
 7. Summon Spells 
 
    1. Cleric - Animate Undead
+   1. Wizard - Animate Undead
    2. Cleric - Call Woodland Beings
    3. Cleric - Animal Summoning 3
    4. Cleric - Animal Summoning 2
    5. Cleric - Animal Summoning 1
+   6. Cleric - Conjure Animals
+   7. Cleric - Conjure Fire Elemental
 8. Buff Spells  
 
-   1. Cleric - Bless
-   2. Cleric - Chant
-   2. Cleric - Defensive Harmony
    2. Cleric - Remove Fear
    3. Cleric - Protection From Evil
    3. Cleric - Protection From Evil 10 Foot
    4. Cleric - Barkskin
-   5. Cleric - Aid
-   5. Wizard - Chaos Shield
-   6. Wizard - Shield
    7. Cleric - Shillelagh
    8. Cleric - Flame Blade
+   8. Cleric - Chaotic Commands
    9. Cleric - Draw Upon Holy Might
    10. Cleric - Armor Of Faith
    11. Cleric - Holy Power
+   11. Cleric - Protection From Lightning
+   11. Cleric - Protection From Fire
+   11. Cleric - Magic Resistance
+   11. Cleric - Resist Fire And Cold
+   11. Cleric - Ironskin
+   11. Cleric - Strength Of One
+   11. Cleric - Righteous Magic
+   2. Cleric - Defensive Harmony
+   5. Cleric - Aid
+   1. Cleric - Bless
+   2. Cleric - Chant
+   11. Cleric - Champions Strength
+   5. Wizard - Chaos Shield
    12. Wizard - Resist Fear
-   13. Wizard - Haste
    14. Wizard - Mirror Image
+   6. Wizard - Shield
+   16. Wizard - Improved Invisibility  
+   17. Wizard - Melfs Minute Meteors
+   18. Wizard - Strength
+   19. Wizard - Protection From Acid
+   20. Wizard - Protection From Fire
+   21. Wizard - Stoneskin
+   13. Wizard - Haste
    15. Wizard - Minor Globe Of Invulnerability
    15. Wizard - Minor Spell Deflection
-   16. Wizard - Improved Invisibility
-9. Target Next Enemies (Target one of the following, then continue to next block)
+   15. Wizard - Spell Deflection
+   15. Wizard - Minor Spell Turning
+   15. Wizard - Spell Turning
+9. Target Next Enemies (Target one of the following in order of priority, then continue to next block)
 
+   1. Target Attacker Of Wizard Allies
    1. Target Attackers Of Hurt Allies
-   2. Target My Attacker  
-   3. Target Weakest Nearby Enemies
+   1. Target Enemy Spellcasters
+   2. Target My Attacker If They Are Not Disabled (Panic, Confusion etc.)
+   3. Target Weakest Nearby Enemies If They Are Not Disabled (Panic, Confusion etc.)
+   2. Target Nearby Enemies
 9. Offensive Spells On Chosen Target
 
+   1. Wizard - Fireball - If Enemy Far Away
    1. Wizard - Magic Missile
+   1. Wizard - Chromatic Orb
    2. Wizard - Flame Arrow
    2. Wizard - Melf Acid Arrow
    3. Wizard - Agannazar Scorcher
    4. Cleric - Holy Smite
 9. Offensive Wands On Chosen Target
 
-   1. Wizard - Wand Of Frost - If Tough Enemy
+   1. Wizard - Wand Of Frost - If Tough Enemy (Not In BG2 As Has Area Effect In BG2)
    2. Wizard - Wand Of Magic Missile
    3. Cleric - Wand Of Heavens - If Tough Enemy
-11. Melee/Ranged Non-Spell Attack On Chosen Target  
+   2. Wizard - Wand Of Fire - Fireball If Enemy Far Away
+11. Equip And Share Arrows If Out Of Ammo  
+11. Use Melfs Minute Meteors
+11. Use Normal Melee/Ranged Attack On Chosen Target  
 12. Regroup
 13. Thief - Find Traps
 
@@ -197,10 +245,24 @@ We also check nothing is stopping us from casting spells
 !StateCheck(Myself,STATE_SILENCED)  
 CheckStatLT(Myself,50,SPELLFAILUREMAGE)  
 
+#### Attack Inbetween Actions
+
+Using a normal melee or ranged attack does not count as an action. You can only perform one action per round (6 seconds) and so we use a normal attack inbetween actions instead of standing still doing nothing before our next action. We implement this by using a timer. When we perform an action we start a 6 second timer and check that the timer has expired first before trying to perform another action.
+
+| Action                          | Not An Action        |
+|---------------------------------|----------------------|
+| Casting A Spell                 | Normal Attacks       |
+| Using An Item's Special Ability | Using Melf's Meteors |
+| Using A Potion                  | Giving Items         |
+| Using A Wand                    | Equipping Items      |
+|                                 | Shouting             |
+|                                 | Targeting An Enemy   |
+|                                 | Displaying Messages  |
+
  ### Testing
  
  CLUAConsole:CreateCreature("skelet") Skeleton   
- CLUAConsole:CreateCreature("werewogr") Greater Werewolf
+ CLUAConsole:CreateCreature("werewogr") Greater Werewolf   
  CLUAConsole:CreateItem("?")
 
  ### Useful links
