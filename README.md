@@ -153,17 +153,22 @@ In order of priority of actions the AI takes
    2. Target Nearby Enemies
 9. Offensive Spells On Chosen Target
 
+   1. Wizard - Fireball - If Enemy Far Away
    1. Wizard - Magic Missile
+   1. Wizard - Chromatic Orb
    2. Wizard - Flame Arrow
    2. Wizard - Melf Acid Arrow
    3. Wizard - Agannazar Scorcher
    4. Cleric - Holy Smite
 9. Offensive Wands On Chosen Target
 
-   1. Wizard - Wand Of Frost - If Tough Enemy
+   1. Wizard - Wand Of Frost - If Tough Enemy (Not In BG2 As Has Area Effect In BG2)
    2. Wizard - Wand Of Magic Missile
    3. Cleric - Wand Of Heavens - If Tough Enemy
-11. Melee/Ranged Non-Spell Attack On Chosen Target  
+   2. Wizard - Wand Of Fire - Fireball If Enemy Far Away
+11. Equip And Share Arrows If Out Of Ammo  
+11. Use Melfs Minute Meteors
+11. Use Normal Melee/Ranged Attack On Chosen Target  
 12. Regroup
 13. Thief - Find Traps
 
