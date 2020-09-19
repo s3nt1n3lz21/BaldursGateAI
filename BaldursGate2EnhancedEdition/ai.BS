@@ -663,21 +663,6 @@ THEN
 		Continue()
 END
 
-////////////////////////////////////////////////////////////////// if diseased use cure disease potion
-IF 
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	OR(2)
-		StateCheck(Myself,STATE_DISEASED) 
-		HPPercentLT(Myself,60) // If health is low use a potion
-	HasItem("potn17",Myself)  // Elixir of health - cures disease and poisons
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103244) // Potion: Elixir Of Health
-		UseItem("potn17",Myself)  // Elixir of health - cures disease and poisons
-END
-
 //////////////////////////////////////////////////////////////// Run away from nearby enemies if health is low
 // If an enemy is nearby and the same location timer isn't running, then start the timer and run away
 IF 
