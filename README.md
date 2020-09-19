@@ -247,7 +247,7 @@ CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
 #### Similar Spells
 
-There are several spells that a Cleric and Mage have that are similar. This table lists those spells and their differences. Most of the time the cleric version of a buff spell is better or can be cast at a lower level and its best to leave the casting of those spells to the Cleric.
+There are several spells that a Cleric and Mage have that are similar. This table lists those spells and their differences. The Cleric can cast some spells at a level earlier than the wizard but sometimes they are less effective or have a lower duration.
 
 | Cleric                    |                                                                                                    | Mage                        |                                                                                 |
 |---------------------------|----------------------------------------------------------------------------------------------------|-----------------------------|---------------------------------------------------------------------------------|
