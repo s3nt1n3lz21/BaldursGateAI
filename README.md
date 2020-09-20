@@ -105,44 +105,44 @@ In order of priority of actions the AI takes
    7. Cleric - Conjure Fire Elemental
 8. Buff Spells  
 
-   2. Cleric - Remove Fear
-   3. Cleric - Protection From Evil
-   3. Cleric - Protection From Evil 10 Foot
-   4. Cleric - Barkskin
-   7. Cleric - Shillelagh
-   8. Cleric - Flame Blade
-   8. Cleric - Chaotic Commands
-   9. Cleric - Draw Upon Holy Might
-   10. Cleric - Armor Of Faith
-   11. Cleric - Holy Power
-   11. Cleric - Protection From Lightning
-   11. Cleric - Protection From Fire
-   11. Cleric - Magic Resistance
-   11. Cleric - Resist Fire And Cold
-   11. Cleric - Ironskin
-   11. Cleric - Strength Of One
-   11. Cleric - Righteous Magic
-   2. Cleric - Defensive Harmony
-   5. Cleric - Aid
-   1. Cleric - Bless
-   2. Cleric - Chant
-   11. Cleric - Champions Strength
-   5. Wizard - Chaos Shield
-   12. Wizard - Resist Fear
-   14. Wizard - Mirror Image
-   6. Wizard - Shield
-   16. Wizard - Improved Invisibility  
-   17. Wizard - Melfs Minute Meteors
-   18. Wizard - Strength
-   19. Wizard - Protection From Acid
-   20. Wizard - Protection From Fire
-   21. Wizard - Stoneskin
-   13. Wizard - Haste
-   15. Wizard - Minor Globe Of Invulnerability
-   15. Wizard - Minor Spell Deflection
-   15. Wizard - Spell Deflection
-   15. Wizard - Minor Spell Turning
-   15. Wizard - Spell Turning
+   11. Cleric - Ironskin                        (1 Hour)
+   2. Cleric - Remove Fear                      (5 minutes)
+   11. Cleric - Protection From Lightning       (30 seconds/level)
+   3. Cleric - Protection From Evil 10 Foot     (24 seconds/level)
+   8. Cleric - Chaotic Commands                 (24 seconds/level)
+   3. Cleric - Protection From Evil             (18 seconds/level)
+   11. Cleric - Champions Strength              (18 seconds/level)
+   4. Cleric - Barkskin                         (24 seconds + 6 seconds/level)
+   7. Cleric - Shillelagh                       (24 seconds + 6 seconds/level)
+   8. Cleric - Flame Blade                      (24 seconds + 6 seconds/level)
+   10. Cleric - Armor Of Faith                  (18 seconds + 6 seconds/level)
+   11. Cleric - Protection From Fire            (18 seconds + 6 seconds/level)
+   11. Cleric - Magic Resistance                (18 seconds + 6 seconds/level)
+   5. Cleric - Aid                              (6 seconds + 6 seconds/level)
+   11. Cleric - Righteous Magic                 (6 seconds/level)
+   11. Cleric - Resist Fire And Cold            (6 seconds/level)
+   11. Cleric - Holy Power                      (6 seconds/level)
+   11. Cleric - Strength Of One                 (60 seconds)
+   2. Cleric - Chant                            (60 seconds)
+   1. Cleric - Bless                            (36 seconds)
+   2. Cleric - Defensive Harmony                (36 seconds)
+   9. Cleric - Draw Upon Holy Might             (24 seconds)
+   5. Wizard - Chaos Shield                     (30 seconds + 60 seconds/5 levels)
+   17. Wizard - Melfs Minute Meteors            (Until Charges Depleted)
+   21. Wizard - Stoneskin                       (1 Hour)
+   18. Wizard - Strength                        (60 seconds/level)
+   19. Wizard - Protection From Acid            (60 seconds/level)
+   20. Wizard - Protection From Fire            (60 seconds/level)
+   6. Wizard - Shield                           (5 minutes)
+   12. Wizard - Resist Fear                     (5 minutes)
+   14. Wizard - Mirror Image                    (18 seconds + 6 seconds/level)
+   13. Wizard - Haste                           (18 seconds + 6 seconds/level) 
+   15. Wizard - Minor Spell Deflection          (18 seconds/level)
+   15. Wizard - Spell Deflection                (18 seconds/level)
+   15. Wizard - Minor Spell Turning             (18 seconds/level)
+   15. Wizard - Spell Turning                   (18 seconds/level)
+   16. Wizard - Improved Invisibility           (18 seconds + 6 seconds/level)
+   15. Wizard - Minor Globe Of Invulnerability  (6 seconds/level)
 9. Target Next Enemies (Target one of the following in order of priority, then continue to next block)
 
    1. Target Attacker Of Wizard Allies
@@ -247,7 +247,17 @@ CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
 #### Similar Spells
 
-There are several spells that a Cleric and Mage have that are similar. This table lists those spells and their differences. Most of the time the cleric version of a buff spell is better or can be cast at a lower level and its best to leave the casting of those spells to the Cleric.
+There are several spells that a Cleric and Mage have that are similar. This table lists those spells and their differences. The Cleric can cast some spells at a level earlier than the wizard but sometimes they are less effective or have a lower duration.
+
+| Cleric                    |                                                                                                    | Mage                        |                                                                                 |
+|---------------------------|----------------------------------------------------------------------------------------------------|-----------------------------|---------------------------------------------------------------------------------|
+| __Remove Fear__           | Level 1  <br/> 15ft Radius <br/> 1 Hour                                                            | Resist Fear                 | Level 2  <br/> 15ft Radius <br/>  1 Hour                                        |
+| Protection From Lightning | Level 4  <br/> 1 Creature  <br/> 30 Seconds/Level                                                  | Protection From Electricity | Level 5  <br/> 1 Creature  <br/> 60 Seconds/Level                               |
+| __Protection From Evil__  | Level 1  <br/> 1 Creature  <br/> 18 Seconds/Level                                                  | Protection From Evil        | Level 1  <br/> 1 Creature  <br/> 12 Seconds/Level                               |
+| Protection From Fire      | Level 3  <br/> 1 Creature  <br/> 18 Seconds + 6 Seconds/Level  <br/> 100% Fire Resistance          | __Protection From Fire__    | Level 3  <br/> 1 Creature  <br/> 60 Seconds/Level  <br/> 100% Fire Resistance   |
+|                           |                                                                                                    | Protection From Cold        | Level 3 <br/> 1 Creature <br/> 60 Seconds/Level <br/> 100% Cold Resistance      |
+| Resist Fire And Cold      | Level 2 <br/> 1 Creature <br/> 6 Seconds/Level <br/> 50% Fire Resistance <br/> 50% Cold Resistance |                             |                                                                                 |
+|                           |                                                                                                    | Protection From Acid        | Level 5 <br/> 1 Creature <br/> 60 Seconds/Level <br/> 100% Acid Resistance      |
 
 #### Attack Inbetween Actions
 
