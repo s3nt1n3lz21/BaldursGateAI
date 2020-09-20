@@ -2523,6 +2523,24 @@ END
 // 1 Turn = 10 Rounds = 1 Minute Real time
 // 1 Hour = 5 Turns = 50 Rounds = 5 Minutes Real Time
 
+// Level 5
+// 600 rounds (1 Hour) - Self
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_IRONSKIN)
+	!CheckSpellState(Myself,IRON_SKINS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103292) // Spell: Iron Skins
+		Spell(Myself,CLERIC_IRONSKIN)
+END
+
 // Level 1
 // 50 Rounds (5 minutes) - 15ft Radius
 IF
@@ -2538,6 +2556,60 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,103306) // Spell: Remove Fear
 		Spell(Myself,CLERIC_REMOVE_FEAR)
+END
+
+// Level 4
+// 5 Rounds/Level (30 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_PROTECTION_FROM_LIGHTNING)
+	CheckStatLT(PartySlot1,99,RESISTELECTRICITY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103296) // Spell: Protection From Lightning
+		Spell(PartySlot1,CLERIC_PROTECTION_FROM_LIGHTNING)
+END
+
+// Level 4
+// 4 Rounds/Level (24 seconds/Level) - 15ft Radius
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
+	!CheckSpellState(Myself,PROTECTION_FROM_EVIL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103304) // Spell: Protection Group From Evil
+		Spell(Myself,CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
+END
+
+// Level 5
+// 4 Rounds/Level (24 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(PartySlot1,0,CLERIC_CHAOTIC_COMMANDS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103300) // Spell: Chaotic Commands
+		Spell(PartySlot1,CLERIC_CHAOTIC_COMMANDS)
 END
 
 // Level 1
@@ -2654,26 +2726,26 @@ THEN
 		Spell(PartySlot6,CLERIC_PROTECT_FROM_EVIL)
 END
 
-// Level 4
-// 4 Rounds/Level (24 seconds/Level) - 15ft Radius
+// Level 5
+// 3 Rounds/Level (18 seconds/level) - 1 Creature
 IF
 	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
-	!CheckSpellState(Myself,PROTECTION_FROM_EVIL)
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CHAMPIONS_STRENGTH)
+	CheckStatLT(WeakestOf(Myself),18,STRENGTH_MODIFIER)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
 	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103304) // Spell: Protection Group From Evil
-		Spell(Myself,CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103285) // Spell: Champions Strength
+		Spell(WeakestOf(Myself),CLERIC_CHAMPIONS_STRENGTH)
 END
 
 // Level 2
-// 4 Rounds + 1 Round/Level (24 seconds + 6 seconds/:eve) - 1 Creature
+// 4 Rounds + 1 Round/Level (24 seconds + 6 seconds/level) - 1 Creature
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2694,7 +2766,7 @@ THEN
 END
 
 // Level 2
-// 4 Rounds + 1 Round/Level - 1 Creature
+// 4 Rounds + 1 Round/Level (24 seconds + 6 seconds/level) - 1 Creature
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2712,7 +2784,7 @@ THEN
 END
 
 // Level 2
-// 4 Rounds + 1 Round/Level - 1 Creature
+// 4 Rounds + 1 Round/Level (24 seconds + 6 seconds/level) - 1 Creature
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2733,7 +2805,7 @@ THEN
 END
 
 // Level 2
-// 4 Rounds + 1 Round/Level - 1 Creature
+// 4 Rounds + 1 Round/Level (24 seconds + 6 seconds/level) - 1 Creature
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2754,7 +2826,7 @@ THEN
 END
 
 // Level 2
-// 4 Rounds + 1 Round/Level - 1 Creature
+// 4 Rounds + 1 Round/Level (24 seconds + 6 seconds/level) - 1 Creature
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2775,7 +2847,7 @@ THEN
 END
 
 // Level 2
-// 4 Rounds + 1 Round/Level - 1 Creature
+// 4 Rounds + 1 Round/Level (24 seconds + 6 seconds/level) - 1 Creature
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2796,7 +2868,7 @@ THEN
 END
 
 // Level 1
-// 4 Rounds + 1 Round/Level - Self
+// 4 Rounds + 1 Round/Level (24 seconds + 6 seconds/level) - Self
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2819,7 +2891,7 @@ THEN
 END
 
 // Level 2
-// 4 Rounds + 1 Round/Level - Self
+// 4 Rounds + 1 Round/Level (24 seconds + 6 seconds/level) - Self
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2841,13 +2913,13 @@ THEN
 		Spell(Myself,CLERIC_FLAME_BLADE)
 END
 
-// Level 5
-// 4 Rounds/Level - 1 Creature
+// Level 1
+// 3 Rounds + 1 Round/Level (18 seconds + 6 seconds/level) - Self
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(PartySlot1,0,CLERIC_CHAOTIC_COMMANDS)
+	HaveSpell(CLERIC_ARMOR_OF_FAITH)
+	!CheckSpellState(Myself,ARMOR_OF_FAITH)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2855,12 +2927,195 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103300) // Spell: Chaotic Commands
-		Spell(PartySlot1,CLERIC_CHAOTIC_COMMANDS)
+		//DisplayStringHead(Myself,103298) // Spell: Armor Of Faith
+		Spell(Myself,CLERIC_ARMOR_OF_FAITH)
+END
+
+// Level 3
+// 3 Rounds + 1 Round/Level (18 seconds + 6 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_PROTECTION_FROM_FIRE)
+	CheckStatLT(PartySlot1,99,RESISTFIRE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103295) // Spell: Protection From Fire
+		Spell(PartySlot1,CLERIC_PROTECTION_FROM_FIRE)
+END
+
+// Level 5
+// 3 Rounds + 1 Round/Level (18 seconds + 6 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_MAGIC_RESISTANCE)
+	CheckStatLT(PartySlot1,99,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103294) // Spell: Magic Resistance
+		Spell(PartySlot1,CLERIC_MAGIC_RESISTANCE)
 END
 
 // Level 2
-// 4 Rounds - Self
+// 1 Round + 1 Round/Level (6 seconds + 6 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_AID)
+	!CheckSpellState(PartySlot1,AID)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103288) // Spell: Aid
+		Spell(PartySlot1,CLERIC_AID)
+END
+
+// Level 5
+// 1 Round/Level (6 seconds/level) - Self
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_RIGHTEOUS_MAGIC)  // SPPR513.SPL (Righteous Magic)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103290) // Spell: Righteous Magic
+		Spell(WeakestOf(Myself),CLERIC_RIGHTEOUS_MAGIC)
+END
+
+// Note: There is no resist fire or resist cold spell for clerics but a single resist fire and cold spell
+// Casting CLERIC_RESIST_FIRE or CLERIC_RESIST_COLD actually casts the resist fire and cold spell
+// Level 2
+// 1 Round/Level (6 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_RESIST_FIRE)
+	OR(2)
+		CheckStatLT(PartySlot1,99,RESISTFIRE)
+		CheckStatLT(PartySlot1,99,RESISTCOLD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103293) // Spell: Resist Fire And Cold
+		Spell(PartySlot1,CLERIC_RESIST_FIRE)
+END
+
+// Level 4
+// 1 Rounds/Level (6 seconds/level) - Self
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_HOLY_POWER)
+	!CheckSpellState(Myself,HOLY_POWER)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103297) // Spell: Holy Power
+		Spell(Myself,CLERIC_HOLY_POWER)
+END
+
+// Level 3
+// 10 Rounds (60 seconds) - 15ft Radius
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_STRENGTH_OF_ONE)
+	CheckStatLT(WeakestOf(Myself),18,STRENGTH_MODIFIER)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103291) // Spell: Strength Of One
+		Spell(WeakestOf(Myself),CLERIC_STRENGTH_OF_ONE)
+END
+
+// Level 2
+// 10 Rounds (60 seconds) - 15ft Radius
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CHANT)  // SPPR203.SPL (Chant)
+	!StateCheck(PartySlot1,STATE_CHANT)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103286) // Spell: Chant
+		Spell(PartySlot1,CLERIC_CHANT)  // SPPR203.SPL (Chant)
+END
+
+// Level 1
+// 6 Rounds (36 seconds) - 15ft Radius
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_BLESS)  // SPPR101.SPL (Bless)
+	!StateCheck(PartySlot1,STATE_BLESS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103287) // Spell: Bless
+		Spell(PartySlot1,CLERIC_BLESS)  // SPPR101.SPL (Bless)
+END
+
+// Level 4
+// 6 Rounds (36 seconds) - 15ft Radius
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_DEFENSIVE_HARMONY)
+	!CheckStat(Myself,1,CLERIC_DEFENSIVE_HARMONY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103289) // Spell: Defensive Harmony
+		Spell(Myself,CLERIC_DEFENSIVE_HARMONY)
+END
+
+// Level 2
+// 4 Rounds (24 seconds) - Self
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2894,237 +3149,8 @@ END
 //		Spell(Myself,WHITE_HOLY_MIGHT)
 //END
 
-// Level 1
-// 3 Rounds + 1 Round/Level - Self
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_ARMOR_OF_FAITH)
-	!CheckSpellState(Myself,ARMOR_OF_FAITH)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103298) // Spell: Armor Of Faith
-		Spell(Myself,CLERIC_ARMOR_OF_FAITH)
-END
-
-// Level 4
-// 5 Rounds/Level - 1 Creature
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_HOLY_POWER)
-	!CheckSpellState(Myself,HOLY_POWER)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103297) // Spell: Holy Power
-		Spell(Myself,CLERIC_HOLY_POWER)
-END
-
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_PROTECTION_FROM_LIGHTNING)
-	CheckStatLT(PartySlot1,99,RESISTELECTRICITY)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103296) // Spell: Protection From Lightning
-		Spell(PartySlot1,CLERIC_PROTECTION_FROM_LIGHTNING)
-END
-
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_PROTECTION_FROM_FIRE)
-	CheckStatLT(PartySlot1,99,RESISTFIRE)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103295) // Spell: Protection From Fire
-		Spell(PartySlot1,CLERIC_PROTECTION_FROM_FIRE)
-END
-
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_MAGIC_RESISTANCE)
-	CheckStatLT(PartySlot1,99,RESISTMAGIC)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103294) // Spell: Magic Resistance
-		Spell(PartySlot1,CLERIC_MAGIC_RESISTANCE)
-END
-
-// Note: There is no resist fire or resist cold spell for clerics but a single resist fire and cold spell
-// Casting CLERIC_RESIST_FIRE or CLERIC_RESIST_COLD actually casts the resist fire and cold spell
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_RESIST_FIRE)
-	OR(2)
-		CheckStatLT(PartySlot1,99,RESISTFIRE)
-		CheckStatLT(PartySlot1,99,RESISTCOLD)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103293) // Spell: Resist Fire And Cold
-		Spell(PartySlot1,CLERIC_RESIST_FIRE)
-END
-
-IF
-	ActionListEmpty()
-	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_IRONSKIN)
-	!CheckSpellState(Myself,IRON_SKINS)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-	    SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103292) // Spell: Iron Skins
-		Spell(Myself,CLERIC_IRONSKIN)
-END
-
-IF
-	ActionListEmpty()
-	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_STRENGTH_OF_ONE)
-	CheckStatLT(WeakestOf(Myself),18,STRENGTH_MODIFIER)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-	    SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103291) // Spell: Strength Of One
-		Spell(WeakestOf(Myself),CLERIC_STRENGTH_OF_ONE)
-END
-
-IF
-	ActionListEmpty()
-	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_RIGHTEOUS_MAGIC)  // SPPR513.SPL (Righteous Magic)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-	    SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103290) // Spell: Righteous Magic
-		Spell(WeakestOf(Myself),CLERIC_RIGHTEOUS_MAGIC)
-END
-
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_DEFENSIVE_HARMONY)
-	!CheckStat(Myself,1,CLERIC_DEFENSIVE_HARMONY)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103289) // Spell: Defensive Harmony
-		Spell(Myself,CLERIC_DEFENSIVE_HARMONY)
-END
-
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_AID)
-	!CheckSpellState(PartySlot1,AID)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103288) // Spell: Aid
-		Spell(PartySlot1,CLERIC_AID)
-END
-
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_BLESS)  // SPPR101.SPL (Bless)
-	!StateCheck(PartySlot1,STATE_BLESS)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103287) // Spell: Bless
-		Spell(PartySlot1,CLERIC_BLESS)  // SPPR101.SPL (Bless)
-END
-
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CHANT)  // SPPR203.SPL (Chant)
-	!StateCheck(PartySlot1,STATE_CHANT)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103286) // Spell: Chant
-		Spell(PartySlot1,CLERIC_CHANT)  // SPPR203.SPL (Chant)
-END
-
-IF
-	ActionListEmpty()
-	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CHAMPIONS_STRENGTH)
-	CheckStatLT(WeakestOf(Myself),18,STRENGTH_MODIFIER)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-	    SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103285) // Spell: Champions Strength
-		Spell(WeakestOf(Myself),CLERIC_CHAMPIONS_STRENGTH)
-END
-
+// Level 2
+// 5 Rounds + 10 Rounds/5 Levels (30 seconds + 60 seconds/5 levels) - Self
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -3141,71 +3167,8 @@ THEN
 		Spell(Myself,WIZARD_CHAOS_SHIELD)
 END
 
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_RESIST_FEAR)
-	!CheckSpellState(Myself,RESIST_FEAR)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103283) // Spell: Resist Fear
-		Spell(Myself,WIZARD_RESIST_FEAR)
-END
-
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MIRROR_IMAGE)
-	!StateCheck(Myself,STATE_MIRRORIMAGE)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103282) // Spell: Mirror Image
-		Spell(Myself,WIZARD_MIRROR_IMAGE)
-END
-
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SHIELD)
-	!CheckSpellState(Myself,WIZARD_SHIELD)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103281) // Spell: Shield
-		Spell(Myself,WIZARD_SHIELD)
-END
-
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_IMPROVED_INVISIBILITY)
-	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103280) // Spell: Improved Invisibility
-		Spell(Myself,WIZARD_IMPROVED_INVISIBILITY)
-END
-
-// Level 3 - Evocation
+// Level 3
+// Until Charges Depleted - Self
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -3222,54 +3185,8 @@ THEN
 		Spell(Myself,WIZARD_MELF_METEOR)
 END
 
-IF
-	ActionListEmpty()
-	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_STRENGTH)
-	CheckStatLT(WeakestOf(Myself),18,STRENGTH_MODIFIER)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-	    SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103278) // Spell: Strength
-		Spell(WeakestOf(Myself),WIZARD_STRENGTH)
-END
-
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_PROTECTION_FROM_ACID)
-	CheckStatLT(PartySlot1,99,RESISTACID)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103277) // Spell: Protection From Acid
-		Spell(PartySlot1,WIZARD_PROTECTION_FROM_ACID)
-END
-
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_PROTECTION_FROM_FIRE)
-	CheckStatLT(PartySlot1,99,RESISTFIRE)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103276) // Spell: Protection From Fire
-		Spell(PartySlot1,WIZARD_PROTECTION_FROM_FIRE)
-END
-
+// Level 4
+// 600 Rounds (1 Hour) - Self
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -3287,6 +3204,116 @@ THEN
 		Spell(Myself,WIZARD_STONE_SKIN)
 END
 
+// Level 2
+// 10 Rounds/Level (60 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_STRENGTH)
+	CheckStatLT(WeakestOf(Myself),18,STRENGTH_MODIFIER)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103278) // Spell: Strength
+		Spell(WeakestOf(Myself),WIZARD_STRENGTH)
+END
+
+// Level 5
+// 10 Rounds/Level (60 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_PROTECTION_FROM_ACID)
+	CheckStatLT(PartySlot1,99,RESISTACID)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103277) // Spell: Protection From Acid
+		Spell(PartySlot1,WIZARD_PROTECTION_FROM_ACID)
+END
+
+// Level 3
+// 10 Rounds/Level (60 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_PROTECTION_FROM_FIRE)
+	CheckStatLT(PartySlot1,99,RESISTFIRE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103276) // Spell: Protection From Fire
+		Spell(PartySlot1,WIZARD_PROTECTION_FROM_FIRE)
+END
+
+// Level 1
+// 50 rounds (5 minutes) - Self
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SHIELD)
+	!CheckSpellState(Myself,WIZARD_SHIELD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103281) // Spell: Shield
+		Spell(Myself,WIZARD_SHIELD)
+END
+
+// Level 2
+// 50 Rounds (5 minutes) - 15ft Radius
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_RESIST_FEAR)
+	!CheckSpellState(Myself,RESIST_FEAR)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103283) // Spell: Resist Fear
+		Spell(Myself,WIZARD_RESIST_FEAR)
+END
+
+// Level 2
+// 3 Rounds + 1 Rounds/Level (18 seconds + 6 seconds/level) - Self
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MIRROR_IMAGE)
+	!StateCheck(Myself,STATE_MIRRORIMAGE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103282) // Spell: Mirror Image
+		Spell(Myself,WIZARD_MIRROR_IMAGE)
+END
+
+// Level 3
+// 3 Rounds + 1 Rounds/Level (18 seconds + 6 seconds/level) - 15ft Radius
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -3303,22 +3330,8 @@ THEN
 		Spell(Myself,WIZARD_HASTE)
 END
 
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
-	!CheckStat(Myself,1,MINORGLOBE)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103273) // Spell: Minor Globe Of Invulnerability
-		Spell(Myself,WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
-END
-
+// Level 3
+// 3 Rounds/Level (18 seconds/level) - Self
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -3335,6 +3348,8 @@ THEN
 		Spell(Myself,WIZARD_MINOR_SPELL_DEFLECTION)
 END
 
+// Level 6
+// 3 Rounds/Level (18 seconds/level) - Self
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -3351,6 +3366,8 @@ THEN
 		Spell(Myself,WIZARD_SPELL_DEFLECTION)
 END
 
+// Level 5
+// 3 Rounds/Level (18 seconds/level) - Self
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -3367,6 +3384,8 @@ THEN
 		Spell(Myself,WIZARD_MINOR_SPELL_TURNING)
 END
 
+// Level 7
+// 3 Rounds/Level (18 seconds/level) - Self
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -3381,6 +3400,42 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,103358) // Spell: Spell Turning
 		Spell(Myself,WIZARD_SPELL_TURNING)
+END
+
+// Level 4
+// 3 Rounds + 1 Rounds/Level (18 seconds + 6 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_IMPROVED_INVISIBILITY)
+	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103280) // Spell: Improved Invisibility
+		Spell(Myself,WIZARD_IMPROVED_INVISIBILITY)
+END
+
+// Level 4
+// 1 Round/Level (6 seconds/level) - Self
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
+	!CheckStat(Myself,1,MINORGLOBE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103273) // Spell: Minor Globe Of Invulnerability
+		Spell(Myself,WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
 END
 
 //////////////////////////////////////////////////////////////////////////// Decide On Next Target You Can See
