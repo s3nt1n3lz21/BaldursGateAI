@@ -3356,6 +3356,12 @@ IF
 	HaveSpell(WIZARD_MINOR_SPELL_DEFLECTION)
 	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
 
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
@@ -3373,6 +3379,12 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -3392,6 +3404,12 @@ IF
 	HaveSpell(WIZARD_MINOR_SPELL_TURNING)
 	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
 
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
@@ -3410,6 +3428,12 @@ IF
 	HaveSpell(WIZARD_SPELL_TURNING)
 	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
 
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
@@ -3427,6 +3451,12 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
 	!CheckStat(Myself,1,MINORGLOBE)
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
