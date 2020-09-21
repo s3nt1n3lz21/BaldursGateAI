@@ -136,12 +136,12 @@ In order of priority of actions the AI takes
    6. Wizard - Shield                           (5 minutes)
    12. Wizard - Resist Fear                     (5 minutes)
    14. Wizard - Mirror Image                    (18 seconds + 6 seconds/level)
+   16. Wizard - Improved Invisibility           (18 seconds + 6 seconds/level)
    13. Wizard - Haste                           (18 seconds + 6 seconds/level) 
    15. Wizard - Minor Spell Deflection          (18 seconds/level)
    15. Wizard - Spell Deflection                (18 seconds/level)
    15. Wizard - Minor Spell Turning             (18 seconds/level)
    15. Wizard - Spell Turning                   (18 seconds/level)
-   16. Wizard - Improved Invisibility           (18 seconds + 6 seconds/level)
    15. Wizard - Minor Globe Of Invulnerability  (6 seconds/level)
 9. Target Next Enemies (Target one of the following in order of priority, then continue to next block)
 

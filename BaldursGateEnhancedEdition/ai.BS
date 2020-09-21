@@ -3312,6 +3312,24 @@ THEN
 		Spell(Myself,WIZARD_MIRROR_IMAGE)
 END
 
+// Level 4
+// 3 Rounds + 1 Rounds/Level (18 seconds + 6 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_IMPROVED_INVISIBILITY)
+	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,71417) // Spell: Improved Invisibility
+		Spell(Myself,WIZARD_IMPROVED_INVISIBILITY)
+END
+
 // Level 3
 // 3 Rounds + 1 Rounds/Level (18 seconds + 6 seconds/level) - 15ft Radius
 IF
@@ -3400,24 +3418,6 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,71493) // Spell: Spell Turning
 		Spell(Myself,WIZARD_SPELL_TURNING)
-END
-
-// Level 4
-// 3 Rounds + 1 Rounds/Level (18 seconds + 6 seconds/level) - 1 Creature
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_IMPROVED_INVISIBILITY)
-	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,71417) // Spell: Improved Invisibility
-		Spell(Myself,WIZARD_IMPROVED_INVISIBILITY)
 END
 
 // Level 4
