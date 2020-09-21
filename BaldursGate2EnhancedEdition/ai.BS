@@ -4628,6 +4628,8 @@ IF
 	//!Specifics(LastSeenBy(Myself),ALLIES)
 THEN
 	RESPONSE #100
+		//DisplayStringHead(Myself,103360) // Normal Attack On Chosen Target
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		AttackOneRound(LastSeenBy(Myself))
 END
 
@@ -4639,73 +4641,81 @@ IF
 	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
+		//DisplayStringHead(Myself,103361) // Normal Attack On Nearby Enemies
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		AttackOneRound(NearestEnemyOf(Myself))
 END
 
 // If no nearby enemies, attack attackers of allies
 IF
 	ActionListEmpty()
-	//	IsWeaponRanged(Myself)
+	//IsWeaponRanged(Myself)
 	HPPercentGT(LastAttackerOf(PartySlot1),0)
 	!InParty(LastAttackerOf(PartySlot1))
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot1))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		//DisplayStringHead(Myself,103247) // Helping Allies
 END
 
 IF
 	ActionListEmpty()
-	//	IsWeaponRanged(Myself)
+	//IsWeaponRanged(Myself)
 	HPPercentGT(LastAttackerOf(PartySlot2),0)
 	!InParty(LastAttackerOf(PartySlot2))
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot2))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		//DisplayStringHead(Myself,103247) // Helping Allies
 END
 
 IF
 	ActionListEmpty()
-	//	IsWeaponRanged(Myself)
+	//IsWeaponRanged(Myself)
 	HPPercentGT(LastAttackerOf(PartySlot3),0)
 	!InParty(LastAttackerOf(PartySlot3))
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot3))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		//DisplayStringHead(Myself,103247) // Helping Allies
 END
 
 IF
 	ActionListEmpty()
-	//	IsWeaponRanged(Myself)
+	//IsWeaponRanged(Myself)
 	HPPercentGT(LastAttackerOf(PartySlot4),0)
 	!InParty(LastAttackerOf(PartySlot4))
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot4))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		//DisplayStringHead(Myself,103247) // Helping Allies
 END
 
 IF
 	ActionListEmpty()
-	//	IsWeaponRanged(Myself)
+	//IsWeaponRanged(Myself)
 	HPPercentGT(LastAttackerOf(PartySlot5),0)
 	!InParty(LastAttackerOf(PartySlot5))
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot5))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		//DisplayStringHead(Myself,103247) // Helping Allies
 END
 
 IF
 	ActionListEmpty()
-	//	IsWeaponRanged(Myself)
+	//IsWeaponRanged(Myself)
 	HPPercentGT(LastAttackerOf(PartySlot6),0)
 	!InParty(LastAttackerOf(PartySlot6))
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot6))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		//DisplayStringHead(Myself,103247) // Helping Allies
 END
 

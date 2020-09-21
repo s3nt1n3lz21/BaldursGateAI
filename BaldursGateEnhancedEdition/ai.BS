@@ -4629,6 +4629,8 @@ IF
 	//!Specifics(LastSeenBy(Myself),ALLIES)
 THEN
 	RESPONSE #100
+		//DisplayStringHead(Myself,71497) // Normal Attack On Chosen Target
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		AttackOneRound(LastSeenBy(Myself))
 END
 
@@ -4640,6 +4642,8 @@ IF
 	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
+		//DisplayStringHead(Myself,71498) // Normal Attack On Nearby Enemies
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		AttackOneRound(NearestEnemyOf(Myself))
 END
 
@@ -4652,6 +4656,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot1))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		DisplayStringHead(Myself,71424) // Helping Allies
 END
 
@@ -4663,6 +4668,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot2))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		DisplayStringHead(Myself,71424) // Helping Allies
 END
 
@@ -4674,6 +4680,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot3))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		DisplayStringHead(Myself,71424) // Helping Allies
 END
 
@@ -4685,6 +4692,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot4))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		DisplayStringHead(Myself,71424) // Helping Allies
 END
 
@@ -4696,6 +4704,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot5))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		DisplayStringHead(Myself,71424) // Helping Allies
 END
 
@@ -4707,6 +4716,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot6))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		DisplayStringHead(Myself,71424) // Helping Allies
 END
 

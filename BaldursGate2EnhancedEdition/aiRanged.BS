@@ -1,3 +1,21 @@
+////////////////////////////////////////////////////////////////// Cancel Melee If AI Ranged Has Run Out Of Ammo And Can See An Enemy
+
+// AIRanged can sometimes still use melee if their ranged weapon suddenly runs out of ammo and continue to attack the enemy with melee for the rest of the round
+// This bit ensures that AIRanged cancel their normal attack if their ranged weapon is out of ammo and don't use melee.
+// The See enemy part allows them to move towards their next target, for the rest of the round, if they can't see them but stop as soon as they can.
+
+IF
+	Global("usingNormalAttack","LOCALS",1)
+	!IsWeaponRanged(Myself)
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,103362) // Clearing Actions
+		SetGlobal("usingNormalAttack","LOCALS",0)
+		ClearAllActions()
+		Continue()
+END
+
 ////////////////////////////////////////////////////////////////// Cancel Fireball If Enemy Has Moved Closer
 // If casting a fireball and target is within 17ft cancel it
 IF
@@ -4625,6 +4643,8 @@ IF
 	//!Specifics(LastSeenBy(Myself),ALLIES)
 THEN
 	RESPONSE #100
+		//DisplayStringHead(Myself,103360) // Normal Attack On Chosen Target
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		AttackOneRound(LastSeenBy(Myself))
 END
 
@@ -4636,6 +4656,8 @@ IF
 	!InParty(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
+		//DisplayStringHead(Myself,103361) // Normal Attack On Nearby Enemies
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		AttackOneRound(NearestEnemyOf(Myself))
 END
 
@@ -4648,6 +4670,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot1))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		//DisplayStringHead(Myself,103247) // Helping Allies
 END
 
@@ -4659,6 +4682,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot2))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		//DisplayStringHead(Myself,103247) // Helping Allies
 END
 
@@ -4670,6 +4694,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot3))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		//DisplayStringHead(Myself,103247) // Helping Allies
 END
 
@@ -4681,6 +4706,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot4))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		//DisplayStringHead(Myself,103247) // Helping Allies
 END
 
@@ -4692,6 +4718,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot5))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		//DisplayStringHead(Myself,103247) // Helping Allies
 END
 
@@ -4703,6 +4730,7 @@ IF
 THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(PartySlot6))
+		SetGlobal("usingNormalAttack","LOCALS",1)
 		//DisplayStringHead(Myself,103247) // Helping Allies
 END
 
