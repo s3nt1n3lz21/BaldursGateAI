@@ -93,7 +93,7 @@ In order of priority of actions the AI takes
    2. Wizard - Wand Of Paralyzation- If Tough Enemy 
 6. Cleric - Turn Undead
 
-7. Summon Spells 
+7. Summon Spells (Press Q HotKey)
 
    1. Cleric - Animate Undead
    1. Wizard - Animate Undead
