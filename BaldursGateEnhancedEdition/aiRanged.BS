@@ -365,6 +365,22 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
+	HPPercentLT(MostDamagedOf(Myself),70)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,71500) // Spell: Cure Critical Wounds
+		Spell(MostDamagedOf(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_MASS_CURE)  // SPPR514.SPL (Mass Cure)
 	HPPercentLT(MostDamagedOf(Myself),70)
 
@@ -691,7 +707,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,?) // Scroll: Cure Critical Wounds
+		//DisplayStringHead(Myself,71501) // Scroll: Cure Critical Wounds
 		UseItem("SCRL61",MostDamagedOf(Myself))
 END
 
