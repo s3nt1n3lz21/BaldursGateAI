@@ -336,6 +336,32 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(INNATE_CURE_LIGHT_WOUNDS)
+	HPPercentLT(MostDamagedOf(Myself),80)
+	!Class(Myself,MAGE_ALL)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103343) // Spell: Cure Light Wounds
+		Spell(MostDamagedOf(Myself),INNATE_CURE_LIGHT_WOUNDS)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(INNATE_CURE_LIGHT_WOUNDS)
+	HPPercentLT(Myself,80)
+	Class(Myself,MAGE_ALL)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103343) // Spell: Cure Light Wounds
+		Spell(Myself,INNATE_CURE_LIGHT_WOUNDS)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),80) 
 
@@ -4811,6 +4837,21 @@ THEN
 		AttackOneRound(LastAttackerOf(PartySlot6))
 		SetGlobal("usingNormalAttack","LOCALS",1)
 		//DisplayStringHead(Myself,103247) // Helping Allies
+END
+
+////////////////////////////////////////////////////////// Wizard Use Healing If No Enemies
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(INNATE_CURE_LIGHT_WOUNDS)
+	HPPercentLT(MostDamagedOf(Myself),80)
+	Class(Myself,MAGE_ALL)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103343) // Spell: Cure Light Wounds
+		Spell(MostDamagedOf(Myself),INNATE_CURE_LIGHT_WOUNDS)
 END
 
 ////////////////////////////////////////////////////////// Regroup if far away from each other
