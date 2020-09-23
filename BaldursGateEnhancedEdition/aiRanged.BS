@@ -3245,6 +3245,20 @@ THEN
 		Spell(PartySlot1,CLERIC_CHANT)  // SPPR203.SPL (Chant)
 END
 
+// 10 Rounds (60 seconds) - Self
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(INNATE_DRAW_UPON_HOLY_MIGHT)
+	!CheckSpellState(Myself,DRAW_UPON_HOLY_MIGHT)
+	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,71409) // Spell: Holy Might
+		Spell(Myself,INNATE_DRAW_UPON_HOLY_MIGHT)
+END
+
 // Level 1
 // 6 Rounds (36 seconds) - 15ft Radius
 IF

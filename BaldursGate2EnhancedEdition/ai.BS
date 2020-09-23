@@ -1,3 +1,6 @@
+// TESTING
+// DisplayStringHead(Myself,103365) // Test
+
 ////////////////////////////////////////////////////////////////// Cancel Fireball If Enemy Has Moved Closer
 // If casting a fireball and target is within 17ft cancel it
 IF
@@ -3228,6 +3231,21 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,103286) // Spell: Chant
 		Spell(PartySlot1,CLERIC_CHANT)  // SPPR203.SPL (Chant)
+END
+
+// Level 2
+// 10 Rounds (60 seconds) - Self
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(INNATE_DRAW_UPON_HOLY_MIGHT)
+	!CheckSpellState(Myself,DRAW_UPON_HOLY_MIGHT)
+	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103299) // Spell: Holy Might
+		Spell(Myself,INNATE_DRAW_UPON_HOLY_MIGHT)
 END
 
 // Level 1
