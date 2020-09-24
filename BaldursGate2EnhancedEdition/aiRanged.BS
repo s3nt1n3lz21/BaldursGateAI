@@ -2766,6 +2766,65 @@ THEN
 		Spell(Myself,CLERIC_CONJURE_FIRE_ELEMENTAL)
 END
 
+////////////////////////////////////////////////////////////////////////////////// Scrolls: Summoning Spells
+
+IF
+	ActionListEmpty()
+
+	HotKey(Q)
+
+	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("SCRL1L",Myself)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,103367) // Spell: Monster Summoning 1
+		UseItem("SCRL1L",Myself)
+END
+
+IF
+	ActionListEmpty()
+
+	HotKey(Q)
+
+	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("SCRL2A",Myself)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,103368) // Spell: Monster Summoning 2
+		UseItem("SCRL2A",Myself)
+END
+
+IF
+	ActionListEmpty()
+
+	HotKey(Q)
+
+	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("SCRL2G",Myself)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		DisplayStringHead(Myself,103369) // Spell: Monster Summoning 3
+		UseItem("SCRL2G",Myself)
+END
+
 ////////////////////////////////////////////////////////////////////////////////// Buff Items
 
 //IF
