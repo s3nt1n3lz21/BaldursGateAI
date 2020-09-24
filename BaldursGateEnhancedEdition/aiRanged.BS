@@ -924,6 +924,54 @@ THEN
 		UseItem("SCRL6G",Myself)
 END
 
+// Level 5
+// 3 Rounds/Level (18 seconds/level) - Self
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("SCRL7D",Myself)
+	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,71492) // Spell: Minor Spell Turning
+		UseItem("SCRL7D",Myself)
+END
+
+// Level 4
+// 1 Round/Level (6 seconds/level) - Self
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("SCRL1Z",Myself)
+	!CheckStat(Myself,1,MINORGLOBE)
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,71415) // Spell: Minor Globe Of Invulnerability
+		UseItem("SCRL1Z",Myself)
+END
+
 ////////////////////////////////////////////////////////////////////////////////////// Debuff/Control Spells
 IF
 	ActionListEmpty()
