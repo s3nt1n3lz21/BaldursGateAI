@@ -4810,6 +4810,38 @@ END
 //		UseItem("wand18",LastSeenBy(Myself))
 //END
 
+//////////////////////////////////////////////////////////////////// Scrolls: Offensive Spells
+
+// Level 1 - Evocation
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("SCRL77",Myself)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103264) // Spell: Magic Missile
+		UseItem("SCRL77",Myself)
+END
+
 //////////////////////////////////////////////////////////////////// Change Melee Weapon If Not Effective
 
 //IF
