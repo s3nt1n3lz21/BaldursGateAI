@@ -728,6 +728,18 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("SCRL56",Myself)
+	HPPercentLT(MostDamagedOf(Myself),75)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,71506) // Scroll: Cure Serious Wounds
+		UseItem("SCRL56",MostDamagedOf(Myself))
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("SCRL61",Myself)
 	HPPercentLT(MostDamagedOf(Myself),75)
 THEN

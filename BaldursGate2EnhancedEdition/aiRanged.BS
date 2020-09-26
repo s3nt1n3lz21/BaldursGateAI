@@ -731,8 +731,20 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("SCRL56",Myself)
+	HPPercentLT(MostDamagedOf(Myself),70)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Scroll: Cure Serious Wounds
+		UseItem("SCRL56",MostDamagedOf(Myself))
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("SCRL61",Myself)
-	HPPercentLT(MostDamagedOf(Myself),75)
+	HPPercentLT(MostDamagedOf(Myself),70)
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -2783,7 +2795,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,103367) // Spell: Monster Summoning 1
+		//DisplayStringHead(Myself,103367) // Spell: Monster Summoning 1
 		UseItem("SCRL1L",Myself)
 END
 
@@ -2802,7 +2814,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,103368) // Spell: Monster Summoning 2
+		//DisplayStringHead(Myself,103368) // Spell: Monster Summoning 2
 		UseItem("SCRL2A",Myself)
 END
 
@@ -2821,7 +2833,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,103369) // Spell: Monster Summoning 3
+		//DisplayStringHead(Myself,103369) // Spell: Monster Summoning 3
 		UseItem("SCRL2G",Myself)
 END
 
