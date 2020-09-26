@@ -3892,24 +3892,6 @@ THEN
 		Spell(Myself,WIZARD_IMPROVED_INVISIBILITY)
 END
 
-// Level 3
-// 3 Rounds + 1 Rounds/Level (18 seconds + 6 seconds/level) - 15ft Radius
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_HASTE)
-	!StateCheck(Myself,STATE_HASTED)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103274) // Spell: Haste
-		Spell(Myself,WIZARD_HASTE)
-END
-
 //////////////////////////////////////////////////////////////////////////// Decide On Next Target You Can See
 // Protect The Wizard if their attacker is not disabled
 IF
