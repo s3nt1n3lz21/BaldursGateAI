@@ -1,5 +1,5 @@
 // TESTING
-// DisplayStringHead(Myself,103365) // Test
+// //DisplayStringHead(Myself,103365) // Test
 
 ////////////////////////////////////////////////////////////////// Cancel Melee If AI Ranged Has Run Out Of Ammo And Can See An Enemy
 
@@ -403,7 +403,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		DisplayStringHead(Myself,103363) // Spell: Cure Critical Wounds
+		//DisplayStringHead(Myself,103363) // Spell: Cure Critical Wounds
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
 END
 
@@ -1051,7 +1051,46 @@ THEN
 		Spell(LastSeenBy(Myself),CLERIC_SILENCE_15_FOOT)  // SPPR211.SPL (Silence, 15' Radius)
 END
 
-// Level 5 - Abjuration
+// Level 6 - Abjuration 1
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_PIERCE_MAGIC)
+	See(NearestEnemyOf(Myself))
+
+	OR(12)
+		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),3,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+		CheckStatGT(LastSeenBy(Myself),35,RESISTMAGIC)
+
+	!ImmuneToSpellLevel(LastSeenBy(Myself),6)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103371) // Spell: Pierce Magic
+		Spell(LastSeenBy(Myself),WIZARD_PIERCE_MAGIC)
+END
+
+// Level 5 - Abjuration 1
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
