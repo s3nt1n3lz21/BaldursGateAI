@@ -788,6 +788,25 @@ END
 
 // If an enemy is nearby and the same location timer has expired (have been in the same spot for a while), continue with normal actions and attack
 
+////////////////////////////////////////////////////////////////////////////////////// Counter Silence
+
+// Level 2 - Abjuration 1
+// 10 rounds (60 seconds) - Self
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_VOCALIZE)
+	StateCheck(Myself,STATE_SILENCED)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,71508) // Spell: Vocalize
+		Spell(Myself,WIZARD_VOCALIZE)
+END
+
 ////////////////////////////////////////////////////////////////////////////////////// Spell Shields
 
 // Level 3
