@@ -2671,7 +2671,7 @@ IF
 
 	HotKey(Q)
 
-	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+	HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMATE_DEAD)
 
@@ -2690,7 +2690,7 @@ IF
 
 	HotKey(Q)
 
-	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+	HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_ANIMATE_DEAD)
 
@@ -2709,7 +2709,7 @@ IF
 
 	HotKey(Q)
 
-	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+	HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CALL_WOODLAND_BEINGS)
 
@@ -2728,7 +2728,7 @@ IF
 
 	HotKey(Q)
 
-	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+	HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
 
@@ -2747,7 +2747,7 @@ IF
 
 	HotKey(Q)
 
-	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+	HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_2)
 
@@ -2766,7 +2766,7 @@ IF
 
 	HotKey(Q)
 
-	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+	HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_1)
 
@@ -2785,7 +2785,7 @@ IF
 
 	HotKey(Q)
 
-	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+	HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CONJURE_ANIMALS)
 
@@ -2804,7 +2804,7 @@ IF
 
 	HotKey(Q)
 
-	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+	HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CONJURE_FIRE_ELEMENTAL)
 
@@ -2825,7 +2825,7 @@ IF
 
 	HotKey(Q)
 
-	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+	HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("SCRL1L",Myself)
 
@@ -2844,7 +2844,7 @@ IF
 
 	HotKey(Q)
 
-	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+	HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("SCRL2A",Myself)
 
@@ -2863,7 +2863,7 @@ IF
 
 	HotKey(Q)
 
-	!See(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]))
+	HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("SCRL2G",Myself)
 
