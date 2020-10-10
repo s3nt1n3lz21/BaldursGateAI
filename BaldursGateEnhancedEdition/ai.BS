@@ -3059,6 +3059,141 @@ THEN
 		Spell(PartySlot1,CLERIC_CHAOTIC_COMMANDS)
 END
 
+// Level 5 - Enchantment 4
+// 4 Rounds/Level (24 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(PartySlot2,0,CLERIC_CHAOTIC_COMMANDS)
+
+	!CheckStat(PartySlot2,1,MINORGLOBE)
+	!CheckStat(PartySlot2,4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot2,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot2,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot2,5)
+	!StateCheck(PartySlot2,STATE_INVISIBLE)
+	!StateCheck(PartySlot2,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot2,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103300) // Spell: Chaotic Commands
+		Spell(PartySlot2,CLERIC_CHAOTIC_COMMANDS)
+END
+
+// Level 5 - Enchantment 4
+// 4 Rounds/Level (24 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(PartySlot3,0,CLERIC_CHAOTIC_COMMANDS)
+
+	!CheckStat(PartySlot3,1,MINORGLOBE)
+	!CheckStat(PartySlot3,4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot3,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot3,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot3,5)
+	!StateCheck(PartySlot3,STATE_INVISIBLE)
+	!StateCheck(PartySlot3,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot3,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103300) // Spell: Chaotic Commands
+		Spell(PartySlot3,CLERIC_CHAOTIC_COMMANDS)
+END
+
+// Level 5 - Enchantment 4
+// 4 Rounds/Level (24 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(PartySlot4,0,CLERIC_CHAOTIC_COMMANDS)
+
+	!CheckStat(PartySlot4,1,MINORGLOBE)
+	!CheckStat(PartySlot4,4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot4,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot4,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot4,5)
+	!StateCheck(PartySlot4,STATE_INVISIBLE)
+	!StateCheck(PartySlot4,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot4,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103300) // Spell: Chaotic Commands
+		Spell(PartySlot4,CLERIC_CHAOTIC_COMMANDS)
+END
+
+// Level 5 - Enchantment 4
+// 4 Rounds/Level (24 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(PartySlot5,0,CLERIC_CHAOTIC_COMMANDS)
+
+	!CheckStat(PartySlot5,1,MINORGLOBE)
+	!CheckStat(PartySlot5,4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot5,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot5,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot5,5)
+	!StateCheck(PartySlot5,STATE_INVISIBLE)
+	!StateCheck(PartySlot5,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot5,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103300) // Spell: Chaotic Commands
+		Spell(PartySlot5,CLERIC_CHAOTIC_COMMANDS)
+END
+
+// Level 5 - Enchantment 4
+// 4 Rounds/Level (24 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(PartySlot6,0,CLERIC_CHAOTIC_COMMANDS)
+
+	!CheckStat(PartySlot6,1,MINORGLOBE)
+	!CheckStat(PartySlot6,4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot6,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot6,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot6,5)
+	!StateCheck(PartySlot6,STATE_INVISIBLE)
+	!StateCheck(PartySlot6,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot6,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103300) // Spell: Chaotic Commands
+		Spell(PartySlot6,CLERIC_CHAOTIC_COMMANDS)
+END
+
 // Level 1 - Abjuration 1
 // 3 Rounds/Level (18 seconds/Level) - 1 Creature
 IF
