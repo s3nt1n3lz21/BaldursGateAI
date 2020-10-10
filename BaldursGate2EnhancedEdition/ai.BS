@@ -2669,6 +2669,26 @@ THEN
 END
 
 /////////////////////////////////////////////////////////////////////////////////////// Summon spells
+
+IF
+	ActionListEmpty()
+
+	HotKey(Q)
+
+	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_AERIAL_SERVANT)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Spell: Aerial Servant
+		Spell(Myself,CLERIC_AERIAL_SERVANT)
+END
+
 IF
 	ActionListEmpty()
 
