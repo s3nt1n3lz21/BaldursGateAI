@@ -10,7 +10,7 @@
 IF
 	Global("usingNormalAttack","LOCALS",1)
 	!IsWeaponRanged(Myself)
-	HPGT(NearestEnemyOf(Myself)),0)
+	HPGT(NearestEnemyOf(Myself),0)
 THEN
 	RESPONSE #100
 		//DisplayStringHead(Myself,103362) // Clearing Actions
@@ -791,7 +791,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_LESSER_RESTORATION)
-	CheckStatGT(PartySlot31,0,LEVELDRAIN)
+	CheckStatGT(PartySlot3,0,LEVELDRAIN)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
