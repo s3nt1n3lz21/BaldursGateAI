@@ -3767,12 +3767,32 @@ THEN
 		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
 END
 
+// Level 7
+// 2 hours (10 minutes) - Self
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_IMPROVED_CHAOS_SHIELD)
+	!CheckSpellState(Myself,IMPROVED_CHAOS_SHIELD)
+	!CheckSpellState(Myself,CHAOS_SHIELD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103284) // Spell: Chaos Shield
+		Spell(Myself,WIZARD_IMPROVED_CHAOS_SHIELD)
+END
+
 // Level 2
 // 5 Rounds + 10 Rounds/5 Levels (30 seconds + 60 seconds/5 levels) - Self
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_CHAOS_SHIELD)
+	!CheckSpellState(Myself,IMPROVED_CHAOS_SHIELD)
 	!CheckSpellState(Myself,CHAOS_SHIELD)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
