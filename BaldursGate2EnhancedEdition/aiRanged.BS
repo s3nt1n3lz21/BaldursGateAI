@@ -3506,6 +3506,174 @@ THEN
 		Spell(WeakestOf(Myself),CLERIC_CHAMPIONS_STRENGTH)
 END
 
+// Level 4 - Abjuration 1
+// 10 Rounds + 1 Round/Level (60 seconds + 6 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_FREE_ACTION)
+	CheckStat(PartySlot1,0,CLERIC_FREE_ACTION)
+	!CheckSpellState(PartySlot1,FREE_ACTION)
+
+	!CheckStat(PartySlot1,1,MINORGLOBE)
+	!CheckStat(PartySlot1,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot1,4)
+	!StateCheck(PartySlot1,STATE_INVISIBLE)
+	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Spell: Free Action
+		Spell(PartySlot1,CLERIC_FREE_ACTION)
+END
+
+// Level 4 - Abjuration 1
+// 10 Rounds + 1 Round/Level (60 seconds + 6 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_FREE_ACTION)
+	CheckStat(PartySlot2,0,CLERIC_FREE_ACTION)
+	!CheckSpellState(PartySlot2,FREE_ACTION)
+
+	!CheckStat(PartySlot2,1,MINORGLOBE)
+	!CheckStat(PartySlot2,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot2,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot2,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot2,4)
+	!StateCheck(PartySlot2,STATE_INVISIBLE)
+	!StateCheck(PartySlot2,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot2,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Spell: Free Action
+		Spell(PartySlot2,CLERIC_FREE_ACTION)
+END
+
+// Level 4 - Abjuration 1
+// 10 Rounds + 1 Round/Level (60 seconds + 6 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_FREE_ACTION)
+	CheckStat(PartySlot3,0,CLERIC_FREE_ACTION)
+	!CheckSpellState(PartySlot3,FREE_ACTION)
+
+	!CheckStat(PartySlot3,1,MINORGLOBE)
+	!CheckStat(PartySlot3,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot3,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot3,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot3,4)
+	!StateCheck(PartySlot3,STATE_INVISIBLE)
+	!StateCheck(PartySlot3,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot3,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Spell: Free Action
+		Spell(PartySlot3,CLERIC_FREE_ACTION)
+END
+
+// Level 4 - Abjuration 1
+// 10 Rounds + 1 Round/Level (60 seconds + 6 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_FREE_ACTION)
+	CheckStat(PartySlot4,0,CLERIC_FREE_ACTION)
+	!CheckSpellState(PartySlot4,FREE_ACTION)
+
+	!CheckStat(PartySlot4,1,MINORGLOBE)
+	!CheckStat(PartySlot4,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot4,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot4,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot4,4)
+	!StateCheck(PartySlot4,STATE_INVISIBLE)
+	!StateCheck(PartySlot4,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot4,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Spell: Free Action
+		Spell(PartySlot4,CLERIC_FREE_ACTION)
+END
+
+// Level 4 - Abjuration 1
+// 10 Rounds + 1 Round/Level (60 seconds + 6 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_FREE_ACTION)
+	CheckStat(PartySlot5,0,CLERIC_FREE_ACTION)
+	!CheckSpellState(PartySlot5,FREE_ACTION)
+
+	!CheckStat(PartySlot5,1,MINORGLOBE)
+	!CheckStat(PartySlot5,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot5,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot5,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot5,4)
+	!StateCheck(PartySlot5,STATE_INVISIBLE)
+	!StateCheck(PartySlot5,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot5,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Spell: Free Action
+		Spell(PartySlot5,CLERIC_FREE_ACTION)
+END
+
+// Level 4 - Abjuration 1
+// 10 Rounds + 1 Round/Level (60 seconds + 6 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_FREE_ACTION)
+	CheckStat(PartySlot6,0,CLERIC_FREE_ACTION)
+	!CheckSpellState(PartySlot6,FREE_ACTION)
+
+	!CheckStat(PartySlot6,1,MINORGLOBE)
+	!CheckStat(PartySlot6,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot6,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot6,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot6,4)
+	!StateCheck(PartySlot6,STATE_INVISIBLE)
+	!StateCheck(PartySlot6,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot6,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Spell: Free Action
+		Spell(PartySlot6,CLERIC_FREE_ACTION)
+END
+
 // Level 2 - Alteration 8
 // 4 Rounds + 1 Round/Level (24 seconds + 6 seconds/level) - 1 Creature
 IF
