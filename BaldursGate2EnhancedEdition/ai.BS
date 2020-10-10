@@ -734,6 +734,105 @@ THEN
 		UseItem("SCRL61",MostDamagedOf(Myself))
 END
 
+//////////////////////////////////////////////////////////////// Restoration Spells
+// Restoration spells undo level drain
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_LESSER_RESTORATION)
+	CheckStatGT(PartySlot1,0,LEVELDRAIN)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Spell: Lesser Restoration
+		Spell(PartySlot1,CLERIC_LESSER_RESTORATION)
+END
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_LESSER_RESTORATION)
+	CheckStatGT(PartySlot2,0,LEVELDRAIN)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Spell: Lesser Restoration
+		Spell(PartySlot2,CLERIC_LESSER_RESTORATION)
+END
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_LESSER_RESTORATION)
+	CheckStatGT(PartySlot31,0,LEVELDRAIN)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Spell: Lesser Restoration
+		Spell(PartySlot3,CLERIC_LESSER_RESTORATION)
+END
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_LESSER_RESTORATION)
+	CheckStatGT(PartySlot4,0,LEVELDRAIN)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Spell: Lesser Restoration
+		Spell(PartySlot4,CLERIC_LESSER_RESTORATION)
+END
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_LESSER_RESTORATION)
+	CheckStatGT(PartySlot5,0,LEVELDRAIN)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Spell: Lesser Restoration
+		Spell(PartySlot5,CLERIC_LESSER_RESTORATION)
+END
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_LESSER_RESTORATION)
+	CheckStatGT(PartySlot6,0,LEVELDRAIN)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Spell: Lesser Restoration
+		Spell(PartySlot6,CLERIC_LESSER_RESTORATION)
+END
+
 //////////////////////////////////////////////////////////////// Run away from nearby enemies if health is low
 // If an enemy is nearby and the same location timer isn't running, then start the timer and run away
 IF 
