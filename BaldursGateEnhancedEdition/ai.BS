@@ -5040,6 +5040,12 @@ IF
 
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
 
+	OR(4)
+		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
+		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
+		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
