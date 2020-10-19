@@ -749,7 +749,7 @@ IF
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,?) // Spell: Lesser Restoration
+		//? //DisplayStringHead(Myself,?) // Spell: Lesser Restoration
 		Spell(PartySlot1,CLERIC_LESSER_RESTORATION)
 END
 
@@ -765,7 +765,7 @@ IF
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,?) // Spell: Lesser Restoration
+		//? //DisplayStringHead(Myself,?) // Spell: Lesser Restoration
 		Spell(PartySlot2,CLERIC_LESSER_RESTORATION)
 END
 
@@ -781,7 +781,7 @@ IF
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,?) // Spell: Lesser Restoration
+		//? //DisplayStringHead(Myself,?) // Spell: Lesser Restoration
 		Spell(PartySlot3,CLERIC_LESSER_RESTORATION)
 END
 
@@ -797,7 +797,7 @@ IF
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,?) // Spell: Lesser Restoration
+		//? //DisplayStringHead(Myself,?) // Spell: Lesser Restoration
 		Spell(PartySlot4,CLERIC_LESSER_RESTORATION)
 END
 
@@ -813,7 +813,7 @@ IF
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,?) // Spell: Lesser Restoration
+		//? //DisplayStringHead(Myself,?) // Spell: Lesser Restoration
 		Spell(PartySlot5,CLERIC_LESSER_RESTORATION)
 END
 
@@ -829,7 +829,7 @@ IF
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,?) // Spell: Lesser Restoration
+		//? //DisplayStringHead(Myself,?) // Spell: Lesser Restoration
 		Spell(PartySlot6,CLERIC_LESSER_RESTORATION)
 END
 
@@ -2784,7 +2784,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,?) // Spell: Aerial Servant
+		//? //DisplayStringHead(Myself,?) // Spell: Aerial Servant
 		Spell(Myself,CLERIC_AERIAL_SERVANT)
 END
 
@@ -3516,7 +3516,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,?) // Spell: Free Action
+		//? //DisplayStringHead(Myself,?) // Spell: Free Action
 		Spell(PartySlot1,CLERIC_FREE_ACTION)
 END
 
@@ -3544,7 +3544,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,?) // Spell: Free Action
+		//? //DisplayStringHead(Myself,?) // Spell: Free Action
 		Spell(PartySlot2,CLERIC_FREE_ACTION)
 END
 
@@ -3572,7 +3572,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,?) // Spell: Free Action
+		//? //DisplayStringHead(Myself,?) // Spell: Free Action
 		Spell(PartySlot3,CLERIC_FREE_ACTION)
 END
 
@@ -3600,7 +3600,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,?) // Spell: Free Action
+		//? //DisplayStringHead(Myself,?) // Spell: Free Action
 		Spell(PartySlot4,CLERIC_FREE_ACTION)
 END
 
@@ -3628,7 +3628,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,?) // Spell: Free Action
+		//? //DisplayStringHead(Myself,?) // Spell: Free Action
 		Spell(PartySlot5,CLERIC_FREE_ACTION)
 END
 
@@ -3656,7 +3656,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,?) // Spell: Free Action
+		//? //DisplayStringHead(Myself,?) // Spell: Free Action
 		Spell(PartySlot6,CLERIC_FREE_ACTION)
 END
 
