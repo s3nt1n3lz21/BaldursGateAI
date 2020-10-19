@@ -1170,7 +1170,7 @@ IF
 		CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
-		CheckStatGT(LastSeenBy(Myself),60,RESISTMAGIC)
+		CheckStatGT(LastSeenBy(Myself),25,RESISTMAGIC)
 
 	!ImmuneToSpellLevel(LastSeenBy(Myself),6)
 
