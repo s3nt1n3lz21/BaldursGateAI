@@ -2773,6 +2773,63 @@ IF
 
 	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_SUMMON_FALLEN_DEVA)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Summon Fallen Deva
+		Spell(Myself,CLERIC_SUMMON_FALLEN_DEVA)
+END
+
+IF
+	ActionListEmpty()
+
+	HotKey(Q)
+
+	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_SUMMON_DEVA)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Summon Deva
+		Spell(Myself,CLERIC_SUMMON_DEVA)
+END
+
+IF
+	ActionListEmpty()
+
+	HotKey(Q)
+
+	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MORDENKAINENS_SWORD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Mordenkainen's Sword
+		Spell(Myself,WIZARD_MORDENKAINENS_SWORD)
+END
+
+IF
+	ActionListEmpty()
+
+	HotKey(Q)
+
+	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_AERIAL_SERVANT)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
