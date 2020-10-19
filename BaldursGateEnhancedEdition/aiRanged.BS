@@ -5039,6 +5039,39 @@ END
 
 ////////////////////////////////////////////////////////////////////////////////////// Offensive Spells On Target You Can See
 
+// Level 7 - Alteration (8)
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SPHERE_OF_CHAOS)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),7)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
+
+	OR(4)
+		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
+		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
+		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Spell: Sphere Of Chaos
+		Spell(LastSeenBy(Myself),WIZARD_SPHERE_OF_CHAOS)
+END
+
 // Level 8 - Necromancy (7)
 IF
 	ActionListEmpty()
@@ -5047,7 +5080,7 @@ IF
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
 	!CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY)
-	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),8)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
