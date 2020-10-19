@@ -896,13 +896,13 @@ END
 
 ////////////////////////////////////////////////////////////////////////////////////// Spell Shields
 
-// Level 3
+// Level 7
 // 3 Rounds/Level (18 seconds/level) - Self
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MINOR_SPELL_DEFLECTION)
-	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
+	HaveSpell(WIZARD_SPELL_TURNING)
+	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
 
 	OR(4)
 		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
@@ -916,8 +916,8 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103272) // Spell: Minor Spell Deflection
-		Spell(Myself,WIZARD_MINOR_SPELL_DEFLECTION)
+		//DisplayStringHead(Myself,103358) // Spell: Spell Turning
+		Spell(Myself,WIZARD_SPELL_TURNING)
 END
 
 // Level 6
@@ -968,13 +968,13 @@ THEN
 		Spell(Myself,WIZARD_MINOR_SPELL_TURNING)
 END
 
-// Level 7
+// Level 3
 // 3 Rounds/Level (18 seconds/level) - Self
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SPELL_TURNING)
-	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
+	HaveSpell(WIZARD_MINOR_SPELL_DEFLECTION)
+	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
 
 	OR(4)
 		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
@@ -988,8 +988,8 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103358) // Spell: Spell Turning
-		Spell(Myself,WIZARD_SPELL_TURNING)
+		//DisplayStringHead(Myself,103272) // Spell: Minor Spell Deflection
+		Spell(Myself,WIZARD_MINOR_SPELL_DEFLECTION)
 END
 
 // Level 4
