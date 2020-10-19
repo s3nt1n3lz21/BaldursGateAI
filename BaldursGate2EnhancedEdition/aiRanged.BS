@@ -5042,6 +5042,33 @@ END
 
 ////////////////////////////////////////////////////////////////////////////////////// Offensive Spells On Target You Can See
 
+// Level 8 - Necromancy (7)
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,?) // Spell: Horrid Wilting
+		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)
+END
+
 // Level 3 - Evocation
 IF
 	Class(Myself,MAGE_ALL)
