@@ -4251,6 +4251,104 @@ THEN
 		Spell(Myself,WIZARD_STONE_SKIN)
 END
 
+// Level 6
+// 10 Rounds/Level (60 seconds/level) - 1 Creature
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	!CheckStatGT(PartySlot1,0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Protection From Magic Energy
+		Spell(PartySlot1,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	!CheckStatGT(PartySlot2,0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Protection From Magic Energy
+		Spell(PartySlot2,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	!CheckStatGT(PartySlot3,0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Protection From Magic Energy
+		Spell(PartySlot3,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	!CheckStatGT(PartySlot4,0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Protection From Magic Energy
+		Spell(PartySlot4,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	!CheckStatGT(PartySlot5,0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Protection From Magic Energy
+		Spell(PartySlot5,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	!CheckStatGT(PartySlot6,0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Protection From Magic Energy
+		Spell(PartySlot6,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+END
+
 // Level 2 - Alteration 8
 // 10 Rounds/Level (60 seconds/level) - 1 Creature
 IF
