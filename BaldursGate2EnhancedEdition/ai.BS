@@ -2833,8 +2833,9 @@ IF
 	ActionListEmpty()
 
 	HotKey(Q)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_SUMMON_FALLEN_DEVA)
 
@@ -2844,6 +2845,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
 		////DisplayStringHead(Myself,?) // Spell: Summon Fallen Deva
 		Spell(Myself,CLERIC_SUMMON_FALLEN_DEVA)
 END
@@ -2852,8 +2854,9 @@ IF
 	ActionListEmpty()
 
 	HotKey(Q)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_SUMMON_DEVA)
 
@@ -2863,6 +2866,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
 		////DisplayStringHead(Myself,?) // Spell: Summon Deva
 		Spell(Myself,CLERIC_SUMMON_DEVA)
 END
@@ -2871,8 +2875,9 @@ IF
 	ActionListEmpty()
 
 	HotKey(Q)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2884,6 +2889,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
 		////DisplayStringHead(Myself,?) // Spell: Mordenkainen's Sword
 		Spell(Myself,WIZARD_MORDENKAINENS_SWORD)
 END
@@ -2892,8 +2898,9 @@ IF
 	ActionListEmpty()
 
 	HotKey(Q)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_AERIAL_SERVANT)
 
@@ -2903,6 +2910,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
 		//? //DisplayStringHead(Myself,?) // Spell: Aerial Servant
 		Spell(Myself,CLERIC_AERIAL_SERVANT)
 END
@@ -2911,8 +2919,9 @@ IF
 	ActionListEmpty()
 
 	HotKey(Q)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMATE_DEAD)
 
@@ -2922,6 +2931,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
 		//DisplayStringHead(Myself,103313) // Spell: Animate Undead
 		Spell(Myself,CLERIC_ANIMATE_DEAD)
 END
@@ -2930,8 +2940,9 @@ IF
 	ActionListEmpty()
 
 	HotKey(Q)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2943,6 +2954,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
 		//DisplayStringHead(Myself,103313) // Spell: Animate Undead
 		Spell(Myself,WIZARD_ANIMATE_DEAD)
 END
@@ -2951,8 +2963,9 @@ IF
 	ActionListEmpty()
 
 	HotKey(Q)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CALL_WOODLAND_BEINGS)
 
@@ -2962,6 +2975,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
 		//DisplayStringHead(Myself,103312) // Spell: Call Woodland Beings
 		Spell(Myself,CLERIC_CALL_WOODLAND_BEINGS)
 END
@@ -2970,8 +2984,9 @@ IF
 	ActionListEmpty()
 
 	HotKey(Q)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
 
@@ -2981,6 +2996,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
 		//DisplayStringHead(Myself,103311) // Spell: Animal Summoning 3
 		Spell(Myself,CLERIC_ANIMAL_SUMMONING_3)
 END
@@ -2989,8 +3005,9 @@ IF
 	ActionListEmpty()
 
 	HotKey(Q)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_2)
 
@@ -3000,6 +3017,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
 		//DisplayStringHead(Myself,103310) // Spell: Animal Summoning 2
 		Spell(Myself,CLERIC_ANIMAL_SUMMONING_2)
 END
@@ -3008,8 +3026,9 @@ IF
 	ActionListEmpty()
 
 	HotKey(Q)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_1)
 
@@ -3019,6 +3038,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
 		//DisplayStringHead(Myself,103309) // Spell: Animal Summoning 1
 		Spell(Myself,CLERIC_ANIMAL_SUMMONING_1)
 END
@@ -3027,8 +3047,9 @@ IF
 	ActionListEmpty()
 
 	HotKey(Q)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CONJURE_ANIMALS)
 
@@ -3038,6 +3059,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
 		//DisplayStringHead(Myself,103308) // Spell: Conjure Animals
 		Spell(Myself,CLERIC_CONJURE_ANIMALS)
 END
@@ -3046,8 +3068,9 @@ IF
 	ActionListEmpty()
 
 	HotKey(Q)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CONJURE_FIRE_ELEMENTAL)
 
@@ -3057,6 +3080,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
 		//DisplayStringHead(Myself,103307) // Spell: Conjure Fire Elemental
 		Spell(Myself,CLERIC_CONJURE_FIRE_ELEMENTAL)
 END
