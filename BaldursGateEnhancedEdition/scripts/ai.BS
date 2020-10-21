@@ -5949,17 +5949,6 @@ END
 //		Spell(MostDamagedOf(Myself),INNATE_CURE_LIGHT_WOUNDS)
 //END
 
-////////////////////////////////////////////////////////// Regroup if far away from each other
-IF
-	ActionListEmpty()
-	NumInPartyGT(1)
-	!Range(PartySlot2,80)
-THEN
-	RESPONSE #100
-		//DisplayStringHead(Myself,71428) // Regrouping
-		MoveToObjectFollow(PartySlot2)
-END
-
 /////////////////////////////////////////////////////////// Find traps
 IF
 	ActionListEmpty()
