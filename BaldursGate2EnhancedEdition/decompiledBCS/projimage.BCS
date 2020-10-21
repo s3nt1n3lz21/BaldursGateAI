@@ -1221,6 +1221,41 @@ THEN
 		Spell(LastSeenBy(Myself),CLERIC_SILENCE_15_FOOT)  // SPPR211.SPL (Silence, 15' Radius)
 END
 
+////////////////////////////////////////////////////////////////////////// Wand Of Spell Striking
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItemEquiped("WAND18",Myself)  // Wand of Spell Striking
+
+	OR(12)
+		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),3,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+		CheckStatGT(LastSeenBy(Myself),25,RESISTMAGIC)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103371) // Spell: Pierce Magic
+		UseItem("WAND18",LastSeenBy(Myself))  // Wand of Spell Striking
+END
+
+//////////////////////////////////////////////////////////////////////////  
+
 // Level 6 - Abjuration 1
 IF
 	ActionListEmpty()
