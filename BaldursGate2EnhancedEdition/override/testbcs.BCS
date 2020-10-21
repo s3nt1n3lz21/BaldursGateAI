@@ -1,306 +1,167 @@
-SC
-CR
-CO
-TR
-214 0 0 0 0 "" "" OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-TR
-TR
-16399 0 0 0 0 "GLOBALSpelunking" "" OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-TR
-CO
-RS
-RE
-100AC
-123OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-0 0 0 0 0"" "" AC
-AC
-30OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-1 0 0 0 0"GLOBALSpelunking" "" AC
-AC
-115OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-5 0 0 0 0"AR6001Pool1Timer" "" AC
-AC
-262OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 1 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-72209 0 0 0 0"" "" AC
-RE
-RS
-CR
-CR
-CO
-TR
-214 0 0 0 0 "" "" OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-TR
-TR
-16450 0 0 0 0 "BAZPLO04" "" OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-TR
-CO
-RS
-RE
-100AC
-123OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-0 0 0 0 0"" "" AC
-AC
-190OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-0 0 0 0 0"" "" AC
-AC
-83OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-5 0 0 0 0"" "" AC
-AC
-121OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-0 0 0 0 0"" "" AC
-AC
-50OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 17 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-0 0 0 0 0"" "" AC
-AC
-30OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-0 0 0 0 0"GLOBALSpelunking" "" AC
-AC
-262OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 1 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-72212 0 0 0 0"" "" AC
-AC
-63OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-2 0 0 0 0"" "" AC
-AC
-202OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-0 30 0 0 0"" "" AC
-AC
-63OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-2 0 0 0 0"" "" AC
-AC
-351OB
-0 0 0 0 0 0 0 21 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-4 0 0 0 0"AR6002" "Entry1" AC
-AC
-350OB
-0 0 0 0 0 0 0 21 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-4 0 0 0 0"AR6002" "Entry1" AC
-AC
-350OB
-0 0 0 0 0 0 0 22 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-4 0 0 0 0"AR6002" "Entry1" AC
-AC
-350OB
-0 0 0 0 0 0 0 23 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-4 0 0 0 0"AR6002" "Entry1" AC
-AC
-350OB
-0 0 0 0 0 0 0 24 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-4 0 0 0 0"AR6002" "Entry1" AC
-AC
-350OB
-0 0 0 0 0 0 0 25 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-4 0 0 0 0"AR6002" "Entry1" AC
-AC
-350OB
-0 0 0 0 0 0 0 26 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-4 0 0 0 0"AR6002" "Entry1" AC
-AC
-63OB
-0 0 0 0 0 0 0 21 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-2 0 0 0 0"" "" AC
-AC
-183OB
-0 0 0 0 0 0 0 21 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-0 0 0 0 0"" "" AC
-AC
-203OB
-0 0 0 0 0 0 0 21 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-0 30 0 0 0"" "" AC
-AC
-122OB
-0 0 0 0 0 0 0 21 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-0 0 0 0 0"" "" AC
-RE
-RS
-CR
-CR
-CO
-TR
-214 0 0 0 0 "" "" OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-TR
-TR
-16450 0 1 0 0 "BAZPLO04" "" OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-TR
-TR
-16449 0 1 0 0 "Pool1Timer" "AR6001" OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-TR
-CO
-RS
-RE
-100AC
-151OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 1 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-72210 0 0 0 0"" "" AC
-AC
-115OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-5 0 0 0 0"AR6001Pool1Timer" "" AC
-AC
-133OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 17 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-0 0 0 0 0"" "" AC
-RE
-RS
-CR
-CR
-CO
-TR
-214 0 0 0 0 "" "" OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-TR
-TR
-16450 0 1 0 0 "BAZPLO04" "" OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-TR
-TR
-16449 0 0 0 0 "Pool1Timer" "AR6001" OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-TR
-CO
-RS
-RE
-100AC
-133OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 17 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-0 0 0 0 0"" "" AC
-RE
-RS
-CR
-SC
+IF
+	Global("u_AIOff","LOCALS",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,16469)  // On
+		SetGlobal("u_AIOff","LOCALS",0)
+END
+
+IF
+	ActionListEmpty()
+	Global("u_AIOff","LOCALS",1)
+THEN
+	RESPONSE #100
+		NoAction()
+END
+
+IF
+	HPLT(Myself,20)
+	GlobalLT("u_DjinniGasForm","LOCALS",3)
+	!StateCheck(Myself,STATE_DEAD)
+THEN
+	RESPONSE #100
+		IncrementGlobal("u_DjinniGasForm","LOCALS",1)
+		ReallyForceSpell(Myself,DJINNI_GAS_FORM_CHANGE)  // SPIN972.SPL (No such index)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("u_DjinniInvisibility","LOCALS",0)
+	!StateCheck(Myself,STATE_INVISIBLE)
+THEN
+	RESPONSE #100
+		IncrementGlobal("u_DjinniInvisibility","LOCALS",1)
+		ForceSpell(Myself,WIZARD_SHADOW_DOOR)  // SPWI505.SPL (Shadow Door)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Delay(15)
+	!StateCheck(Myself,STATE_INVISIBLE)
+THEN
+	RESPONSE #100
+		ForceSpell(Myself,WIZARD_INVISIBILITY)  // SPWI206.SPL (Invisibility)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("u_DjinniSpellProtection","LOCALS",0)
+THEN
+	RESPONSE #100
+		ApplySpell(Myself,WIZARD_GLOBE_OF_INVULNERABILITY)  // SPWI602.SPL (Globe of Invulnerability)
+		SetGlobal("u_DjinniSpellProtection","LOCALS",1)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	Global("u_DjinniWeaponProtection","LOCALS",0)
+THEN
+	RESPONSE #100
+		ApplySpell(Myself,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // SPWI611.SPL (Protection From Magical Weapons)
+		SetGlobal("u_DjinniWeaponProtection","LOCALS",1)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	CheckStatGT(Myself,2,ARMORCLASS)
+	HaveSpell(WIZARD_GHOST_ARMOR)  // SPWI317.SPL (Ghost Armor)
+THEN
+	RESPONSE #100
+		Spell(Myself,WIZARD_GHOST_ARMOR)  // SPWI317.SPL (Ghost Armor)
+END
+
+IF
+	See([ENEMY])
+	Global("u_OutOfCombatRange","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("u_OutOfCombatRange","LOCALS",0)
+		ClearActions(Myself)
+END
+
+IF
+	!See([ENEMY])
+	Global("u_Player6DetectEnemy","GLOBAL",1)
+	!Range(Player6,1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player6)
+		SetGlobal("u_OutOfCombatRange","LOCALS",1)
+END
+
+IF
+	!See([ENEMY])
+	Global("u_Player5DetectEnemy","GLOBAL",1)
+	!Range(Player5,1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player5)
+		SetGlobal("u_OutOfCombatRange","LOCALS",1)
+END
+
+IF
+	!See([ENEMY])
+	Global("u_Player4DetectEnemy","GLOBAL",1)
+	!Range(Player4,1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player4)
+		SetGlobal("u_OutOfCombatRange","LOCALS",1)
+END
+
+IF
+	!See([ENEMY])
+	Global("u_Player3DetectEnemy","GLOBAL",1)
+	!Range(Player3,1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player3)
+		SetGlobal("u_OutOfCombatRange","LOCALS",1)
+END
+
+IF
+	!See([ENEMY])
+	Global("u_Player2DetectEnemy","GLOBAL",1)
+	!Range(Player2,1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player2)
+		SetGlobal("u_OutOfCombatRange","LOCALS",1)
+END
+
+IF
+	!See([ENEMY])
+	Global("u_Player1DetectEnemy","GLOBAL",1)
+	!Range(Player1,1)
+THEN
+	RESPONSE #100
+		MoveToObject(Player1)
+		SetGlobal("u_OutOfCombatRange","LOCALS",1)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	HaveSpell(WIZARD_MELF_ACID_ARROW)  // SPWI211.SPL (Melf's Acid Arrow)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),WIZARD_MELF_ACID_ARROW)  // SPWI211.SPL (Melf's Acid Arrow)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	HaveSpell(WIZARD_MAGIC_MISSILE)  // SPWI112.SPL (Magic Missile)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)  // SPWI112.SPL (Magic Missile)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	StateCheck(Myself,STATE_INVISIBLE)
+THEN
+	RESPONSE #100
+		AttackReevaluate(NearestEnemyOf(Myself),15)
+END
+

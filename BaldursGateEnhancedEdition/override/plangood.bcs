@@ -30,42 +30,6 @@ CR
 CR
 CO
 TR
-33 68 0 0 0 "" "" OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-TR
-TR
-16399 0 0 0 0 "LOCALSu_AIOff" "" OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-TR
-CO
-RS
-RE
-100AC
-269OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 1 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-16470 0 0 0 0"" "" AC
-AC
-30OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-1 0 0 0 0"LOCALSu_AIOff" "" AC
-RE
-RS
-CR
-CR
-CO
-TR
-33 68 0 0 0 "" "" OB
-0 0 0 0 0 0 0 0 0 0 0 0 ""OB
-TR
-TR
 16399 1 0 0 0 "LOCALSu_AIOff" "" OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 TR
