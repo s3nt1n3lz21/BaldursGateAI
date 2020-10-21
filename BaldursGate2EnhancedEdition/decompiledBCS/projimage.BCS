@@ -1065,6 +1065,24 @@ THEN
 		Spell(Myself,WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
 END
 
+////////////////////////////////////////////////////////////////////////////////////// Alacrity
+
+IF
+	ActionListEmpty()
+  	!GlobalTimerNotExpired("castnattack","LOCALS")
+	!CheckStat(Myself,1,AURACLEANSING)
+	HaveSpell(WIZARD_IMPROVED_ALACRITY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Improved Alacrity
+		Spell(Myself,WIZARD_IMPROVED_ALACRITY)
+END
+
 ////////////////////////////////////////////////////////////////////////////////////// Scrolls: Spell Shields
 
 // Level 3
