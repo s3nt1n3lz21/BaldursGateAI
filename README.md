@@ -6,8 +6,9 @@ My own scripts for the Party AI in Baldurs Gate Enhanced Edition and Baldurs Gat
 
 The files are split up by game. Baldurs Gate Enhanced Edition and Baldurs Gate 2 Enhanced Edition. This is because some items are not available in certain games and the numbers that represent the overhead messages for each game are different.
 
-scripts - The Party AI files. Add these to your scripts folder which is next to Baldur.exe. In game you can select one of these files for each of your characters.
-override - Summons, project image and simulacrum AI files. Add these to your override folder which is next to Baldur.exe. This will automatically apply them to the summons and copies and they will automatically cast spells.
+Scripts - The Party AI files. Add these to your scripts folder which is next to Baldur.exe. In game you can select one of these files for each of your characters. 
+
+Override - Summons, project image and simulacrum AI files. Add these to your override folder which is next to Baldur.exe. This will automatically apply them to the summons and copies and they will automatically cast spells.
 
 # Install Near Infinity
 
