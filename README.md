@@ -8,6 +8,13 @@ You can apply them using [Near Infinity](https://baldursgate.fandom.com/wiki/Nea
 
 ![Near Infinity](./images/nearInfinity.png)
 
+# Files
+
+The files are split up by game. Baldurs Gate Enhanced Edition and Baldurs Gate 2 Enhanced Edition. This is because some items are not available in certain games and the numbers that represent the overhead messages for each game are different.
+
+scripts - The Party AI files. Add these to your scripts folder which is next to Baldur.exe. In game you can select one of these files for each of your characters.
+override - Summons, project image and simulacrum AI files. Add these to your override folder which is next to Baldur.exe. This will automatically apply them to the summons and copies and they will automatically cast spells.
+
 # Add Overhead Messages
 
 I've also added messages that appear above the party members heads that tell you what their next action is. e.g. 'Attacking Nearest Enemy'. To do this I've had to add new text strings to the game by editing the dialog.tlk file which is a list of all the different text in the game. This is mostly for debugging to make sure they are doing the right thing and can be useful for when you want to write your own scripts. If you don't want these messages to appear, then you can just use find and replace to comment out or remove all the lines with *DisplayStringHead(Myself,[number])* and skip this step.
