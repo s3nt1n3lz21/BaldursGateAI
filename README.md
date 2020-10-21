@@ -2,9 +2,17 @@
 
 My own scripts for the Party AI in Baldurs Gate Enhanced Edition and Baldurs Gate 2 Enhanced Edition. I was getting annoyed at the party AI casting healing spells too late, as well as some other things, so I started looking into changing the AI and got a bit carried away with it. I used the software Near Infinity to edit the scripts. I'll take you through how you can apply these scripts to your game or even make your own. I'm using the enhanced edition of Baldur's Gate from steam, I can't promise this will work if you don't have all the expansions.
 
+# Files
+
+The files are split up by game. Baldurs Gate Enhanced Edition and Baldurs Gate 2 Enhanced Edition. This is because some items are not available in certain games and the numbers that represent the overhead messages for each game are different.
+
+Scripts - The Party AI files. Add these to your scripts folder which is next to Baldur.exe. In game you can select one of these files for each of your characters. 
+
+Override - Summons, project image and simulacrum AI files. Add these to your override folder which is next to Baldur.exe. This will automatically apply them to the summons and copies and they will automatically cast spells.
+
 # Install Near Infinity
 
-You can apply them using [Near Infinity](https://baldursgate.fandom.com/wiki/Near_Infinity) which can be downloaded [here](https://github.com/NearInfinityBrowser/NearInfinity/wiki). Extract the zip file and place the folder anywhere, it should be able to find the games by itself. Run the executable jar file by navigating to it in the command prompt and type 'java -jar NearInfinity.jar'. To open the games files in Near Infinity in the menu click *Game* -> *Open Game* and browse for the game directory where the .key file is located. I'm using the steam version of Baldurs Gate, C:\Program Files (x86)\Steam\steamapps\common\Baldur's Gate Enhanced Edition, but this should work with any version of the game.
+To edit the files yourself you can use [Near Infinity](https://baldursgate.fandom.com/wiki/Near_Infinity) which can be downloaded [here](https://github.com/NearInfinityBrowser/NearInfinity/wiki). Extract the zip file and place the folder anywhere, it should be able to find the games by itself. Run the executable jar file by navigating to it in the command prompt and type 'java -jar NearInfinity.jar'. To open the games files in Near Infinity in the menu click *Game* -> *Open Game* and browse for the game directory where the .key file is located. I'm using the steam version of Baldurs Gate, C:\Program Files (x86)\Steam\steamapps\common\Baldur's Gate Enhanced Edition, but this should work with any version of the game.
 
 ![Near Infinity](./images/nearInfinity.png)
 
