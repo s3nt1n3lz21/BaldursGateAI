@@ -2,18 +2,17 @@ IF
 	PartyRested()
 THEN
 	RESPONSE #100
-		SetGlobal("c_EfreetiBottle","LOCALS",1)
-		SetGlobal("c_BlackSpiderFigurine","LOCALS",1)
-		SetGlobal("c_MoonDogFigurine","LOCALS",1)
-		SetGlobal("c_GoldenLionFigurine","LOCALS",1)
-		SetGlobal("c_HornOfValhalla","LOCALS",1)
-		SetGlobal("c_GolemManual","LOCALS",1)
-		SetGlobal("c_VhailorsHelm","LOCALS",1)
-		SetGlobal("c_HarpOfDiscord","LOCALS",1)
-		SetGlobal("c_HarpOfPandemonium","LOCALS",1)
-		SetGlobal("c_AzlaersHarp","LOCALS",1)
-		SetGlobal("c_MethildsHarp","LOCALS",1)
-		SetGlobal("c_MethildsHarp","LOCALS",1)
+		SetGlobal("c_EfreetiBottle","GLOBAL",1)
+		SetGlobal("c_BlackSpiderFigurine","GLOBAL",1)
+		SetGlobal("c_MoonDogFigurine","GLOBAL",1)
+		SetGlobal("c_GoldenLionFigurine","GLOBAL",1)
+		SetGlobal("c_HornOfValhalla","GLOBAL",1)
+		SetGlobal("c_GolemManual","GLOBAL",1)
+		SetGlobal("c_VhailorsHelm","GLOBAL",1)
+		SetGlobal("c_HarpOfDiscord","GLOBAL",1)
+		SetGlobal("c_HarpOfPandemonium","GLOBAL",1)
+		SetGlobal("c_AzlaersHarp","GLOBAL",1)
+		SetGlobal("c_MethildsHarp","GLOBAL",1)
 		SetGlobal("c_staffOfMagi","GLOBAL",1)
 END
 
@@ -3046,6 +3045,25 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,71482) // Spell: Conjure Fire Elemental
 		Spell(Myself,CLERIC_CONJURE_FIRE_ELEMENTAL)
+END
+
+////////////////////////////////////////////////////////////////////////////// Item Summons
+
+IF
+	ActionListEmpty()
+
+	HotKey(E)
+
+  	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("WA2HELM",Myself) // Vhailors Helm
+	Global("c_VhailorsHelm","GLOBAL",1)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		SetGlobal("c_VhailorsHelm","GLOBAL",0)
+		////DisplayStringHead(Myself,?)  // Vhailors Helm
+		XEquipItem("WA2HELM",Myself,SLOT_HELMET,EQUIP)
+		UseItemSlotAbility(Myself,SLOT_HELMET,1)
 END
 
 ////////////////////////////////////////////////////////////////////////////////// Scrolls: Summoning Spells
