@@ -1,6 +1,26 @@
 // TESTING
 // //DisplayStringHead(Myself,103365) // Test
 
+IF
+	PartyRested()
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,103365)
+		SetGlobal("c_EfreetiBottle","LOCALS",1)
+		SetGlobal("c_BlackSpiderFigurine","LOCALS",1)
+		SetGlobal("c_MoonDogFigurine","LOCALS",1)
+		SetGlobal("c_GoldenLionFigurine","LOCALS",1)
+		SetGlobal("c_HornOfValhalla","LOCALS",1)
+		SetGlobal("c_GolemManual","LOCALS",1)
+		SetGlobal("c_VhailorsHelm","LOCALS",1)
+		SetGlobal("c_HarpOfDiscord","LOCALS",1)
+		SetGlobal("c_HarpOfPandemonium","LOCALS",1)
+		SetGlobal("c_AzlaersHarp","LOCALS",1)
+		SetGlobal("c_MethildsHarp","LOCALS",1)
+		SetGlobal("c_MethildsHarp","LOCALS",1)
+		SetGlobal("c_staffOfMagi","GLOBAL",1)
+END
+
 ////////////////////////////////////////////////////////////////// Cancel Melee If AI Ranged Has Run Out Of Ammo And Can See An Enemy
 
 // AIRanged can sometimes still use melee if their ranged weapon suddenly runs out of ammo and continue to attack the enemy with melee for the rest of the round
@@ -916,6 +936,26 @@ THEN
 END
 
 ////////////////////////////////////////////////////////////////////////////////////// Spell Shields
+
+// Staff Of The Magi
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("STAF11",Myself)  // Staff Of The Magi
+	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
+	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Myself,1,WIZARD_SPELL_TRAP)
+	Global("c_staffOfMagi","GLOBAL",1)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		SetGlobal("c_staffOfMagi","GLOBAL",0)
+		////DisplayStringHead(Myself,?)  // Staff Of The Magi
+		XEquipItem("STAF11",Myself,SLOT_WEAPON,EQUIP)
+		UseItemSlotAbility(Myself,SLOT_WEAPON,2)
+END
 
 // Level 7
 // 3 Rounds/Level (18 seconds/level) - Self
