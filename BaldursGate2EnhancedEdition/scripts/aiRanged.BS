@@ -5,7 +5,6 @@ IF
 	PartyRested()
 THEN
 	RESPONSE #100
-		DisplayStringHead(Myself,103365)
 		SetGlobal("c_EfreetiBottle","LOCALS",1)
 		SetGlobal("c_BlackSpiderFigurine","LOCALS",1)
 		SetGlobal("c_MoonDogFigurine","LOCALS",1)
