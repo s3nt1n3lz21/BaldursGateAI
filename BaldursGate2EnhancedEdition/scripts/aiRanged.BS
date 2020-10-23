@@ -17,6 +17,25 @@ THEN
 		SetGlobal("c_AzlaersHarp","GLOBAL",1)
 		SetGlobal("c_MethildsHarp","GLOBAL",1)
 		SetGlobal("c_staffOfMagi","GLOBAL",1)
+		SetGlobal("u_useSummonSpells","LOCALS",0) // Off
+END
+
+IF
+	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",0)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,16469)  // On
+		SetGlobal("u_useSummonSpells","LOCALS",1) // On
+END
+
+IF
+	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,16470)  // Off
+		SetGlobal("u_useSummonSpells","LOCALS",0) // Off
 END
 
 ////////////////////////////////////////////////////////////////// Cancel Melee If AI Ranged Has Run Out Of Ammo And Can See An Enemy
@@ -2897,7 +2916,7 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -2918,7 +2937,7 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -2939,7 +2958,7 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -2962,7 +2981,7 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -2983,7 +3002,7 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3004,7 +3023,7 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3027,7 +3046,7 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3048,7 +3067,7 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3069,7 +3088,7 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3090,7 +3109,7 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3111,7 +3130,7 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3132,7 +3151,7 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3174,7 +3193,7 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
 
 	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -3193,7 +3212,7 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
 
 	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -3212,7 +3231,7 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
+	Global("u_useSummonSpells","LOCALS",1)
 
 	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
