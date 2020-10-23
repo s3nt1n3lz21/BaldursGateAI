@@ -4755,6 +4755,26 @@ THEN
 		Spell(Myself,WIZARD_RESIST_FEAR)
 END
 
+// Level 2 - Illusion 5
+// 4 Rounds + 2 Round/Level (24 seconds + 12 seconds/level) - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_BLUR)
+	!StateCheck(Myself,STATE_BLUR)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Blur
+		Spell(Myself,WIZARD_BLUR)
+END
+
 // Level 2
 // 3 Rounds + 1 Rounds/Level (18 seconds + 6 seconds/level) - Self
 IF
