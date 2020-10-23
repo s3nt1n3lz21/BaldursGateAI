@@ -2912,7 +2912,6 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -2933,7 +2932,6 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -2954,7 +2952,6 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -2977,7 +2974,6 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -2998,7 +2994,6 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3019,7 +3014,6 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3042,7 +3036,6 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3063,7 +3056,6 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3084,7 +3076,6 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3105,7 +3096,6 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3126,7 +3116,6 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3147,7 +3136,6 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
@@ -3170,8 +3158,6 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
-
 	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("SCRL1L",Myself)
@@ -3189,8 +3175,6 @@ END
 IF
 	ActionListEmpty()
 
-	HotKey(Q)
-
 	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("SCRL2A",Myself)
@@ -3207,8 +3191,6 @@ END
 
 IF
 	ActionListEmpty()
-
-	HotKey(Q)
 
 	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
     !GlobalTimerNotExpired("castnattack","LOCALS")
