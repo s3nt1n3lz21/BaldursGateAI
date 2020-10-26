@@ -933,6 +933,27 @@ THEN
 		Spell(Myself,WIZARD_SIMULACRUM)
 END
 
+////////////////////////////////////////////////////////////////////////////////////// Spell Immunity: Divination
+
+IF
+	ActionListEmpty()
+
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SPELL_IMMUNITY)
+	!CheckSpellState(Myself,SI_DIVINATION)
+	!CheckStat(Myself,3,WIZARD_SPELL_IMMUNITY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Spell Immunity Divination
+		Spell(Myself,WIZARD_SPELL_IMMUNITY)
+		ApplySpell(Myself,WIZARD_SPELL_IMMUNITY_DIVINATION)
+END
+
 ////////////////////////////////////////////////////////////////////////////////////// Spell Shields
 
 // Level 7
