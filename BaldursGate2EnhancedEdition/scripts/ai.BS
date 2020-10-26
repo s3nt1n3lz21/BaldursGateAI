@@ -5560,7 +5560,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
 	OR(4)
 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
@@ -5595,7 +5595,7 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGIC)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	
 	OR(4)
 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
