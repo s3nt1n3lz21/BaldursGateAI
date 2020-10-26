@@ -2974,6 +2974,64 @@ IF
 	Global("u_useShortSummonSpells","LOCALS",1)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
+	NumCreature([GOODCUTOFF.0.PLANATAR],0)
+	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+	NumCreature([GOODCUTOFF.0.SOLAR],0)
+	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SUMMON_PLANATAR_GOOD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		////DisplayStringHead(Myself,?) // Spell: Summon Planetar
+		Spell(Myself,WIZARD_SUMMON_PLANATAR_GOOD)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreature([GOODCUTOFF.0.PLANATAR],0)
+	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+	NumCreature([GOODCUTOFF.0.SOLAR],0)
+	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SUMMON_PLANATAR_EVIL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		////DisplayStringHead(Myself,?) // Spell: Summon Planetar
+		Spell(Myself,WIZARD_SUMMON_PLANATAR_EVIL)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreature([GOODCUTOFF.0.PLANATAR],0)
+	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+	NumCreature([GOODCUTOFF.0.SOLAR],0)
+	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_SUMMON_FALLEN_DEVA)
@@ -2995,6 +3053,10 @@ IF
 	Global("u_useShortSummonSpells","LOCALS",1)
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
+	NumCreature([GOODCUTOFF.0.PLANATAR],0)
+	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+	NumCreature([GOODCUTOFF.0.SOLAR],0)
+	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_SUMMON_DEVA)
