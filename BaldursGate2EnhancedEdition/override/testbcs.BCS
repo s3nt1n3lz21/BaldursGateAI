@@ -1,4 +1,12 @@
 IF
+	Die()
+THEN
+	RESPONSE #100
+		CreateVisualEffectObject("SPHOLY",Myself)
+		DestroySelf()
+END
+
+IF
 	Global("u_AIOff","LOCALS",1)
 THEN
 	RESPONSE #100
@@ -15,59 +23,163 @@ THEN
 END
 
 IF
-	HPLT(Myself,20)
-	GlobalLT("u_DjinniGasForm","LOCALS",3)
-	!StateCheck(Myself,STATE_DEAD)
+	HPPercentLT(Myself,50)
+	GlobalLT("u_DevaHeal","LOCALS",2)
 THEN
 	RESPONSE #100
-		IncrementGlobal("u_DjinniGasForm","LOCALS",1)
-		ReallyForceSpell(Myself,DJINNI_GAS_FORM_CHANGE)  // SPIN972.SPL (No such index)
+		ForceSpellRES("devaheal",Myself)  // Heal
+		IncrementGlobal("u_DevaHeal","LOCALS",1)
 END
 
 IF
-	See(NearestEnemyOf(Myself))
-	Global("u_DjinniInvisibility","LOCALS",0)
-	!StateCheck(Myself,STATE_INVISIBLE)
+	HaveSpell(CLERIC_NEUTRALIZE_POISON)  // SPPR404.SPL (Neutralize Poison)
+	StateCheck(MostDamagedOf([PC]),STATE_POISONED)
 THEN
 	RESPONSE #100
-		IncrementGlobal("u_DjinniInvisibility","LOCALS",1)
-		ForceSpell(Myself,WIZARD_SHADOW_DOOR)  // SPWI505.SPL (Shadow Door)
+		Spell(MostDamagedOf([PC]),CLERIC_NEUTRALIZE_POISON)  // SPPR404.SPL (Neutralize Poison)
 END
 
 IF
-	See(NearestEnemyOf(Myself))
-	Delay(15)
-	!StateCheck(Myself,STATE_INVISIBLE)
+	HaveSpell(CLERIC_CURE_DISEASE)  // SPPR317.SPL (Cure Disease)
+	StateCheck(MostDamagedOf([PC]),STATE_DISEASED)
 THEN
 	RESPONSE #100
-		ForceSpell(Myself,WIZARD_INVISIBILITY)  // SPWI206.SPL (Invisibility)
+		Spell(MostDamagedOf([PC]),CLERIC_CURE_DISEASE)  // SPPR317.SPL (Cure Disease)
 END
 
 IF
-	See(NearestEnemyOf(Myself))
-	Global("u_DjinniSpellProtection","LOCALS",0)
+	HaveSpell(CLERIC_HEAL)  // SPPR607.SPL (Heal)
+	HPPercentLT(MostDamagedOf([PC]),50)
+	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
 THEN
 	RESPONSE #100
-		ApplySpell(Myself,WIZARD_GLOBE_OF_INVULNERABILITY)  // SPWI602.SPL (Globe of Invulnerability)
-		SetGlobal("u_DjinniSpellProtection","LOCALS",1)
+		Spell(MostDamagedOf([PC]),CLERIC_HEAL)  // SPPR607.SPL (Heal)
 END
 
 IF
-	See(NearestEnemyOf(Myself))
-	Global("u_DjinniWeaponProtection","LOCALS",0)
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)  // SPPR502.SPL (Cure Critical Wounds)
+	HPPercentLT(MostDamagedOf([PC]),70)
+	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
 THEN
 	RESPONSE #100
-		ApplySpell(Myself,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)  // SPWI611.SPL (Protection From Magical Weapons)
-		SetGlobal("u_DjinniWeaponProtection","LOCALS",1)
+		Spell(MostDamagedOf([PC]),CLERIC_CURE_CRITICAL_WOUNDS)  // SPPR502.SPL (Cure Critical Wounds)
 END
 
 IF
-	See(NearestEnemyOf(Myself))
-	CheckStatGT(Myself,2,ARMORCLASS)
-	HaveSpell(WIZARD_GHOST_ARMOR)  // SPWI317.SPL (Ghost Armor)
+	See(Nearest([PC]))
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_NORMAL)
+		!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_NORMAL)
+		!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	See(SecondNearest([PC]))
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_NORMAL)
+		!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_NORMAL)
+		!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	See(ThirdNearest([PC]))
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_NORMAL)
+		!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_NORMAL)
+		!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	See(FourthNearest([PC]))
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_NORMAL)
+		!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_NORMAL)
+		!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	See(FifthNearest([PC]))
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_NORMAL)
+		!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_NORMAL)
+		!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+	See(SixthNearest([PC]))
+	False()
 THEN
 	RESPONSE #100
-		Spell(Myself,WIZARD_GHOST_ARMOR)  // SPWI317.SPL (Ghost Armor)
+		Continue()
+END
+
+IF
+	Allegiance(LastSeenBy(Myself),PC)
+	HaveSpell(CLERIC_DISPEL_MAGIC)  // SPPR303.SPL (Dispel Magic)
+	OR(2)
+		StateCheck(LastSeenBy(Myself),STATE_CHARMED)
+		StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)  // SPPR303.SPL (Dispel Magic)
+END
+
+IF
+	Detect(Nearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	Detect(SecondNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	Detect(ThirdNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	Detect(FourthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	Detect(FifthNearest([PC]))
+	!StateCheck(LastSeenBy(Myself),STATE_PANIC)
+	Detect(SixthNearest([PC]))
+	False()
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Allegiance(LastSeenBy(Myself),PC)
+	HaveSpell(CLERIC_REMOVE_FEAR)  // SPPR108.SPL (Remove Fear)
+	StateCheck(LastSeenBy(Myself),STATE_PANIC)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_REMOVE_FEAR)  // SPPR108.SPL (Remove Fear)
+END
+
+IF
+	Detect(Nearest([PC]))
+	!CheckStatGT(LastSeenBy(Myself),0,LEVELDRAIN)
+	Detect(SecondNearest([PC]))
+	!CheckStatGT(LastSeenBy(Myself),0,LEVELDRAIN)
+	Detect(ThirdNearest([PC]))
+	!CheckStatGT(LastSeenBy(Myself),0,LEVELDRAIN)
+	Detect(FourthNearest([PC]))
+	!CheckStatGT(LastSeenBy(Myself),0,LEVELDRAIN)
+	Detect(FifthNearest([PC]))
+	!CheckStatGT(LastSeenBy(Myself),0,LEVELDRAIN)
+	Detect(SixthNearest([PC]))
+	False()
+THEN
+	RESPONSE #100
+		Continue()
+END
+
+IF
+	Allegiance(LastSeenBy(Myself),PC)
+	HaveSpell(CLERIC_LESSER_RESTORATION)  // SPPR417.SPL (Lesser Restoration)
+	CheckStatGT(LastSeenBy(Myself),0,LEVELDRAIN)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_LESSER_RESTORATION)  // SPPR417.SPL (Lesser Restoration)
+END
+
+IF
+	Detect(NearestEnemyOf(Myself))
+	!See(LastSeenBy(Myself))
+	HaveSpell(CLERIC_TRUE_SIGHT)  // SPPR505.SPL (True Seeing)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_TRUE_SIGHT)  // SPPR505.SPL (True Seeing)
 END
 
 IF
@@ -83,6 +195,7 @@ IF
 	!See([ENEMY])
 	Global("u_Player6DetectEnemy","GLOBAL",1)
 	!Range(Player6,1)
+	HPPercentGT(Myself,50)
 THEN
 	RESPONSE #100
 		MoveToObject(Player6)
@@ -93,6 +206,7 @@ IF
 	!See([ENEMY])
 	Global("u_Player5DetectEnemy","GLOBAL",1)
 	!Range(Player5,1)
+	HPPercentGT(Myself,50)
 THEN
 	RESPONSE #100
 		MoveToObject(Player5)
@@ -103,6 +217,7 @@ IF
 	!See([ENEMY])
 	Global("u_Player4DetectEnemy","GLOBAL",1)
 	!Range(Player4,1)
+	HPPercentGT(Myself,50)
 THEN
 	RESPONSE #100
 		MoveToObject(Player4)
@@ -113,6 +228,7 @@ IF
 	!See([ENEMY])
 	Global("u_Player3DetectEnemy","GLOBAL",1)
 	!Range(Player3,1)
+	HPPercentGT(Myself,50)
 THEN
 	RESPONSE #100
 		MoveToObject(Player3)
@@ -123,6 +239,7 @@ IF
 	!See([ENEMY])
 	Global("u_Player2DetectEnemy","GLOBAL",1)
 	!Range(Player2,1)
+	HPPercentGT(Myself,50)
 THEN
 	RESPONSE #100
 		MoveToObject(Player2)
@@ -133,6 +250,7 @@ IF
 	!See([ENEMY])
 	Global("u_Player1DetectEnemy","GLOBAL",1)
 	!Range(Player1,1)
+	HPPercentGT(Myself,50)
 THEN
 	RESPONSE #100
 		MoveToObject(Player1)
@@ -141,11 +259,53 @@ END
 
 IF
 	See(NearestEnemyOf(Myself))
-	HaveSpell(WIZARD_MELF_ACID_ARROW)  // SPWI211.SPL (Melf's Acid Arrow)
+	Range(LastSeenBy(Myself),10)
+	Alignment(LastSeenBy(Myself),MASK_EVIL)
+	NumCreatureGT([EVILCUTOFF],3)
+	CheckStatLT(LastSeenBy(Myself),70,RESISTMAGIC)
+	HaveSpell(CLERIC_HOLY_WORD)  // SPPR710.SPL (Holy Word)
+THEN
+	RESPONSE #100
+		Spell(Myself,CLERIC_HOLY_WORD)  // SPPR710.SPL (Holy Word)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	OR(2)
+		Class(LastSeenBy(Myself),MAGE_ALL)
+		NumCreatureGT([EVILCUTOFF],2)
+	HaveSpell(CLERIC_INSECT_PLAGUE)  // SPPR517.SPL (Insect Plague)
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),CLERIC_INSECT_PLAGUE)  // SPPR517.SPL (Insect Plague)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	HaveSpell(WIZARD_CHAOS)  // SPWI508.SPL (Chaos)
+	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
+THEN
+	RESPONSE #100
+		Spell(NearestEnemyOf(Myself),WIZARD_CHAOS)  // SPWI508.SPL (Chaos)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGICFIRE)
+	HaveSpell(CLERIC_FLAME_STRIKE)  // SPPR503.SPL (Flame Strike)
 	!HasBounceEffects(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
-		Spell(LastSeenBy(Myself),WIZARD_MELF_ACID_ARROW)  // SPWI211.SPL (Melf's Acid Arrow)
+		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)  // SPPR503.SPL (Flame Strike)
+END
+
+IF
+	See(NearestEnemyOf(Myself))
+	HaveSpell(WIZARD_FLAME_ARROW)  // SPWI303.SPL (Flame Arrow)
+	!HasBounceEffects(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+		Spell(LastSeenBy(Myself),WIZARD_FLAME_ARROW)  // SPWI303.SPL (Flame Arrow)
 END
 
 IF
@@ -158,10 +318,97 @@ THEN
 END
 
 IF
-	See(NearestEnemyOf(Myself))
-	StateCheck(Myself,STATE_INVISIBLE)
+	HaveSpell(CLERIC_HEAL)  // SPPR607.SPL (Heal)
+	HPPercentLT(MostDamagedOf([PC]),70)
+	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
 THEN
 	RESPONSE #100
-		AttackReevaluate(NearestEnemyOf(Myself),15)
+		Spell(MostDamagedOf([PC]),CLERIC_HEAL)  // SPPR607.SPL (Heal)
 END
 
+IF
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+	HPPercentLT(MostDamagedOf([PC]),70)
+	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
+THEN
+	RESPONSE #100
+		Spell(MostDamagedOf([PC]),CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+END
+
+IF
+	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)  // SPPR502.SPL (Cure Critical Wounds)
+	HPPercentLT(MostDamagedOf([PC]),90)
+	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
+THEN
+	RESPONSE #100
+		Spell(MostDamagedOf([PC]),CLERIC_CURE_CRITICAL_WOUNDS)  // SPPR502.SPL (Cure Critical Wounds)
+END
+
+IF
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+	HPPercentLT(MostDamagedOf([PC]),70)
+	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
+THEN
+	RESPONSE #100
+		Spell(MostDamagedOf([PC]),CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+END
+
+IF
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+	StateCheck(PartySlot1,STATE_DEAD)
+	NumCreatureLT([EVILCUTOFF],1)
+	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
+THEN
+	RESPONSE #100
+		Spell(PartySlot1,CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+END
+
+IF
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+	StateCheck(PartySlot2,STATE_DEAD)
+	NumCreatureLT([EVILCUTOFF],1)
+	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
+THEN
+	RESPONSE #100
+		Spell(PartySlot2,CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+END
+
+IF
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+	StateCheck(PartySlot3,STATE_DEAD)
+	NumCreatureLT([EVILCUTOFF],1)
+	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
+THEN
+	RESPONSE #100
+		Spell(PartySlot3,CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+END
+
+IF
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+	StateCheck(PartySlot4,STATE_DEAD)
+	NumCreatureLT([EVILCUTOFF],1)
+	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
+THEN
+	RESPONSE #100
+		Spell(PartySlot4,CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+END
+
+IF
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+	StateCheck(PartySlot5,STATE_DEAD)
+	NumCreatureLT([EVILCUTOFF],1)
+	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
+THEN
+	RESPONSE #100
+		Spell(PartySlot5,CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+END
+
+IF
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+	StateCheck(PartySlot6,STATE_DEAD)
+	NumCreatureLT([EVILCUTOFF],1)
+	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
+THEN
+	RESPONSE #100
+		Spell(PartySlot6,CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+END
