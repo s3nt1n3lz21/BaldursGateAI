@@ -2928,6 +2928,92 @@ THEN
 	RESPONSE #100
 END
 
+///////////////////////////////////////////////////////////////////// Buff Spells
+
+// Level 7
+// 2 hours (10 minutes) - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_IMPROVED_CHAOS_SHIELD)
+	!CheckSpellState(Myself,IMPROVED_CHAOS_SHIELD)
+	!CheckSpellState(Myself,CHAOS_SHIELD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103284) // Spell: Chaos Shield
+		Spell(Myself,WIZARD_IMPROVED_CHAOS_SHIELD)
+END
+
+// Level 2
+// 5 Rounds + 10 Rounds/5 Levels (30 seconds + 60 seconds/5 levels) - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_CHAOS_SHIELD)
+	!CheckSpellState(Myself,IMPROVED_CHAOS_SHIELD)
+	!CheckSpellState(Myself,CHAOS_SHIELD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103284) // Spell: Chaos Shield
+		Spell(Myself,WIZARD_CHAOS_SHIELD)
+END
+
+// Level 3
+// Until Charges Depleted - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MELF_METEOR)
+	!HasItem("MELFMET",Myself)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103279) // Spell: Melfs Minute Meteors
+		Spell(Myself,WIZARD_MELF_METEOR)
+END
+
+// Level 4
+// 600 Rounds (1 Hour) - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_STONE_SKIN)
+	!CheckSpellState(Myself,STONESKIN)
+	!CheckStatGT(Myself,0,STONESKINS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103275) // Spell: Stoneskin
+		Spell(Myself,WIZARD_STONE_SKIN)
+END
+
+
 /////////////////////////////////////////////////////////////////////////////////////// Summon spells
 
 IF
@@ -3307,6 +3393,1109 @@ END
 
 // Cant figure out how to check we already used the item. It casts a spell that isn't in the spellstate list.
 // Can we add the spellstate to the list compare to another spell with a spellstate in the list e.g. Bless
+
+//////////////////////////////////////////////////////////////////////////// Decide On Next Target You Can See
+// Protect The Wizard if their attacker is not disabled
+IF
+	ActionListEmpty()
+
+	HPPercentGT(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),0)
+	!InParty(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])))
+
+	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),HOPELESSNESS)
+	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),HELD)
+	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),ENTANGLE)
+	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),WEB)
+	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_CHARMED)
+	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_CONFUSED)
+	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_SLEEPING)
+	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_DISABLED)
+	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_PANIC)
+	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_NOT_TARGETABLE)
+
+	See(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])))
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,103271) // Helping Wizard
+		Continue()
+END
+
+// Help hurt allies if their attacker is not disabled
+IF
+	ActionListEmpty()
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
+
+	HPPercentLT(MostDamagedOf(Myself),80)
+	HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
+
+	!CheckSpellState(LastAttackerOf(MostDamagedOf(Myself)),HOPELESSNESS)
+	!CheckSpellState(LastAttackerOf(MostDamagedOf(Myself)),HELD)
+	!CheckSpellState(LastAttackerOf(MostDamagedOf(Myself)),ENTANGLE)
+	!CheckSpellState(LastAttackerOf(MostDamagedOf(Myself)),WEB)
+	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_CHARMED)
+	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_CONFUSED)
+	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_SLEEPING)
+	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_DISABLED)
+	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_PANIC)
+	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_NOT_TARGETABLE)
+
+	See(LastAttackerOf(MostDamagedOf(Myself)))
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,103247) // Helping Allies
+		Continue()
+END
+
+// Attack Enemy Spellcasters if they are not disabled
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
+
+	HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+
+	!CheckSpellState(NearestEnemyOfType([0.0.0.MAGE_ALL]),HOPELESSNESS)
+	!CheckSpellState(NearestEnemyOfType([0.0.0.MAGE_ALL]),HELD)
+	!CheckSpellState(NearestEnemyOfType([0.0.0.MAGE_ALL]),ENTANGLE)
+	!CheckSpellState(NearestEnemyOfType([0.0.0.MAGE_ALL]),WEB)
+	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_CHARMED)
+	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_CONFUSED)
+	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_SLEEPING)
+	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_DISABLED)
+	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_PANIC)
+	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_NOT_TARGETABLE)
+
+	See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,103270) // Attacking Spellcasters
+		Continue()
+END
+
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+
+	HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+
+	!CheckSpellState(NearestEnemyOfType([0.0.0.CLERIC_ALL]),HOPELESSNESS)
+	!CheckSpellState(NearestEnemyOfType([0.0.0.CLERIC_ALL]),HELD)
+	!CheckSpellState(NearestEnemyOfType([0.0.0.CLERIC_ALL]),ENTANGLE)
+	!CheckSpellState(NearestEnemyOfType([0.0.0.CLERIC_ALL]),WEB)
+	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_CHARMED)
+	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_CONFUSED)
+	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_SLEEPING)
+	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_DISABLED)
+	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_PANIC)
+	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_NOT_TARGETABLE)
+
+	See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,103270) // Attacking Spellcasters
+		Continue()
+END
+
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+
+	!CheckSpellState(NearestEnemyOfType([0.0.0.DRUID_ALL]),HOPELESSNESS)
+	!CheckSpellState(NearestEnemyOfType([0.0.0.DRUID_ALL]),HELD)
+	!CheckSpellState(NearestEnemyOfType([0.0.0.DRUID_ALL]),ENTANGLE)
+	!CheckSpellState(NearestEnemyOfType([0.0.0.DRUID_ALL]),WEB)
+	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_CHARMED)
+	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_CONFUSED)
+	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_SLEEPING)
+	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_DISABLED)
+	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_PANIC)
+	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_NOT_TARGETABLE)
+
+	See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,103270) // Attacking Spellcasters
+		Continue()
+END
+
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+
+	HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+
+	!CheckSpellState(NearestEnemyOfType([0.0.0.BARD_ALL]),HOPELESSNESS)
+	!CheckSpellState(NearestEnemyOfType([0.0.0.BARD_ALL]),HELD)
+	!CheckSpellState(NearestEnemyOfType([0.0.0.BARD_ALL]),ENTANGLE)
+	!CheckSpellState(NearestEnemyOfType([0.0.0.BARD_ALL]),WEB)
+	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_CHARMED)
+	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_CONFUSED)
+	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_SLEEPING)
+	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_DISABLED)
+	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_PANIC)
+	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_NOT_TARGETABLE)
+
+	See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,103270) // Attacking Spellcasters
+		Continue()
+END
+
+// If attacked by an enemy attack them if they are not disabled
+IF 
+	ActionListEmpty()
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
+		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+
+	AttackedBy([ENEMY],DEFAULT)
+	!InParty(LastAttackerOf(Myself))
+	
+	!CheckSpellState(LastAttackerOf(Myself),HOPELESSNESS)
+	!CheckSpellState(LastAttackerOf(Myself),HELD)
+	!CheckSpellState(LastAttackerOf(Myself),ENTANGLE)
+	!CheckSpellState(LastAttackerOf(Myself),WEB)
+	!StateCheck(LastAttackerOf(Myself),STATE_CHARMED)
+	!StateCheck(LastAttackerOf(Myself),STATE_CONFUSED)
+	!StateCheck(LastAttackerOf(Myself),STATE_SLEEPING)
+	!StateCheck(LastAttackerOf(Myself),STATE_DISABLED)
+	!StateCheck(LastAttackerOf(Myself),STATE_PANIC)
+	!StateCheck(LastAttackerOf(Myself),STATE_NOT_TARGETABLE)
+
+	See(LastAttackerOf(Myself))
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,103269) // Attacking My Attacker
+		Continue()
+END
+
+// Attack weakest enemy that is not disabled
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+
+	// Skip if attacking my attacker
+	!AttackedBy([ENEMY],DEFAULT)
+
+	HPPercentLT(NearestEnemyOf(Myself),50)
+
+	!CheckSpellState(NearestEnemyOf(Myself),HOPELESSNESS)
+	!CheckSpellState(NearestEnemyOf(Myself),HELD)
+	!CheckSpellState(NearestEnemyOf(Myself),ENTANGLE)
+	!CheckSpellState(NearestEnemyOf(Myself),WEB)
+	!StateCheck(NearestEnemyOf(Myself),STATE_CHARMED)
+	!StateCheck(NearestEnemyOf(Myself),STATE_CONFUSED)
+	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
+	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
+	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
+	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,103268) // Attacking Weakest Enemy
+		Continue()
+END
+
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+
+	// Skip if attacking my attacker
+	!AttackedBy([ENEMY],DEFAULT)
+
+	// Skip if attacking weakest enemy
+	!HPPercentLT(NearestEnemyOf(Myself),50)
+
+	HPPercentLT(SecondNearestEnemyOf(Myself),50)
+
+	!CheckSpellState(SecondNearestEnemyOf(Myself),HOPELESSNESS)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),HELD)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),ENTANGLE)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),WEB)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_CHARMED)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_CONFUSED)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_SLEEPING)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+
+	See(SecondNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,103268) // Attacking Weakest Enemy
+		Continue()
+END
+
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+
+	// Skip if attacking my attacker
+	!AttackedBy([ENEMY],DEFAULT)
+
+	// Skip if attacking weakest enemy
+	!HPPercentLT(NearestEnemyOf(Myself),50)
+	!HPPercentLT(SecondNearestEnemyOf(Myself),50)
+
+	HPPercentLT(ThirdNearestEnemyOf(Myself),50)
+	
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),HOPELESSNESS)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),HELD)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),ENTANGLE)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),WEB)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_CHARMED)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_CONFUSED)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_SLEEPING)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_DISABLED)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+
+	See(ThirdNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,103268) // Attacking Weakest Enemy
+		Continue()
+END
+
+// Attack nearby enemies you can see that are not disabled
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+
+	// Skip if attacking my attacker
+	!AttackedBy([ENEMY],DEFAULT)
+
+	// Skip if attacking weakest enemy
+	!HPPercentLT(NearestEnemyOf(Myself),50)
+	!HPPercentLT(SecondNearestEnemyOf(Myself),50)
+	!HPPercentLT(ThirdNearestEnemyOf(Myself),50)
+
+	!CheckSpellState(NearestEnemyOf(Myself),HOPELESSNESS)
+	!CheckSpellState(NearestEnemyOf(Myself),HELD)
+	!CheckSpellState(NearestEnemyOf(Myself),ENTANGLE)
+	!CheckSpellState(NearestEnemyOf(Myself),WEB)
+	!StateCheck(NearestEnemyOf(Myself),STATE_CHARMED)
+	!StateCheck(NearestEnemyOf(Myself),STATE_CONFUSED)
+	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
+	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
+	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
+	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,103267) // Attacking Nearby Enemies
+		Continue()
+END
+
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+
+	// Skip if attacking my attacker
+	!AttackedBy([ENEMY],DEFAULT)
+
+	// Skip if attacking weakest enemy
+	!HPPercentLT(NearestEnemyOf(Myself),50)
+	!HPPercentLT(SecondNearestEnemyOf(Myself),50)
+	!HPPercentLT(ThirdNearestEnemyOf(Myself),50)
+
+	!CheckSpellState(SecondNearestEnemyOf(Myself),HOPELESSNESS)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),HELD)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),ENTANGLE)
+	!CheckSpellState(SecondNearestEnemyOf(Myself),WEB)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_CHARMED)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_CONFUSED)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_SLEEPING)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
+	!StateCheck(SecondNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+
+	See(SecondNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,103267) // Attacking Nearby Enemies
+		Continue()
+END
+
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+
+	// Skip if attacking my attacker
+	!AttackedBy([ENEMY],DEFAULT)
+
+	// Skip if attacking weakest enemy
+	!HPPercentLT(NearestEnemyOf(Myself),50)
+	!HPPercentLT(SecondNearestEnemyOf(Myself),50)
+	!HPPercentLT(ThirdNearestEnemyOf(Myself),50)
+
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),HOPELESSNESS)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),HELD)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),ENTANGLE)
+	!CheckSpellState(ThirdNearestEnemyOf(Myself),WEB)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_CHARMED)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_CONFUSED)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_SLEEPING)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_DISABLED)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
+	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+
+	See(ThirdNearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,103267) // Attacking Nearby Enemies
+		Continue()
+END
+
+// Attack nearby enemies you can see
+IF
+	ActionListEmpty()
+
+	// Skip if helping hurt allies
+	OR(2)
+		!HPPercentLT(MostDamagedOf(Myself),80)
+		!See(LastAttackerOf(MostDamagedOf(Myself)))
+
+	// Skip if protecting wizard
+	OR(2)
+		!HPPercentGT(LastAttackerOf(PartySlot1),0)
+		!See(LastAttackerOf(PartySlot1))
+
+	// Skip if attacking spellcaster
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+	OR(2)
+		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+
+	// Skip if attacking my attacker
+	!AttackedBy([ENEMY],DEFAULT)
+
+	// Skip if attacking weakest enemy
+	!HPPercentLT(NearestEnemyOf(Myself),50)
+	!HPPercentLT(SecondNearestEnemyOf(Myself),50)
+	!HPPercentLT(ThirdNearestEnemyOf(Myself),50)
+
+	See(NearestEnemyOf(Myself))
+THEN
+	RESPONSE #100
+		//DisplayStringHead(Myself,103267) // Attacking Nearby Enemies
+		Continue()
+END
+
+////////////////////////////////////////////////////////////////////////////////////// Offensive Spells On Target You Can See
+
+// Level 7 - Alteration (8)
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SPHERE_OF_CHAOS)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),7)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	OR(4)
+		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
+		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
+		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//////DisplayStringHead(Myself,?) // Spell: Sphere Of Chaos
+		Spell(LastSeenBy(Myself),WIZARD_SPHERE_OF_CHAOS)
+END
+
+// Level 8 - Necromancy (7)
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),8)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	OR(4)
+		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
+		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
+		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//////DisplayStringHead(Myself,?) // Spell: Horrid Wilting
+		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)
+END
+
+// Level 6 - Evocation
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_CHAIN_LIGHTNING)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),6)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),49,RESISTMAGIC)
+	CheckStatLT(LastSeenBy(Myself),49,RESISTELECTRICITY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Chain Lightning
+		Spell(LastSeenBy(Myself),WIZARD_CHAIN_LIGHTNING)
+END
+
+// Level 3 - Evocation
+IF
+	Class(Myself,MAGE_ALL)
+	HaveSpell(WIZARD_FIREBALL)
+	!Range(FarthestEnemyOf(Myself),17)
+	!StateCheck(FarthestEnemyOf(Myself),STATE_REALLY_DEAD)
+	TriggerOverride(FarthestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	!TriggerOverride(FarthestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
+	See(FarthestEnemyOf(Myself)) // Target the fireball target
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		SetGlobalTimer("castingfireball","LOCALS",6) // Starting fireball
+		//DisplayStringHead(Myself,103266) // Spell: Fireball
+		Spell(FarthestEnemyOf(Myself),WIZARD_FIREBALL)
+END
+
+// Level 1 - Evocation
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MAGIC_MISSILE)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103264) // Spell: Magic Missile
+		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
+END
+
+// Level 1 - Evocation
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_CHROMATIC_ORB)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103265) // Spell: Chromatic Orb
+		Spell(LastSeenBy(Myself),WIZARD_CHROMATIC_ORB)
+END
+
+// Level 3 - Conjuration
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_FLAME_ARROW)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING) 
+	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103263) // Spell: Flame Arrow
+		Spell(LastSeenBy(Myself),WIZARD_FLAME_ARROW)
+END
+
+// Level 2 - Conjuration
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MELF_ACID_ARROW)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING) 
+	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTACID)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103262) // Spell: Melf Acid Arrow
+		Spell(LastSeenBy(Myself),WIZARD_MELF_ACID_ARROW)
+END
+
+// Level 2 - Evocation
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_AGANNAZAR_SCORCHER)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103261) // Spell: Agannazar Scorcher
+		Spell(LastSeenBy(Myself),WIZARD_AGANNAZAR_SCORCHER)
+END
+
+// Level 3 - Necromancy
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_HOLY_SMITE)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103260) // Spell: Holy Smite
+		Spell(LastSeenBy(Myself),CLERIC_HOLY_SMITE)
+END
+
+//////////////////////////////////////////////////////////////////// Offensive Wands On Targets You Can See
+//IF
+//    ActionListEmpty()
+  //  !GlobalTimerNotExpired("castnattack","LOCALS")
+//	Class(Myself,MAGE_ALL)
+//	HPPercentGT(NearestEnemyOf(Myself),0)
+//	HasItem("wand06",Myself)
+//	CheckStatGT(LastSeenBy(Myself),5,SAVEVSWANDS)
+//	OR(4)
+//		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
+//		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+//		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
+//		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+//	!InParty(LastSeenBy(Myself))
+//THEN
+//	RESPONSE #100
+//        SetGlobalTimer("castnattack","LOCALS",6)
+//		//DisplayStringHead(Myself,103257) // Wand: Frost
+//		UseItem("wand06",LastSeenBy(Myself))
+//END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	Class(Myself,MAGE_ALL)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+	HasItem("wand03",Myself)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSWANDS)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103256) // Wand: Magic Missile
+		UseItem("wand03",LastSeenBy(Myself))
+END
+
+IF
+  	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	Class(Myself,CLERIC_ALL)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+	HasItem("wand11",Myself)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSWANDS)
+	OR(4)
+		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
+		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
+		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103255) // Wand: Heavens
+		UseItem("wand11",LastSeenBy(Myself))
+END
+
+IF
+	Class(Myself,MAGE_ALL)
+	HasItem("wand05",Myself)
+	!Range(FarthestEnemyOf(Myself),17)
+	!StateCheck(FarthestEnemyOf(Myself),STATE_REALLY_DEAD)
+	TriggerOverride(FarthestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
+	!TriggerOverride(FarthestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
+	See(FarthestEnemyOf(Myself)) // Target the fireball target
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		SetGlobalTimer("castingfireball","LOCALS",6) // Starting fireball
+		//DisplayStringHead(Myself,103259) // Wand: Fire
+		XEquipItem("wand05",Myself,SLOT_MISC0,EQUIP)
+		UseItemSlotAbility(FarthestEnemyOf(Myself),SLOT_MISC0,0)
+END
+
+//IF
+//	Class(Myself,MAGE_ALL)
+//	HasItem("wand05",Myself)
+	//!InLine(LastSeenBy(Myself),PartySlot1)
+	//!InLine(LastSeenBy(Myself),PartySlot2)
+	//!InLine(LastSeenBy(Myself),PartySlot3)
+	//!InLine(LastSeenBy(Myself),PartySlot4)
+	//!InLine(LastSeenBy(Myself),PartySlot5)
+	//!InLine(LastSeenBy(Myself),PartySlot6)
+
+//	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+//	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) 
+//	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+//	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
+
+//	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+//	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+//	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+//	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
+//	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+//	OR(4)
+//		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
+//		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+//		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
+//		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+//	!InParty(LastSeenBy(Myself))
+//THEN
+//	RESPONSE #100
+//        SetGlobalTimer("castnattack","LOCALS",6)
+//		//DisplayStringHead(Myself,71433) // Wand: Fire
+//		XEquipItem("wand05",Myself,SLOT_MISC0,EQUIP)
+//		UseItemSlotAbility(LastSeenBy(Myself),SLOT_MISC0,1)
+//END
+
+//IF
+//  ActionListEmpty()
+//    !GlobalTimerNotExpired("castnattack","LOCALS")
+//	Class(Myself,MAGE_ALL)
+//	HasItem("wand10",Myself)
+//	See(NearestEnemyOf(Myself))
+//THEN
+//	RESPONSE #100
+//        SetGlobalTimer("castnattack","LOCALS",6)
+//		//DisplayStringHead(Myself,71436) // Wand: Monster Summoning
+//		UseItem("wand10",LastSeenBy(Myself))
+//END
+
+//IF
+//  ActionListEmpty()
+//    !GlobalTimerNotExpired("castnattack","LOCALS")
+//	Class(Myself,MAGE_ALL)
+//	HasItem("wand18",Myself)
+//	See(NearestEnemyOf(Myself))
+//THEN
+//	RESPONSE #100
+//        SetGlobalTimer("castnattack","LOCALS",6)
+//		//DisplayStringHead(Myself,103258) // Wand: Spell Striking
+//		UseItem("wand18",LastSeenBy(Myself))
+//END
+
+//////////////////////////////////////////////////////////////////// Scrolls: Offensive Spells
+
+// Level 1 - Evocation
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("SCRL77",Myself)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103264) // Spell: Magic Missile
+		UseItem("SCRL77",Myself)
+END
 
 ////////////////////////////////////////////////////////////////////////////////// If have a buff spell use it
 
@@ -4464,89 +5653,6 @@ THEN
 		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
 END
 
-// Level 7
-// 2 hours (10 minutes) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_IMPROVED_CHAOS_SHIELD)
-	!CheckSpellState(Myself,IMPROVED_CHAOS_SHIELD)
-	!CheckSpellState(Myself,CHAOS_SHIELD)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103284) // Spell: Chaos Shield
-		Spell(Myself,WIZARD_IMPROVED_CHAOS_SHIELD)
-END
-
-// Level 2
-// 5 Rounds + 10 Rounds/5 Levels (30 seconds + 60 seconds/5 levels) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_CHAOS_SHIELD)
-	!CheckSpellState(Myself,IMPROVED_CHAOS_SHIELD)
-	!CheckSpellState(Myself,CHAOS_SHIELD)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103284) // Spell: Chaos Shield
-		Spell(Myself,WIZARD_CHAOS_SHIELD)
-END
-
-// Level 3
-// Until Charges Depleted - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MELF_METEOR)
-	!HasItem("MELFMET",Myself)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103279) // Spell: Melfs Minute Meteors
-		Spell(Myself,WIZARD_MELF_METEOR)
-END
-
-// Level 4
-// 600 Rounds (1 Hour) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_STONE_SKIN)
-	!CheckSpellState(Myself,STONESKIN)
-	!CheckStatGT(Myself,0,STONESKINS)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103275) // Spell: Stoneskin
-		Spell(Myself,WIZARD_STONE_SKIN)
-END
-
 // Level 6
 // 10 Rounds/Level (60 seconds/level) - 1 Creature
 IF
@@ -4902,1109 +6008,6 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		////DisplayStringHead(Myself,?) // Spell: Haste
 		Spell(Myself,WIZARD_IMPROVED_HASTE)
-END
-
-//////////////////////////////////////////////////////////////////////////// Decide On Next Target You Can See
-// Protect The Wizard if their attacker is not disabled
-IF
-	ActionListEmpty()
-
-	HPPercentGT(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),0)
-	!InParty(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])))
-
-	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),HOPELESSNESS)
-	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),HELD)
-	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),ENTANGLE)
-	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),WEB)
-	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_CHARMED)
-	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_CONFUSED)
-	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_SLEEPING)
-	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_DISABLED)
-	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_PANIC)
-	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_NOT_TARGETABLE)
-
-	See(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])))
-THEN
-	RESPONSE #100
-		//DisplayStringHead(Myself,103271) // Helping Wizard
-		Continue()
-END
-
-// Help hurt allies if their attacker is not disabled
-IF
-	ActionListEmpty()
-
-	// Skip if protecting wizard
-	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
-
-	HPPercentLT(MostDamagedOf(Myself),80)
-	HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
-
-	!CheckSpellState(LastAttackerOf(MostDamagedOf(Myself)),HOPELESSNESS)
-	!CheckSpellState(LastAttackerOf(MostDamagedOf(Myself)),HELD)
-	!CheckSpellState(LastAttackerOf(MostDamagedOf(Myself)),ENTANGLE)
-	!CheckSpellState(LastAttackerOf(MostDamagedOf(Myself)),WEB)
-	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_CHARMED)
-	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_CONFUSED)
-	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_SLEEPING)
-	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_DISABLED)
-	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_PANIC)
-	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_NOT_TARGETABLE)
-
-	See(LastAttackerOf(MostDamagedOf(Myself)))
-THEN
-	RESPONSE #100
-		//DisplayStringHead(Myself,103247) // Helping Allies
-		Continue()
-END
-
-// Attack Enemy Spellcasters if they are not disabled
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	OR(2)
-		!HPPercentLT(MostDamagedOf(Myself),80)
-		!See(LastAttackerOf(MostDamagedOf(Myself)))
-
-	// Skip if protecting wizard
-	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
-
-	HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-
-	!CheckSpellState(NearestEnemyOfType([0.0.0.MAGE_ALL]),HOPELESSNESS)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.MAGE_ALL]),HELD)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.MAGE_ALL]),ENTANGLE)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.MAGE_ALL]),WEB)
-	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_CHARMED)
-	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_CONFUSED)
-	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_SLEEPING)
-	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_DISABLED)
-	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_PANIC)
-	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_NOT_TARGETABLE)
-
-	See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-THEN
-	RESPONSE #100
-		//DisplayStringHead(Myself,103270) // Attacking Spellcasters
-		Continue()
-END
-
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	OR(2)
-		!HPPercentLT(MostDamagedOf(Myself),80)
-		!See(LastAttackerOf(MostDamagedOf(Myself)))
-
-	// Skip if protecting wizard
-	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
-
-	// Skip if attacking spellcaster
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-
-	HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-
-	!CheckSpellState(NearestEnemyOfType([0.0.0.CLERIC_ALL]),HOPELESSNESS)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.CLERIC_ALL]),HELD)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.CLERIC_ALL]),ENTANGLE)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.CLERIC_ALL]),WEB)
-	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_CHARMED)
-	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_CONFUSED)
-	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_SLEEPING)
-	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_DISABLED)
-	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_PANIC)
-	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_NOT_TARGETABLE)
-
-	See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-THEN
-	RESPONSE #100
-		//DisplayStringHead(Myself,103270) // Attacking Spellcasters
-		Continue()
-END
-
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	OR(2)
-		!HPPercentLT(MostDamagedOf(Myself),80)
-		!See(LastAttackerOf(MostDamagedOf(Myself)))
-
-	// Skip if protecting wizard
-	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
-
-	// Skip if attacking spellcaster
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-
-	HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-
-	!CheckSpellState(NearestEnemyOfType([0.0.0.DRUID_ALL]),HOPELESSNESS)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.DRUID_ALL]),HELD)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.DRUID_ALL]),ENTANGLE)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.DRUID_ALL]),WEB)
-	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_CHARMED)
-	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_CONFUSED)
-	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_SLEEPING)
-	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_DISABLED)
-	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_PANIC)
-	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_NOT_TARGETABLE)
-
-	See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-THEN
-	RESPONSE #100
-		//DisplayStringHead(Myself,103270) // Attacking Spellcasters
-		Continue()
-END
-
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	OR(2)
-		!HPPercentLT(MostDamagedOf(Myself),80)
-		!See(LastAttackerOf(MostDamagedOf(Myself)))
-
-	// Skip if protecting wizard
-	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
-
-	// Skip if attacking spellcaster
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-
-	HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-
-	!CheckSpellState(NearestEnemyOfType([0.0.0.BARD_ALL]),HOPELESSNESS)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.BARD_ALL]),HELD)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.BARD_ALL]),ENTANGLE)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.BARD_ALL]),WEB)
-	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_CHARMED)
-	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_CONFUSED)
-	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_SLEEPING)
-	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_DISABLED)
-	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_PANIC)
-	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_NOT_TARGETABLE)
-
-	See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-THEN
-	RESPONSE #100
-		//DisplayStringHead(Myself,103270) // Attacking Spellcasters
-		Continue()
-END
-
-// If attacked by an enemy attack them if they are not disabled
-IF 
-	ActionListEmpty()
-
-	// Skip if protecting wizard
-	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
-
-	// Skip if protecting wizard
-	OR(2)
-		!HPPercentGT(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]),0)
-		!See(LastAttackerOf([ALLY.0.0.MAGE_ALL.0.0.0]))
-
-	// Skip if attacking spellcaster
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-
-	AttackedBy([ENEMY],DEFAULT)
-	!InParty(LastAttackerOf(Myself))
-	
-	!CheckSpellState(LastAttackerOf(Myself),HOPELESSNESS)
-	!CheckSpellState(LastAttackerOf(Myself),HELD)
-	!CheckSpellState(LastAttackerOf(Myself),ENTANGLE)
-	!CheckSpellState(LastAttackerOf(Myself),WEB)
-	!StateCheck(LastAttackerOf(Myself),STATE_CHARMED)
-	!StateCheck(LastAttackerOf(Myself),STATE_CONFUSED)
-	!StateCheck(LastAttackerOf(Myself),STATE_SLEEPING)
-	!StateCheck(LastAttackerOf(Myself),STATE_DISABLED)
-	!StateCheck(LastAttackerOf(Myself),STATE_PANIC)
-	!StateCheck(LastAttackerOf(Myself),STATE_NOT_TARGETABLE)
-
-	See(LastAttackerOf(Myself))
-THEN
-	RESPONSE #100
-		//DisplayStringHead(Myself,103269) // Attacking My Attacker
-		Continue()
-END
-
-// Attack weakest enemy that is not disabled
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	OR(2)
-		!HPPercentLT(MostDamagedOf(Myself),80)
-		!See(LastAttackerOf(MostDamagedOf(Myself)))
-
-	// Skip if protecting wizard
-	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
-
-	// Skip if attacking spellcaster
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-
-	// Skip if attacking my attacker
-	!AttackedBy([ENEMY],DEFAULT)
-
-	HPPercentLT(NearestEnemyOf(Myself),50)
-
-	!CheckSpellState(NearestEnemyOf(Myself),HOPELESSNESS)
-	!CheckSpellState(NearestEnemyOf(Myself),HELD)
-	!CheckSpellState(NearestEnemyOf(Myself),ENTANGLE)
-	!CheckSpellState(NearestEnemyOf(Myself),WEB)
-	!StateCheck(NearestEnemyOf(Myself),STATE_CHARMED)
-	!StateCheck(NearestEnemyOf(Myself),STATE_CONFUSED)
-	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
-	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
-	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
-	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
-
-	See(NearestEnemyOf(Myself))
-THEN
-	RESPONSE #100
-		//DisplayStringHead(Myself,103268) // Attacking Weakest Enemy
-		Continue()
-END
-
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	OR(2)
-		!HPPercentLT(MostDamagedOf(Myself),80)
-		!See(LastAttackerOf(MostDamagedOf(Myself)))
-
-	// Skip if protecting wizard
-	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
-
-	// Skip if attacking spellcaster
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-
-	// Skip if attacking my attacker
-	!AttackedBy([ENEMY],DEFAULT)
-
-	// Skip if attacking weakest enemy
-	!HPPercentLT(NearestEnemyOf(Myself),50)
-
-	HPPercentLT(SecondNearestEnemyOf(Myself),50)
-
-	!CheckSpellState(SecondNearestEnemyOf(Myself),HOPELESSNESS)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),HELD)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),ENTANGLE)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),WEB)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_CHARMED)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_CONFUSED)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_SLEEPING)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
-
-	See(SecondNearestEnemyOf(Myself))
-THEN
-	RESPONSE #100
-		//DisplayStringHead(Myself,103268) // Attacking Weakest Enemy
-		Continue()
-END
-
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	OR(2)
-		!HPPercentLT(MostDamagedOf(Myself),80)
-		!See(LastAttackerOf(MostDamagedOf(Myself)))
-
-	// Skip if protecting wizard
-	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
-
-	// Skip if attacking spellcaster
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-
-	// Skip if attacking my attacker
-	!AttackedBy([ENEMY],DEFAULT)
-
-	// Skip if attacking weakest enemy
-	!HPPercentLT(NearestEnemyOf(Myself),50)
-	!HPPercentLT(SecondNearestEnemyOf(Myself),50)
-
-	HPPercentLT(ThirdNearestEnemyOf(Myself),50)
-	
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),HOPELESSNESS)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),HELD)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),ENTANGLE)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),WEB)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_CHARMED)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_CONFUSED)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_SLEEPING)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_DISABLED)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
-
-	See(ThirdNearestEnemyOf(Myself))
-THEN
-	RESPONSE #100
-		//DisplayStringHead(Myself,103268) // Attacking Weakest Enemy
-		Continue()
-END
-
-// Attack nearby enemies you can see that are not disabled
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	OR(2)
-		!HPPercentLT(MostDamagedOf(Myself),80)
-		!See(LastAttackerOf(MostDamagedOf(Myself)))
-
-	// Skip if protecting wizard
-	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
-
-	// Skip if attacking spellcaster
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-
-	// Skip if attacking my attacker
-	!AttackedBy([ENEMY],DEFAULT)
-
-	// Skip if attacking weakest enemy
-	!HPPercentLT(NearestEnemyOf(Myself),50)
-	!HPPercentLT(SecondNearestEnemyOf(Myself),50)
-	!HPPercentLT(ThirdNearestEnemyOf(Myself),50)
-
-	!CheckSpellState(NearestEnemyOf(Myself),HOPELESSNESS)
-	!CheckSpellState(NearestEnemyOf(Myself),HELD)
-	!CheckSpellState(NearestEnemyOf(Myself),ENTANGLE)
-	!CheckSpellState(NearestEnemyOf(Myself),WEB)
-	!StateCheck(NearestEnemyOf(Myself),STATE_CHARMED)
-	!StateCheck(NearestEnemyOf(Myself),STATE_CONFUSED)
-	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
-	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
-	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
-	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
-
-	See(NearestEnemyOf(Myself))
-THEN
-	RESPONSE #100
-		//DisplayStringHead(Myself,103267) // Attacking Nearby Enemies
-		Continue()
-END
-
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	OR(2)
-		!HPPercentLT(MostDamagedOf(Myself),80)
-		!See(LastAttackerOf(MostDamagedOf(Myself)))
-
-	// Skip if protecting wizard
-	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
-
-	// Skip if attacking spellcaster
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-
-	// Skip if attacking my attacker
-	!AttackedBy([ENEMY],DEFAULT)
-
-	// Skip if attacking weakest enemy
-	!HPPercentLT(NearestEnemyOf(Myself),50)
-	!HPPercentLT(SecondNearestEnemyOf(Myself),50)
-	!HPPercentLT(ThirdNearestEnemyOf(Myself),50)
-
-	!CheckSpellState(SecondNearestEnemyOf(Myself),HOPELESSNESS)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),HELD)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),ENTANGLE)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),WEB)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_CHARMED)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_CONFUSED)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_SLEEPING)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
-
-	See(SecondNearestEnemyOf(Myself))
-THEN
-	RESPONSE #100
-		//DisplayStringHead(Myself,103267) // Attacking Nearby Enemies
-		Continue()
-END
-
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	OR(2)
-		!HPPercentLT(MostDamagedOf(Myself),80)
-		!See(LastAttackerOf(MostDamagedOf(Myself)))
-
-	// Skip if protecting wizard
-	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
-
-	// Skip if attacking spellcaster
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-
-	// Skip if attacking my attacker
-	!AttackedBy([ENEMY],DEFAULT)
-
-	// Skip if attacking weakest enemy
-	!HPPercentLT(NearestEnemyOf(Myself),50)
-	!HPPercentLT(SecondNearestEnemyOf(Myself),50)
-	!HPPercentLT(ThirdNearestEnemyOf(Myself),50)
-
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),HOPELESSNESS)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),HELD)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),ENTANGLE)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),WEB)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_CHARMED)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_CONFUSED)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_SLEEPING)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_DISABLED)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
-
-	See(ThirdNearestEnemyOf(Myself))
-THEN
-	RESPONSE #100
-		//DisplayStringHead(Myself,103267) // Attacking Nearby Enemies
-		Continue()
-END
-
-// Attack nearby enemies you can see
-IF
-	ActionListEmpty()
-
-	// Skip if helping hurt allies
-	OR(2)
-		!HPPercentLT(MostDamagedOf(Myself),80)
-		!See(LastAttackerOf(MostDamagedOf(Myself)))
-
-	// Skip if protecting wizard
-	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
-
-	// Skip if attacking spellcaster
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-
-	// Skip if attacking my attacker
-	!AttackedBy([ENEMY],DEFAULT)
-
-	// Skip if attacking weakest enemy
-	!HPPercentLT(NearestEnemyOf(Myself),50)
-	!HPPercentLT(SecondNearestEnemyOf(Myself),50)
-	!HPPercentLT(ThirdNearestEnemyOf(Myself),50)
-
-	See(NearestEnemyOf(Myself))
-THEN
-	RESPONSE #100
-		//DisplayStringHead(Myself,103267) // Attacking Nearby Enemies
-		Continue()
-END
-
-////////////////////////////////////////////////////////////////////////////////////// Offensive Spells On Target You Can See
-
-// Level 7 - Alteration (8)
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SPHERE_OF_CHAOS)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-
-	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
-	!ImmuneToSpellLevel(LastSeenBy(Myself),7)
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-
-	OR(4)
-		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
-		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
-		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
-		CheckStatLT(LastSeenBy(Myself),10,THAC0)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//////DisplayStringHead(Myself,?) // Spell: Sphere Of Chaos
-		Spell(LastSeenBy(Myself),WIZARD_SPHERE_OF_CHAOS)
-END
-
-// Level 8 - Necromancy (7)
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-
-	!CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY)
-	!ImmuneToSpellLevel(LastSeenBy(Myself),8)
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-
-	OR(4)
-		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
-		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
-		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
-		CheckStatLT(LastSeenBy(Myself),10,THAC0)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//////DisplayStringHead(Myself,?) // Spell: Horrid Wilting
-		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)
-END
-
-// Level 6 - Evocation
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_CHAIN_LIGHTNING)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-
-	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(LastSeenBy(Myself),6)
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatLT(LastSeenBy(Myself),49,RESISTMAGIC)
-	CheckStatLT(LastSeenBy(Myself),49,RESISTELECTRICITY)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		////DisplayStringHead(Myself,?) // Spell: Chain Lightning
-		Spell(LastSeenBy(Myself),WIZARD_CHAIN_LIGHTNING)
-END
-
-// Level 3 - Evocation
-IF
-	Class(Myself,MAGE_ALL)
-	HaveSpell(WIZARD_FIREBALL)
-	!Range(FarthestEnemyOf(Myself),17)
-	!StateCheck(FarthestEnemyOf(Myself),STATE_REALLY_DEAD)
-	TriggerOverride(FarthestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
-	!TriggerOverride(FarthestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
-	See(FarthestEnemyOf(Myself)) // Target the fireball target
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		SetGlobalTimer("castingfireball","LOCALS",6) // Starting fireball
-		//DisplayStringHead(Myself,103266) // Spell: Fireball
-		Spell(FarthestEnemyOf(Myself),WIZARD_FIREBALL)
-END
-
-// Level 1 - Evocation
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MAGIC_MISSILE)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-
-	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
-	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103264) // Spell: Magic Missile
-		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)
-END
-
-// Level 1 - Evocation
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_CHROMATIC_ORB)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-
-	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103265) // Spell: Chromatic Orb
-		Spell(LastSeenBy(Myself),WIZARD_CHROMATIC_ORB)
-END
-
-// Level 3 - Conjuration
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_FLAME_ARROW)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-
-	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING) 
-	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-
-	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103263) // Spell: Flame Arrow
-		Spell(LastSeenBy(Myself),WIZARD_FLAME_ARROW)
-END
-
-// Level 2 - Conjuration
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MELF_ACID_ARROW)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-
-	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING) 
-	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatLT(LastSeenBy(Myself),75,RESISTACID)
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103262) // Spell: Melf Acid Arrow
-		Spell(LastSeenBy(Myself),WIZARD_MELF_ACID_ARROW)
-END
-
-// Level 2 - Evocation
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_AGANNAZAR_SCORCHER)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-
-	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103261) // Spell: Agannazar Scorcher
-		Spell(LastSeenBy(Myself),WIZARD_AGANNAZAR_SCORCHER)
-END
-
-// Level 3 - Necromancy
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_HOLY_SMITE)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-
-	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-	!CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103260) // Spell: Holy Smite
-		Spell(LastSeenBy(Myself),CLERIC_HOLY_SMITE)
-END
-
-//////////////////////////////////////////////////////////////////// Offensive Wands On Targets You Can See
-//IF
-//    ActionListEmpty()
-  //  !GlobalTimerNotExpired("castnattack","LOCALS")
-//	Class(Myself,MAGE_ALL)
-//	HPPercentGT(NearestEnemyOf(Myself),0)
-//	HasItem("wand06",Myself)
-//	CheckStatGT(LastSeenBy(Myself),5,SAVEVSWANDS)
-//	OR(4)
-//		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
-//		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
-//		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
-//		CheckStatLT(LastSeenBy(Myself),10,THAC0)
-//	!InParty(LastSeenBy(Myself))
-//THEN
-//	RESPONSE #100
-//        SetGlobalTimer("castnattack","LOCALS",6)
-//		//DisplayStringHead(Myself,103257) // Wand: Frost
-//		UseItem("wand06",LastSeenBy(Myself))
-//END
-
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	Class(Myself,MAGE_ALL)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-	HasItem("wand03",Myself)
-	CheckStatGT(LastSeenBy(Myself),5,SAVEVSWANDS)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103256) // Wand: Magic Missile
-		UseItem("wand03",LastSeenBy(Myself))
-END
-
-IF
-  	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	Class(Myself,CLERIC_ALL)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-	HasItem("wand11",Myself)
-	CheckStatGT(LastSeenBy(Myself),5,SAVEVSWANDS)
-	OR(4)
-		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
-		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
-		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
-		CheckStatLT(LastSeenBy(Myself),10,THAC0)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103255) // Wand: Heavens
-		UseItem("wand11",LastSeenBy(Myself))
-END
-
-IF
-	Class(Myself,MAGE_ALL)
-	HasItem("wand05",Myself)
-	!Range(FarthestEnemyOf(Myself),17)
-	!StateCheck(FarthestEnemyOf(Myself),STATE_REALLY_DEAD)
-	TriggerOverride(FarthestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
-	!TriggerOverride(FarthestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
-	See(FarthestEnemyOf(Myself)) // Target the fireball target
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		SetGlobalTimer("castingfireball","LOCALS",6) // Starting fireball
-		//DisplayStringHead(Myself,103259) // Wand: Fire
-		XEquipItem("wand05",Myself,SLOT_MISC0,EQUIP)
-		UseItemSlotAbility(FarthestEnemyOf(Myself),SLOT_MISC0,0)
-END
-
-//IF
-//	Class(Myself,MAGE_ALL)
-//	HasItem("wand05",Myself)
-	//!InLine(LastSeenBy(Myself),PartySlot1)
-	//!InLine(LastSeenBy(Myself),PartySlot2)
-	//!InLine(LastSeenBy(Myself),PartySlot3)
-	//!InLine(LastSeenBy(Myself),PartySlot4)
-	//!InLine(LastSeenBy(Myself),PartySlot5)
-	//!InLine(LastSeenBy(Myself),PartySlot6)
-
-//	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-//	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) 
-//	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-//	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
-
-//	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-//	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-//	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-//	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
-//	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-
-//	OR(4)
-//		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
-//		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
-//		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
-//		CheckStatLT(LastSeenBy(Myself),10,THAC0)
-//	!InParty(LastSeenBy(Myself))
-//THEN
-//	RESPONSE #100
-//        SetGlobalTimer("castnattack","LOCALS",6)
-//		//DisplayStringHead(Myself,71433) // Wand: Fire
-//		XEquipItem("wand05",Myself,SLOT_MISC0,EQUIP)
-//		UseItemSlotAbility(LastSeenBy(Myself),SLOT_MISC0,1)
-//END
-
-//IF
-//  ActionListEmpty()
-//    !GlobalTimerNotExpired("castnattack","LOCALS")
-//	Class(Myself,MAGE_ALL)
-//	HasItem("wand10",Myself)
-//	See(NearestEnemyOf(Myself))
-//THEN
-//	RESPONSE #100
-//        SetGlobalTimer("castnattack","LOCALS",6)
-//		//DisplayStringHead(Myself,71436) // Wand: Monster Summoning
-//		UseItem("wand10",LastSeenBy(Myself))
-//END
-
-//IF
-//  ActionListEmpty()
-//    !GlobalTimerNotExpired("castnattack","LOCALS")
-//	Class(Myself,MAGE_ALL)
-//	HasItem("wand18",Myself)
-//	See(NearestEnemyOf(Myself))
-//THEN
-//	RESPONSE #100
-//        SetGlobalTimer("castnattack","LOCALS",6)
-//		//DisplayStringHead(Myself,103258) // Wand: Spell Striking
-//		UseItem("wand18",LastSeenBy(Myself))
-//END
-
-//////////////////////////////////////////////////////////////////// Scrolls: Offensive Spells
-
-// Level 1 - Evocation
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HasItem("SCRL77",Myself)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-
-	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
-	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103264) // Spell: Magic Missile
-		UseItem("SCRL77",Myself)
 END
 
 //////////////////////////////////////////////////////////////////// Change Melee Weapon If Not Effective
