@@ -3482,6 +3482,30 @@ THEN
 		Spell(Myself,WIZARD_STONE_SKIN)
 END
 
+////////////////////////////////////////////////////////////////////////////////// Aura Of Flaming Death
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_AURA_OF_FLAMING_DEATH)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	OR(4)
+		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
+		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
+		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Aura Of Flaming Death
+		Spell(Myself,CLERIC_AURA_OF_FLAMING_DEATH)
+END
+
 ////////////////////////////////////////////////////////////////////////////////// Buff Items
 
 //IF
