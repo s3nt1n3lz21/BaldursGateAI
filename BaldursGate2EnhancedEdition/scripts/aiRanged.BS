@@ -19,7 +19,7 @@ THEN
 		SetGlobal("c_staffOfMagi","GLOBAL",1)
 		SetGlobal("u_useLongSummonSpells","LOCALS",0) // Off
 		SetGlobal("u_useShortSummonSpells","LOCALS",0) // Off
-		SetGlobal("u_useItemSummonSpells","LOCALS",0) // Off	
+		SetGlobal("u_useItemSummonSpells","LOCALS",0) // Off
 END
 
 IF
@@ -1342,6 +1342,406 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,103273) // Spell: Minor Globe Of Invulnerability
 		UseItem("SCRL1Z",Myself)
+END
+
+/////////////////////////////////////////////////////////////////////////////////////// Long Duration Summon spells
+
+IF
+	ActionListEmpty()
+
+	Global("u_useLongSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_AERIAL_SERVANT)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		//? //DisplayStringHead(Myself,?) // Spell: Aerial Servant
+		Spell(Myself,CLERIC_AERIAL_SERVANT)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useLongSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_ANIMATE_DEAD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		//DisplayStringHead(Myself,103313) // Spell: Animate Undead
+		Spell(Myself,CLERIC_ANIMATE_DEAD)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useLongSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_ANIMATE_DEAD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		//DisplayStringHead(Myself,103313) // Spell: Animate Undead
+		Spell(Myself,WIZARD_ANIMATE_DEAD)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useLongSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CONJURE_FIRE_ELEMENTAL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		//DisplayStringHead(Myself,103307) // Spell: Conjure Fire Elemental
+		Spell(Myself,CLERIC_CONJURE_FIRE_ELEMENTAL)
+END
+
+////////////////////////////////////////////////////////////////////////////// Short Duration Summon spells
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreature([GOODCUTOFF.0.PLANATAR],0)
+	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+	NumCreature([GOODCUTOFF.0.SOLAR],0)
+	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SUMMON_PLANATAR_GOOD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		////DisplayStringHead(Myself,?) // Spell: Summon Planetar
+		Spell(Myself,WIZARD_SUMMON_PLANATAR_GOOD)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreature([GOODCUTOFF.0.PLANATAR],0)
+	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+	NumCreature([GOODCUTOFF.0.SOLAR],0)
+	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SUMMON_PLANATAR_EVIL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		////DisplayStringHead(Myself,?) // Spell: Summon Planetar
+		Spell(Myself,WIZARD_SUMMON_PLANATAR_EVIL)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreature([GOODCUTOFF.0.PLANATAR],0)
+	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+	NumCreature([GOODCUTOFF.0.SOLAR],0)
+	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_SUMMON_FALLEN_DEVA)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		////DisplayStringHead(Myself,?) // Spell: Summon Fallen Deva
+		Spell(Myself,CLERIC_SUMMON_FALLEN_DEVA)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreature([GOODCUTOFF.0.PLANATAR],0)
+	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+	NumCreature([GOODCUTOFF.0.SOLAR],0)
+	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_SUMMON_DEVA)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		////DisplayStringHead(Myself,?) // Spell: Summon Deva
+		Spell(Myself,CLERIC_SUMMON_DEVA)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MORDENKAINENS_SWORD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		////DisplayStringHead(Myself,?) // Spell: Mordenkainen's Sword
+		Spell(Myself,WIZARD_MORDENKAINENS_SWORD)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CONJURE_ANIMALS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		//DisplayStringHead(Myself,103308) // Spell: Conjure Animals
+		Spell(Myself,CLERIC_CONJURE_ANIMALS)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CALL_WOODLAND_BEINGS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		//DisplayStringHead(Myself,103312) // Spell: Call Woodland Beings
+		Spell(Myself,CLERIC_CALL_WOODLAND_BEINGS)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		//DisplayStringHead(Myself,103311) // Spell: Animal Summoning 3
+		Spell(Myself,CLERIC_ANIMAL_SUMMONING_3)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_ANIMAL_SUMMONING_2)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		//DisplayStringHead(Myself,103310) // Spell: Animal Summoning 2
+		Spell(Myself,CLERIC_ANIMAL_SUMMONING_2)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_ANIMAL_SUMMONING_1)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		//DisplayStringHead(Myself,103309) // Spell: Animal Summoning 1
+		Spell(Myself,CLERIC_ANIMAL_SUMMONING_1)
+END
+
+////////////////////////////////////////////////////////////////////////////// Item Summons
+
+IF
+	ActionListEmpty()
+
+	Global("u_useItemSummonSpells","LOCALS",1)
+
+  	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("WA2HELM",Myself) // Vhailors Helm
+	Global("c_VhailorsHelm","GLOBAL",1)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		SetGlobal("c_VhailorsHelm","GLOBAL",0)
+		////DisplayStringHead(Myself,?)  // Vhailors Helm
+		XEquipItem("WA2HELM",Myself,SLOT_HELMET,EQUIP)
+		UseItemSlotAbility(Myself,SLOT_HELMET,1)
+END
+
+////////////////////////////////////////////////////////////////////////////////// Scrolls: Summoning Spells
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+
+	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("SCRL1L",Myself)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103367) // Spell: Monster Summoning 1
+		UseItem("SCRL1L",Myself)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+
+	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("SCRL2A",Myself)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103368) // Spell: Monster Summoning 2
+		UseItem("SCRL2A",Myself)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+
+	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("SCRL2G",Myself)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103369) // Spell: Monster Summoning 3
+		UseItem("SCRL2G",Myself)
 END
 
 ////////////////////////////////////////////////////////////////////////////////////// Debuff/Control Spells
@@ -3057,406 +3457,6 @@ IF
 		CanTurn(SeventhNearest([EVILCUTOFF.UNDEAD]),5)
 THEN
 	RESPONSE #100
-END
-
-/////////////////////////////////////////////////////////////////////////////////////// Long Duration Summon spells
-
-IF
-	ActionListEmpty()
-
-	Global("u_useLongSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
-
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_AERIAL_SERVANT)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//? //DisplayStringHead(Myself,?) // Spell: Aerial Servant
-		Spell(Myself,CLERIC_AERIAL_SERVANT)
-END
-
-IF
-	ActionListEmpty()
-
-	Global("u_useLongSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
-
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_ANIMATE_DEAD)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//DisplayStringHead(Myself,103313) // Spell: Animate Undead
-		Spell(Myself,CLERIC_ANIMATE_DEAD)
-END
-
-IF
-	ActionListEmpty()
-
-	Global("u_useLongSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
-
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_ANIMATE_DEAD)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//DisplayStringHead(Myself,103313) // Spell: Animate Undead
-		Spell(Myself,WIZARD_ANIMATE_DEAD)
-END
-
-IF
-	ActionListEmpty()
-
-	Global("u_useLongSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
-
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CONJURE_FIRE_ELEMENTAL)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//DisplayStringHead(Myself,103307) // Spell: Conjure Fire Elemental
-		Spell(Myself,CLERIC_CONJURE_FIRE_ELEMENTAL)
-END
-
-////////////////////////////////////////////////////////////////////////////// Short Duration Summon spells
-
-IF
-	ActionListEmpty()
-
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
-
-	NumCreature([GOODCUTOFF.0.PLANATAR],0)
-	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
-	NumCreature([GOODCUTOFF.0.SOLAR],0)
-	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SUMMON_PLANATAR_GOOD)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		////DisplayStringHead(Myself,?) // Spell: Summon Planetar
-		Spell(Myself,WIZARD_SUMMON_PLANATAR_GOOD)
-END
-
-IF
-	ActionListEmpty()
-
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
-
-	NumCreature([GOODCUTOFF.0.PLANATAR],0)
-	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
-	NumCreature([GOODCUTOFF.0.SOLAR],0)
-	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SUMMON_PLANATAR_EVIL)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		////DisplayStringHead(Myself,?) // Spell: Summon Planetar
-		Spell(Myself,WIZARD_SUMMON_PLANATAR_EVIL)
-END
-
-IF
-	ActionListEmpty()
-
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
-
-	NumCreature([GOODCUTOFF.0.PLANATAR],0)
-	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
-	NumCreature([GOODCUTOFF.0.SOLAR],0)
-	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_SUMMON_FALLEN_DEVA)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		////DisplayStringHead(Myself,?) // Spell: Summon Fallen Deva
-		Spell(Myself,CLERIC_SUMMON_FALLEN_DEVA)
-END
-
-IF
-	ActionListEmpty()
-
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
-
-	NumCreature([GOODCUTOFF.0.PLANATAR],0)
-	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
-	NumCreature([GOODCUTOFF.0.SOLAR],0)
-	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_SUMMON_DEVA)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		////DisplayStringHead(Myself,?) // Spell: Summon Deva
-		Spell(Myself,CLERIC_SUMMON_DEVA)
-END
-
-IF
-	ActionListEmpty()
-
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
-
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MORDENKAINENS_SWORD)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		////DisplayStringHead(Myself,?) // Spell: Mordenkainen's Sword
-		Spell(Myself,WIZARD_MORDENKAINENS_SWORD)
-END
-
-IF
-	ActionListEmpty()
-
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
-
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CONJURE_ANIMALS)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//DisplayStringHead(Myself,103308) // Spell: Conjure Animals
-		Spell(Myself,CLERIC_CONJURE_ANIMALS)
-END
-
-IF
-	ActionListEmpty()
-
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
-
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CALL_WOODLAND_BEINGS)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//DisplayStringHead(Myself,103312) // Spell: Call Woodland Beings
-		Spell(Myself,CLERIC_CALL_WOODLAND_BEINGS)
-END
-
-IF
-	ActionListEmpty()
-
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
-
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//DisplayStringHead(Myself,103311) // Spell: Animal Summoning 3
-		Spell(Myself,CLERIC_ANIMAL_SUMMONING_3)
-END
-
-IF
-	ActionListEmpty()
-
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
-
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_ANIMAL_SUMMONING_2)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//DisplayStringHead(Myself,103310) // Spell: Animal Summoning 2
-		Spell(Myself,CLERIC_ANIMAL_SUMMONING_2)
-END
-
-IF
-	ActionListEmpty()
-
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
-
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_ANIMAL_SUMMONING_1)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//DisplayStringHead(Myself,103309) // Spell: Animal Summoning 1
-		Spell(Myself,CLERIC_ANIMAL_SUMMONING_1)
-END
-
-////////////////////////////////////////////////////////////////////////////// Item Summons
-
-IF
-	ActionListEmpty()
-
-	Global("u_useItemSummonSpells","LOCALS",1)
-
-  	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HasItem("WA2HELM",Myself) // Vhailors Helm
-	Global("c_VhailorsHelm","GLOBAL",1)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		SetGlobal("c_VhailorsHelm","GLOBAL",0)
-		////DisplayStringHead(Myself,?)  // Vhailors Helm
-		XEquipItem("WA2HELM",Myself,SLOT_HELMET,EQUIP)
-		UseItemSlotAbility(Myself,SLOT_HELMET,1)
-END
-
-////////////////////////////////////////////////////////////////////////////////// Scrolls: Summoning Spells
-
-IF
-	ActionListEmpty()
-
-	Global("u_useShortSummonSpells","LOCALS",1)
-
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HasItem("SCRL1L",Myself)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103367) // Spell: Monster Summoning 1
-		UseItem("SCRL1L",Myself)
-END
-
-IF
-	ActionListEmpty()
-
-	Global("u_useShortSummonSpells","LOCALS",1)
-
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HasItem("SCRL2A",Myself)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103368) // Spell: Monster Summoning 2
-		UseItem("SCRL2A",Myself)
-END
-
-IF
-	ActionListEmpty()
-
-	Global("u_useShortSummonSpells","LOCALS",1)
-
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HasItem("SCRL2G",Myself)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103369) // Spell: Monster Summoning 3
-		UseItem("SCRL2G",Myself)
 END
 
 ////////////////////////////////////////////////////////////////////////////////// Buff Items
