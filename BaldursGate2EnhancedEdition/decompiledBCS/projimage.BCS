@@ -4164,6 +4164,40 @@ THEN
 		Spell(LastSeenBy(Myself),WIZARD_SPHERE_OF_CHAOS)
 END
 
+// Level 10
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_DRAGONS_BREATH)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!ImmuneToSpellLevel(LastSeenBy(Myself),10)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatGT(LastSeenBy(Myself),50,RESISTMAGIC)
+
+	OR(4)
+		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
+		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
+		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//////DisplayStringHead(Myself,?) // Spell: Dragons Breath
+		Spell(LastSeenBy(Myself),WIZARD_DRAGONS_BREATH)
+END
+
 // Level 8 - Necromancy (7)
 IF
 	ActionListEmpty()
