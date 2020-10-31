@@ -1344,6 +1344,24 @@ THEN
 		UseItem("SCRL1Z",Myself)
 END
 
+/////////////////////////////////////////////////////////////////////////////////////// Simulacrum And Projected Image
+
+IF
+	ActionListEmpty()
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+  	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("WA2HELM",Myself) // Vhailors Helm
+	Global("c_VhailorsHelm","GLOBAL",1)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		SetGlobal("c_VhailorsHelm","GLOBAL",0)
+		////DisplayStringHead(Myself,?)  // Vhailors Helm
+		XEquipItem("WA2HELM",Myself,SLOT_HELMET,EQUIP)
+		UseItemSlotAbility(Myself,SLOT_HELMET,0)
+END
+
 /////////////////////////////////////////////////////////////////////////////////////// Long Duration Summon spells
 
 IF
@@ -1667,23 +1685,6 @@ THEN
 END
 
 ////////////////////////////////////////////////////////////////////////////// Item Summons
-
-IF
-	ActionListEmpty()
-
-	Global("u_useItemSummonSpells","LOCALS",1)
-
-  	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HasItem("WA2HELM",Myself) // Vhailors Helm
-	Global("c_VhailorsHelm","GLOBAL",1)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		SetGlobal("c_VhailorsHelm","GLOBAL",0)
-		////DisplayStringHead(Myself,?)  // Vhailors Helm
-		XEquipItem("WA2HELM",Myself,SLOT_HELMET,EQUIP)
-		UseItemSlotAbility(Myself,SLOT_HELMET,1)
-END
 
 ////////////////////////////////////////////////////////////////////////////////// Scrolls: Summoning Spells
 

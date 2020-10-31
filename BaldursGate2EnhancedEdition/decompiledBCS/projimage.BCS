@@ -1196,6 +1196,24 @@ THEN
 		Spell(Myself,WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
 END
 
+/////////////////////////////////////////////////////////////////////////////////////// Simulacrum And Projected Image
+
+IF
+	ActionListEmpty()
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+  	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("WA2HELM",Myself) // Vhailors Helm
+	Global("c_VhailorsHelm","GLOBAL",1)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		SetGlobal("c_VhailorsHelm","GLOBAL",0)
+		////DisplayStringHead(Myself,?)  // Vhailors Helm
+		XEquipItem("WA2HELM",Myself,SLOT_HELMET,EQUIP)
+		UseItemSlotAbility(Myself,SLOT_HELMET,0)
+END
+
 /////////////////////////////////////////////////////////////////////////////////////// Summon spells
 
 IF
