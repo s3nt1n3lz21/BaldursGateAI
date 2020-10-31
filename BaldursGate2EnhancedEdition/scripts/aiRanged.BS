@@ -3486,6 +3486,58 @@ END
 
 ////////////////////////////////////////////////////////////////////////////////// Buff Items
 
+IF 
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	Class(Myself,MAGE_ALL)
+	CheckStatLT(Myself,24,INT)
+	HasItem("potn29",Myself)  // Potion Of Genius
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Potion Of Genius
+		UseItem("potn29",Myself)  // Potion Of Genius
+END
+
+IF 
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	Class(Myself,MAGE_ALL)
+	CheckStatLT(Myself,24,INT)
+	HasItem("potn37",Myself)  // Potion Of Mind Focusing
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Potion Of Mind Focusing
+		UseItem("potn37",Myself)  // Potion Of Mind Focusing
+END
+
+IF 
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	Class(Myself,FIGHTER_ALL)
+	CheckStatLT(Myself,24,DEX)
+	HasItem("potn37",Myself)  // Potion Of Mind Focusing
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Potion Of Mind Focusing
+		UseItem("potn37",Myself)  // Potion Of Mind Focusing
+END
+
+IF 
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	Class(Myself,CLERIC_ALL)
+	CheckStatLT(Myself,18,WIS)
+	HasItem("potn43",Myself)  // Potion Of Insight
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Potion Of Insight
+		UseItem("potn43",Myself)  // Potion Of Insight
+END
+
 //IF
 //	ActionListEmpty()
 //    !GlobalTimerNotExpired("castnattack","LOCALS")
@@ -3501,9 +3553,6 @@ END
 //		SetGlobal("cloakGargoyle","GLOBAL",0)
 //		UseItemSlotAbility(Myself,SLOT_CLOAK,1)
 //END
-
-// Cant figure out how to check we already used the item. It casts a spell that isn't in the spellstate list.
-// Can we add the spellstate to the list compare to another spell with a spellstate in the list e.g. Bless
 
 ////////////////////////////////////////////////////////////////////////////////// If have a buff spell use it
 
