@@ -1329,6 +1329,28 @@ THEN
 		UseItemSlotAbility(Myself,SLOT_HELMET,0)
 END
 
+/////////////////////////////////////////////////////////////////////////////////////// Prevent Summons Being Dispelled
+
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	!CheckStatGT(NearestMyGroupOfType([GOODCUTOFF.0.0.0.0.SUMMONED]),0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	!Heard([ANYONE],CASTING_PROTECTION_FROM_MAGIC_ENERGY) // If someone else casting protection from magic energy
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(CASTING_PROTECTION_FROM_MAGIC_ENERGY)
+		////DisplayStringHead(Myself,?) // Spell: Protection From Magic Energy
+		Spell(NearestMyGroupOfType([GOODCUTOFF.0.0.0.0.SUMMONED]),WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+END
+
 /////////////////////////////////////////////////////////////////////////////////////// Long Duration Summon spells
 
 IF
@@ -4738,6 +4760,7 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
 	!CheckStatGT(Myself,0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	!Heard([ANYONE],CASTING_PROTECTION_FROM_MAGIC_ENERGY) // If someone else casting protection from magic energy
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4745,15 +4768,19 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		////DisplayStringHead(Myself,?) // Spell: Protection From Magic Energy
+		Shout(CASTING_PROTECTION_FROM_MAGIC_ENERGY)
+		////DisplayStringHead(Myself,103373) // Spell: Protection From Magic Energy
 		Spell(Myself,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
 END
 
 IF
 	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
 	!CheckStatGT(PartySlot1,0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	!Heard([ANYONE],CASTING_PROTECTION_FROM_MAGIC_ENERGY) // If someone else casting protection from magic energy
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4761,15 +4788,20 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		////DisplayStringHead(Myself,?) // Spell: Protection From Magic Energy
+		Shout(CASTING_PROTECTION_FROM_MAGIC_ENERGY)
+		////DisplayStringHead(Myself,103373) // Spell: Protection From Magic Energy
 		Spell(PartySlot1,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
 END
 
 IF
 	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	NumInPartyGT(1)
 	!CheckStatGT(PartySlot2,0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	!Heard([ANYONE],CASTING_PROTECTION_FROM_MAGIC_ENERGY) // If someone else casting protection from magic energy
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4777,15 +4809,20 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		////DisplayStringHead(Myself,?) // Spell: Protection From Magic Energy
+		Shout(CASTING_PROTECTION_FROM_MAGIC_ENERGY)		
+		////DisplayStringHead(Myself,103373) // Spell: Protection From Magic Energy
 		Spell(PartySlot2,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
 END
 
 IF
 	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	NumInPartyGT(2)
 	!CheckStatGT(PartySlot3,0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	!Heard([ANYONE],CASTING_PROTECTION_FROM_MAGIC_ENERGY) // If someone else casting protection from magic energy
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4793,15 +4830,20 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		////DisplayStringHead(Myself,?) // Spell: Protection From Magic Energy
+		Shout(CASTING_PROTECTION_FROM_MAGIC_ENERGY)
+		////DisplayStringHead(Myself,103373) // Spell: Protection From Magic Energy
 		Spell(PartySlot3,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
 END
 
 IF
 	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	NumInPartyGT(3)
 	!CheckStatGT(PartySlot4,0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	!Heard([ANYONE],CASTING_PROTECTION_FROM_MAGIC_ENERGY) // If someone else casting protection from magic energy
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4809,15 +4851,20 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		////DisplayStringHead(Myself,?) // Spell: Protection From Magic Energy
+		Shout(CASTING_PROTECTION_FROM_MAGIC_ENERGY)
+		////DisplayStringHead(Myself,103373) // Spell: Protection From Magic Energy
 		Spell(PartySlot4,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
 END
 
 IF
 	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	NumInPartyGT(4)
 	!CheckStatGT(PartySlot5,0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	!Heard([ANYONE],CASTING_PROTECTION_FROM_MAGIC_ENERGY) // If someone else casting protection from magic energy
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4825,15 +4872,20 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		////DisplayStringHead(Myself,?) // Spell: Protection From Magic Energy
+		Shout(CASTING_PROTECTION_FROM_MAGIC_ENERGY)
+		////DisplayStringHead(Myself,103373) // Spell: Protection From Magic Energy
 		Spell(PartySlot5,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
 END
 
 IF
 	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	NumInPartyGT(5)
 	!CheckStatGT(PartySlot6,0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+	!Heard([ANYONE],CASTING_PROTECTION_FROM_MAGIC_ENERGY) // If someone else casting protection from magic energy
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4841,7 +4893,8 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		////DisplayStringHead(Myself,?) // Spell: Protection From Magic Energy
+		Shout(CASTING_PROTECTION_FROM_MAGIC_ENERGY)
+		////DisplayStringHead(Myself,103373) // Spell: Protection From Magic Energy
 		Spell(PartySlot6,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
 END
 
