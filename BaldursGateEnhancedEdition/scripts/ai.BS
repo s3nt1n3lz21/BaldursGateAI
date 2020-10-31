@@ -1334,6 +1334,24 @@ THEN
 		Spell(Myself,WIZARD_STONE_SKIN)
 END
 
+// Level 5
+// 600 rounds (1 Hour) - Self
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_IRONSKIN)
+	!CheckSpellState(Myself,IRON_SKINS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103292) // Spell: Iron Skins
+		Spell(Myself,CLERIC_IRONSKIN)
+END
+
 /////////////////////////////////////////////////////////////////////////////////////// Simulacrum And Projected Image
 
 IF
@@ -3550,24 +3568,6 @@ END
 // 1 Round = 6 Seconds Real Time
 // 1 Turn = 10 Rounds = 1 Minute Real time
 // 1 Hour = 5 Turns = 50 Rounds = 5 Minutes Real Time
-
-// Level 5
-// 600 rounds (1 Hour) - Self
-IF
-	ActionListEmpty()
-	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_IRONSKIN)
-	!CheckSpellState(Myself,IRON_SKINS)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-	    SetGlobalTimer("castnattack","LOCALS",6)
-		////DisplayStringHead(Myself,71453) // Spell: Iron Skins
-		Spell(Myself,CLERIC_IRONSKIN)
-END
 
 // Level 1
 // 50 Rounds (5 minutes) - 15ft Radius
