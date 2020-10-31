@@ -1325,6 +1325,29 @@ THEN
 		UseItem("SCRL1Z",Myself)
 END
 
+/////////////////////////////////////////////////////////////////////////////////////// Stoneskins
+
+// Level 4
+// 600 Rounds (1 Hour) - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_STONE_SKIN)
+	!CheckSpellState(Myself,STONESKIN)
+	!CheckStatGT(Myself,0,STONESKINS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103275) // Spell: Stoneskin
+		Spell(Myself,WIZARD_STONE_SKIN)
+END
+
 /////////////////////////////////////////////////////////////////////////////////////// Simulacrum And Projected Image
 
 IF
@@ -4744,25 +4767,6 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		////DisplayStringHead(Myself,71445) // Spell: Melfs Minute Meteors
 		Spell(Myself,WIZARD_MELF_METEOR)
-END
-
-// Level 4
-// 600 Rounds (1 Hour) - Self
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_STONE_SKIN)
-	!CheckSpellState(Myself,STONESKIN)
-	!CheckStatGT(Myself,0,STONESKINS)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		////DisplayStringHead(Myself,71484) // Spell: Stoneskin
-		Spell(Myself,WIZARD_STONE_SKIN)
 END
 
 // Level 6
