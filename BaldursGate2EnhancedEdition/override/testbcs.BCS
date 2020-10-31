@@ -32,36 +32,44 @@ THEN
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_NEUTRALIZE_POISON)  // SPPR404.SPL (Neutralize Poison)
 	StateCheck(MostDamagedOf([PC]),STATE_POISONED)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(MostDamagedOf([PC]),CLERIC_NEUTRALIZE_POISON)  // SPPR404.SPL (Neutralize Poison)
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CURE_DISEASE)  // SPPR317.SPL (Cure Disease)
 	StateCheck(MostDamagedOf([PC]),STATE_DISEASED)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(MostDamagedOf([PC]),CLERIC_CURE_DISEASE)  // SPPR317.SPL (Cure Disease)
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_HEAL)  // SPPR607.SPL (Heal)
 	HPPercentLT(MostDamagedOf([PC]),50)
 	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(MostDamagedOf([PC]),CLERIC_HEAL)  // SPPR607.SPL (Heal)
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)  // SPPR502.SPL (Cure Critical Wounds)
 	HPPercentLT(MostDamagedOf([PC]),70)
 	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(MostDamagedOf([PC]),CLERIC_CURE_CRITICAL_WOUNDS)  // SPPR502.SPL (Cure Critical Wounds)
 END
 
@@ -109,6 +117,7 @@ THEN
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	Allegiance(LastSeenBy(Myself),PC)
 	HaveSpell(CLERIC_DISPEL_MAGIC)  // SPPR303.SPL (Dispel Magic)
 	OR(2)
@@ -116,6 +125,7 @@ IF
 		StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)  // SPPR303.SPL (Dispel Magic)
 END
 
@@ -138,11 +148,13 @@ THEN
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	Allegiance(LastSeenBy(Myself),PC)
 	HaveSpell(CLERIC_REMOVE_FEAR)  // SPPR108.SPL (Remove Fear)
 	StateCheck(LastSeenBy(Myself),STATE_PANIC)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(LastSeenBy(Myself),CLERIC_REMOVE_FEAR)  // SPPR108.SPL (Remove Fear)
 END
 
@@ -165,28 +177,34 @@ THEN
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	Allegiance(LastSeenBy(Myself),PC)
 	HaveSpell(CLERIC_LESSER_RESTORATION)  // SPPR417.SPL (Lesser Restoration)
 	CheckStatGT(LastSeenBy(Myself),0,LEVELDRAIN)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(LastSeenBy(Myself),CLERIC_LESSER_RESTORATION)  // SPPR417.SPL (Lesser Restoration)
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	Detect(NearestEnemyOf(Myself))
 	!See(LastSeenBy(Myself))
 	HaveSpell(CLERIC_TRUE_SIGHT)  // SPPR505.SPL (True Seeing)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(Myself,CLERIC_TRUE_SIGHT)  // SPPR505.SPL (True Seeing)
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	See([ENEMY])
 	Global("u_OutOfCombatRange","LOCALS",1)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		SetGlobal("u_OutOfCombatRange","LOCALS",0)
 		ClearActions(Myself)
 END
@@ -258,6 +276,7 @@ THEN
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	See(NearestEnemyOf(Myself))
 	Range(LastSeenBy(Myself),10)
 	Alignment(LastSeenBy(Myself),MASK_EVIL)
@@ -266,10 +285,12 @@ IF
 	HaveSpell(CLERIC_HOLY_WORD)  // SPPR710.SPL (Holy Word)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(Myself,CLERIC_HOLY_WORD)  // SPPR710.SPL (Holy Word)
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	See(NearestEnemyOf(Myself))
 	OR(2)
 		Class(LastSeenBy(Myself),MAGE_ALL)
@@ -277,138 +298,168 @@ IF
 	HaveSpell(CLERIC_INSECT_PLAGUE)  // SPPR517.SPL (Insect Plague)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(LastSeenBy(Myself),CLERIC_INSECT_PLAGUE)  // SPPR517.SPL (Insect Plague)
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	See(NearestEnemyOf(Myself))
 	HaveSpell(WIZARD_CHAOS)  // SPWI508.SPL (Chaos)
 	!StateCheck(LastSeenBy(Myself),STATE_CONFUSED)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(NearestEnemyOf(Myself),WIZARD_CHAOS)  // SPWI508.SPL (Chaos)
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	See(NearestEnemyOf(Myself))
 	CheckStatLT(LastSeenBy(Myself),50,RESISTMAGICFIRE)
 	HaveSpell(CLERIC_FLAME_STRIKE)  // SPPR503.SPL (Flame Strike)
 	!HasBounceEffects(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(LastSeenBy(Myself),CLERIC_FLAME_STRIKE)  // SPPR503.SPL (Flame Strike)
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	See(NearestEnemyOf(Myself))
 	HaveSpell(WIZARD_FLAME_ARROW)  // SPWI303.SPL (Flame Arrow)
 	!HasBounceEffects(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(LastSeenBy(Myself),WIZARD_FLAME_ARROW)  // SPWI303.SPL (Flame Arrow)
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	See(NearestEnemyOf(Myself))
 	HaveSpell(WIZARD_MAGIC_MISSILE)  // SPWI112.SPL (Magic Missile)
 	!HasBounceEffects(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(LastSeenBy(Myself),WIZARD_MAGIC_MISSILE)  // SPWI112.SPL (Magic Missile)
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_HEAL)  // SPPR607.SPL (Heal)
 	HPPercentLT(MostDamagedOf([PC]),70)
 	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(MostDamagedOf([PC]),CLERIC_HEAL)  // SPPR607.SPL (Heal)
 END
 
 IF
-	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 	HPPercentLT(MostDamagedOf([PC]),70)
 	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
 THEN
 	RESPONSE #100
-		Spell(MostDamagedOf([PC]),CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Spell(MostDamagedOf([PC]),CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 END
 
 IF
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)  // SPPR502.SPL (Cure Critical Wounds)
 	HPPercentLT(MostDamagedOf([PC]),90)
 	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
 THEN
 	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(MostDamagedOf([PC]),CLERIC_CURE_CRITICAL_WOUNDS)  // SPPR502.SPL (Cure Critical Wounds)
 END
 
 IF
-	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 	HPPercentLT(MostDamagedOf([PC]),70)
 	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
 THEN
 	RESPONSE #100
-		Spell(MostDamagedOf([PC]),CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Spell(MostDamagedOf([PC]),CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 END
 
 IF
-	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 	StateCheck(PartySlot1,STATE_DEAD)
 	NumCreatureLT([EVILCUTOFF],1)
 	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
 THEN
 	RESPONSE #100
-		Spell(PartySlot1,CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Spell(PartySlot1,CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 END
 
 IF
-	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 	StateCheck(PartySlot2,STATE_DEAD)
 	NumCreatureLT([EVILCUTOFF],1)
 	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
 THEN
 	RESPONSE #100
-		Spell(PartySlot2,CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Spell(PartySlot2,CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 END
 
 IF
-	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 	StateCheck(PartySlot3,STATE_DEAD)
 	NumCreatureLT([EVILCUTOFF],1)
 	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
 THEN
 	RESPONSE #100
-		Spell(PartySlot3,CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Spell(PartySlot3,CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 END
 
 IF
-	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 	StateCheck(PartySlot4,STATE_DEAD)
 	NumCreatureLT([EVILCUTOFF],1)
 	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
 THEN
 	RESPONSE #100
-		Spell(PartySlot4,CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Spell(PartySlot4,CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 END
 
 IF
-	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 	StateCheck(PartySlot5,STATE_DEAD)
 	NumCreatureLT([EVILCUTOFF],1)
 	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
 THEN
 	RESPONSE #100
-		Spell(PartySlot5,CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Spell(PartySlot5,CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 END
 
 IF
-	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 	StateCheck(PartySlot6,STATE_DEAD)
 	NumCreatureLT([EVILCUTOFF],1)
 	!StateCheck(MostDamagedOf(Myself),STATE_INVISIBLE)
 THEN
 	RESPONSE #100
-		Spell(PartySlot6,CLERIC_RAISE_DEAD)  // SPPR607.SPL (Heal)
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Spell(PartySlot6,CLERIC_RAISE_DEAD)  // SPPR504.SPL (Raise Dead)
 END
+
