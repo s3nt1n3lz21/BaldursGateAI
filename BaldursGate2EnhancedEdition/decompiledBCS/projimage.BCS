@@ -1797,6 +1797,45 @@ END
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItemEquiped("RODS06",Myself)  // Wand of Spell Striking
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	OR(14)
+		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),3,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
+		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TRAP)
+		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_SHIELD)
+		CheckStat(LastSeenBy(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Rod Of Reversal
+		UseItem("RODS06",LastSeenBy(Myself))  // Rod Of Reversal
+END
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItemEquiped("WAND18",Myself)  // Wand of Spell Striking
 
 	OR(12)
@@ -3122,6 +3161,7 @@ THEN
 END
 
 /////////////////////////////////////////////////////////////////////////////////////// Debuff/Control Wands
+
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
