@@ -3657,7 +3657,7 @@ IF
 	HaveSpell(CLERIC_DEATH_WARD)
 	!CheckSpellState(PartySlot1,DEATH_WARD)
 	!CheckStat(PartySlot1,1,DEATH_WARD)
-	
+
 	!CheckStat(PartySlot1,1,MINORGLOBE)
 	!CheckStat(PartySlot1,7,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
@@ -3675,6 +3675,136 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,103366) // Spell: Death Ward
 		Spell(PartySlot1,CLERIC_DEATH_WARD)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_DEATH_WARD)
+	!CheckSpellState(PartySlot2,DEATH_WARD)
+	!CheckStat(PartySlot2,1,DEATH_WARD)
+
+	!CheckStat(PartySlot2,1,MINORGLOBE)
+	!CheckStat(PartySlot2,7,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot2,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot2,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot2,4)
+	!StateCheck(PartySlot2,STATE_INVISIBLE)
+	!StateCheck(PartySlot2,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot2,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103366) // Spell: Death Ward
+		Spell(PartySlot2,CLERIC_DEATH_WARD)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_DEATH_WARD)
+	!CheckSpellState(PartySlot3,DEATH_WARD)
+	!CheckStat(PartySlot3,1,DEATH_WARD)
+
+	!CheckStat(PartySlot3,1,MINORGLOBE)
+	!CheckStat(PartySlot3,7,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot3,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot3,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot3,4)
+	!StateCheck(PartySlot3,STATE_INVISIBLE)
+	!StateCheck(PartySlot3,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot3,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103366) // Spell: Death Ward
+		Spell(PartySlot3,CLERIC_DEATH_WARD)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_DEATH_WARD)
+	!CheckSpellState(PartySlot4,DEATH_WARD)
+	!CheckStat(PartySlot4,1,DEATH_WARD)
+
+	!CheckStat(PartySlot4,1,MINORGLOBE)
+	!CheckStat(PartySlot4,7,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot4,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot4,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot4,4)
+	!StateCheck(PartySlot4,STATE_INVISIBLE)
+	!StateCheck(PartySlot4,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot4,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103366) // Spell: Death Ward
+		Spell(PartySlot4,CLERIC_DEATH_WARD)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_DEATH_WARD)
+	!CheckSpellState(PartySlot5,DEATH_WARD)
+	!CheckStat(PartySlot5,1,DEATH_WARD)
+
+	!CheckStat(PartySlot5,1,MINORGLOBE)
+	!CheckStat(PartySlot5,7,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot5,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot5,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot5,4)
+	!StateCheck(PartySlot5,STATE_INVISIBLE)
+	!StateCheck(PartySlot5,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot5,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103366) // Spell: Death Ward
+		Spell(PartySlot5,CLERIC_DEATH_WARD)
+END
+
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_DEATH_WARD)
+	!CheckSpellState(PartySlot6,DEATH_WARD)
+	!CheckStat(PartySlot6,1,DEATH_WARD)
+
+	!CheckStat(PartySlot6,1,MINORGLOBE)
+	!CheckStat(PartySlot6,7,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot6,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot6,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(PartySlot6,4)
+	!StateCheck(PartySlot6,STATE_INVISIBLE)
+	!StateCheck(PartySlot6,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot6,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103366) // Spell: Death Ward
+		Spell(PartySlot6,CLERIC_DEATH_WARD)
 END
 
 // Level 4 - Abjuration 1
