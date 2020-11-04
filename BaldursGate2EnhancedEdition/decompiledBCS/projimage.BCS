@@ -1,6 +1,27 @@
 // TESTING
 // //DisplayStringHead(Myself,103365) // Test
 
+
+////////////////////////////////////////////////////////////////// Enable Disable Debuffs
+
+IF
+	HotKey(T)
+	Global("u_useDebuffSpells","LOCALS",0)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,16469)  // On
+		SetGlobal("u_useDebuffSpells","LOCALS",1) // On
+END
+
+IF
+	HotKey(T)
+	Global("u_useDebuffSpells","LOCALS",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,16470)  // Off
+		SetGlobal("u_useDebuffSpells","LOCALS",0) // Off
+END
+
 ////////////////////////////////////////////////////////////////// Cancel Melee If AI Ranged Has Run Out Of Ammo And Can See An Enemy
 
 // AIRanged can sometimes still use melee if their ranged weapon suddenly runs out of ammo and continue to attack the enemy with melee for the rest of the round
@@ -1732,6 +1753,7 @@ END
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
+	Global("u_useDebuffSpells","LOCALS",1)
 	HaveSpell(CLERIC_ZONE_OF_SWEET_AIR)  // SPPR318.SPL (Zone of Sweet Air)
 	OR(9)
 		SpellCast([ANYONE],WIZARD_INCENDIARY_CLOUD)  // SPWI810.SPL (Incendiary Cloud)
@@ -1759,6 +1781,7 @@ END
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
+	Global("u_useDebuffSpells","LOCALS",1)
 	HaveSpell(CLERIC_SILENCE_15_FOOT)  // SPPR211.SPL (Silence, 15' Radius)
 	OR(4)
 		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
@@ -1797,6 +1820,7 @@ END
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
+	Global("u_useDebuffSpells","LOCALS",1)
 	HasItemEquiped("RODS06",Myself)  // Wand of Spell Striking
 
 	OR(4)
@@ -1836,6 +1860,7 @@ END
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
+	Global("u_useDebuffSpells","LOCALS",1)
 	HasItemEquiped("WAND18",Myself)  // Wand of Spell Striking
 
 	OR(12)
@@ -1869,6 +1894,7 @@ END
 // Level 6 - Abjuration 1
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -1910,6 +1936,7 @@ END
 // Level 5 - Abjuration 1
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -1944,6 +1971,7 @@ END
 // Level 4 - Abjuration
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -1979,6 +2007,7 @@ END
 // Level 2 - Divination
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2004,6 +2033,7 @@ END
 // Level 2 - Enchantment
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_HOLD_PERSON)
 	See([EVILCUTOFF.HUMANOID])
@@ -2044,6 +2074,7 @@ END
 // Level 1 - Enchantment
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2088,6 +2119,7 @@ END
 // Level 3 - Enchantment
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2130,6 +2162,7 @@ END
 // Level 5 - Enchantment
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2172,6 +2205,7 @@ END
 // Level 5 - Enchantment
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2231,6 +2265,7 @@ END
 // Level 2 - Necromancy
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2353,6 +2388,7 @@ END
 // Dispel Magic On Enemies
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2456,6 +2492,7 @@ END
 
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2495,6 +2532,7 @@ END
 
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2534,6 +2572,7 @@ END
 
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2573,6 +2612,7 @@ END
 
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2612,6 +2652,7 @@ END
 
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2652,6 +2693,7 @@ END
 // Dispel Magic On Enemies
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2720,6 +2762,7 @@ END
 // Level 3 - Abjuration
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2789,6 +2832,7 @@ END
 // Dispel Magic On Allies
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
   	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	OR(13)
@@ -2826,6 +2870,7 @@ END
 
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	OR(13)
@@ -3136,6 +3181,7 @@ END
 
 IF
 	ActionListEmpty()
+	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
