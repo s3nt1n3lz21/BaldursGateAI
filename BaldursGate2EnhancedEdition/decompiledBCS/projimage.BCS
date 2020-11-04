@@ -1821,13 +1821,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	Global("u_useDebuffSpells","LOCALS",1)
-	HasItemEquiped("RODS06",Myself)  // Wand of Spell Striking
-
-	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	HasItemEquiped("RODS06",Myself)  // Rod Of Reversal
 
 	OR(14)
 		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
