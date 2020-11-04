@@ -1047,6 +1047,27 @@ THEN
 END
 
 
+////////////////////////////////////////////////////////////////////////////////////// Spell Immunity: Divination
+
+IF
+	ActionListEmpty()
+
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SPELL_IMMUNITY)
+	!CheckSpellState(Myself,SI_DIVINATION)
+	!CheckStat(Myself,3,WIZARD_SPELL_IMMUNITY)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Spell Immunity Divination
+		Spell(Myself,WIZARD_SPELL_IMMUNITY)
+		ApplySpell(Myself,WIZARD_SPELL_IMMUNITY_DIVINATION)
+END
+
 ////////////////////////////////////////////////////////////////////////////////////// Protect Myself From Being Dispelled
 
 // Level 6
@@ -1069,27 +1090,6 @@ THEN
 		Shout(CASTING_PROTECTION_FROM_MAGIC_ENERGY)
 		////DisplayStringHead(Myself,103373) // Spell: Protection From Magic Energy
 		Spell(Myself,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
-END
-
-////////////////////////////////////////////////////////////////////////////////////// Spell Immunity: Divination
-
-IF
-	ActionListEmpty()
-
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SPELL_IMMUNITY)
-	!CheckSpellState(Myself,SI_DIVINATION)
-	!CheckStat(Myself,3,WIZARD_SPELL_IMMUNITY)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		////DisplayStringHead(Myself,?) // Spell: Spell Immunity Divination
-		Spell(Myself,WIZARD_SPELL_IMMUNITY)
-		ApplySpell(Myself,WIZARD_SPELL_IMMUNITY_DIVINATION)
 END
 
 ////////////////////////////////////////////////////////////////////////////////////// Spell Shields
