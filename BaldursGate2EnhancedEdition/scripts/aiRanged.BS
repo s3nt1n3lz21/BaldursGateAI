@@ -3116,6 +3116,80 @@ THEN
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
+// Level 5 - Conjuration
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_INSECT_PLAGUE)
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	!CheckSpellState(LastSeenBy(Myself),MISCAST_MAGIC)
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_INSECT_PLAGUE)
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),5)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//..DisplayStringHead(Myself,?) // Spell: Insect Plague
+		Spell(LastSeenBy(Myself),CLERIC_INSECT_PLAGUE)
+END
+
+// Level 3 - Conjuration
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_SUMMON_INSECTS)
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	!CheckSpellState(LastSeenBy(Myself),MISCAST_MAGIC)
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_INSECT_PLAGUE)
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Summon Insects
+		Spell(LastSeenBy(Myself),CLERIC_SUMMON_INSECTS)
+END
+
 // Level 3 - Enchantment
 IF
 	ActionListEmpty()
