@@ -1630,6 +1630,29 @@ IF
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_WYVERN_CALL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		////DisplayStringHead(Myself,?) // Spell: Wyvern Call
+		Spell(Myself,WIZARD_WYVERN_CALL)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CONJURE_ANIMALS)
 
