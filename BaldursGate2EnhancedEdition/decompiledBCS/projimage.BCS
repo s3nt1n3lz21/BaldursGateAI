@@ -2497,7 +2497,7 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	OR(13)
+	OR(14)
 		CheckSpellState(PartySlot1,HOPELESSNESS)
 		CheckSpellState(PartySlot1,ENFEEBLED)
 		CheckSpellState(PartySlot1,HELD)
@@ -2511,6 +2511,7 @@ IF
 		StateCheck(PartySlot1,STATE_SLEEPING)
 		StateCheck(PartySlot1,STATE_SLOWED)
 		StateCheck(PartySlot1,STATE_FEEBLEMINDED)
+		CheckStatGT(PartySlot1,0,CLERIC_INSECT_PLAGUE)
 	See(PartySlot1)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -2532,12 +2533,11 @@ END
 
 IF
 	ActionListEmpty()
-	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	OR(13)
+	OR(14)
 		CheckSpellState(PartySlot2,HOPELESSNESS)
 		CheckSpellState(PartySlot2,ENFEEBLED)
 		CheckSpellState(PartySlot2,HELD)
@@ -2551,6 +2551,7 @@ IF
 		StateCheck(PartySlot2,STATE_SLEEPING)
 		StateCheck(PartySlot2,STATE_SLOWED)
 		StateCheck(PartySlot2,STATE_FEEBLEMINDED)
+		CheckStatGT(PartySlot2,0,CLERIC_INSECT_PLAGUE)
 	See(PartySlot2)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -2572,12 +2573,11 @@ END
 
 IF
 	ActionListEmpty()
-	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	OR(13)
+	OR(14)
 		CheckSpellState(PartySlot3,HOPELESSNESS)
 		CheckSpellState(PartySlot3,ENFEEBLED)
 		CheckSpellState(PartySlot3,HELD)
@@ -2591,6 +2591,7 @@ IF
 		StateCheck(PartySlot3,STATE_SLEEPING)
 		StateCheck(PartySlot3,STATE_SLOWED)
 		StateCheck(PartySlot3,STATE_FEEBLEMINDED)
+		CheckStatGT(PartySlot3,0,CLERIC_INSECT_PLAGUE)
 	See(PartySlot3)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -2612,12 +2613,11 @@ END
 
 IF
 	ActionListEmpty()
-	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	OR(13)
+	OR(14)
 		CheckSpellState(PartySlot4,HOPELESSNESS)
 		CheckSpellState(PartySlot4,ENFEEBLED)
 		CheckSpellState(PartySlot4,HELD)
@@ -2631,6 +2631,7 @@ IF
 		StateCheck(PartySlot4,STATE_SLEEPING)
 		StateCheck(PartySlot4,STATE_SLOWED)
 		StateCheck(PartySlot4,STATE_FEEBLEMINDED)
+		CheckStatGT(PartySlot4,0,CLERIC_INSECT_PLAGUE)
 	See(PartySlot4)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -2652,12 +2653,11 @@ END
 
 IF
 	ActionListEmpty()
-	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	OR(13)
+	OR(14)
 		CheckSpellState(PartySlot5,HOPELESSNESS)
 		CheckSpellState(PartySlot5,ENFEEBLED)
 		CheckSpellState(PartySlot5,HELD)
@@ -2671,6 +2671,7 @@ IF
 		StateCheck(PartySlot5,STATE_SLEEPING)
 		StateCheck(PartySlot5,STATE_SLOWED)
 		StateCheck(PartySlot5,STATE_FEEBLEMINDED)
+		CheckStatGT(PartySlot5,0,CLERIC_INSECT_PLAGUE)
 	See(PartySlot5)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -2692,12 +2693,11 @@ END
 
 IF
 	ActionListEmpty()
-	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	OR(13)
+	OR(14)
 		CheckSpellState(PartySlot6,HOPELESSNESS)
 		CheckSpellState(PartySlot6,ENFEEBLED)
 		CheckSpellState(PartySlot6,HELD)
@@ -2711,6 +2711,7 @@ IF
 		StateCheck(PartySlot6,STATE_SLEEPING)
 		StateCheck(PartySlot6,STATE_SLOWED)
 		StateCheck(PartySlot6,STATE_FEEBLEMINDED)
+		CheckStatGT(PartySlot6,0,CLERIC_INSECT_PLAGUE)
 	See(PartySlot6)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -2733,7 +2734,6 @@ END
 // Dispel Magic On Enemies
 IF
 	ActionListEmpty()
-	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2802,7 +2802,6 @@ END
 // Level 3 - Abjuration
 IF
 	ActionListEmpty()
-	Global("u_useDebuffSpells","LOCALS",1)
 	OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
@@ -2872,10 +2871,9 @@ END
 // Dispel Magic On Allies
 IF
 	ActionListEmpty()
-	Global("u_useDebuffSpells","LOCALS",1)
-  	!GlobalTimerNotExpired("castnattack","LOCALS")
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	OR(13)
+	OR(14)
 		CheckSpellState(PartySlot1,HOPELESSNESS)
 		CheckSpellState(PartySlot1,ENFEEBLED)
 		CheckSpellState(PartySlot1,HELD)
@@ -2889,6 +2887,7 @@ IF
 		StateCheck(PartySlot1,STATE_SLEEPING)
 		StateCheck(PartySlot1,STATE_SLOWED)
 		StateCheck(PartySlot1,STATE_FEEBLEMINDED)
+		CheckStatGT(PartySlot1,0,CLERIC_INSECT_PLAGUE)
 	See(PartySlot1)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -2910,10 +2909,9 @@ END
 
 IF
 	ActionListEmpty()
-	Global("u_useDebuffSpells","LOCALS",1)
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	OR(13)
+	OR(14)
 		CheckSpellState(PartySlot2,HOPELESSNESS)
 		CheckSpellState(PartySlot2,ENFEEBLED)
 		CheckSpellState(PartySlot2,HELD)
@@ -2927,6 +2925,7 @@ IF
 		StateCheck(PartySlot2,STATE_SLEEPING)
 		StateCheck(PartySlot2,STATE_SLOWED)
 		StateCheck(PartySlot2,STATE_FEEBLEMINDED)
+		CheckStatGT(PartySlot2,0,CLERIC_INSECT_PLAGUE)
 	See(PartySlot2)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -2950,7 +2949,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	OR(13)
+	OR(14)
 		CheckSpellState(PartySlot3,HOPELESSNESS)
 		CheckSpellState(PartySlot3,ENFEEBLED)
 		CheckSpellState(PartySlot3,HELD)
@@ -2964,6 +2963,7 @@ IF
 		StateCheck(PartySlot3,STATE_SLEEPING)
 		StateCheck(PartySlot3,STATE_SLOWED)
 		StateCheck(PartySlot3,STATE_FEEBLEMINDED)
+		CheckStatGT(PartySlot3,0,CLERIC_INSECT_PLAGUE)
 	See(PartySlot3)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -2987,7 +2987,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	OR(13)
+	OR(14)
 		CheckSpellState(PartySlot4,HOPELESSNESS)
 		CheckSpellState(PartySlot4,ENFEEBLED)
 		CheckSpellState(PartySlot4,HELD)
@@ -3001,6 +3001,7 @@ IF
 		StateCheck(PartySlot4,STATE_SLEEPING)
 		StateCheck(PartySlot4,STATE_SLOWED)
 		StateCheck(PartySlot4,STATE_FEEBLEMINDED)
+		CheckStatGT(PartySlot4,0,CLERIC_INSECT_PLAGUE)
 	See(PartySlot4)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -3024,7 +3025,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	OR(13)
+	OR(14)
 		CheckSpellState(PartySlot5,HOPELESSNESS)
 		CheckSpellState(PartySlot5,ENFEEBLED)
 		CheckSpellState(PartySlot5,HELD)
@@ -3038,6 +3039,7 @@ IF
 		StateCheck(PartySlot5,STATE_SLEEPING)
 		StateCheck(PartySlot5,STATE_SLOWED)
 		StateCheck(PartySlot5,STATE_FEEBLEMINDED)
+		CheckStatGT(PartySlot5,0,CLERIC_INSECT_PLAGUE)
 	See(PartySlot5)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -3061,7 +3063,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	OR(13)
+	OR(14)
 		CheckSpellState(PartySlot6,HOPELESSNESS)
 		CheckSpellState(PartySlot6,ENFEEBLED)
 		CheckSpellState(PartySlot6,HELD)
@@ -3075,6 +3077,7 @@ IF
 		StateCheck(PartySlot6,STATE_SLEEPING)
 		StateCheck(PartySlot6,STATE_SLOWED)
 		StateCheck(PartySlot6,STATE_FEEBLEMINDED)
+		CheckStatGT(PartySlot6,0,CLERIC_INSECT_PLAGUE)
 	See(PartySlot6)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
