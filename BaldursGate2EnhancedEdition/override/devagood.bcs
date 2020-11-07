@@ -82,6 +82,74 @@ CR
 CR
 CO
 TR
+33 84 0 0 0 "" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16399 0 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+CO
+RS
+RE
+100AC
+269OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 1 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+16469 0 0 0 0"" "" AC
+AC
+30OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+1 0 0 0 0"LOCALSu_useSpells" "" AC
+RE
+RS
+CR
+CR
+CO
+TR
+33 84 0 0 0 "" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+CO
+RS
+RE
+100AC
+269OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 1 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+16470 0 0 0 0"" "" AC
+AC
+30OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+0 0 0 0 0"LOCALSu_useSpells" "" AC
+RE
+RS
+CR
+CR
+CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
 16429 50 0 0 0 "" "" OB
 0 0 0 0 0 0 0 1 0 0 0 0 ""OB
 TR
@@ -114,6 +182,14 @@ CR
 CR
 CO
 TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
 16433 1404 0 0 0 "" "" OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 TR
@@ -125,6 +201,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -138,6 +222,14 @@ CR
 CR
 CO
 TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
 16433 1317 0 0 0 "" "" OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 TR
@@ -149,6 +241,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -161,6 +261,14 @@ RS
 CR
 CR
 CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
 TR
 16433 1607 0 0 0 "" "" OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
@@ -177,6 +285,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -189,6 +305,14 @@ RS
 CR
 CR
 CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
 TR
 16433 1502 0 0 0 "" "" OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
@@ -205,6 +329,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -382,6 +514,14 @@ CR
 CR
 CO
 TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
 16395 2 0 0 0 "" "" OB
 0 0 0 0 0 0 0 1 18 0 0 0 ""OB
 TR
@@ -405,6 +545,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -482,6 +630,14 @@ CR
 CR
 CO
 TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
 16395 2 0 0 0 "" "" OB
 0 0 0 0 0 0 0 1 18 0 0 0 ""OB
 TR
@@ -497,6 +653,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -574,6 +738,14 @@ CR
 CR
 CO
 TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
 16395 2 0 0 0 "" "" OB
 0 0 0 0 0 0 0 1 18 0 0 0 ""OB
 TR
@@ -589,6 +761,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -601,6 +781,14 @@ RS
 CR
 CR
 CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
 TR
 16500 0 0 0 0 "" "" OB
 0 0 0 0 0 0 0 1 12 0 0 0 ""OB
@@ -617,6 +805,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -630,6 +826,10 @@ CR
 CR
 CO
 TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
 16412 0 0 0 0 "" "" OB
 255 0 0 0 0 0 0 0 0 0 0 0 ""OB
 TR
@@ -641,6 +841,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 30OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -902,6 +1110,14 @@ CR
 CR
 CO
 TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
 16412 0 0 0 0 "" "" OB
 0 0 0 0 0 0 0 1 12 0 0 0 ""OB
 TR
@@ -929,6 +1145,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -941,6 +1165,14 @@ RS
 CR
 CR
 CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
 TR
 16412 0 0 0 0 "" "" OB
 0 0 0 0 0 0 0 1 12 0 0 0 ""OB
@@ -965,6 +1197,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -977,6 +1217,14 @@ RS
 CR
 CR
 CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
 TR
 16412 0 0 0 0 "" "" OB
 0 0 0 0 0 0 0 1 12 0 0 0 ""OB
@@ -993,6 +1241,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -1005,6 +1261,14 @@ RS
 CR
 CR
 CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
 TR
 16412 0 0 0 0 "" "" OB
 0 0 0 0 0 0 0 1 12 0 0 0 ""OB
@@ -1025,6 +1289,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -1037,6 +1309,14 @@ RS
 CR
 CR
 CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
 TR
 16412 0 0 0 0 "" "" OB
 0 0 0 0 0 0 0 1 12 0 0 0 ""OB
@@ -1053,6 +1333,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -1065,6 +1353,14 @@ RS
 CR
 CR
 CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
 TR
 16412 0 0 0 0 "" "" OB
 0 0 0 0 0 0 0 1 12 0 0 0 ""OB
@@ -1081,6 +1377,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -1093,6 +1397,14 @@ RS
 CR
 CR
 CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
 TR
 16433 1607 0 0 0 "" "" OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
@@ -1109,6 +1421,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -1121,6 +1441,58 @@ RS
 CR
 CR
 CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16433 1504 0 0 0 "" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16429 70 0 0 0 "" "" OB
+2 0 0 0 0 0 0 6 0 0 0 0 ""OB
+TR
+TR
+16439 16 1 0 0 "" "" OB
+0 0 0 0 0 0 0 1 6 0 0 0 ""OB
+TR
+CO
+RS
+RE
+100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
+31OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+2 0 0 0 0 0 0 6 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+1504 0 0 0 0"" "" AC
+RE
+RS
+CR
+CR
+CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
 TR
 16433 1502 0 0 0 "" "" OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
@@ -1137,6 +1509,14 @@ CO
 RS
 RE
 100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
 31OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 OB
@@ -1144,6 +1524,338 @@ OB
 OB
 0 0 0 0 0 0 0 0 0 0 0 0 ""OB
 1502 0 0 0 0"" "" AC
+RE
+RS
+CR
+CR
+CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16433 1504 0 0 0 "" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16429 70 0 0 0 "" "" OB
+2 0 0 0 0 0 0 6 0 0 0 0 ""OB
+TR
+TR
+16439 16 1 0 0 "" "" OB
+0 0 0 0 0 0 0 1 6 0 0 0 ""OB
+TR
+CO
+RS
+RE
+100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
+31OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+2 0 0 0 0 0 0 6 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+1504 0 0 0 0"" "" AC
+RE
+RS
+CR
+CR
+CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16433 1504 0 0 0 "" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16439 2048 0 0 0 "" "" OB
+0 0 0 0 0 0 0 86 0 0 0 0 ""OB
+TR
+TR
+16425 1 0 0 0 "" "" OB
+200 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16439 16 1 0 0 "" "" OB
+0 0 0 0 0 0 0 1 6 0 0 0 ""OB
+TR
+CO
+RS
+RE
+100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
+31OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 86 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+1504 0 0 0 0"" "" AC
+RE
+RS
+CR
+CR
+CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16433 1504 0 0 0 "" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16439 2048 0 0 0 "" "" OB
+0 0 0 0 0 0 0 87 0 0 0 0 ""OB
+TR
+TR
+16425 1 0 0 0 "" "" OB
+200 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16439 16 1 0 0 "" "" OB
+0 0 0 0 0 0 0 1 6 0 0 0 ""OB
+TR
+CO
+RS
+RE
+100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
+31OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 87 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+1504 0 0 0 0"" "" AC
+RE
+RS
+CR
+CR
+CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16433 1504 0 0 0 "" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16439 2048 0 0 0 "" "" OB
+0 0 0 0 0 0 0 88 0 0 0 0 ""OB
+TR
+TR
+16425 1 0 0 0 "" "" OB
+200 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16439 16 1 0 0 "" "" OB
+0 0 0 0 0 0 0 1 6 0 0 0 ""OB
+TR
+CO
+RS
+RE
+100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
+31OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 88 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+1504 0 0 0 0"" "" AC
+RE
+RS
+CR
+CR
+CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16433 1504 0 0 0 "" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16439 2048 0 0 0 "" "" OB
+0 0 0 0 0 0 0 89 0 0 0 0 ""OB
+TR
+TR
+16425 1 0 0 0 "" "" OB
+200 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16439 16 1 0 0 "" "" OB
+0 0 0 0 0 0 0 1 6 0 0 0 ""OB
+TR
+CO
+RS
+RE
+100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
+31OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 89 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+1504 0 0 0 0"" "" AC
+RE
+RS
+CR
+CR
+CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16433 1504 0 0 0 "" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16439 2048 0 0 0 "" "" OB
+0 0 0 0 0 0 0 90 0 0 0 0 ""OB
+TR
+TR
+16425 1 0 0 0 "" "" OB
+200 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16439 16 1 0 0 "" "" OB
+0 0 0 0 0 0 0 1 6 0 0 0 ""OB
+TR
+CO
+RS
+RE
+100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
+31OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 90 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+1504 0 0 0 0"" "" AC
+RE
+RS
+CR
+CR
+CO
+TR
+16399 1 0 0 0 "LOCALSu_useSpells" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16449 0 1 0 0 "castnattack" "LOCALS" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16433 1504 0 0 0 "" "" OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16439 2048 0 0 0 "" "" OB
+0 0 0 0 0 0 0 91 0 0 0 0 ""OB
+TR
+TR
+16425 1 0 0 0 "" "" OB
+200 0 0 0 0 0 0 0 0 0 0 0 ""OB
+TR
+TR
+16439 16 1 0 0 "" "" OB
+0 0 0 0 0 0 0 1 6 0 0 0 ""OB
+TR
+CO
+RS
+RE
+100AC
+115OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+6 0 0 0 0"LOCALScastnattack" "" AC
+AC
+31OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 91 0 0 0 0 ""OB
+OB
+0 0 0 0 0 0 0 0 0 0 0 0 ""OB
+1504 0 0 0 0"" "" AC
 RE
 RS
 CR
