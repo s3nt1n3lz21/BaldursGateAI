@@ -1633,6 +1633,27 @@ END
 IF
 	ActionListEmpty()
 
+	Global("u_useLongSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_CONJURE_EARTH_ELEMENTAL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		////DisplayStringHead(Myself,?) // Spell: Conjure Earth Elemental
+		Spell(Myself,CLERIC_CONJURE_EARTH_ELEMENTAL)
+END
+
+IF
+	ActionListEmpty()
+
 	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
