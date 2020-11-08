@@ -5037,6 +5037,56 @@ THEN
 		Spell(Myself,WIZARD_CHAOS_SHIELD)
 END
 
+// Level 10
+// 4 Minutes or Until Charges Depleted - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_ENERGY_BLADES)
+	!HasItem("ENEBLADE",Myself)
+	!HasItem("MELFMET",Myself)
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Energy Blades
+		Spell(Myself,WIZARD_ENERGY_BLADES)
+END
+
+IF
+	ActionListEmpty()
+  	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_ENERGY_BLADES)
+	!HasItem("ENEBLADE",Myself)
+	!HasItem("MELFMET",Myself)
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Energy Blades
+		Spell(Myself,CLERIC_ENERGY_BLADES)
+END
+
 // Level 3
 // Until Charges Depleted - Self
 IF
@@ -5045,6 +5095,7 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MELF_METEOR)
+	!HasItem("ENEBLADE",Myself)
 	!HasItem("MELFMET",Myself)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
