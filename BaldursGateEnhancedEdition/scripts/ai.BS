@@ -478,6 +478,22 @@ THEN
 		Spell(MostDamagedOf(Myself),CLERIC_MASS_CURE)
 END
 
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_REGENERATE)  // SPPR514.SPL (Mass Cure)
+	HPPercentLT(MostDamagedOf(Myself),70)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Regenerate
+		Spell(MostDamagedOf(Myself),CLERIC_REGENERATE)
+END
+
 /////////////////////////////////////////////////////////////////// If health is low use a healing potion
 
 // check hp < maxhp - 40
