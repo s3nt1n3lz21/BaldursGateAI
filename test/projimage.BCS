@@ -1949,26 +1949,26 @@ THEN
 		Spell(Myself,CLERIC_CALL_WOODLAND_BEINGS)
 END
 
-IF
-	ActionListEmpty()
+//IF
+//	ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+//	Global("u_useShortSummonSpells","LOCALS",1)
+//	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(TOTEMIC_DRUID_SUMMON_SPIRIT_ANIMAL)
+//	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+  //  !GlobalTimerNotExpired("castnattack","LOCALS")
+//	HaveSpell(TOTEMIC_DRUID_SUMMON_SPIRIT_ANIMAL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		////DisplayStringHead(Myself,?) // Spell: Summon Spirit Animal
-		Spell(Myself,TOTEMIC_DRUID_SUMMON_SPIRIT_ANIMAL)
-END
+//	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+//	!StateCheck(Myself,STATE_SILENCED)
+//	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+//THEN
+//	RESPONSE #100
+  //      SetGlobalTimer("castnattack","LOCALS",6)
+//		Shout(SUMMONING_CREATURE) // Summoning Creature
+//		////DisplayStringHead(Myself,?) // Spell: Summon Spirit Animal
+//		Spell(Myself,TOTEMIC_DRUID_SUMMON_SPIRIT_ANIMAL)
+//END
 
 IF
 	ActionListEmpty()
@@ -6185,6 +6185,7 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BARKSKIN)
 	!CheckSpellState(PartySlot1,BARKSKIN)
+	NumInPartyGT(0)
 
 	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
 
@@ -6215,6 +6216,7 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BARKSKIN)
 	!CheckSpellState(PartySlot2,BARKSKIN)
+	NumInPartyGT(1)
 
 	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
 
@@ -6245,6 +6247,7 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BARKSKIN)
 	!CheckSpellState(PartySlot3,BARKSKIN)
+	NumInPartyGT(2)
 
 	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
 
@@ -6275,6 +6278,7 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BARKSKIN)
 	!CheckSpellState(PartySlot4,BARKSKIN)
+	NumInPartyGT(3)
 
 	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
 
@@ -6305,6 +6309,7 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BARKSKIN)
 	!CheckSpellState(PartySlot5,BARKSKIN)
+	NumInPartyGT(4)
 
 	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
 
@@ -6335,6 +6340,7 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BARKSKIN)
 	!CheckSpellState(PartySlot6,BARKSKIN)
+	NumInPartyGT(5)
 
 	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
 
