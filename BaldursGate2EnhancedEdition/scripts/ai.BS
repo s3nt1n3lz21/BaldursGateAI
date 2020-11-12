@@ -19,7 +19,8 @@ THEN
 		SetGlobal("c_staffOfMagi","GLOBAL",1)
 		SetGlobal("u_useLongSummonSpells","LOCALS",0) // Off
 		SetGlobal("u_useShortSummonSpells","LOCALS",0) // Off
-		SetGlobal("u_useItemSummonSpells","LOCALS",0) // Off	
+		SetGlobal("u_useItemSummonSpells","LOCALS",0) // Off
+		SetGlobal("u_healingSpellsOn","LOCALS",0) // Off
 END
 
 IF
@@ -74,6 +75,24 @@ THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,16470)  // Off
 		SetGlobal("u_useItemSummonSpells","LOCALS",0) // Off
+END
+
+IF
+	HotKey(H)
+	SetGlobal("u_healingSpellsOn","LOCALS",0)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,16469)  // On
+		SetGlobal("u_healingSpellsOn","LOCALS",1) // On
+END
+
+IF
+	HotKey(H)
+	Global("u_healingSpellsOn","LOCALS",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,16470)  // Off
+		SetGlobal("u_healingSpellsOn","LOCALS",0) // Off
 END
 
 ////////////////////////////////////////////////////////////////// Cancel Fireball If Enemy Has Moved Closer
@@ -371,6 +390,321 @@ THEN
 		//DisplayStringHead(Myself,103344) // Giving Potion Insulation
         GiveItem("potn31",LastHeardBy(Myself))
 		Continue()
+END
+
+////////////////////////////////////////////////////////////////////////////////////// Spell Shields
+
+
+
+// Staff Of The Magi
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("STAF11",Myself)  // Staff Of The Magi
+	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
+	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Myself,1,WIZARD_SPELL_TRAP)
+	Global("c_staffOfMagi","GLOBAL",1)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		SetGlobal("c_staffOfMagi","GLOBAL",0)
+		////DisplayStringHead(Myself,?)  // Staff Of The Magi
+		XEquipItem("STAF11",Myself,SLOT_WEAPON,EQUIP)
+		UseItemSlotAbility(Myself,SLOT_WEAPON,2)
+END
+
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SPELL_SHIELD)
+	!CheckStat(Myself,1,WIZARD_SPELL_SHIELD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Spell Shield
+		Spell(Myself,WIZARD_SPELL_SHIELD)
+END
+
+// Level 7
+// 3 Rounds/Level (18 seconds/level) - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SPELL_TURNING)
+	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103358) // Spell: Spell Turning
+		Spell(Myself,WIZARD_SPELL_TURNING)
+END
+
+// Level 6
+// 3 Rounds/Level (18 seconds/level) - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103356) // Spell: Spell Deflection
+		Spell(Myself,WIZARD_SPELL_DEFLECTION)
+END
+
+// Level 5
+// 3 Rounds/Level (18 seconds/level) - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MINOR_SPELL_TURNING)
+	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103357) // Spell: Minor Spell Turning
+		Spell(Myself,WIZARD_MINOR_SPELL_TURNING)
+END
+
+// Level 3
+// 3 Rounds/Level (18 seconds/level) - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MINOR_SPELL_DEFLECTION)
+	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103272) // Spell: Minor Spell Deflection
+		Spell(Myself,WIZARD_MINOR_SPELL_DEFLECTION)
+END
+
+// Level 4
+// 1 Round/Level (6 seconds/level) - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
+	!CheckStat(Myself,1,MINORGLOBE)
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103273) // Spell: Minor Globe Of Invulnerability
+		Spell(Myself,WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
+END
+
+IF
+	ActionListEmpty()
+  	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_SHIELD_OF_THE_ARCHONS)
+	!CheckStat(Myself,1,CLERIC_SHIELD_OF_THE_ARCHONS)
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,?) // Spell: Shield Of The Archons
+		Spell(Myself,CLERIC_SHIELD_OF_THE_ARCHONS)
+END
+
+////////////////////////////////////////////////////////////////////////////////////// Scrolls: Spell Shields
+
+// Level 3
+// 3 Rounds/Level (18 seconds/level) - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("SCRL6G",Myself)
+	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103272) // Spell: Minor Spell Deflection
+		UseItem("SCRL6G",Myself)
+END
+
+// Level 5
+// 3 Rounds/Level (18 seconds/level) - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("SCRL7D",Myself)
+	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103357) // Spell: Minor Spell Turning
+		UseItem("SCRL7D",Myself)
+END
+
+// Level 4
+// 1 Round/Level (6 seconds/level) - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HasItem("SCRL1Z",Myself)
+	!CheckStat(Myself,1,MINORGLOBE)
+
+	OR(4)
+		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103273) // Spell: Minor Globe Of Invulnerability
+		UseItem("SCRL1Z",Myself)
+END
+
+/////////////////////////////////////////////////////////////////////////////////////// Stoneskins
+
+// Level 4
+// 600 Rounds (1 Hour) - Self
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_STONE_SKIN)
+	!CheckSpellState(Myself,STONESKIN)
+	!CheckStatGT(Myself,0,STONESKINS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103275) // Spell: Stoneskin
+		Spell(Myself,WIZARD_STONE_SKIN)
+END
+
+// Level 5
+// 600 rounds (1 Hour) - Self
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_IRONSKIN)
+	!CheckSpellState(Myself,IRON_SKINS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103292) // Spell: Iron Skins
+		Spell(Myself,CLERIC_IRONSKIN)
 END
 
 //////////////////////////////////////////////////////////////////// If ally health is low and have heal spell, heal them
@@ -1098,321 +1432,6 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,103372) // Spell: Vocalize
 		Spell(Myself,WIZARD_VOCALIZE)
-END
-
-////////////////////////////////////////////////////////////////////////////////////// Spell Shields
-
-
-
-// Staff Of The Magi
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HasItem("STAF11",Myself)  // Staff Of The Magi
-	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
-	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Myself,1,WIZARD_SPELL_TRAP)
-	Global("c_staffOfMagi","GLOBAL",1)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		SetGlobal("c_staffOfMagi","GLOBAL",0)
-		////DisplayStringHead(Myself,?)  // Staff Of The Magi
-		XEquipItem("STAF11",Myself,SLOT_WEAPON,EQUIP)
-		UseItemSlotAbility(Myself,SLOT_WEAPON,2)
-END
-
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SPELL_SHIELD)
-	!CheckStat(Myself,1,WIZARD_SPELL_SHIELD)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		////DisplayStringHead(Myself,?) // Spell: Spell Shield
-		Spell(Myself,WIZARD_SPELL_SHIELD)
-END
-
-// Level 7
-// 3 Rounds/Level (18 seconds/level) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SPELL_TURNING)
-	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
-
-	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103358) // Spell: Spell Turning
-		Spell(Myself,WIZARD_SPELL_TURNING)
-END
-
-// Level 6
-// 3 Rounds/Level (18 seconds/level) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
-
-	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103356) // Spell: Spell Deflection
-		Spell(Myself,WIZARD_SPELL_DEFLECTION)
-END
-
-// Level 5
-// 3 Rounds/Level (18 seconds/level) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MINOR_SPELL_TURNING)
-	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
-
-	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103357) // Spell: Minor Spell Turning
-		Spell(Myself,WIZARD_MINOR_SPELL_TURNING)
-END
-
-// Level 3
-// 3 Rounds/Level (18 seconds/level) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MINOR_SPELL_DEFLECTION)
-	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
-
-	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103272) // Spell: Minor Spell Deflection
-		Spell(Myself,WIZARD_MINOR_SPELL_DEFLECTION)
-END
-
-// Level 4
-// 1 Round/Level (6 seconds/level) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
-	!CheckStat(Myself,1,MINORGLOBE)
-
-	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103273) // Spell: Minor Globe Of Invulnerability
-		Spell(Myself,WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
-END
-
-IF
-	ActionListEmpty()
-  	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_SHIELD_OF_THE_ARCHONS)
-	!CheckStat(Myself,1,CLERIC_SHIELD_OF_THE_ARCHONS)
-
-	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		////DisplayStringHead(Myself,?) // Spell: Shield Of The Archons
-		Spell(Myself,CLERIC_SHIELD_OF_THE_ARCHONS)
-END
-
-////////////////////////////////////////////////////////////////////////////////////// Scrolls: Spell Shields
-
-// Level 3
-// 3 Rounds/Level (18 seconds/level) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HasItem("SCRL6G",Myself)
-	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
-
-	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103272) // Spell: Minor Spell Deflection
-		UseItem("SCRL6G",Myself)
-END
-
-// Level 5
-// 3 Rounds/Level (18 seconds/level) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HasItem("SCRL7D",Myself)
-	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
-
-	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103357) // Spell: Minor Spell Turning
-		UseItem("SCRL7D",Myself)
-END
-
-// Level 4
-// 1 Round/Level (6 seconds/level) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HasItem("SCRL1Z",Myself)
-	!CheckStat(Myself,1,MINORGLOBE)
-
-	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103273) // Spell: Minor Globe Of Invulnerability
-		UseItem("SCRL1Z",Myself)
-END
-
-/////////////////////////////////////////////////////////////////////////////////////// Stoneskins
-
-// Level 4
-// 600 Rounds (1 Hour) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_STONE_SKIN)
-	!CheckSpellState(Myself,STONESKIN)
-	!CheckStatGT(Myself,0,STONESKINS)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103275) // Spell: Stoneskin
-		Spell(Myself,WIZARD_STONE_SKIN)
-END
-
-// Level 5
-// 600 rounds (1 Hour) - Self
-IF
-	ActionListEmpty()
-	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_IRONSKIN)
-	!CheckSpellState(Myself,IRON_SKINS)
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-	    SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103292) // Spell: Iron Skins
-		Spell(Myself,CLERIC_IRONSKIN)
 END
 
 /////////////////////////////////////////////////////////////////////////////////////// Simulacrum And Projected Image
