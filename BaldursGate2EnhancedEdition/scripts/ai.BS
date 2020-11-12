@@ -78,7 +78,7 @@ THEN
 END
 
 IF
-	HotKey(H)
+	HotKey(T)
 	SetGlobal("u_healingSpellsOn","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -87,7 +87,7 @@ THEN
 END
 
 IF
-	HotKey(H)
+	HotKey(T)
 	Global("u_healingSpellsOn","LOCALS",1)
 THEN
 	RESPONSE #100
@@ -711,6 +711,9 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+	
+	Global("u_healingSpellsOn","LOCALS",1)
+
 	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),80)
 
@@ -729,6 +732,9 @@ IF
     OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
+
+	Global("u_healingSpellsOn","LOCALS",1)
+
 	HaveSpell(INNATE_CURE_LIGHT_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),80)
 	!Class(Myself,MAGE_ALL)
@@ -744,6 +750,9 @@ IF
     OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
+		
+	Global("u_healingSpellsOn","LOCALS",1)
+
 	HaveSpell(INNATE_CURE_LIGHT_WOUNDS)
 	HPPercentLT(Myself,80)
 	Class(Myself,MAGE_ALL)
@@ -757,6 +766,9 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+
+	Global("u_healingSpellsOn","LOCALS",1)
+
 	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),80) 
 
@@ -773,6 +785,9 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+
+	Global("u_healingSpellsOn","LOCALS",1)
+
 	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),75)
 
@@ -789,6 +804,9 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+
+	Global("u_healingSpellsOn","LOCALS",1)
+
 	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),70)
 
@@ -805,6 +823,9 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+
+	Global("u_healingSpellsOn","LOCALS",1)
+
 	HaveSpell(CLERIC_MASS_CURE)  // SPPR514.SPL (Mass Cure)
 	HPPercentLT(MostDamagedOf(Myself),70)
 
@@ -821,6 +842,9 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+
+	Global("u_healingSpellsOn","LOCALS",1)
+
 	HaveSpell(CLERIC_REGENERATE)  // SPPR514.SPL (Mass Cure)
 	HPPercentLT(MostDamagedOf(Myself),70)
 

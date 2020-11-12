@@ -17,6 +17,7 @@ THEN
 		SetGlobal("u_useLongSummonSpells","LOCALS",0) // Off
 		SetGlobal("u_useShortSummonSpells","LOCALS",0) // Off
 		SetGlobal("u_useItemSummonSpells","LOCALS",0) // Off	
+		SetGlobal("u_healingSpellsOn","LOCALS",0) // Off
 END
 
 IF
@@ -71,6 +72,24 @@ THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,16470)  // Off
 		SetGlobal("u_useItemSummonSpells","LOCALS",0) // Off
+END
+
+IF
+	HotKey(T)
+	SetGlobal("u_healingSpellsOn","LOCALS",0)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,16469)  // On
+		SetGlobal("u_healingSpellsOn","LOCALS",1) // On
+END
+
+IF
+	HotKey(T)
+	Global("u_healingSpellsOn","LOCALS",1)
+THEN
+	RESPONSE #100
+		DisplayStringHead(Myself,16470)  // Off
+		SetGlobal("u_healingSpellsOn","LOCALS",0) // Off
 END
 
 ////////////////////////////////////////////////////////////////// Cancel Melee If AI Ranged Has Run Out Of Ammo And Can See An Enemy
@@ -689,6 +708,9 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+	
+	Global("u_healingSpellsOn","LOCALS",1)
+
 	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),80)
 
@@ -698,39 +720,52 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,71375) // Spell: Cure Light Wounds
+		//DisplayStringHead(Myself,103343) // Spell: Cure Light Wounds
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_LIGHT_WOUNDS)
 END
 
-//IF
-//	ActionListEmpty()
-//  !GlobalTimerNotExpired("castnattack","LOCALS")
-//	HaveSpell(INNATE_CURE_LIGHT_WOUNDS)
-//	HPPercentLT(MostDamagedOf(Myself),80)
-//	!Class(Myself,MAGE_ALL)
-//THEN
-//	RESPONSE #100
-//        SetGlobalTimer("castnattack","LOCALS",6)
-//		//DisplayStringHead(Myself,71375) // Spell: Cure Light Wounds
-//		Spell(MostDamagedOf(Myself),INNATE_CURE_LIGHT_WOUNDS)
-//END
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
 
-//IF
-//	ActionListEmpty()
-//    !GlobalTimerNotExpired("castnattack","LOCALS")
-//	HaveSpell(INNATE_CURE_LIGHT_WOUNDS)
-//	HPPercentLT(Myself,80)
-//	Class(Myself,MAGE_ALL)
-//THEN
-//	RESPONSE #100
-//        SetGlobalTimer("castnattack","LOCALS",6)
-//		//DisplayStringHead(Myself,71375) // Spell: Cure Light Wounds
-//		Spell(Myself,INNATE_CURE_LIGHT_WOUNDS)
-//END
+	Global("u_healingSpellsOn","LOCALS",1)
+
+	HaveSpell(INNATE_CURE_LIGHT_WOUNDS)
+	HPPercentLT(MostDamagedOf(Myself),80)
+	!Class(Myself,MAGE_ALL)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103343) // Spell: Cure Light Wounds
+		Spell(MostDamagedOf(Myself),INNATE_CURE_LIGHT_WOUNDS)
+END
+
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		
+	Global("u_healingSpellsOn","LOCALS",1)
+
+	HaveSpell(INNATE_CURE_LIGHT_WOUNDS)
+	HPPercentLT(Myself,80)
+	Class(Myself,MAGE_ALL)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103343) // Spell: Cure Light Wounds
+		Spell(Myself,INNATE_CURE_LIGHT_WOUNDS)
+END
 
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+
+	Global("u_healingSpellsOn","LOCALS",1)
+
 	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),80) 
 
@@ -740,13 +775,16 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,71376) // Spell: Cure Medium Wounds
+		//DisplayStringHead(Myself,103342) // Spell: Cure Medium Wounds
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_MEDIUM_WOUNDS)
 END
 
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+
+	Global("u_healingSpellsOn","LOCALS",1)
+
 	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),75)
 
@@ -756,13 +794,16 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,71377) // Spell: Cure Serious Wounds
+		//DisplayStringHead(Myself,103341) // Spell: Cure Serious Wounds
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_SERIOUS_WOUNDS)
 END
 
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+
+	Global("u_healingSpellsOn","LOCALS",1)
+
 	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),70)
 
@@ -772,13 +813,16 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,71500) // Spell: Cure Critical Wounds
+		//DisplayStringHead(Myself,103363) // Spell: Cure Critical Wounds
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_CRITICAL_WOUNDS)
 END
 
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+
+	Global("u_healingSpellsOn","LOCALS",1)
+
 	HaveSpell(CLERIC_MASS_CURE)  // SPPR514.SPL (Mass Cure)
 	HPPercentLT(MostDamagedOf(Myself),70)
 
@@ -788,13 +832,16 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,71461) // Spell: Mass Cure
+		//DisplayStringHead(Myself,103340) // Spell: Mass Cure
 		Spell(MostDamagedOf(Myself),CLERIC_MASS_CURE)
 END
 
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+
+	Global("u_healingSpellsOn","LOCALS",1)
+
 	HaveSpell(CLERIC_REGENERATE)  // SPPR514.SPL (Mass Cure)
 	HPPercentLT(MostDamagedOf(Myself),70)
 
