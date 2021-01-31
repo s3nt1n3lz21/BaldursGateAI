@@ -79,7 +79,7 @@ END
 
 IF
 	HotKey(T)
-	SetGlobal("u_healingSpellsOn","LOCALS",0)
+	Global("u_healingSpellsOn","LOCALS",0)
 THEN
 	RESPONSE #100
 		DisplayStringHead(Myself,16469)  // On
