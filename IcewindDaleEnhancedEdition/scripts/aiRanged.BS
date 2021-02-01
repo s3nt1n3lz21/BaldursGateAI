@@ -439,8 +439,8 @@ IF
     OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SPELL_SHIELD)
-	!CheckStat(Myself,1,WIZARD_SPELL_SHIELD)
+
+
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -449,7 +449,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		////DisplayStringHead(Myself,?) // Spell: Spell Shield
-		Spell(Myself,WIZARD_SPELL_SHIELD)
+
 END
 
 // Level 7
@@ -2014,7 +2014,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ZONE_OF_SWEET_AIR)  // SPPR318.SPL (Zone of Sweet Air)
-	OR(9)
+	OR(11)
 		SpellCast([ANYONE],WIZARD_INCENDIARY_CLOUD)  // SPWI810.SPL (Incendiary Cloud)
 		SpellCast([ANYONE],WIZARD_STINKING_CLOUD)  // SPWI213.SPL (Stinking Cloud)
 		SpellCast([ANYONE],WIZARD_CLOUDKILL)  // SPWI502.SPL (Cloudkill)
@@ -2229,9 +2229,9 @@ IF
 	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
-	!CheckSpellState(LastSeenBy(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(LastSeenBy(Myself),BERSERKER_RAGE)
-	!CheckSpellState(LastSeenBy(Myself),MINSC_BERSERK)
+
+
+
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
 	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself))  // Spider's Bane +2
@@ -2272,9 +2272,9 @@ IF
 	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
-	!CheckSpellState(LastSeenBy(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(LastSeenBy(Myself),BERSERKER_RAGE)
-	!CheckSpellState(LastSeenBy(Myself),MINSC_BERSERK)
+
+
+
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
 	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself))  // Spider's Bane +2
@@ -2315,9 +2315,9 @@ IF
 	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
-	!CheckSpellState(LastSeenBy(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(LastSeenBy(Myself),BERSERKER_RAGE)
-	!CheckSpellState(LastSeenBy(Myself),MINSC_BERSERK)
+
+
+
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
 	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself))  // Spider's Bane +2
@@ -2357,9 +2357,9 @@ IF
 	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
-	!CheckSpellState(LastSeenBy(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(LastSeenBy(Myself),BERSERKER_RAGE)
-	!CheckSpellState(LastSeenBy(Myself),MINSC_BERSERK)
+
+
+
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
 	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself))  // Spider's Bane +2
@@ -2385,7 +2385,7 @@ IF
 	HaveSpell(WIZARD_CHAOS)  // SPPR211.SPL (Silence, 15' Radius)
 	NumCreatureVsPartyGT(Myself,3)
 
-	!StateCheck(NearestEnemyOf(Myself),STATE_DEBUFF)
+
 	!CheckStat(NearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
@@ -2393,7 +2393,7 @@ IF
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)	
 	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
 
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DEBUFF)
+
 	!CheckStat(SecondNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
@@ -2401,7 +2401,7 @@ IF
 	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
 	CheckStatGT(SecondNearestEnemyOf(Myself),5,SAVEVSSPELL)
 
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_DEBUFF)
+
 	!CheckStat(ThirdNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
@@ -2409,7 +2409,7 @@ IF
 	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
 	CheckStatGT(ThirdNearestEnemyOf(Myself),5,SAVEVSSPELL)
 
-	!StateCheck(FourthNearestEnemyOf(Myself),STATE_DEBUFF)
+
 	!CheckStat(FourthNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
@@ -2457,11 +2457,11 @@ IF
 	!Kit(NearestEnemyOf(Myself),Blackguard)
 	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)
-	!CheckSpellState(NearestEnemyOf(Myself),RESIST_FEAR)
-	!CheckSpellState(NearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(NearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(NearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(NearestEnemyOf(Myself),POTION_OF_CLARITY)
+
+
+
+
+
 
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(SecondNearestEnemyOf(Myself),1,MINORGLOBE)
@@ -2476,11 +2476,11 @@ IF
 	!Kit(SecondNearestEnemyOf(Myself),Blackguard)
 	CheckStatGT(SecondNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),RESIST_FEAR)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),POTION_OF_CLARITY)
+
+
+
+
+
 
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(ThirdNearestEnemyOf(Myself),1,MINORGLOBE)
@@ -2495,11 +2495,11 @@ IF
 	!Kit(ThirdNearestEnemyOf(Myself),Blackguard)
 	CheckStatGT(ThirdNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),RESIST_FEAR)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),POTION_OF_CLARITY)
+
+
+
+
+
 
 	!StateCheck(FourthNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(FourthNearestEnemyOf(Myself),1,MINORGLOBE)
@@ -2514,11 +2514,11 @@ IF
 	!Kit(FourthNearestEnemyOf(Myself),Blackguard)
 	CheckStatGT(FourthNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),RESIST_FEAR)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),POTION_OF_CLARITY)
+
+
+
+
+
 
 	!StateCheck(FifthNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(FifthNearestEnemyOf(Myself),1,MINORGLOBE)
@@ -2533,11 +2533,11 @@ IF
 	!Kit(FifthNearestEnemyOf(Myself),Blackguard)
 	CheckStatGT(FifthNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMAGIC)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),RESIST_FEAR)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),POTION_OF_CLARITY)
+
+
+
+
+
 
 	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
 	!StateCheck(NearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -2569,8 +2569,8 @@ IF
 		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(26)
-		CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_SHIELD)
+	OR(18)
+
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,IMPROVEDHASTE)
@@ -2584,13 +2584,13 @@ IF
 		CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)
 		CheckStatGT(LastSeenBy(Myself),0,STRENGTH_MODIFIER)
 		CheckStatGT(LastSeenBy(Myself),3,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
-		CheckSpellState(LastSeenBy(Myself),POTION_OF_MAGIC_BLOCKING)
-		CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
-		CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
-		CheckSpellState(LastSeenBy(Myself),BUFF_PRO_WEAPONS)
-		CheckSpellState(LastSeenBy(Myself),BUFF_PRO_EFFECTS)
-		CheckSpellState(LastSeenBy(Myself),RESIST_FEAR)
-		CheckSpellState(LastSeenBy(Myself),SCROLL_OF_PROTECTION_FROM_MAGIC)
+
+
+
+
+
+
+
 		StateCheck(LastSeenBy(Myself),STATE_HASTED)
 		StateCheck(LastSeenBy(Myself),STATE_BLESS)
 		StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
@@ -2874,8 +2874,8 @@ IF
 		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(26)
-		CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_SHIELD)
+	OR(18)
+
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,IMPROVEDHASTE)
@@ -2889,13 +2889,13 @@ IF
 		CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)
 		CheckStatGT(LastSeenBy(Myself),0,STRENGTH_MODIFIER)
 		CheckStatGT(LastSeenBy(Myself),3,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
-		CheckSpellState(LastSeenBy(Myself),POTION_OF_MAGIC_BLOCKING)
-		CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
-		CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
-		CheckSpellState(LastSeenBy(Myself),BUFF_PRO_WEAPONS)
-		CheckSpellState(LastSeenBy(Myself),BUFF_PRO_EFFECTS)
-		CheckSpellState(LastSeenBy(Myself),RESIST_FEAR)
-		CheckSpellState(LastSeenBy(Myself),SCROLL_OF_PROTECTION_FROM_MAGIC)
+
+
+
+
+
+
+
 		StateCheck(LastSeenBy(Myself),STATE_HASTED)
 		StateCheck(LastSeenBy(Myself),STATE_BLESS)
 		StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
@@ -2942,8 +2942,8 @@ IF
 		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(26)
-		CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_SHIELD)
+	OR(18)
+
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,IMPROVEDHASTE)
@@ -2957,13 +2957,13 @@ IF
 		CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)
 		CheckStatGT(LastSeenBy(Myself),0,STRENGTH_MODIFIER)
 		CheckStatGT(LastSeenBy(Myself),3,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
-		CheckSpellState(LastSeenBy(Myself),POTION_OF_MAGIC_BLOCKING)
-		CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
-		CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
-		CheckSpellState(LastSeenBy(Myself),BUFF_PRO_WEAPONS)
-		CheckSpellState(LastSeenBy(Myself),BUFF_PRO_EFFECTS)
-		CheckSpellState(LastSeenBy(Myself),RESIST_FEAR)
-		CheckSpellState(LastSeenBy(Myself),SCROLL_OF_PROTECTION_FROM_MAGIC)
+
+
+
+
+
+
+
 		StateCheck(LastSeenBy(Myself),STATE_HASTED)
 		StateCheck(LastSeenBy(Myself),STATE_BLESS)
 		StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
@@ -3238,8 +3238,8 @@ IF
 		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
-	OR(26)
-		CheckStatGT(LastSeenBy(Myself),0,WIZARD_SPELL_SHIELD)
+	OR(18)
+
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,IMPROVEDHASTE)
@@ -3253,13 +3253,13 @@ IF
 		CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)
 		CheckStatGT(LastSeenBy(Myself),0,STRENGTH_MODIFIER)
 		CheckStatGT(LastSeenBy(Myself),3,WIZARD_PROTECTION_FROM_MAGIC_WEAPONS)
-		CheckSpellState(LastSeenBy(Myself),POTION_OF_MAGIC_BLOCKING)
-		CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
-		CheckSpellState(LastSeenBy(Myself),SPELL_SHIELD)
-		CheckSpellState(LastSeenBy(Myself),BUFF_PRO_WEAPONS)
-		CheckSpellState(LastSeenBy(Myself),BUFF_PRO_EFFECTS)
-		CheckSpellState(LastSeenBy(Myself),RESIST_FEAR)
-		CheckSpellState(LastSeenBy(Myself),SCROLL_OF_PROTECTION_FROM_MAGIC)
+
+
+
+
+
+
+
 		StateCheck(LastSeenBy(Myself),STATE_HASTED)
 		StateCheck(LastSeenBy(Myself),STATE_BLESS)
 		StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
@@ -3475,11 +3475,11 @@ IF
 	!Kit(NearestEnemyOf(Myself),Blackguard)
 	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)
-	!CheckSpellState(NearestEnemyOf(Myself),RESIST_FEAR)
-	!CheckSpellState(NearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(NearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(NearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(NearestEnemyOf(Myself),POTION_OF_CLARITY)
+
+
+
+
+
 
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
@@ -3495,11 +3495,11 @@ IF
 	!Kit(SecondNearestEnemyOf(Myself),Blackguard)
 	CheckStatGT(SecondNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),RESIST_FEAR)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),POTION_OF_CLARITY)
+
+
+
+
+
 
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
@@ -3515,11 +3515,11 @@ IF
 	!Kit(ThirdNearestEnemyOf(Myself),Blackguard)
 	CheckStatGT(ThirdNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),RESIST_FEAR)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),POTION_OF_CLARITY)
+
+
+
+
+
 
 	!StateCheck(FourthNearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(FourthNearestEnemyOf(Myself),STATE_PANIC)
@@ -3535,11 +3535,11 @@ IF
 	!Kit(FourthNearestEnemyOf(Myself),Blackguard)
 	CheckStatGT(FourthNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),RESIST_FEAR)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),POTION_OF_CLARITY)
+
+
+
+
+
 
 	!StateCheck(FifthNearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(FifthNearestEnemyOf(Myself),STATE_PANIC)
@@ -3555,11 +3555,11 @@ IF
 	!Kit(FifthNearestEnemyOf(Myself),Blackguard)
 	CheckStatGT(FifthNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMAGIC)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),RESIST_FEAR)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),POTION_OF_CLARITY)
+
+
+
+
+
 
 	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
 	!StateCheck(NearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -3592,10 +3592,10 @@ IF
 	!Race(NearestEnemyOf(Myself),DEMONIC)
 	!Race(NearestEnemyOf(Myself),ELF)
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)
-	!CheckSpellState(NearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(NearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(NearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(NearestEnemyOf(Myself),POTION_OF_CLARITY)
+
+
+
+
 	LevelLT(NearestEnemyOf(Myself),5)
 
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_SLEEPING)
@@ -3610,10 +3610,10 @@ IF
 	!Race(SecondNearestEnemyOf(Myself),DEMONIC)
 	!Race(SecondNearestEnemyOf(Myself),ELF)
 	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(SecondNearestEnemyOf(Myself),POTION_OF_CLARITY)
+
+
+
+
 	LevelLT(SecondNearestEnemyOf(Myself),5)
 
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_SLEEPING)
@@ -3628,10 +3628,10 @@ IF
 	!Race(ThirdNearestEnemyOf(Myself),DEMONIC)
 	!Race(ThirdNearestEnemyOf(Myself),ELF)
 	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(ThirdNearestEnemyOf(Myself),POTION_OF_CLARITY)
+
+
+
+
 	LevelLT(ThirdNearestEnemyOf(Myself),5)
 
 	!StateCheck(FourthNearestEnemyOf(Myself),STATE_SLEEPING)
@@ -3646,10 +3646,10 @@ IF
 	!Race(FourthNearestEnemyOf(Myself),DEMONIC)
 	!Race(FourthNearestEnemyOf(Myself),ELF)
 	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(FourthNearestEnemyOf(Myself),POTION_OF_CLARITY)
+
+
+
+
 	LevelLT(FourthNearestEnemyOf(Myself),5)
 
 	!StateCheck(FifthNearestEnemyOf(Myself),STATE_SLEEPING)
@@ -3664,10 +3664,10 @@ IF
 	!Race(FifthNearestEnemyOf(Myself),DEMONIC)
 	!Race(FifthNearestEnemyOf(Myself),ELF)
 	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMAGIC)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),BARBARIAN_RAGE)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),BERSERKER_RAGE)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),MINSC_BERSERK)
-	!CheckSpellState(FifthNearestEnemyOf(Myself),POTION_OF_CLARITY)
+
+
+
+
 	LevelLT(FifthNearestEnemyOf(Myself),5)
 
 	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
@@ -5185,9 +5185,9 @@ IF
     OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_IMPROVED_CHAOS_SHIELD)
-	!CheckSpellState(Myself,IMPROVED_CHAOS_SHIELD)
-	!CheckSpellState(Myself,CHAOS_SHIELD)
+
+
+
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -5196,7 +5196,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,103284) // Spell: Chaos Shield
-		Spell(Myself,WIZARD_IMPROVED_CHAOS_SHIELD)
+
 END
 
 // Level 2
@@ -5206,9 +5206,9 @@ IF
     OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_CHAOS_SHIELD)
-	!CheckSpellState(Myself,IMPROVED_CHAOS_SHIELD)
-	!CheckSpellState(Myself,CHAOS_SHIELD)
+
+
+
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -5217,7 +5217,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,103284) // Spell: Chaos Shield
-		Spell(Myself,WIZARD_CHAOS_SHIELD)
+
 END
 
 // Level 10
@@ -5407,8 +5407,8 @@ IF
     OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SHIELD)
-	!CheckSpellState(Myself,WIZARD_SHIELD)
+
+
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -5417,7 +5417,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,103281) // Spell: Shield
-		Spell(Myself,WIZARD_SHIELD)
+
 END
 
 // Level 2
@@ -5427,8 +5427,8 @@ IF
     OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_RESIST_FEAR)
-	!CheckSpellState(Myself,RESIST_FEAR)
+
+
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -5437,7 +5437,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,103283) // Spell: Resist Fear
-		Spell(Myself,WIZARD_RESIST_FEAR)
+
 END
 
 // Level 2 - Illusion 5
@@ -6265,18 +6265,18 @@ END
 IF
 	Class(Myself,MAGE_ALL)
 	HaveSpell(WIZARD_FIREBALL)
-	!Range(FarthestEnemyOf(Myself),17)
-	!StateCheck(FarthestEnemyOf(Myself),STATE_REALLY_DEAD)
-	TriggerOverride(FarthestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
-	!TriggerOverride(FarthestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
-	See(FarthestEnemyOf(Myself)) // Target the fireball target
+	!Range(TenthNearestEnemyOf(Myself),17)
+	!StateCheck(TenthNearestEnemyOf(Myself),STATE_REALLY_DEAD)
+
+	!TriggerOverride(TenthNearestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
+	See(TenthNearestEnemyOf(Myself)) // Target the fireball target
 	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		SetGlobalTimer("castingfireball","LOCALS",6) // Starting fireball
 		//DisplayStringHead(Myself,103266) // Spell: Fireball
-		Spell(FarthestEnemyOf(Myself),WIZARD_FIREBALL)
+		Spell(TenthNearestEnemyOf(Myself),WIZARD_FIREBALL)
 END
 
 // Level 1 - Evocation
@@ -6291,7 +6291,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
+
 	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
@@ -6557,11 +6557,11 @@ END
 IF
 	Class(Myself,MAGE_ALL)
 	HasItem("wand05",Myself)
-	!Range(FarthestEnemyOf(Myself),17)
-	!StateCheck(FarthestEnemyOf(Myself),STATE_REALLY_DEAD)
-	TriggerOverride(FarthestEnemyOf(Myself),Range(NearestAllyOf(Myself),15))
-	!TriggerOverride(FarthestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
-	See(FarthestEnemyOf(Myself)) // Target the fireball target
+	!Range(TenthNearestEnemyOf(Myself),17)
+	!StateCheck(TenthNearestEnemyOf(Myself),STATE_REALLY_DEAD)
+
+	!TriggerOverride(TenthNearestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
+	See(TenthNearestEnemyOf(Myself)) // Target the fireball target
 	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
@@ -6569,7 +6569,7 @@ THEN
 		SetGlobalTimer("castingfireball","LOCALS",6) // Starting fireball
 		//DisplayStringHead(Myself,103259) // Wand: Fire
 		XEquipItem("wand05",Myself,SLOT_MISC0,EQUIP)
-		UseItemSlotAbility(FarthestEnemyOf(Myself),SLOT_MISC0,0)
+		UseItemSlotAbility(TenthNearestEnemyOf(Myself),SLOT_MISC0,0)
 END
 
 //IF
@@ -6646,7 +6646,7 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckSpellState(LastSeenBy(Myself),WIZARD_SHIELD)
+
 	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
