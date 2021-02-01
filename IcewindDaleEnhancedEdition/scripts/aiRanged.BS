@@ -5082,48 +5082,6 @@ THEN
 		Spell(Myself,CLERIC_DRAW_UPON_HOLY_MIGHT)
 END
 
-// Level 7
-// 2 hours (10 minutes) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-
-
-
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103284) // Spell: Chaos Shield
-
-END
-
-// Level 2
-// 5 Rounds + 10 Rounds/5 Levels (30 seconds + 60 seconds/5 levels) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-
-
-
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103284) // Spell: Chaos Shield
-
-END
-
 // Level 10
 // 4 Minutes or Until Charges Depleted - Self
 IF
@@ -5302,46 +5260,6 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,103276) // Spell: Protection From Fire
 		Spell(PartySlot1,WIZARD_PROTECTION_FROM_FIRE)
-END
-
-// Level 1
-// 50 rounds (5 minutes) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-
-
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103281) // Spell: Shield
-
-END
-
-// Level 2
-// 50 Rounds (5 minutes) - 15ft Radius
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-
-
-
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103283) // Spell: Resist Fear
-
 END
 
 // Level 2 - Illusion 5
