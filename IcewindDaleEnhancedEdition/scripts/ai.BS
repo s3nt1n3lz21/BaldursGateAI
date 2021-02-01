@@ -1556,6 +1556,27 @@ THEN
 		Spell(Myself,CLERIC_ANIMAL_SUMMONING_1)
 END
 
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SPIDER_SPAWN)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		//DisplayStringHead(Myself,103309) // Spell: Animal Summoning 1
+		Spell(Myself,WIZARD_SPIDER_SPAWN)
+END
+
 /////////////////////////////////////////////////////////////////////////////////////// Long Duration Summon spells
 
 IF
@@ -1663,6 +1684,27 @@ THEN
 		Shout(SUMMONING_CREATURE) // Summoning Creature
 		//DisplayStringHead(Myself,103307) // Spell: Conjure Fire Elemental
 		Spell(Myself,CLERIC_CONJURE_FIRE_ELEMENTAL)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useLongSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_CONJURE_FIRE_ELEMENTAL)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		//DisplayStringHead(Myself,103307) // Spell: Conjure Fire Elemental
+		Spell(Myself,WIZARD_CONJURE_FIRE_ELEMENTAL)
 END
 
 ////////////////////////////////////////////////////////////////////////////// Item Summons
