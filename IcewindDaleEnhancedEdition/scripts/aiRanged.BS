@@ -412,28 +412,6 @@ END
 
 ////////////////////////////////////////////////////////////////////////////////////// Spell Shields
 
-
-
-// Staff Of The Magi
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HasItem("STAF11",Myself)  // Staff Of The Magi
-	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
-	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Myself,1,WIZARD_SPELL_TRAP)
-	Global("c_staffOfMagi","GLOBAL",1)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		SetGlobal("c_staffOfMagi","GLOBAL",0)
-		////DisplayStringHead(Myself,?)  // Staff Of The Magi
-		XEquipItem("STAF11",Myself,SLOT_WEAPON,EQUIP)
-		UseItemSlotAbility(Myself,SLOT_WEAPON,2)
-END
-
 IF
 	ActionListEmpty()
     OR(2)
@@ -743,42 +721,6 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,103343) // Spell: Cure Light Wounds
 		Spell(MostDamagedOf(Myself),CLERIC_CURE_LIGHT_WOUNDS)
-END
-
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-
-	Global("u_healingSpellsOn","LOCALS",1)
-
-	HaveSpell(INNATE_CURE_LIGHT_WOUNDS)
-	HPPercentLT(MostDamagedOf(Myself),80)
-	!Class(Myself,MAGE_ALL)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103343) // Spell: Cure Light Wounds
-		Spell(MostDamagedOf(Myself),INNATE_CURE_LIGHT_WOUNDS)
-END
-
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-		
-	Global("u_healingSpellsOn","LOCALS",1)
-
-	HaveSpell(INNATE_CURE_LIGHT_WOUNDS)
-	HPPercentLT(Myself,80)
-	Class(Myself,MAGE_ALL)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103343) // Spell: Cure Light Wounds
-		Spell(Myself,INNATE_CURE_LIGHT_WOUNDS)
 END
 
 IF
@@ -1475,22 +1417,6 @@ THEN
 END
 
 /////////////////////////////////////////////////////////////////////////////////////// Simulacrum And Projected Image
-
-IF
-	ActionListEmpty()
-	HPPercentGT(NearestEnemyOf(Myself),0)
-
-  	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HasItem("WA2HELM",Myself) // Vhailors Helm
-	Global("c_VhailorsHelm","GLOBAL",1)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		SetGlobal("c_VhailorsHelm","GLOBAL",0)
-		////DisplayStringHead(Myself,?)  // Vhailors Helm
-		XEquipItem("WA2HELM",Myself,SLOT_HELMET,EQUIP)
-		UseItemSlotAbility(Myself,SLOT_HELMET,0)
-END
 
 /////////////////////////////////////////////////////////////////////////////////////// Prevent Summons Being Dispelled
 
@@ -2234,7 +2160,6 @@ IF
 
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself))  // Spider's Bane +2
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2277,7 +2202,6 @@ IF
 
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself))  // Spider's Bane +2
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2320,7 +2244,6 @@ IF
 
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself))  // Spider's Bane +2
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2362,7 +2285,6 @@ IF
 
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
-	!HasItemEquipedReal("SW2H06",LastSeenBy(Myself))  // Spider's Bane +2
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4852,7 +4774,6 @@ IF
 	!HasItem("SHAMMR",Myself)  // Spiritual Hammer
 	!HasItem("CHILLT",Myself)  // Chill Touch
 	!HasItem("GHOULT",Myself)  // Ghoul Touch
-	!HasItem("SGRASP",Myself)  // Shocking Grasp
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4875,7 +4796,6 @@ IF
 	!HasItem("SHAMMR",Myself)  // Spiritual Hammer
 	!HasItem("CHILLT",Myself)  // Chill Touch
 	!HasItem("GHOULT",Myself)  // Ghoul Touch
-	!HasItem("SGRASP",Myself)  // Shocking Grasp
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -5096,22 +5016,6 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,103286) // Spell: Chant
 		Spell(PartySlot1,CLERIC_CHANT)  // SPPR203.SPL (Chant)
-END
-
-// 10 Rounds (60 seconds) - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(INNATE_DRAW_UPON_HOLY_MIGHT)
-	!CheckSpellState(Myself,DRAW_UPON_HOLY_MIGHT)
-	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103299) // Spell: Holy Might
-		Spell(Myself,INNATE_DRAW_UPON_HOLY_MIGHT)
 END
 
 // Level 1 - Conjuration 2
@@ -6780,19 +6684,12 @@ IF
 	!HasItem("AROW10",Myself) // Arrow Of Piercing + 1
 	!HasItem("AROW11",Myself) // Arrow + 2
 	!HasItem("AROW12",Myself) // Arrow Of Biting
-	!HasItem("AROW14",Myself) // Poisoned Arrow
 	!HasItem("AROW15",Myself) // Arrow Of Ice
 	!HasItem("AROW16",Myself) // Arrow Of Ice
-	!HasItem("ANGAROW",Myself) // Arrow Of Fire + 2
-	!HasItem("AROW1A",Myself) // Arrow + 2
-	!HasItem("AROWKC",Myself) // Arrow Of Fire + 2
-	!HasItem("ARROPHE2",Myself) // Arrow Of Fire + 2
 //	!HasItem("bdarow01",Myself) // Arrow Of Antimagic + 1
 //	!HasItem("bdarow03",Myself) // Flaming Arrow
 //	!HasItem("bdarow04",Myself) // Arrow + 3
 //	!HasItem("CUTAROW1",Myself) // Arrow Of Ice
-	!HasItem("IAROW01",Myself) // Arrow
-	!HasItem("QUIV01",Myself) // Arrow
 	HasItemCategory(Myself,BOW,FALSE)
 THEN
     RESPONSE #100
@@ -6989,21 +6886,6 @@ THEN
 END
 
 ////////////////////////////////////////////////////////// Wizard Use Healing If No Enemies
-
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(INNATE_CURE_LIGHT_WOUNDS)
-	HPPercentLT(MostDamagedOf(Myself),80)
-	Class(Myself,MAGE_ALL)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//DisplayStringHead(Myself,103343) // Spell: Cure Light Wounds
-		Spell(MostDamagedOf(Myself),INNATE_CURE_LIGHT_WOUNDS)
-END
 
 /////////////////////////////////////////////////////////// Find traps
 IF
