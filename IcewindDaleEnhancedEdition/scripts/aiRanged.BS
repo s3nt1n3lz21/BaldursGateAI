@@ -5134,6 +5134,23 @@ THEN
 		Spell(PartySlot1,WIZARD_PROTECTION_FROM_FIRE)
 END
 
+// Level 1
+// 50 rounds (5 minutes) - Self
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SHIELD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		////DisplayStringHead(Myself,71406) // Spell: Shield
+		Spell(Myself,WIZARD_SHIELD)
+END
+
 // Level 2
 // 50 Rounds (5 minutes) - 15ft Radius
 IF
