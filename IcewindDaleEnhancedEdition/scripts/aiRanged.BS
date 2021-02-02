@@ -6034,6 +6034,36 @@ THEN
 		Spell(LastSeenBy(Myself),WIZARD_ABI_DALZIMS_HORRID_WILTING)
 END
 
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MORDENKAINENS_FORCE_MISSILES)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+
+	!ImmuneToSpellLevel(LastSeenBy(Myself),4)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Spell(LastSeenBy(Myself),WIZARD_MORDENKAINENS_FORCE_MISSILES)
+END
+
 // Level 6 - Evocation
 IF
 	ActionListEmpty()
