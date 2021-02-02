@@ -5853,6 +5853,23 @@ THEN
 		Continue()
 END
 
+//////////////////////////////////////////////////////////////////////////////////// Berserker Rage
+
+IF
+	ActionListEmpty()
+	OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(BERSERKER_RAGE)
+	!StateCheck(Myself,STATE_BERSERK)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Spell(Myself,BERSERKER_RAGE)
+END
+
 ////////////////////////////////////////////////////////////////////////////////////// Offensive Spells On Target You Can See
 
 // Level 7 - Alteration (8)
