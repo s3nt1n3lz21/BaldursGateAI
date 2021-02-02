@@ -2027,6 +2027,42 @@ THEN
 		Spell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)
 END
 
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_HOLD_UNDEAD)
+	General(NearestEnemyOf(Myself),UNDEAD)
+
+	!CheckSpellState(LastSeenBy(Myself),HELD)
+	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+
+	!Kit(LastSeenBy(Myself),INQUISITOR)
+	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
+	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103328) // Spell: Hold Person
+		Spell(LastSeenBy(Myself),WIZARD_HOLD_UNDEAD)
+END
+
 // Level 1 - Enchantment
 IF
 	ActionListEmpty()
