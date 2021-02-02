@@ -5025,6 +5025,38 @@ THEN
 		Spell(Myself,WIZARD_MELF_METEOR)
 END
 
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_EMOTION_HOPE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Spell(Myself,WIZARD_EMOTION_HOPE)
+END
+
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_EMOTION_COURAGE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Spell(Myself,WIZARD_EMOTION_COURAGE)
+END
+
 // Level 6
 // 10 Rounds/Level (60 seconds/level) - 1 Creature
 IF
