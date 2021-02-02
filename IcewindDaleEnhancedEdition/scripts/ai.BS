@@ -6092,6 +6092,35 @@ THEN
 		Spell(LastSeenBy(Myself),WIZARD_AGANNAZAR_SCORCHER)
 END
 
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_SUNSCORCH)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+	General(NearestEnemyOf(Myself),UNDEAD)
+
+	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+	!CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY) 
+	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
+
+	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103260) // Spell: Holy Smite
+		Spell(LastSeenBy(Myself),CLERIC_SUNSCORCH)
+END
+
 // Level 3 - Necromancy
 IF
 	ActionListEmpty()
