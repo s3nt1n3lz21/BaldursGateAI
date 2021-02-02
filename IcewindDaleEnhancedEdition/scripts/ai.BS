@@ -4932,6 +4932,32 @@ END
 
 IF
 	ActionListEmpty()
+	OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_CATS_GRACE)
+	CheckStatLT(PartySlot1,19,DEX)
+	!CheckSpellState(PartySlot1,CATS_GRACE)
+	
+	!CheckStat(PartySlot1,1,MINORGLOBE)
+	!CheckStat(PartySlot1,8,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
+	!StateCheck(PartySlot1,STATE_INVISIBLE)
+	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		Spell(PartySlot1,WIZARD_CATS_GRACE)
+END
+
+IF
+	ActionListEmpty()
     OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
