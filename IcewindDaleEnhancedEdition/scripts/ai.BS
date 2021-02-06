@@ -6275,7 +6275,6 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_SUNSCORCH)
 	HPPercentGT(NearestEnemyOf(Myself),0)
-	General(NearestEnemyOf(Myself),UNDEAD)
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY) 
