@@ -4839,6 +4839,36 @@ THEN
 		Spell(PartySlot1,CLERIC_AID)
 END
 
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_RECITATION)  // SPPR513.SPL (Righteous Magic)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103290) // Spell: Righteous Magic
+		Spell(Myself,CLERIC_RECITATION)
+END
+
+IF
+	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_RIGHTEOUS_WRATH_OF_THE_FAITHFUL)  // SPPR513.SPL (Righteous Magic)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+	    SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103290) // Spell: Righteous Magic
+		Spell(Myself,CLERIC_RIGHTEOUS_WRATH_OF_THE_FAITHFUL)
+END
+
 // Level 5
 // 1 Round/Level (6 seconds/level) - Self
 IF
