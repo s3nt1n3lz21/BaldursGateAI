@@ -1627,6 +1627,69 @@ IF
 
 	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
     !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_DEMI_SHADOW_MONSTERS)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		//DisplayStringHead(Myself,103309) // Spell: Animal Summoning 1
+		Spell(Myself,WIZARD_DEMI_SHADOW_MONSTERS)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SUMMON_SHADOW)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		//DisplayStringHead(Myself,103309) // Spell: Animal Summoning 1
+		Spell(Myself,WIZARD_SUMMON_SHADOW)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MONSTER_SUMMONING_4)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		Shout(SUMMONING_CREATURE) // Summoning Creature
+		//DisplayStringHead(Myself,103309) // Spell: Animal Summoning 1
+		Spell(Myself,WIZARD_MONSTER_SUMMONING_4)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+    !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_SPIDER_SPAWN)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -5316,6 +5379,23 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,103283) // Spell: Resist Fear
 		Spell(Myself,WIZARD_RESIST_FEAR)
+END
+
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SEVEN_EYES)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103303) // Spell: Barkskin
+		Spell(Myself,WIZARD_SEVEN_EYES)
 END
 
 // Level 2 - Illusion 5
