@@ -4961,6 +4961,22 @@ THEN
 		Spell(Myself,CLERIC_HOLY_POWER)
 END
 
+IF
+	ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_ENTROPY_SHIELD)
+	!CheckSpellState(Myself,ENTROPY_SHIELD)
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103297) // Spell: Holy Power
+		Spell(Myself,CLERIC_ENTROPY_SHIELD)
+END
+
 // Level 3
 // 10 Rounds (60 seconds) - 15ft Radius
 IF
