@@ -3304,6 +3304,24 @@ THEN
 		Spell(NearestEnemyOf(Myself),WIZARD_GREATER_MALISON)
 END
 
+IF
+ 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_PRAYER)
+	See(NearestEnemyOf(Myself))
+
+	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103320) // Spell: Doom
+		Spell(Myself,CLERIC_PRAYER)
+END
+
 /////////////////////////////////////////////////////////////////////////////////////// Debuff/Control Wands
 IF
 	ActionListEmpty()
