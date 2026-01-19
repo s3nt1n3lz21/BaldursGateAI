@@ -33,28 +33,6 @@ THEN
 END
 
 IF
-    ActionListEmpty()
-    See(NearestEnemyOf(Myself),0)
-    !GlobalTimerNotExpired("idleDebug","LOCALS")
-THEN
-    RESPONSE #100
-        SetGlobalTimer("idleDebug","LOCALS",2)
-        FloatMessage(Myself,47689)  // Idle With Enemy
-        Continue()
-END
-
-IF
-    ActionListEmpty()
-    GlobalTimerNotExpired("castnattack","LOCALS")
-    !GlobalTimerNotExpired("cooldownDebug","LOCALS")
-THEN
-    RESPONSE #100
-        SetGlobalTimer("cooldownDebug","LOCALS",3)
-        FloatMessage(Myself,47692)  // Cooldown Blocking Action
-        Continue()
-END
-
-IF
     HotKey(Q)
     Global("u_useLongSummonSpells","LOCALS",0)
 THEN
@@ -126,44 +104,52 @@ THEN
         SetGlobal("u_healingSpellsOn","LOCALS",0)
 END
 
-IF
-    ActionListEmpty()
-    See([ENEMY],0)
-    !GlobalTimerNotExpired("engageCD","LOCALS")
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-THEN
-    RESPONSE #100
-        SetGlobalTimer("engageCD","LOCALS",2)
-        FloatMessage(Myself,47685)  // Attack Reevaluate
-        AttackReevaluate(NearestEnemyOf(Myself),20)
-END
+// IF
+//     ActionListEmpty()
+//     See([ENEMY],0)
+//     HaveSpell(WIZARD_MAGIC_MISSILE)
+//     !StateCheck(Myself,STATE_SILENCED)
+//     CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+//     !GlobalTimerNotExpired("mmCD","LOCALS")
+// THEN
+//     RESPONSE #100
+//         SetGlobalTimer("mmCD","LOCALS",3)
+//         FloatMessage(Myself,47688)  // Casting Spell
+//         Spell(NearestEnemyOf(Myself),WIZARD_MAGIC_MISSILE)
+// END
 
-IF
-    ActionListEmpty()
-    Global("usingNormalAttack","LOCALS",1)
-    !IsWeaponRanged(Myself)
-    HPGT(NearestEnemyOf(Myself),0)
-    !GlobalTimerNotExpired("clearCD","LOCALS")
-THEN
-    RESPONSE #100
-        SetGlobalTimer("clearCD","LOCALS",5)
-        SetGlobal("usingNormalAttack","LOCALS",0)
-        FloatMessage(Myself,47693)  // ClearAllActions Fired
-        FloatMessage(Myself,47690)  // Spell Failed / Aborted
-        FloatMessage(Myself,47685)  // Attack Reevaluate
-        ClearAllActions()
-END
+// IF
+//     ActionListEmpty()
+//     See([ENEMY],0)
+//     !GlobalTimerNotExpired("engageCD","LOCALS")
+//     !GlobalTimerNotExpired("castnattack","LOCALS")
+// THEN
+//     RESPONSE #100
+//         SetGlobalTimer("engageCD","LOCALS",4)
+//         FloatMessage(Myself,47685)  // Attack Reevaluate
+//         AttackReevaluate(NearestEnemyOf(Myself),30)
+// END
+
+// IF
+//     Global("usingNormalAttack","LOCALS",1)
+//     !IsWeaponRanged(Myself)
+//     HPGT(NearestEnemyOf(Myself),0)
+//     !GlobalTimerNotExpired("clearCD","LOCALS")
+// THEN
+//     RESPONSE #100
+//         SetGlobalTimer("clearCD","LOCALS",2)
+//         SetGlobal("usingNormalAttack","LOCALS",0)
+//         FloatMessage(Myself,47693)  // ClearAllActions Fired
+//         ClearAllActions()
+//         Continue()
+// END
 
 IF
     GlobalTimerNotExpired("castingfireball","LOCALS")
     Range(LastSeenBy(Myself),17,0)
-    !GlobalTimerNotExpired("clearCD","LOCALS")
 THEN
     RESPONSE #100
         SetGlobalTimer("castingfireball","LOCALS",0)
-        FloatMessage(Myself,47693)  // ClearAllActions Fired
-        FloatMessage(Myself,47690)  // Spell Failed / Aborted
-        FloatMessage(Myself,47685)  // Attack Reevaluate
         ClearAllActions()
 END
 
@@ -833,7 +819,6 @@ IF
 THEN
     RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-        FloatMessage(Myself,47688)  // Casting Spell
         UseItem("SCRL56",MostDamagedOf(Myself))
 END
 
@@ -845,7 +830,6 @@ IF
 THEN
     RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-        FloatMessage(Myself,47688)  // Casting Spell
         UseItem("SCRL61",MostDamagedOf(Myself))
 END
 
