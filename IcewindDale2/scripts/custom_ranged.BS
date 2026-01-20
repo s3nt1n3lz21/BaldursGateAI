@@ -1,3 +1,26 @@
+// === IWD2 PORT: SHOUT IDS (replacing NEED_* symbols) ===
+// 200 = 200
+// 201 = 201
+// 202 = 202
+// 203 = 203
+// 204 = 204
+
+// StringRefs
+// 47680 - Melee Attack
+// 47681 - Ranged Attack
+// 47682 - Run Away
+// 47683 - Heal Self
+// 47684 - Shout Help
+// 47685 - Attack Reevaluate
+// 47686 - Drink Antidote
+// 47687 - Low HP
+// 47688 - Casting Spell
+// 47689 - Idle With Enemy
+// 47690 - Spell Failed / Aborted
+// 47691 - No Valid Target
+// 47692 - Cooldown Blocking Action
+// 47693 - ClearAllActions Fired
+
 // TESTING
 // //FloatMessage(Myself,103365) // Test
 
@@ -137,7 +160,8 @@ END
 
 IF
 	!GlobalTimerNotExpired("energyleveldrained","LOCALS")
-	CheckStatGT(Myself,0,LEVELDRAIN)
+// [IWD2 PORT] commented: LEVELDRAIN not in STATS.IDS; consider CheckSpellState(...,ENERGY_DRAINED)
+// 	CheckStatGT(Myself,0,LEVELDRAIN)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("energyleveldrained","LOCALS",30)
@@ -219,12 +243,12 @@ IF
 THEN
     RESPONSE #100
 		//FloatMessage(Myself,103245) // Help: Need Antidote
-        Shout(NEED_ANTIDOTE) // Shout for help
+        Shout(200) // Shout for help
 		Continue()
 END
 
 IF
-    Heard([ANYONE],NEED_ANTIDOTE) // If someone shouted for help
+    Heard([ANYONE],200) // If someone shouted for help
     !HasItem("potn20",LastHeardBy(Myself))
 	!HasItem("potn17",LastHeardBy(Myself))
 	HasItem("potn20",Myself)
@@ -236,7 +260,7 @@ THEN
 END
 
 IF
-    Heard([ANYONE],NEED_ANTIDOTE) // If someone shouted for help
+    Heard([ANYONE],200) // If someone shouted for help
     !HasItem("potn20",LastHeardBy(Myself))
 	!HasItem("potn17",LastHeardBy(Myself))
 	HasItem("potn17",Myself)
@@ -269,12 +293,12 @@ IF
 THEN
     RESPONSE #100
 		//FloatMessage(Myself,103354) // Help: Need Cure Disease
-        Shout(NEED_CURE_DISEASE) // Shout for help
+        Shout(201) // Shout for help
 		Continue()
 END
 
 IF
-    Heard([ANYONE],NEED_CURE_DISEASE) // If someone shouted for help
+    Heard([ANYONE],201) // If someone shouted for help
 	!HasItem("potn17",LastHeardBy(Myself))
 	HasItem("potn17",Myself)
 THEN
@@ -292,7 +316,7 @@ IF
 	OR(2)
 		HitBy([ENEMY],FIRE)
 		HitBy([ENEMY],MAGICFIRE)
-	DamageTakenGT(25)
+	HPLostGT(Myself,25)
 	HasItem("potn02",Myself)
 	CheckStatLT(Myself,49,RESISTFIRE)
 THEN
@@ -306,13 +330,13 @@ IF
 	OR(2)
 		HitBy([ENEMY],FIRE)
 		HitBy([ENEMY],MAGICFIRE)
-	DamageTakenGT(25)
+	HPLostGT(Myself,25)
 	!HasItem("potn02",Myself)
 	CheckStatLT(Myself,49,RESISTFIRE)
 THEN
 	RESPONSE #100
 		//FloatMessage(Myself,103351) // Help: Need Potion Fire Resistance
-        Shout(NEED_POTION_FIRE_RESISTANCE) // Shout for help
+        Shout(202) // Shout for help
 		Continue()
 END
 
@@ -322,7 +346,7 @@ IF
 	OR(2)
 		HitBy([ENEMY],COLD)
 		HitBy([ENEMY],MAGICCOLD)
-	DamageTakenGT(25)
+	HPLostGT(Myself,25)
 	HasItem("potn22",Myself)
 	CheckStatLT(Myself,49,RESISTCOLD)
 THEN
@@ -336,13 +360,13 @@ IF
 	OR(2)
 		HitBy([ENEMY],COLD)
 		HitBy([ENEMY],MAGICCOLD)
-	DamageTakenGT(25)
+	HPLostGT(Myself,25)
 	!HasItem("potn22",Myself)
 	CheckStatLT(Myself,49,RESISTCOLD)
 THEN
 	RESPONSE #100
 		//FloatMessage(Myself,103349) // Help: Need Potion Cold Resistance
-        Shout(NEED_POTION_COLD_RESISTANCE) // Shout for help
+        Shout(203) // Shout for help
 		Continue()
 END
 
@@ -350,7 +374,7 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HitBy([ENEMY],ELECTRICITY)
-	DamageTakenGT(25)
+	HPLostGT(Myself,25)
 	HasItem("potn31",Myself)
 	CheckStatLT(Myself,49,RESISTELECTRICITY)
 THEN
@@ -362,13 +386,13 @@ END
 
 IF
 	HitBy([ENEMY],ELECTRICITY)
-	DamageTakenGT(25)
+	HPLostGT(Myself,25)
 	!HasItem("potn31",Myself)
 	CheckStatLT(Myself,49,RESISTELECTRICITY)
 THEN
 	RESPONSE #100
 		//FloatMessage(Myself,103347) // Help: Need Potion Insulation
-        Shout(NEED_POTION_INSULATION) // Shout for help
+        Shout(204) // Shout for help
 		Continue()
 END
 
@@ -376,7 +400,7 @@ END
 
 IF
 	ActionListEmpty()
-    Heard([ANYONE],NEED_POTION_FIRE_RESISTANCE) // If someone shouted for help
+    Heard([ANYONE],202) // If someone shouted for help
     !HasItem("potn02",LastHeardBy(Myself))
 	HasItem("potn02",Myself)
 THEN
@@ -388,7 +412,7 @@ END
 
 IF
 	ActionListEmpty()
-    Heard([ANYONE],NEED_POTION_COLD_RESISTANCE) // If someone shouted for help
+    Heard([ANYONE],203) // If someone shouted for help
     !HasItem("potn22",LastHeardBy(Myself))
 	HasItem("potn22",Myself)
 THEN
@@ -400,7 +424,7 @@ END
 
 IF
 	ActionListEmpty()
-    Heard([ANYONE],NEED_POTION_INSULATION) // If someone shouted for help
+    Heard([ANYONE],204) // If someone shouted for help
     !HasItem("potn31",LastHeardBy(Myself))
 	HasItem("potn31",Myself)
 THEN
@@ -417,8 +441,9 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MINOR_SPELL_DEFLECTION)
-	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
+	HaveSpell(WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
 
 	OR(4)
 		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
@@ -433,7 +458,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103272) // Spell: Minor Spell Deflection
-		Spell(Myself,WIZARD_MINOR_SPELL_DEFLECTION)
+		Spell(Myself,WIZARD_MINOR_GLOBE_OF_INVULNERABILITY)
 END
 
 ////////////////////////////////////////////////////////////////////////////////////// Scrolls: Spell Shields
@@ -446,7 +471,8 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("SCRL6G",Myself)
-	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
 
 	OR(4)
 		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
@@ -1118,7 +1144,8 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_LESSER_RESTORATION)
-	CheckStatGT(Player1,0,LEVELDRAIN)
+// [IWD2 PORT] commented: LEVELDRAIN not in STATS.IDS; consider CheckSpellState(...,ENERGY_DRAINED)
+// 	CheckStatGT(Player1,0,LEVELDRAIN)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1134,7 +1161,8 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_LESSER_RESTORATION)
-	CheckStatGT(Player2,0,LEVELDRAIN)
+// [IWD2 PORT] commented: LEVELDRAIN not in STATS.IDS; consider CheckSpellState(...,ENERGY_DRAINED)
+// 	CheckStatGT(Player2,0,LEVELDRAIN)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1150,7 +1178,8 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_LESSER_RESTORATION)
-	CheckStatGT(Player3,0,LEVELDRAIN)
+// [IWD2 PORT] commented: LEVELDRAIN not in STATS.IDS; consider CheckSpellState(...,ENERGY_DRAINED)
+// 	CheckStatGT(Player3,0,LEVELDRAIN)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1166,7 +1195,8 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_LESSER_RESTORATION)
-	CheckStatGT(Player4,0,LEVELDRAIN)
+// [IWD2 PORT] commented: LEVELDRAIN not in STATS.IDS; consider CheckSpellState(...,ENERGY_DRAINED)
+// 	CheckStatGT(Player4,0,LEVELDRAIN)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1182,7 +1212,8 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_LESSER_RESTORATION)
-	CheckStatGT(Player5,0,LEVELDRAIN)
+// [IWD2 PORT] commented: LEVELDRAIN not in STATS.IDS; consider CheckSpellState(...,ENERGY_DRAINED)
+// 	CheckStatGT(Player5,0,LEVELDRAIN)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1198,7 +1229,8 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_LESSER_RESTORATION)
-	CheckStatGT(Player6,0,LEVELDRAIN)
+// [IWD2 PORT] commented: LEVELDRAIN not in STATS.IDS; consider CheckSpellState(...,ENERGY_DRAINED)
+// 	CheckStatGT(Player6,0,LEVELDRAIN)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1935,7 +1967,8 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
@@ -1979,7 +2012,8 @@ IF
 		CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY)
 		CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 		CheckStatGT(LastSeenBy(Myself),25,RESISTMAGIC)
 
 	!ImmuneToSpellLevel(LastSeenBy(Myself),6)
@@ -2013,7 +2047,8 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 
 	!ImmuneToSpellLevel(LastSeenBy(Myself),5)
 
@@ -2051,7 +2086,8 @@ IF
 	OR(4)
 		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),4)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
@@ -2085,7 +2121,8 @@ IF
 	!ImmuneToSpellLevel(LastTrigger,2)
 	!CheckStat(LastTrigger,1,MINORGLOBE)
 	!CheckStat(LastTrigger,1,WIZARD_SPELL_TURNING)
-	!CheckStat(LastTrigger,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(LastTrigger,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(LastTrigger,3,WIZARD_SPELL_IMMUNITY)
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2106,7 +2143,8 @@ IF
 	!CheckSpellState(LastSeenBy(Myself),HELD)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -2146,7 +2184,8 @@ IF
 	!CheckSpellState(LastSeenBy(Myself),HELD)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -2186,7 +2225,8 @@ IF
 	!CheckSpellState(LastSeenBy(Myself),HELD)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -2229,7 +2269,8 @@ IF
 	!CheckSpellState(LastSeenBy(Myself),HELD)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -2271,7 +2312,8 @@ IF
 	!CheckSpellState(LastSeenBy(Myself),HELD)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),5)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -2314,7 +2356,8 @@ IF
 
 	!CheckStat(NearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(NearestEnemyOf(Myself),5)
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)	
 	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
@@ -2322,7 +2365,8 @@ IF
 
 	!CheckStat(SecondNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(SecondNearestEnemyOf(Myself),5)
 	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
 	CheckStatGT(SecondNearestEnemyOf(Myself),5,SAVEVSSPELL)
@@ -2330,7 +2374,8 @@ IF
 
 	!CheckStat(ThirdNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(ThirdNearestEnemyOf(Myself),5)
 	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
 	CheckStatGT(ThirdNearestEnemyOf(Myself),5,SAVEVSSPELL)
@@ -2338,7 +2383,8 @@ IF
 
 	!CheckStat(FourthNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(FourthNearestEnemyOf(Myself),5)
 	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
 	CheckStatGT(FourthNearestEnemyOf(Myself),5,SAVEVSSPELL)
@@ -2527,7 +2573,8 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),5)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
@@ -2839,7 +2886,8 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ENEMY)
@@ -2908,7 +2956,8 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) 
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ENEMY)
@@ -3211,7 +3260,8 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ENEMY)
@@ -3252,7 +3302,8 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) 
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),5)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
@@ -3290,7 +3341,8 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) 
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
@@ -3327,7 +3379,8 @@ IF
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY) 
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
@@ -3945,7 +3998,8 @@ IF
 
 	!CheckStat(Player1,1,MINORGLOBE)
 	!CheckStat(Player1,7,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,4)
 	!StateCheck(Player1,STATE_INVISIBLE)
@@ -3972,7 +4026,8 @@ IF
 
 	!CheckStat(Player2,1,MINORGLOBE)
 	!CheckStat(Player2,7,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player2,4)
 	!StateCheck(Player2,STATE_INVISIBLE)
@@ -3999,7 +4054,8 @@ IF
 
 	!CheckStat(Player3,1,MINORGLOBE)
 	!CheckStat(Player3,7,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player3,4)
 	!StateCheck(Player3,STATE_INVISIBLE)
@@ -4026,7 +4082,8 @@ IF
 
 	!CheckStat(Player4,1,MINORGLOBE)
 	!CheckStat(Player4,7,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player4,4)
 	!StateCheck(Player4,STATE_INVISIBLE)
@@ -4053,7 +4110,8 @@ IF
 
 	!CheckStat(Player5,1,MINORGLOBE)
 	!CheckStat(Player5,7,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player5,4)
 	!StateCheck(Player5,STATE_INVISIBLE)
@@ -4080,7 +4138,8 @@ IF
 
 	!CheckStat(Player6,1,MINORGLOBE)
 	!CheckStat(Player6,7,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player6,4)
 	!StateCheck(Player6,STATE_INVISIBLE)
@@ -4108,7 +4167,8 @@ IF
 
 	!CheckStat(Player1,1,MINORGLOBE)
 	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,4)
 	!StateCheck(Player1,STATE_INVISIBLE)
@@ -4154,7 +4214,8 @@ IF
 
 	!CheckStat(Player1,1,MINORGLOBE)
 	!CheckStat(Player1,4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,5)
 	!StateCheck(Player1,STATE_INVISIBLE)
@@ -4182,7 +4243,8 @@ IF
 
 	!CheckStat(Player2,1,MINORGLOBE)
 	!CheckStat(Player2,4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player2,5)
 	!StateCheck(Player2,STATE_INVISIBLE)
@@ -4210,7 +4272,8 @@ IF
 
 	!CheckStat(Player3,1,MINORGLOBE)
 	!CheckStat(Player3,4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player3,5)
 	!StateCheck(Player3,STATE_INVISIBLE)
@@ -4238,7 +4301,8 @@ IF
 
 	!CheckStat(Player4,1,MINORGLOBE)
 	!CheckStat(Player4,4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player4,5)
 	!StateCheck(Player4,STATE_INVISIBLE)
@@ -4266,7 +4330,8 @@ IF
 
 	!CheckStat(Player5,1,MINORGLOBE)
 	!CheckStat(Player5,4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player5,5)
 	!StateCheck(Player5,STATE_INVISIBLE)
@@ -4294,7 +4359,8 @@ IF
 
 	!CheckStat(Player6,1,MINORGLOBE)
 	!CheckStat(Player6,4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player6,5)
 	!StateCheck(Player6,STATE_INVISIBLE)
@@ -4323,7 +4389,8 @@ IF
 
 	!CheckStat(Player1,1,MINORGLOBE)
 	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,1)
 	!StateCheck(Player1,STATE_INVISIBLE)
@@ -4352,7 +4419,8 @@ IF
 
 	!CheckStat(Player2,1,MINORGLOBE)
 	!CheckStat(Player2,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player2,1)
 	!StateCheck(Player2,STATE_INVISIBLE)
@@ -4381,7 +4449,8 @@ IF
 
 	!CheckStat(Player3,1,MINORGLOBE)
 	!CheckStat(Player3,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player3,1)
 	!StateCheck(Player3,STATE_INVISIBLE)
@@ -4410,7 +4479,8 @@ IF
 
 	!CheckStat(Player4,1,MINORGLOBE)
 	!CheckStat(Player4,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player4,1)
 	!StateCheck(Player4,STATE_INVISIBLE)
@@ -4439,7 +4509,8 @@ IF
 
 	!CheckStat(Player5,1,MINORGLOBE)
 	!CheckStat(Player5,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player5,1)
 	!StateCheck(Player5,STATE_INVISIBLE)
@@ -4468,7 +4539,8 @@ IF
 
 	!CheckStat(Player6,1,MINORGLOBE)
 	!CheckStat(Player6,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player6,1)
 	!StateCheck(Player6,STATE_INVISIBLE)
@@ -4496,7 +4568,8 @@ IF
 
 	!CheckStat(WeakestOf(Myself),1,MINORGLOBE)
 	!CheckStat(WeakestOf(Myself),8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(WeakestOf(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(WeakestOf(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(WeakestOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(WeakestOf(Myself),5)
 	!StateCheck(WeakestOf(Myself),STATE_INVISIBLE)
@@ -4525,7 +4598,8 @@ IF
 
 	!CheckStat(Player1,1,MINORGLOBE)
 	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,4)
 	!StateCheck(Player1,STATE_INVISIBLE)
@@ -4554,7 +4628,8 @@ IF
 
 	!CheckStat(Player2,1,MINORGLOBE)
 	!CheckStat(Player2,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player2,4)
 	!StateCheck(Player2,STATE_INVISIBLE)
@@ -4583,7 +4658,8 @@ IF
 
 	!CheckStat(Player3,1,MINORGLOBE)
 	!CheckStat(Player3,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player3,4)
 	!StateCheck(Player3,STATE_INVISIBLE)
@@ -4612,7 +4688,8 @@ IF
 
 	!CheckStat(Player4,1,MINORGLOBE)
 	!CheckStat(Player4,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player4,4)
 	!StateCheck(Player4,STATE_INVISIBLE)
@@ -4641,7 +4718,8 @@ IF
 
 	!CheckStat(Player5,1,MINORGLOBE)
 	!CheckStat(Player5,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player5,4)
 	!StateCheck(Player5,STATE_INVISIBLE)
@@ -4670,7 +4748,8 @@ IF
 
 	!CheckStat(Player6,1,MINORGLOBE)
 	!CheckStat(Player6,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player6,4)
 	!StateCheck(Player6,STATE_INVISIBLE)
@@ -4701,7 +4780,8 @@ IF
 
 	!CheckStat(Player1,1,MINORGLOBE)
 	!CheckStat(Player1,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,2)
 	!StateCheck(Player1,STATE_INVISIBLE)
@@ -4733,7 +4813,8 @@ IF
 
 	!CheckStat(Player2,1,MINORGLOBE)
 	!CheckStat(Player2,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player2,2)
 	!StateCheck(Player2,STATE_INVISIBLE)
@@ -4765,7 +4846,8 @@ IF
 
 	!CheckStat(Player3,1,MINORGLOBE)
 	!CheckStat(Player3,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player3,2)
 	!StateCheck(Player3,STATE_INVISIBLE)
@@ -4797,7 +4879,8 @@ IF
 
 	!CheckStat(Player4,1,MINORGLOBE)
 	!CheckStat(Player4,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player4,2)
 	!StateCheck(Player4,STATE_INVISIBLE)
@@ -4829,7 +4912,8 @@ IF
 
 	!CheckStat(Player5,1,MINORGLOBE)
 	!CheckStat(Player5,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player5,2)
 	!StateCheck(Player5,STATE_INVISIBLE)
@@ -4861,7 +4945,8 @@ IF
 
 	!CheckStat(Player6,1,MINORGLOBE)
 	!CheckStat(Player6,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player6,2)
 	!StateCheck(Player6,STATE_INVISIBLE)
@@ -4952,7 +5037,8 @@ IF
 
 	!CheckStat(Player1,1,MINORGLOBE)
 	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,3)
 	!StateCheck(Player1,STATE_INVISIBLE)
@@ -4980,7 +5066,8 @@ IF
 
 	!CheckStat(Player1,1,MINORGLOBE)
 	!CheckStat(Player1,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,5)
 	!StateCheck(Player1,STATE_INVISIBLE)
@@ -5009,7 +5096,8 @@ IF
 	!CheckStat(Player1,1,MINORGLOBE)
 	!CheckStat(Player1,2,WIZARD_SPELL_IMMUNITY)
 	!CheckStat(Player1,7,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,2)
 	!StateCheck(Player1,STATE_INVISIBLE)
@@ -5088,7 +5176,8 @@ IF
 
 	!CheckStat(Player1,1,MINORGLOBE)
 	!CheckStat(Player1,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,2)
 	!StateCheck(Player1,STATE_INVISIBLE)
@@ -5168,7 +5257,8 @@ IF
 
 	!CheckStat(Player1,1,MINORGLOBE)
 	!CheckStat(Player1,2,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,2)
 	!StateCheck(Player1,STATE_INVISIBLE)
@@ -5196,7 +5286,8 @@ IF
 
 	!CheckStat(Player1,1,MINORGLOBE)
 	!CheckStat(Player1,2,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,1)
 	!StateCheck(Player1,STATE_INVISIBLE)
@@ -5333,7 +5424,8 @@ IF
 	
 	!CheckStat(Player1,1,MINORGLOBE)
 	!CheckStat(Player1,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
@@ -5415,7 +5507,8 @@ IF
 
 	!CheckStat(WeakestOf(Myself),1,MINORGLOBE)
 	!CheckStat(WeakestOf(Myself),8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(WeakestOf(Myself),1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(WeakestOf(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(WeakestOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(WeakestOf(Myself),2)
 	!StateCheck(WeakestOf(Myself),STATE_INVISIBLE)
@@ -5445,7 +5538,8 @@ IF
 
 	!CheckStat(Player1,1,MINORGLOBE)
 	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,5)
 	!StateCheck(Player1,STATE_INVISIBLE)
@@ -5475,7 +5569,8 @@ IF
 
 	!CheckStat(Player1,1,MINORGLOBE)
 	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,3)
 	!StateCheck(Player1,STATE_INVISIBLE)
