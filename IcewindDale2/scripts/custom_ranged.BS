@@ -446,12 +446,13 @@ IF
 // 	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
 
 	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -475,12 +476,13 @@ IF
 // 	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
 
 	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -498,15 +500,17 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("SCRL7D",Myself)
-	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
 
 	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -527,12 +531,13 @@ IF
 	!CheckStat(Myself,1,MINORGLOBE)
 
 	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -555,7 +560,8 @@ IF
 	!CheckSpellState(Myself,STONESKIN)
 	!CheckStatGT(Myself,0,STONESKINS)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -573,7 +579,8 @@ IF
 	HaveSpell(CLERIC_IRONSKIN)
 	!CheckSpellState(Myself,IRON_SKINS)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -593,7 +600,8 @@ IF
 	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),80)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -612,7 +620,8 @@ IF
 	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),80) 
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -631,7 +640,8 @@ IF
 	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),75)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -650,7 +660,8 @@ IF
 	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),70)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -669,7 +680,8 @@ IF
 	HaveSpell(CLERIC_MASS_CURE)  // SPPR514.SPL (Mass Cure)
 	HPPercentLT(MostDamagedOf(Myself),70)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -688,7 +700,8 @@ IF
 	HaveSpell(CLERIC_REGENERATE)  // SPPR514.SPL (Mass Cure)
 	HPPercentLT(MostDamagedOf(Myself),70)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1147,7 +1160,8 @@ IF
 // [IWD2 PORT] commented: LEVELDRAIN not in STATS.IDS; consider CheckSpellState(...,ENERGY_DRAINED)
 // 	CheckStatGT(Player1,0,LEVELDRAIN)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1164,7 +1178,8 @@ IF
 // [IWD2 PORT] commented: LEVELDRAIN not in STATS.IDS; consider CheckSpellState(...,ENERGY_DRAINED)
 // 	CheckStatGT(Player2,0,LEVELDRAIN)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1181,7 +1196,8 @@ IF
 // [IWD2 PORT] commented: LEVELDRAIN not in STATS.IDS; consider CheckSpellState(...,ENERGY_DRAINED)
 // 	CheckStatGT(Player3,0,LEVELDRAIN)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1198,7 +1214,8 @@ IF
 // [IWD2 PORT] commented: LEVELDRAIN not in STATS.IDS; consider CheckSpellState(...,ENERGY_DRAINED)
 // 	CheckStatGT(Player4,0,LEVELDRAIN)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1215,7 +1232,8 @@ IF
 // [IWD2 PORT] commented: LEVELDRAIN not in STATS.IDS; consider CheckSpellState(...,ENERGY_DRAINED)
 // 	CheckStatGT(Player5,0,LEVELDRAIN)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1232,7 +1250,8 @@ IF
 // [IWD2 PORT] commented: LEVELDRAIN not in STATS.IDS; consider CheckSpellState(...,ENERGY_DRAINED)
 // 	CheckStatGT(Player6,0,LEVELDRAIN)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1293,7 +1312,8 @@ IF
 	HaveSpell(WIZARD_VOCALIZE)
 	StateCheck(Myself,STATE_SILENCED)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
@@ -1316,7 +1336,8 @@ IF
 	CheckStatLT(NearestMyGroupOfType([GOODCUTOFF.0.0.0.0.SUMMONED]),99,RESISTMAGIC)
 	!Heard([ANYONE],CASTING_PROTECTION_FROM_MAGIC_ENERGY) // If someone else casting protection from magic energy
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -1345,7 +1366,8 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_SUMMON_PLANATAR_GOOD)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1372,7 +1394,8 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_SUMMON_PLANATAR_EVIL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1397,7 +1420,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_SUMMON_FALLEN_DEVA)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1422,7 +1446,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_SUMMON_DEVA)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1445,7 +1470,8 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_GREATER_ELEMENTAL_SWARM)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1468,7 +1494,8 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ELEMENTAL_SWARM)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1491,7 +1518,8 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MORDENKAINENS_SWORD)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1514,7 +1542,8 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_WYVERN_CALL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1535,7 +1564,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CONJURE_ANIMALS)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1556,7 +1586,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CALL_WOODLAND_BEINGS)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1598,7 +1629,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1619,7 +1651,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_2)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1640,7 +1673,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMAL_SUMMONING_1)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1661,7 +1695,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DEMI_SHADOW_MONSTERS)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1682,7 +1717,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_SUMMON_SHADOW)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1703,7 +1739,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MONSTER_SUMMONING_4)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1724,7 +1761,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_SPIDER_SPAWN)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1747,7 +1785,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_AERIAL_SERVANT)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1768,7 +1807,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_ANIMATE_DEAD)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1791,7 +1831,8 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_ANIMATE_DEAD)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -1812,7 +1853,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CONJURE_EARTH_ELEMENTAL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1833,7 +1875,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CONJURE_FIRE_ELEMENTAL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1854,7 +1897,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_CONJURE_FIRE_ELEMENTAL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1878,7 +1922,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("SCRL1L",Myself)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1897,7 +1942,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("SCRL2A",Myself)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1916,7 +1962,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("SCRL2G",Myself)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1943,7 +1990,8 @@ IF
 		SpellCast([ANYONE],CLERIC_WRITHING_FOG)  // SPPR250.SPL (Writhing Fog)
 		SpellCast([ANYONE],TRAP_STINKING_CLOUD)
 		SpellCast([ANYONE],TRAP_CLOUDKILL)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -1959,14 +2007,15 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_SILENCE_15_FOOT)  // SPPR211.SPL (Silence, 15' Radius)
 	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
@@ -1980,7 +2029,8 @@ IF
 
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 
@@ -2011,7 +2061,8 @@ IF
 		CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
 		CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY)
 		CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
-		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 		CheckStatGT(LastSeenBy(Myself),25,RESISTMAGIC)
@@ -2023,7 +2074,8 @@ IF
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
@@ -2046,7 +2098,8 @@ IF
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 
@@ -2059,7 +2112,8 @@ IF
 
 	CheckStatGT(LastSeenBy(Myself),35,RESISTMAGIC)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
@@ -2079,13 +2133,14 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_SECRET_WORD)
 	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	OR(4)
 		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
@@ -2096,7 +2151,8 @@ IF
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
@@ -2120,11 +2176,13 @@ IF
 		SpellCast([EVILCUTOFF],WIZARD_IMPROVED_INVISIBILITY)
 	!ImmuneToSpellLevel(LastTrigger,2)
 	!CheckStat(LastTrigger,1,MINORGLOBE)
-	!CheckStat(LastTrigger,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastTrigger,1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(LastTrigger,1,WIZARD_SPELL_DEFLECTION)
 	!CheckStat(LastTrigger,3,WIZARD_SPELL_IMMUNITY)
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -2142,7 +2200,8 @@ IF
 	See([EVILCUTOFF.HUMANOID])
 	!CheckSpellState(LastSeenBy(Myself),HELD)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
@@ -2163,7 +2222,8 @@ IF
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 
@@ -2183,7 +2243,8 @@ IF
 
 	!CheckSpellState(LastSeenBy(Myself),HELD)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
@@ -2201,7 +2262,8 @@ IF
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 
@@ -2224,7 +2286,8 @@ IF
 	!StateCheck(LastSeenBy(Myself),STATE_SLEEPING)
 	!CheckSpellState(LastSeenBy(Myself),HELD)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
@@ -2245,7 +2308,8 @@ IF
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
@@ -2268,7 +2332,8 @@ IF
 	See([EVILCUTOFF.HUMANOID])
 	!CheckSpellState(LastSeenBy(Myself),HELD)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
@@ -2289,7 +2354,8 @@ IF
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
@@ -2311,7 +2377,8 @@ IF
 	See(NearestEnemyOf(Myself))
 	!CheckSpellState(LastSeenBy(Myself),HELD)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),5)
@@ -2332,7 +2399,8 @@ IF
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
@@ -2355,7 +2423,8 @@ IF
 
 
 	!CheckStat(NearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(NearestEnemyOf(Myself),5)
@@ -2364,7 +2433,8 @@ IF
 
 
 	!CheckStat(SecondNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(SecondNearestEnemyOf(Myself),5)
@@ -2373,7 +2443,8 @@ IF
 
 
 	!CheckStat(ThirdNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(ThirdNearestEnemyOf(Myself),5)
@@ -2382,7 +2453,8 @@ IF
 
 
 	!CheckStat(FourthNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(FourthNearestEnemyOf(Myself),5)
@@ -2396,7 +2468,8 @@ IF
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
@@ -2420,7 +2493,8 @@ IF
 	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(NearestEnemyOf(Myself),1,MINORGLOBE)
 	!CheckStat(NearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(NearestEnemyOf(Myself),2)
 	!CheckStatGT(NearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(NearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -2439,7 +2513,8 @@ IF
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(SecondNearestEnemyOf(Myself),1,MINORGLOBE)
 	!CheckStat(SecondNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(SecondNearestEnemyOf(Myself),2)
 	!CheckStatGT(SecondNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(SecondNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -2458,7 +2533,8 @@ IF
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(ThirdNearestEnemyOf(Myself),1,MINORGLOBE)
 	!CheckStat(ThirdNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(ThirdNearestEnemyOf(Myself),2)
 	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(ThirdNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -2477,7 +2553,8 @@ IF
 	!StateCheck(FourthNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(FourthNearestEnemyOf(Myself),1,MINORGLOBE)
 	!CheckStat(FourthNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(FourthNearestEnemyOf(Myself),2)
 	!CheckStatGT(FourthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(FourthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -2496,7 +2573,8 @@ IF
 	!StateCheck(FifthNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(FifthNearestEnemyOf(Myself),1,MINORGLOBE)
 	!CheckStat(FifthNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(FifthNearestEnemyOf(Myself),2)
 	!CheckStatGT(FifthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(FifthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -2518,7 +2596,8 @@ IF
 // 	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
@@ -2539,10 +2618,10 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_BREACH)
 	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	OR(18)
 
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
@@ -2572,7 +2651,8 @@ IF
 		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),5)
@@ -2584,7 +2664,8 @@ IF
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
@@ -2618,7 +2699,8 @@ IF
 		StateCheck(Player1,STATE_SLEEPING)
 		StateCheck(Player1,STATE_SLOWED)
 		StateCheck(Player1,STATE_FEEBLEMINDED)
-		CheckStatGT(Player1,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(Player1,0,CLERIC_INSECT_PLAGUE)
 	See(Player1)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -2628,7 +2710,8 @@ IF
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -2659,7 +2742,8 @@ IF
 		StateCheck(Player2,STATE_SLEEPING)
 		StateCheck(Player2,STATE_SLOWED)
 		StateCheck(Player2,STATE_FEEBLEMINDED)
-		CheckStatGT(Player2,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(Player2,0,CLERIC_INSECT_PLAGUE)
 	See(Player2)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -2669,7 +2753,8 @@ IF
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -2700,7 +2785,8 @@ IF
 		StateCheck(Player3,STATE_SLEEPING)
 		StateCheck(Player3,STATE_SLOWED)
 		StateCheck(Player3,STATE_FEEBLEMINDED)
-		CheckStatGT(Player3,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(Player3,0,CLERIC_INSECT_PLAGUE)
 	See(Player3)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -2710,7 +2796,8 @@ IF
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -2741,7 +2828,8 @@ IF
 		StateCheck(Player4,STATE_SLEEPING)
 		StateCheck(Player4,STATE_SLOWED)
 		StateCheck(Player4,STATE_FEEBLEMINDED)
-		CheckStatGT(Player4,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(Player4,0,CLERIC_INSECT_PLAGUE)
 	See(Player4)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -2751,7 +2839,8 @@ IF
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -2782,7 +2871,8 @@ IF
 		StateCheck(Player5,STATE_SLEEPING)
 		StateCheck(Player5,STATE_SLOWED)
 		StateCheck(Player5,STATE_FEEBLEMINDED)
-		CheckStatGT(Player5,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(Player5,0,CLERIC_INSECT_PLAGUE)
 	See(Player5)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -2792,7 +2882,8 @@ IF
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -2823,7 +2914,8 @@ IF
 		StateCheck(Player6,STATE_SLEEPING)
 		StateCheck(Player6,STATE_SLOWED)
 		StateCheck(Player6,STATE_FEEBLEMINDED)
-		CheckStatGT(Player6,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(Player6,0,CLERIC_INSECT_PLAGUE)
 	See(Player6)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -2833,7 +2925,8 @@ IF
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -2852,10 +2945,10 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
 	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	OR(18)
 
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
@@ -2885,7 +2978,8 @@ IF
 		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
@@ -2900,7 +2994,8 @@ IF
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
@@ -2922,10 +3017,10 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DISPEL_MAGIC)
 	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	OR(18)
 
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
@@ -2955,7 +3050,8 @@ IF
 		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
@@ -2970,7 +3066,8 @@ IF
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
@@ -3004,7 +3101,8 @@ IF
 		StateCheck(Player1,STATE_SLEEPING)
 		StateCheck(Player1,STATE_SLOWED)
 		StateCheck(Player1,STATE_FEEBLEMINDED)
-		CheckStatGT(Player1,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(Player1,0,CLERIC_INSECT_PLAGUE)
 	See(Player1)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -3014,7 +3112,8 @@ IF
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -3043,7 +3142,8 @@ IF
 		StateCheck(Player2,STATE_SLEEPING)
 		StateCheck(Player2,STATE_SLOWED)
 		StateCheck(Player2,STATE_FEEBLEMINDED)
-		CheckStatGT(Player2,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(Player2,0,CLERIC_INSECT_PLAGUE)
 	See(Player2)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -3053,7 +3153,8 @@ IF
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -3082,7 +3183,8 @@ IF
 		StateCheck(Player3,STATE_SLEEPING)
 		StateCheck(Player3,STATE_SLOWED)
 		StateCheck(Player3,STATE_FEEBLEMINDED)
-		CheckStatGT(Player3,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(Player3,0,CLERIC_INSECT_PLAGUE)
 	See(Player3)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -3092,7 +3194,8 @@ IF
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -3121,7 +3224,8 @@ IF
 		StateCheck(Player4,STATE_SLEEPING)
 		StateCheck(Player4,STATE_SLOWED)
 		StateCheck(Player4,STATE_FEEBLEMINDED)
-		CheckStatGT(Player4,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(Player4,0,CLERIC_INSECT_PLAGUE)
 	See(Player4)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -3131,7 +3235,8 @@ IF
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -3160,7 +3265,8 @@ IF
 		StateCheck(Player5,STATE_SLEEPING)
 		StateCheck(Player5,STATE_SLOWED)
 		StateCheck(Player5,STATE_FEEBLEMINDED)
-		CheckStatGT(Player5,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(Player5,0,CLERIC_INSECT_PLAGUE)
 	See(Player5)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -3170,7 +3276,8 @@ IF
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -3199,7 +3306,8 @@ IF
 		StateCheck(Player6,STATE_SLEEPING)
 		StateCheck(Player6,STATE_SLOWED)
 		StateCheck(Player6,STATE_FEEBLEMINDED)
-		CheckStatGT(Player6,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(Player6,0,CLERIC_INSECT_PLAGUE)
 	See(Player6)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
@@ -3209,7 +3317,8 @@ IF
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -3226,10 +3335,10 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	OR(18)
 
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
@@ -3259,7 +3368,8 @@ IF
 		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
@@ -3274,7 +3384,8 @@ IF
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 
@@ -3291,17 +3402,20 @@ END
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	HaveSpell(CLERIC_INSECT_PLAGUE)
 	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	!CheckSpellState(LastSeenBy(Myself),MISCAST_MAGIC)
-	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_INSECT_PLAGUE)
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),5)
@@ -3314,7 +3428,8 @@ IF
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 
@@ -3323,7 +3438,8 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//..FloatMessage(Myself,?) // Spell: Insect Plague
-		Spell(LastSeenBy(Myself),CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		Spell(LastSeenBy(Myself),CLERIC_INSECT_PLAGUE)
 END
 
 // Level 3 - Conjuration
@@ -3332,15 +3448,17 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_SUMMON_INSECTS)
 	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	!CheckSpellState(LastSeenBy(Myself),MISCAST_MAGIC)
-	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_INSECT_PLAGUE)
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
@@ -3353,7 +3471,8 @@ IF
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 
@@ -3371,14 +3490,15 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_MISCAST_MAGIC)
 	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	!CheckSpellState(LastSeenBy(Myself),MISCAST_MAGIC)
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
@@ -3391,7 +3511,8 @@ IF
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 
@@ -3415,7 +3536,8 @@ IF
 		CheckStatLT(LastSeenBy(Myself),10,THAC0)
 	!CheckSpellState(LastSeenBy(Myself),DOOM)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 
@@ -3441,7 +3563,8 @@ IF
 		CheckStatGT(NearestEnemyOf(Myself),75,MAXHITPOINTS)
 		CheckStatLT(NearestEnemyOf(Myself),10,THAC0)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
@@ -3459,7 +3582,8 @@ IF
 	HaveSpell(CLERIC_PRAYER)
 	See(NearestEnemyOf(Myself))
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 
@@ -3480,7 +3604,8 @@ IF
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_SLOWED)
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_SLOWED)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 
@@ -3499,7 +3624,8 @@ IF
 	See(NearestEnemyOf(Myself))
 	!StateCheck(NearestEnemyOf(Myself),STATE_CHARMED)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 
@@ -3523,7 +3649,8 @@ IF
 	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(NearestEnemyOf(Myself),1,MINORGLOBE)
 	!CheckStat(NearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(NearestEnemyOf(Myself),2)
 	!CheckStatGT(NearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(NearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -3543,7 +3670,8 @@ IF
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(SecondNearestEnemyOf(Myself),1,MINORGLOBE)
 	!CheckStat(SecondNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(SecondNearestEnemyOf(Myself),2)
 	!CheckStatGT(SecondNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(SecondNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -3563,7 +3691,8 @@ IF
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(ThirdNearestEnemyOf(Myself),1,MINORGLOBE)
 	!CheckStat(ThirdNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(ThirdNearestEnemyOf(Myself),2)
 	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(ThirdNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -3583,7 +3712,8 @@ IF
 	!StateCheck(FourthNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(FourthNearestEnemyOf(Myself),1,MINORGLOBE)
 	!CheckStat(FourthNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(FourthNearestEnemyOf(Myself),2)
 	!CheckStatGT(FourthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(FourthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -3603,7 +3733,8 @@ IF
 	!StateCheck(FifthNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(FifthNearestEnemyOf(Myself),1,MINORGLOBE)
 	!CheckStat(FifthNearestEnemyOf(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(FifthNearestEnemyOf(Myself),2)
 	!CheckStatGT(FifthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(FifthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -3643,7 +3774,8 @@ IF
 	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(NearestEnemyOf(Myself),1,MINORGLOBE)
 	!CheckStat(NearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(NearestEnemyOf(Myself),1)
 	!CheckStatGT(NearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(NearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -3661,7 +3793,8 @@ IF
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(SecondNearestEnemyOf(Myself),1,MINORGLOBE)
 	!CheckStat(SecondNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(SecondNearestEnemyOf(Myself),1)
 	!CheckStatGT(SecondNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(SecondNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -3679,7 +3812,8 @@ IF
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(ThirdNearestEnemyOf(Myself),1,MINORGLOBE)
 	!CheckStat(ThirdNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(ThirdNearestEnemyOf(Myself),1)
 	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(ThirdNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -3697,7 +3831,8 @@ IF
 	!StateCheck(FourthNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(FourthNearestEnemyOf(Myself),1,MINORGLOBE)
 	!CheckStat(FourthNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(FourthNearestEnemyOf(Myself),1)
 	!CheckStatGT(FourthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(FourthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -3715,7 +3850,8 @@ IF
 	!StateCheck(FifthNearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(FifthNearestEnemyOf(Myself),1,MINORGLOBE)
 	!CheckStat(FifthNearestEnemyOf(Myself),4,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(FifthNearestEnemyOf(Myself),1)
 	!CheckStatGT(FifthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
 	!CheckStat(FifthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
@@ -3884,7 +4020,8 @@ IF
 		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
 		CheckStatLT(LastSeenBy(Myself),10,THAC0)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -3977,7 +4114,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_REMOVE_FEAR)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4000,14 +4138,16 @@ IF
 	!CheckStat(Player1,7,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,4)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4028,14 +4168,16 @@ IF
 	!CheckStat(Player2,7,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player2,4)
 	!StateCheck(Player2,STATE_INVISIBLE)
 	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player2,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4056,14 +4198,16 @@ IF
 	!CheckStat(Player3,7,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player3,4)
 	!StateCheck(Player3,STATE_INVISIBLE)
 	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player3,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4084,14 +4228,16 @@ IF
 	!CheckStat(Player4,7,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player4,4)
 	!StateCheck(Player4,STATE_INVISIBLE)
 	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player4,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4112,14 +4258,16 @@ IF
 	!CheckStat(Player5,7,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player5,4)
 	!StateCheck(Player5,STATE_INVISIBLE)
 	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player5,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4140,14 +4288,16 @@ IF
 	!CheckStat(Player6,7,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player6,4)
 	!StateCheck(Player6,STATE_INVISIBLE)
 	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player6,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4169,14 +4319,16 @@ IF
 	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,4)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -4194,7 +4346,8 @@ IF
 	HaveSpell(CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
 	!CheckSpellState(Myself,PROTECTION_FROM_EVIL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4216,14 +4369,16 @@ IF
 	!CheckStat(Player1,4,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,5)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4245,14 +4400,16 @@ IF
 	!CheckStat(Player2,4,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player2,5)
 	!StateCheck(Player2,STATE_INVISIBLE)
 	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player2,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4274,14 +4431,16 @@ IF
 	!CheckStat(Player3,4,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player3,5)
 	!StateCheck(Player3,STATE_INVISIBLE)
 	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player3,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4303,14 +4462,16 @@ IF
 	!CheckStat(Player4,4,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player4,5)
 	!StateCheck(Player4,STATE_INVISIBLE)
 	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player4,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4332,14 +4493,16 @@ IF
 	!CheckStat(Player5,4,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player5,5)
 	!StateCheck(Player5,STATE_INVISIBLE)
 	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player5,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4361,14 +4524,16 @@ IF
 	!CheckStat(Player6,4,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player6,5)
 	!StateCheck(Player6,STATE_INVISIBLE)
 	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player6,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4391,14 +4556,16 @@ IF
 	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,1)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4421,14 +4588,16 @@ IF
 	!CheckStat(Player2,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player2,1)
 	!StateCheck(Player2,STATE_INVISIBLE)
 	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player2,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4451,14 +4620,16 @@ IF
 	!CheckStat(Player3,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player3,1)
 	!StateCheck(Player3,STATE_INVISIBLE)
 	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player3,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4481,14 +4652,16 @@ IF
 	!CheckStat(Player4,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player4,1)
 	!StateCheck(Player4,STATE_INVISIBLE)
 	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player4,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4511,14 +4684,16 @@ IF
 	!CheckStat(Player5,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player5,1)
 	!StateCheck(Player5,STATE_INVISIBLE)
 	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player5,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4541,14 +4716,16 @@ IF
 	!CheckStat(Player6,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player6,1)
 	!StateCheck(Player6,STATE_INVISIBLE)
 	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player6,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4570,14 +4747,16 @@ IF
 	!CheckStat(WeakestOf(Myself),8,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(WeakestOf(Myself),1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(WeakestOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(WeakestOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(WeakestOf(Myself),5)
 	!StateCheck(WeakestOf(Myself),STATE_INVISIBLE)
 	!StateCheck(WeakestOf(Myself),STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(WeakestOf(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4600,14 +4779,16 @@ IF
 	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,4)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4630,14 +4811,16 @@ IF
 	!CheckStat(Player2,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player2,4)
 	!StateCheck(Player2,STATE_INVISIBLE)
 	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player2,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4660,14 +4843,16 @@ IF
 	!CheckStat(Player3,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player3,4)
 	!StateCheck(Player3,STATE_INVISIBLE)
 	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player3,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4690,14 +4875,16 @@ IF
 	!CheckStat(Player4,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player4,4)
 	!StateCheck(Player4,STATE_INVISIBLE)
 	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player4,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4720,14 +4907,16 @@ IF
 	!CheckStat(Player5,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player5,4)
 	!StateCheck(Player5,STATE_INVISIBLE)
 	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player5,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4750,14 +4939,16 @@ IF
 	!CheckStat(Player6,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player6,4)
 	!StateCheck(Player6,STATE_INVISIBLE)
 	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player6,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4782,14 +4973,16 @@ IF
 	!CheckStat(Player1,8,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,2)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4815,14 +5008,16 @@ IF
 	!CheckStat(Player2,8,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player2,2)
 	!StateCheck(Player2,STATE_INVISIBLE)
 	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player2,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4848,14 +5043,16 @@ IF
 	!CheckStat(Player3,8,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player3,2)
 	!StateCheck(Player3,STATE_INVISIBLE)
 	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player3,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4881,14 +5078,16 @@ IF
 	!CheckStat(Player4,8,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player4,2)
 	!StateCheck(Player4,STATE_INVISIBLE)
 	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player4,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4914,14 +5113,16 @@ IF
 	!CheckStat(Player5,8,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player5,2)
 	!StateCheck(Player5,STATE_INVISIBLE)
 	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player5,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4947,14 +5148,16 @@ IF
 	!CheckStat(Player6,8,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player6,2)
 	!StateCheck(Player6,STATE_INVISIBLE)
 	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player6,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4977,7 +5180,8 @@ IF
 	!HasItem("CHILLT",Myself)  // Chill Touch
 	!HasItem("GHOULT",Myself)  // Ghoul Touch
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -4999,7 +5203,8 @@ IF
 	!HasItem("CHILLT",Myself)  // Chill Touch
 	!HasItem("GHOULT",Myself)  // Ghoul Touch
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -5017,7 +5222,8 @@ IF
 	HaveSpell(CLERIC_ARMOR_OF_FAITH)
 	!CheckSpellState(Myself,ARMOR_OF_FAITH)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -5039,14 +5245,16 @@ IF
 	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,3)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5068,14 +5276,16 @@ IF
 	!CheckStat(Player1,8,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,5)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5098,14 +5308,16 @@ IF
 	!CheckStat(Player1,7,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,2)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -5120,7 +5332,8 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_RECITATION)  // SPPR513.SPL (Righteous Magic)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -5135,7 +5348,8 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_RIGHTEOUS_WRATH_OF_THE_FAITHFUL)  // SPPR513.SPL (Righteous Magic)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -5152,7 +5366,8 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_RIGHTEOUS_MAGIC)  // SPPR513.SPL (Righteous Magic)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -5178,14 +5393,16 @@ IF
 	!CheckStat(Player1,8,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,2)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5203,7 +5420,8 @@ IF
 	HaveSpell(CLERIC_HOLY_POWER)
 	!CheckSpellState(Myself,HOLY_POWER)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -5219,7 +5437,8 @@ IF
 	HaveSpell(CLERIC_ENTROPY_SHIELD)
 	!CheckSpellState(Myself,ENTROPY_SHIELD)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -5237,7 +5456,8 @@ IF
 	HaveSpell(CLERIC_STRENGTH_OF_ONE)
 	CheckStatLT(WeakestOf(Myself),18,STRENGTH_MODIFIER)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -5259,14 +5479,16 @@ IF
 	!CheckStat(Player1,2,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,2)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -5288,14 +5510,16 @@ IF
 	!CheckStat(Player1,2,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,1)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -5313,7 +5537,8 @@ IF
 	HaveSpell(CLERIC_DEFENSIVE_HARMONY)
 	!CheckStat(Myself,1,CLERIC_DEFENSIVE_HARMONY)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -5332,7 +5557,8 @@ IF
 	!CheckSpellState(Myself,DRAW_UPON_HOLY_MIGHT)
 	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -5354,12 +5580,13 @@ IF
 	!HasItem("MELFMET",Myself)
 
 	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5377,12 +5604,13 @@ IF
 	!HasItem("MELFMET",Myself)
 
 	OR(4)
-		See(NearestEnemyOfType([0.0.0.BARD_ALL]))
-		See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5403,7 +5631,8 @@ IF
 	!HasItem("ENEBLADE",Myself)
 	!HasItem("MELFMET",Myself)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5426,13 +5655,15 @@ IF
 	!CheckStat(Player1,8,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5448,7 +5679,8 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_EMOTION_HOPE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5464,7 +5696,8 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_EMOTION_COURAGE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5484,7 +5717,8 @@ IF
 	!CheckStatGT(Myself,0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
 	!Heard([ANYONE],CASTING_PROTECTION_FROM_MAGIC_ENERGY) // If someone else casting protection from magic energy
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5509,14 +5743,16 @@ IF
 	!CheckStat(WeakestOf(Myself),8,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(WeakestOf(Myself),1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(WeakestOf(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(WeakestOf(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(WeakestOf(Myself),2)
 	!StateCheck(WeakestOf(Myself),STATE_INVISIBLE)
 	!StateCheck(WeakestOf(Myself),STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(WeakestOf(Myself),STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5540,14 +5776,16 @@ IF
 	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,5)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5571,14 +5809,16 @@ IF
 	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(Player1,3)
 	!StateCheck(Player1,STATE_INVISIBLE)
 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5595,7 +5835,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_SHIELD)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5614,7 +5855,8 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_RESIST_FEAR)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5631,7 +5873,8 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_SEVEN_EYES)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -5651,7 +5894,8 @@ IF
 	HaveSpell(WIZARD_BLUR)
 	!StateCheck(Myself,STATE_BLUR)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
@@ -5671,7 +5915,8 @@ IF
 	HaveSpell(WIZARD_MIRROR_IMAGE)
 	!StateCheck(Myself,STATE_MIRRORIMAGE)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5691,7 +5936,8 @@ IF
 	HaveSpell(WIZARD_IMPROVED_INVISIBILITY)
 	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
@@ -5773,21 +6019,21 @@ IF
 		!HPPercentGT(LastAttackerOf(Player1),0)
 		!See(LastAttackerOf(Player1))
 
-	HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
+	HPPercentGT(NearestEnemyOf([0.0.0.MAGE_ALL]),0)
 
-	!CheckSpellState(NearestEnemyOfType([0.0.0.MAGE_ALL]),HOPELESSNESS)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.MAGE_ALL]),HELD)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.MAGE_ALL]),ENTANGLE)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.MAGE_ALL]),WEB)
-	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_CHARMED)
-	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_CONFUSED)
-	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_SLEEPING)
-	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_DISABLED)
-	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_PANIC)
+	!CheckSpellState(NearestEnemyOf([0.0.0.MAGE_ALL]),HOPELESSNESS)
+	!CheckSpellState(NearestEnemyOf([0.0.0.MAGE_ALL]),HELD)
+	!CheckSpellState(NearestEnemyOf([0.0.0.MAGE_ALL]),ENTANGLE)
+	!CheckSpellState(NearestEnemyOf([0.0.0.MAGE_ALL]),WEB)
+	!StateCheck(NearestEnemyOf([0.0.0.MAGE_ALL]),STATE_CHARMED)
+	!StateCheck(NearestEnemyOf([0.0.0.MAGE_ALL]),STATE_CONFUSED)
+	!StateCheck(NearestEnemyOf([0.0.0.MAGE_ALL]),STATE_SLEEPING)
+	!StateCheck(NearestEnemyOf([0.0.0.MAGE_ALL]),STATE_DISABLED)
+	!StateCheck(NearestEnemyOf([0.0.0.MAGE_ALL]),STATE_PANIC)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_NOT_TARGETABLE)
+// 	!StateCheck(NearestEnemyOf([0.0.0.MAGE_ALL]),STATE_NOT_TARGETABLE)
 
-	See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+	See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 THEN
 	RESPONSE #100
 		//FloatMessage(Myself,103270) // Attacking Spellcasters
@@ -5809,24 +6055,24 @@ IF
 
 	// Skip if attacking spellcaster
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 
-	HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
+	HPPercentGT(NearestEnemyOf([0.0.0.CLERIC_ALL]),0)
 
-	!CheckSpellState(NearestEnemyOfType([0.0.0.CLERIC_ALL]),HOPELESSNESS)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.CLERIC_ALL]),HELD)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.CLERIC_ALL]),ENTANGLE)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.CLERIC_ALL]),WEB)
-	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_CHARMED)
-	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_CONFUSED)
-	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_SLEEPING)
-	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_DISABLED)
-	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_PANIC)
+	!CheckSpellState(NearestEnemyOf([0.0.0.CLERIC_ALL]),HOPELESSNESS)
+	!CheckSpellState(NearestEnemyOf([0.0.0.CLERIC_ALL]),HELD)
+	!CheckSpellState(NearestEnemyOf([0.0.0.CLERIC_ALL]),ENTANGLE)
+	!CheckSpellState(NearestEnemyOf([0.0.0.CLERIC_ALL]),WEB)
+	!StateCheck(NearestEnemyOf([0.0.0.CLERIC_ALL]),STATE_CHARMED)
+	!StateCheck(NearestEnemyOf([0.0.0.CLERIC_ALL]),STATE_CONFUSED)
+	!StateCheck(NearestEnemyOf([0.0.0.CLERIC_ALL]),STATE_SLEEPING)
+	!StateCheck(NearestEnemyOf([0.0.0.CLERIC_ALL]),STATE_DISABLED)
+	!StateCheck(NearestEnemyOf([0.0.0.CLERIC_ALL]),STATE_PANIC)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_NOT_TARGETABLE)
+// 	!StateCheck(NearestEnemyOf([0.0.0.CLERIC_ALL]),STATE_NOT_TARGETABLE)
 
-	See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+	See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 THEN
 	RESPONSE #100
 		//FloatMessage(Myself,103270) // Attacking Spellcasters
@@ -5848,27 +6094,27 @@ IF
 
 	// Skip if attacking spellcaster
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 
-	HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
+	HPPercentGT(NearestEnemyOf([0.0.0.DRUID_ALL]),0)
 
-	!CheckSpellState(NearestEnemyOfType([0.0.0.DRUID_ALL]),HOPELESSNESS)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.DRUID_ALL]),HELD)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.DRUID_ALL]),ENTANGLE)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.DRUID_ALL]),WEB)
-	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_CHARMED)
-	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_CONFUSED)
-	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_SLEEPING)
-	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_DISABLED)
-	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_PANIC)
+	!CheckSpellState(NearestEnemyOf([0.0.0.DRUID_ALL]),HOPELESSNESS)
+	!CheckSpellState(NearestEnemyOf([0.0.0.DRUID_ALL]),HELD)
+	!CheckSpellState(NearestEnemyOf([0.0.0.DRUID_ALL]),ENTANGLE)
+	!CheckSpellState(NearestEnemyOf([0.0.0.DRUID_ALL]),WEB)
+	!StateCheck(NearestEnemyOf([0.0.0.DRUID_ALL]),STATE_CHARMED)
+	!StateCheck(NearestEnemyOf([0.0.0.DRUID_ALL]),STATE_CONFUSED)
+	!StateCheck(NearestEnemyOf([0.0.0.DRUID_ALL]),STATE_SLEEPING)
+	!StateCheck(NearestEnemyOf([0.0.0.DRUID_ALL]),STATE_DISABLED)
+	!StateCheck(NearestEnemyOf([0.0.0.DRUID_ALL]),STATE_PANIC)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_NOT_TARGETABLE)
+// 	!StateCheck(NearestEnemyOf([0.0.0.DRUID_ALL]),STATE_NOT_TARGETABLE)
 
-	See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+	See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 THEN
 	RESPONSE #100
 		//FloatMessage(Myself,103270) // Attacking Spellcasters
@@ -5890,30 +6136,30 @@ IF
 
 	// Skip if attacking spellcaster
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 
-	HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
+	HPPercentGT(NearestEnemyOf([0.0.0.BARD_ALL]),0)
 
-	!CheckSpellState(NearestEnemyOfType([0.0.0.BARD_ALL]),HOPELESSNESS)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.BARD_ALL]),HELD)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.BARD_ALL]),ENTANGLE)
-	!CheckSpellState(NearestEnemyOfType([0.0.0.BARD_ALL]),WEB)
-	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_CHARMED)
-	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_CONFUSED)
-	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_SLEEPING)
-	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_DISABLED)
-	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_PANIC)
+	!CheckSpellState(NearestEnemyOf([0.0.0.BARD_ALL]),HOPELESSNESS)
+	!CheckSpellState(NearestEnemyOf([0.0.0.BARD_ALL]),HELD)
+	!CheckSpellState(NearestEnemyOf([0.0.0.BARD_ALL]),ENTANGLE)
+	!CheckSpellState(NearestEnemyOf([0.0.0.BARD_ALL]),WEB)
+	!StateCheck(NearestEnemyOf([0.0.0.BARD_ALL]),STATE_CHARMED)
+	!StateCheck(NearestEnemyOf([0.0.0.BARD_ALL]),STATE_CONFUSED)
+	!StateCheck(NearestEnemyOf([0.0.0.BARD_ALL]),STATE_SLEEPING)
+	!StateCheck(NearestEnemyOf([0.0.0.BARD_ALL]),STATE_DISABLED)
+	!StateCheck(NearestEnemyOf([0.0.0.BARD_ALL]),STATE_PANIC)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_NOT_TARGETABLE)
+// 	!StateCheck(NearestEnemyOf([0.0.0.BARD_ALL]),STATE_NOT_TARGETABLE)
 
-	See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+	See(NearestEnemyOf([0.0.0.BARD_ALL]))
 THEN
 	RESPONSE #100
 		//FloatMessage(Myself,103270) // Attacking Spellcasters
@@ -5936,17 +6182,17 @@ IF
 
 	// Skip if attacking spellcaster
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.BARD_ALL]))
 
 	AttackedBy([ENEMY],DEFAULT)
 	!InParty(LastAttackerOf(Myself))
@@ -5986,17 +6232,17 @@ IF
 
 	// Skip if attacking spellcaster
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.BARD_ALL]))
 
 	// Skip if attacking my attacker
 	!AttackedBy([ENEMY],DEFAULT)
@@ -6037,17 +6283,17 @@ IF
 
 	// Skip if attacking spellcaster
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.BARD_ALL]))
 
 	// Skip if attacking my attacker
 	!AttackedBy([ENEMY],DEFAULT)
@@ -6091,17 +6337,17 @@ IF
 
 	// Skip if attacking spellcaster
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.BARD_ALL]))
 
 	// Skip if attacking my attacker
 	!AttackedBy([ENEMY],DEFAULT)
@@ -6147,17 +6393,17 @@ IF
 
 	// Skip if attacking spellcaster
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.BARD_ALL]))
 
 	// Skip if attacking my attacker
 	!AttackedBy([ENEMY],DEFAULT)
@@ -6201,17 +6447,17 @@ IF
 
 	// Skip if attacking spellcaster
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.BARD_ALL]))
 
 	// Skip if attacking my attacker
 	!AttackedBy([ENEMY],DEFAULT)
@@ -6255,17 +6501,17 @@ IF
 
 	// Skip if attacking spellcaster
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.BARD_ALL]))
 
 	// Skip if attacking my attacker
 	!AttackedBy([ENEMY],DEFAULT)
@@ -6310,17 +6556,17 @@ IF
 
 	// Skip if attacking spellcaster
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.MAGE_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.CLERIC_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.CLERIC_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.DRUID_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.DRUID_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 	OR(2)
-		!HPPercentGT(NearestEnemyOfType([0.0.0.BARD_ALL]),0)
-		!See(NearestEnemyOfType([0.0.0.BARD_ALL]))
+		!HPPercentGT(NearestEnemyOf([0.0.0.BARD_ALL]),0)
+		!See(NearestEnemyOf([0.0.0.BARD_ALL]))
 
 	// Skip if attacking my attacker
 	!AttackedBy([ENEMY],DEFAULT)
@@ -6381,7 +6627,8 @@ IF
 		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
 		CheckStatLT(LastSeenBy(Myself),10,THAC0)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!InParty(LastSeenBy(Myself))
@@ -6416,7 +6663,8 @@ IF
 		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
 		CheckStatLT(LastSeenBy(Myself),10,THAC0)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!InParty(LastSeenBy(Myself))
@@ -6452,7 +6700,8 @@ IF
 		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
 		CheckStatLT(LastSeenBy(Myself),10,THAC0)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!InParty(LastSeenBy(Myself))
@@ -6473,7 +6722,8 @@ IF
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 
 	!ImmuneToSpellLevel(LastSeenBy(Myself),6)
 
@@ -6484,7 +6734,8 @@ IF
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!InParty(LastSeenBy(Myself))
@@ -6504,7 +6755,8 @@ IF
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 
 	!ImmuneToSpellLevel(LastSeenBy(Myself),4)
 
@@ -6515,7 +6767,8 @@ IF
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!InParty(LastSeenBy(Myself))
@@ -6536,7 +6789,8 @@ IF
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),6)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
@@ -6547,7 +6801,8 @@ IF
 	CheckStatLT(LastSeenBy(Myself),49,RESISTMAGIC)
 	CheckStatLT(LastSeenBy(Myself),49,RESISTELECTRICITY)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!InParty(LastSeenBy(Myself))
@@ -6587,7 +6842,8 @@ IF
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 
 	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
 
@@ -6598,7 +6854,8 @@ IF
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!InParty(LastSeenBy(Myself))
@@ -6620,7 +6877,8 @@ IF
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
@@ -6630,7 +6888,8 @@ IF
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!InParty(LastSeenBy(Myself))
@@ -6652,7 +6911,8 @@ IF
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING) 
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING) 
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
@@ -6665,7 +6925,8 @@ IF
 
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!InParty(LastSeenBy(Myself))
@@ -6687,7 +6948,8 @@ IF
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING) 
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING) 
 	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
@@ -6698,7 +6960,8 @@ IF
 	CheckStatLT(LastSeenBy(Myself),75,RESISTACID)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!InParty(LastSeenBy(Myself))
@@ -6720,7 +6983,8 @@ IF
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
@@ -6731,7 +6995,8 @@ IF
 	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!InParty(LastSeenBy(Myself))
@@ -6750,7 +7015,8 @@ IF
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
@@ -6760,7 +7026,8 @@ IF
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!InParty(LastSeenBy(Myself))
@@ -6780,7 +7047,8 @@ IF
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
@@ -6790,7 +7058,8 @@ IF
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!InParty(LastSeenBy(Myself))
@@ -6810,7 +7079,8 @@ IF
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY) 
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
@@ -6820,7 +7090,8 @@ IF
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 	!InParty(LastSeenBy(Myself))
@@ -6978,7 +7249,8 @@ IF
 
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
 
 	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
 
@@ -6989,7 +7261,8 @@ IF
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 	!InParty(LastSeenBy(Myself))
