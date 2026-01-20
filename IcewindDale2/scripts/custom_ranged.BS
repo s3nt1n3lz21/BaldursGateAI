@@ -1,27 +1,27 @@
 // TESTING
 // //FloatMessage(Myself,103365) // Test
 
-IF
-	PartyRested()
-THEN
-	RESPONSE #100
-		SetGlobal("c_EfreetiBottle","GLOBAL",1)
-		SetGlobal("c_BlackSpiderFigurine","GLOBAL",1)
-		SetGlobal("c_MoonDogFigurine","GLOBAL",1)
-		SetGlobal("c_GoldenLionFigurine","GLOBAL",1)
-		SetGlobal("c_HornOfValhalla","GLOBAL",1)
-		SetGlobal("c_GolemManual","GLOBAL",1)
-		SetGlobal("c_VhailorsHelm","GLOBAL",1)
-		SetGlobal("c_HarpOfDiscord","GLOBAL",1)
-		SetGlobal("c_HarpOfPandemonium","GLOBAL",1)
-		SetGlobal("c_AzlaersHarp","GLOBAL",1)
-		SetGlobal("c_MethildsHarp","GLOBAL",1)
-		SetGlobal("c_staffOfMagi","GLOBAL",1)
-		SetGlobal("u_useLongSummonSpells","LOCALS",0) // Off
-		SetGlobal("u_useShortSummonSpells","LOCALS",0) // Off
-		SetGlobal("u_useItemSummonSpells","LOCALS",0) // Off
-		SetGlobal("u_healingSpellsOn","LOCALS",0) // Off
-END
+// IF
+// 	PartyRested()
+// THEN
+// 	RESPONSE #100
+// 		SetGlobal("c_EfreetiBottle","GLOBAL",1)
+// 		SetGlobal("c_BlackSpiderFigurine","GLOBAL",1)
+// 		SetGlobal("c_MoonDogFigurine","GLOBAL",1)
+// 		SetGlobal("c_GoldenLionFigurine","GLOBAL",1)
+// 		SetGlobal("c_HornOfValhalla","GLOBAL",1)
+// 		SetGlobal("c_GolemManual","GLOBAL",1)
+// 		SetGlobal("c_VhailorsHelm","GLOBAL",1)
+// 		SetGlobal("c_HarpOfDiscord","GLOBAL",1)
+// 		SetGlobal("c_HarpOfPandemonium","GLOBAL",1)
+// 		SetGlobal("c_AzlaersHarp","GLOBAL",1)
+// 		SetGlobal("c_MethildsHarp","GLOBAL",1)
+// 		SetGlobal("c_staffOfMagi","GLOBAL",1)
+// 		SetGlobal("u_useLongSummonSpells","LOCALS",0) // Off
+// 		SetGlobal("u_useShortSummonSpells","LOCALS",0) // Off
+// 		SetGlobal("u_useItemSummonSpells","LOCALS",0) // Off
+// 		SetGlobal("u_healingSpellsOn","LOCALS",0) // Off
+// END
 
 IF
 	HotKey(Q)
