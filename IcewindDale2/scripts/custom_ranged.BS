@@ -171,12 +171,12 @@ END
 // We save the currently equipped weapon to a variable so you can switch back to it later.
 // Only save our weapon if we haven't already switched our weapon.
 
-// PartySlot1
+// Player1
 //IF
-//	Global("PartySlot1SwitchedWeapon","LOCAL",0) // 0 false, 1 true
+//	Global("Player1SwitchedWeapon","LOCAL",0) // 0 false, 1 true
 //THEN
 //	RESPONSE #100
-//		SetTokenObject("PartySlot1OriginalWeapon",Myself)
+//		SetTokenObject("Player1OriginalWeapon",Myself)
 //END
 //
 
@@ -1118,7 +1118,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_LESSER_RESTORATION)
-	CheckStatGT(PartySlot1,0,LEVELDRAIN)
+	CheckStatGT(Player1,0,LEVELDRAIN)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1127,14 +1127,14 @@ THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Lesser Restoration
-		Spell(PartySlot1,CLERIC_LESSER_RESTORATION)
+		Spell(Player1,CLERIC_LESSER_RESTORATION)
 END
 
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_LESSER_RESTORATION)
-	CheckStatGT(PartySlot2,0,LEVELDRAIN)
+	CheckStatGT(Player2,0,LEVELDRAIN)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1143,14 +1143,14 @@ THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Lesser Restoration
-		Spell(PartySlot2,CLERIC_LESSER_RESTORATION)
+		Spell(Player2,CLERIC_LESSER_RESTORATION)
 END
 
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_LESSER_RESTORATION)
-	CheckStatGT(PartySlot3,0,LEVELDRAIN)
+	CheckStatGT(Player3,0,LEVELDRAIN)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1159,14 +1159,14 @@ THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Lesser Restoration
-		Spell(PartySlot3,CLERIC_LESSER_RESTORATION)
+		Spell(Player3,CLERIC_LESSER_RESTORATION)
 END
 
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_LESSER_RESTORATION)
-	CheckStatGT(PartySlot4,0,LEVELDRAIN)
+	CheckStatGT(Player4,0,LEVELDRAIN)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1175,14 +1175,14 @@ THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Lesser Restoration
-		Spell(PartySlot4,CLERIC_LESSER_RESTORATION)
+		Spell(Player4,CLERIC_LESSER_RESTORATION)
 END
 
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_LESSER_RESTORATION)
-	CheckStatGT(PartySlot5,0,LEVELDRAIN)
+	CheckStatGT(Player5,0,LEVELDRAIN)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1191,14 +1191,14 @@ THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Lesser Restoration
-		Spell(PartySlot5,CLERIC_LESSER_RESTORATION)
+		Spell(Player5,CLERIC_LESSER_RESTORATION)
 END
 
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_LESSER_RESTORATION)
-	CheckStatGT(PartySlot6,0,LEVELDRAIN)
+	CheckStatGT(Player6,0,LEVELDRAIN)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -1207,7 +1207,7 @@ THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Lesser Restoration
-		Spell(PartySlot6,CLERIC_LESSER_RESTORATION)
+		Spell(Player6,CLERIC_LESSER_RESTORATION)
 END
 
 //////////////////////////////////////////////////////////////// Run away from nearby enemies if health is low
@@ -1940,7 +1940,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
@@ -1985,7 +1986,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2017,7 +2019,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatGT(LastSeenBy(Myself),35,RESISTMAGIC)
 
@@ -2053,7 +2056,8 @@ IF
 	!ImmuneToSpellLevel(LastSeenBy(Myself),4)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -2106,7 +2110,8 @@ IF
 	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
@@ -2145,7 +2150,8 @@ IF
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
@@ -2184,7 +2190,8 @@ IF
 	!ImmuneToSpellLevel(LastSeenBy(Myself),1)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
@@ -2226,7 +2233,8 @@ IF
 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
@@ -2267,7 +2275,8 @@ IF
 	!ImmuneToSpellLevel(LastSeenBy(Myself),5)
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
@@ -2338,7 +2347,8 @@ IF
 
 	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
 	!StateCheck(NearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2458,7 +2468,8 @@ IF
 
 	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
 	!StateCheck(NearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -2521,7 +2532,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
@@ -2546,27 +2558,28 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
 	OR(14)
-		CheckSpellState(PartySlot1,HOPELESSNESS)
-		CheckSpellState(PartySlot1,ENFEEBLED)
-		CheckSpellState(PartySlot1,HELD)
-		CheckSpellState(PartySlot1,ENTANGLE)
-		CheckSpellState(PartySlot1,WEB)
-		CheckSpellState(PartySlot1,DOOM)
-		CheckSpellState(PartySlot1,MISCAST_MAGIC)
-		StateCheck(PartySlot1,STATE_PANIC)
-		StateCheck(PartySlot1,STATE_CHARMED)
-		StateCheck(PartySlot1,STATE_CONFUSED)
-		StateCheck(PartySlot1,STATE_SLEEPING)
-		StateCheck(PartySlot1,STATE_SLOWED)
-		StateCheck(PartySlot1,STATE_FEEBLEMINDED)
-		CheckStatGT(PartySlot1,0,CLERIC_INSECT_PLAGUE)
-	See(PartySlot1)
+		CheckSpellState(Player1,HOPELESSNESS)
+		CheckSpellState(Player1,ENFEEBLED)
+		CheckSpellState(Player1,HELD)
+		CheckSpellState(Player1,ENTANGLE)
+		CheckSpellState(Player1,WEB)
+		CheckSpellState(Player1,DOOM)
+		CheckSpellState(Player1,MISCAST_MAGIC)
+		StateCheck(Player1,STATE_PANIC)
+		StateCheck(Player1,STATE_CHARMED)
+		StateCheck(Player1,STATE_CONFUSED)
+		StateCheck(Player1,STATE_SLEEPING)
+		StateCheck(Player1,STATE_SLOWED)
+		StateCheck(Player1,STATE_FEEBLEMINDED)
+		CheckStatGT(Player1,0,CLERIC_INSECT_PLAGUE)
+	See(Player1)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2586,27 +2599,28 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
 	OR(14)
-		CheckSpellState(PartySlot2,HOPELESSNESS)
-		CheckSpellState(PartySlot2,ENFEEBLED)
-		CheckSpellState(PartySlot2,HELD)
-		CheckSpellState(PartySlot2,ENTANGLE)
-		CheckSpellState(PartySlot2,WEB)
-		CheckSpellState(PartySlot2,DOOM)
-		CheckSpellState(PartySlot2,MISCAST_MAGIC)
-		StateCheck(PartySlot2,STATE_PANIC)
-		StateCheck(PartySlot2,STATE_CHARMED)
-		StateCheck(PartySlot2,STATE_CONFUSED)
-		StateCheck(PartySlot2,STATE_SLEEPING)
-		StateCheck(PartySlot2,STATE_SLOWED)
-		StateCheck(PartySlot2,STATE_FEEBLEMINDED)
-		CheckStatGT(PartySlot2,0,CLERIC_INSECT_PLAGUE)
-	See(PartySlot2)
+		CheckSpellState(Player2,HOPELESSNESS)
+		CheckSpellState(Player2,ENFEEBLED)
+		CheckSpellState(Player2,HELD)
+		CheckSpellState(Player2,ENTANGLE)
+		CheckSpellState(Player2,WEB)
+		CheckSpellState(Player2,DOOM)
+		CheckSpellState(Player2,MISCAST_MAGIC)
+		StateCheck(Player2,STATE_PANIC)
+		StateCheck(Player2,STATE_CHARMED)
+		StateCheck(Player2,STATE_CONFUSED)
+		StateCheck(Player2,STATE_SLEEPING)
+		StateCheck(Player2,STATE_SLOWED)
+		StateCheck(Player2,STATE_FEEBLEMINDED)
+		CheckStatGT(Player2,0,CLERIC_INSECT_PLAGUE)
+	See(Player2)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2626,27 +2640,28 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
 	OR(14)
-		CheckSpellState(PartySlot3,HOPELESSNESS)
-		CheckSpellState(PartySlot3,ENFEEBLED)
-		CheckSpellState(PartySlot3,HELD)
-		CheckSpellState(PartySlot3,ENTANGLE)
-		CheckSpellState(PartySlot3,WEB)
-		CheckSpellState(PartySlot3,DOOM)
-		CheckSpellState(PartySlot3,MISCAST_MAGIC)
-		StateCheck(PartySlot3,STATE_PANIC)
-		StateCheck(PartySlot3,STATE_CHARMED)
-		StateCheck(PartySlot3,STATE_CONFUSED)
-		StateCheck(PartySlot3,STATE_SLEEPING)
-		StateCheck(PartySlot3,STATE_SLOWED)
-		StateCheck(PartySlot3,STATE_FEEBLEMINDED)
-		CheckStatGT(PartySlot3,0,CLERIC_INSECT_PLAGUE)
-	See(PartySlot3)
+		CheckSpellState(Player3,HOPELESSNESS)
+		CheckSpellState(Player3,ENFEEBLED)
+		CheckSpellState(Player3,HELD)
+		CheckSpellState(Player3,ENTANGLE)
+		CheckSpellState(Player3,WEB)
+		CheckSpellState(Player3,DOOM)
+		CheckSpellState(Player3,MISCAST_MAGIC)
+		StateCheck(Player3,STATE_PANIC)
+		StateCheck(Player3,STATE_CHARMED)
+		StateCheck(Player3,STATE_CONFUSED)
+		StateCheck(Player3,STATE_SLEEPING)
+		StateCheck(Player3,STATE_SLOWED)
+		StateCheck(Player3,STATE_FEEBLEMINDED)
+		CheckStatGT(Player3,0,CLERIC_INSECT_PLAGUE)
+	See(Player3)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2666,27 +2681,28 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
 	OR(14)
-		CheckSpellState(PartySlot4,HOPELESSNESS)
-		CheckSpellState(PartySlot4,ENFEEBLED)
-		CheckSpellState(PartySlot4,HELD)
-		CheckSpellState(PartySlot4,ENTANGLE)
-		CheckSpellState(PartySlot4,WEB)
-		CheckSpellState(PartySlot4,DOOM)
-		CheckSpellState(PartySlot4,MISCAST_MAGIC)
-		StateCheck(PartySlot4,STATE_PANIC)
-		StateCheck(PartySlot4,STATE_CHARMED)
-		StateCheck(PartySlot4,STATE_CONFUSED)
-		StateCheck(PartySlot4,STATE_SLEEPING)
-		StateCheck(PartySlot4,STATE_SLOWED)
-		StateCheck(PartySlot4,STATE_FEEBLEMINDED)
-		CheckStatGT(PartySlot4,0,CLERIC_INSECT_PLAGUE)
-	See(PartySlot4)
+		CheckSpellState(Player4,HOPELESSNESS)
+		CheckSpellState(Player4,ENFEEBLED)
+		CheckSpellState(Player4,HELD)
+		CheckSpellState(Player4,ENTANGLE)
+		CheckSpellState(Player4,WEB)
+		CheckSpellState(Player4,DOOM)
+		CheckSpellState(Player4,MISCAST_MAGIC)
+		StateCheck(Player4,STATE_PANIC)
+		StateCheck(Player4,STATE_CHARMED)
+		StateCheck(Player4,STATE_CONFUSED)
+		StateCheck(Player4,STATE_SLEEPING)
+		StateCheck(Player4,STATE_SLOWED)
+		StateCheck(Player4,STATE_FEEBLEMINDED)
+		CheckStatGT(Player4,0,CLERIC_INSECT_PLAGUE)
+	See(Player4)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2706,27 +2722,28 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
 	OR(14)
-		CheckSpellState(PartySlot5,HOPELESSNESS)
-		CheckSpellState(PartySlot5,ENFEEBLED)
-		CheckSpellState(PartySlot5,HELD)
-		CheckSpellState(PartySlot5,ENTANGLE)
-		CheckSpellState(PartySlot5,WEB)
-		CheckSpellState(PartySlot5,DOOM)
-		CheckSpellState(PartySlot5,MISCAST_MAGIC)
-		StateCheck(PartySlot5,STATE_PANIC)
-		StateCheck(PartySlot5,STATE_CHARMED)
-		StateCheck(PartySlot5,STATE_CONFUSED)
-		StateCheck(PartySlot5,STATE_SLEEPING)
-		StateCheck(PartySlot5,STATE_SLOWED)
-		StateCheck(PartySlot5,STATE_FEEBLEMINDED)
-		CheckStatGT(PartySlot5,0,CLERIC_INSECT_PLAGUE)
-	See(PartySlot5)
+		CheckSpellState(Player5,HOPELESSNESS)
+		CheckSpellState(Player5,ENFEEBLED)
+		CheckSpellState(Player5,HELD)
+		CheckSpellState(Player5,ENTANGLE)
+		CheckSpellState(Player5,WEB)
+		CheckSpellState(Player5,DOOM)
+		CheckSpellState(Player5,MISCAST_MAGIC)
+		StateCheck(Player5,STATE_PANIC)
+		StateCheck(Player5,STATE_CHARMED)
+		StateCheck(Player5,STATE_CONFUSED)
+		StateCheck(Player5,STATE_SLEEPING)
+		StateCheck(Player5,STATE_SLOWED)
+		StateCheck(Player5,STATE_FEEBLEMINDED)
+		CheckStatGT(Player5,0,CLERIC_INSECT_PLAGUE)
+	See(Player5)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2746,27 +2763,28 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
 	OR(14)
-		CheckSpellState(PartySlot6,HOPELESSNESS)
-		CheckSpellState(PartySlot6,ENFEEBLED)
-		CheckSpellState(PartySlot6,HELD)
-		CheckSpellState(PartySlot6,ENTANGLE)
-		CheckSpellState(PartySlot6,WEB)
-		CheckSpellState(PartySlot6,DOOM)
-		CheckSpellState(PartySlot6,MISCAST_MAGIC)
-		StateCheck(PartySlot6,STATE_PANIC)
-		StateCheck(PartySlot6,STATE_CHARMED)
-		StateCheck(PartySlot6,STATE_CONFUSED)
-		StateCheck(PartySlot6,STATE_SLEEPING)
-		StateCheck(PartySlot6,STATE_SLOWED)
-		StateCheck(PartySlot6,STATE_FEEBLEMINDED)
-		CheckStatGT(PartySlot6,0,CLERIC_INSECT_PLAGUE)
-	See(PartySlot6)
+		CheckSpellState(Player6,HOPELESSNESS)
+		CheckSpellState(Player6,ENFEEBLED)
+		CheckSpellState(Player6,HELD)
+		CheckSpellState(Player6,ENTANGLE)
+		CheckSpellState(Player6,WEB)
+		CheckSpellState(Player6,DOOM)
+		CheckSpellState(Player6,MISCAST_MAGIC)
+		StateCheck(Player6,STATE_PANIC)
+		StateCheck(Player6,STATE_CHARMED)
+		StateCheck(Player6,STATE_CONFUSED)
+		StateCheck(Player6,STATE_SLEEPING)
+		StateCheck(Player6,STATE_SLOWED)
+		StateCheck(Player6,STATE_FEEBLEMINDED)
+		CheckStatGT(Player6,0,CLERIC_INSECT_PLAGUE)
+	See(Player6)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2828,7 +2846,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
@@ -2896,7 +2915,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
@@ -2922,27 +2942,28 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	OR(14)
-		CheckSpellState(PartySlot1,HOPELESSNESS)
-		CheckSpellState(PartySlot1,ENFEEBLED)
-		CheckSpellState(PartySlot1,HELD)
-		CheckSpellState(PartySlot1,ENTANGLE)
-		CheckSpellState(PartySlot1,WEB)
-		CheckSpellState(PartySlot1,DOOM)
-		CheckSpellState(PartySlot1,MISCAST_MAGIC)
-		StateCheck(PartySlot1,STATE_PANIC)
-		StateCheck(PartySlot1,STATE_CHARMED)
-		StateCheck(PartySlot1,STATE_CONFUSED)
-		StateCheck(PartySlot1,STATE_SLEEPING)
-		StateCheck(PartySlot1,STATE_SLOWED)
-		StateCheck(PartySlot1,STATE_FEEBLEMINDED)
-		CheckStatGT(PartySlot1,0,CLERIC_INSECT_PLAGUE)
-	See(PartySlot1)
+		CheckSpellState(Player1,HOPELESSNESS)
+		CheckSpellState(Player1,ENFEEBLED)
+		CheckSpellState(Player1,HELD)
+		CheckSpellState(Player1,ENTANGLE)
+		CheckSpellState(Player1,WEB)
+		CheckSpellState(Player1,DOOM)
+		CheckSpellState(Player1,MISCAST_MAGIC)
+		StateCheck(Player1,STATE_PANIC)
+		StateCheck(Player1,STATE_CHARMED)
+		StateCheck(Player1,STATE_CONFUSED)
+		StateCheck(Player1,STATE_SLEEPING)
+		StateCheck(Player1,STATE_SLOWED)
+		StateCheck(Player1,STATE_FEEBLEMINDED)
+		CheckStatGT(Player1,0,CLERIC_INSECT_PLAGUE)
+	See(Player1)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2960,27 +2981,28 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	OR(14)
-		CheckSpellState(PartySlot2,HOPELESSNESS)
-		CheckSpellState(PartySlot2,ENFEEBLED)
-		CheckSpellState(PartySlot2,HELD)
-		CheckSpellState(PartySlot2,ENTANGLE)
-		CheckSpellState(PartySlot2,WEB)
-		CheckSpellState(PartySlot2,DOOM)
-		CheckSpellState(PartySlot2,MISCAST_MAGIC)
-		StateCheck(PartySlot2,STATE_PANIC)
-		StateCheck(PartySlot2,STATE_CHARMED)
-		StateCheck(PartySlot2,STATE_CONFUSED)
-		StateCheck(PartySlot2,STATE_SLEEPING)
-		StateCheck(PartySlot2,STATE_SLOWED)
-		StateCheck(PartySlot2,STATE_FEEBLEMINDED)
-		CheckStatGT(PartySlot2,0,CLERIC_INSECT_PLAGUE)
-	See(PartySlot2)
+		CheckSpellState(Player2,HOPELESSNESS)
+		CheckSpellState(Player2,ENFEEBLED)
+		CheckSpellState(Player2,HELD)
+		CheckSpellState(Player2,ENTANGLE)
+		CheckSpellState(Player2,WEB)
+		CheckSpellState(Player2,DOOM)
+		CheckSpellState(Player2,MISCAST_MAGIC)
+		StateCheck(Player2,STATE_PANIC)
+		StateCheck(Player2,STATE_CHARMED)
+		StateCheck(Player2,STATE_CONFUSED)
+		StateCheck(Player2,STATE_SLEEPING)
+		StateCheck(Player2,STATE_SLOWED)
+		StateCheck(Player2,STATE_FEEBLEMINDED)
+		CheckStatGT(Player2,0,CLERIC_INSECT_PLAGUE)
+	See(Player2)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -2998,27 +3020,28 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	OR(14)
-		CheckSpellState(PartySlot3,HOPELESSNESS)
-		CheckSpellState(PartySlot3,ENFEEBLED)
-		CheckSpellState(PartySlot3,HELD)
-		CheckSpellState(PartySlot3,ENTANGLE)
-		CheckSpellState(PartySlot3,WEB)
-		CheckSpellState(PartySlot3,DOOM)
-		CheckSpellState(PartySlot3,MISCAST_MAGIC)
-		StateCheck(PartySlot3,STATE_PANIC)
-		StateCheck(PartySlot3,STATE_CHARMED)
-		StateCheck(PartySlot3,STATE_CONFUSED)
-		StateCheck(PartySlot3,STATE_SLEEPING)
-		StateCheck(PartySlot3,STATE_SLOWED)
-		StateCheck(PartySlot3,STATE_FEEBLEMINDED)
-		CheckStatGT(PartySlot3,0,CLERIC_INSECT_PLAGUE)
-	See(PartySlot3)
+		CheckSpellState(Player3,HOPELESSNESS)
+		CheckSpellState(Player3,ENFEEBLED)
+		CheckSpellState(Player3,HELD)
+		CheckSpellState(Player3,ENTANGLE)
+		CheckSpellState(Player3,WEB)
+		CheckSpellState(Player3,DOOM)
+		CheckSpellState(Player3,MISCAST_MAGIC)
+		StateCheck(Player3,STATE_PANIC)
+		StateCheck(Player3,STATE_CHARMED)
+		StateCheck(Player3,STATE_CONFUSED)
+		StateCheck(Player3,STATE_SLEEPING)
+		StateCheck(Player3,STATE_SLOWED)
+		StateCheck(Player3,STATE_FEEBLEMINDED)
+		CheckStatGT(Player3,0,CLERIC_INSECT_PLAGUE)
+	See(Player3)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -3036,27 +3059,28 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	OR(14)
-		CheckSpellState(PartySlot4,HOPELESSNESS)
-		CheckSpellState(PartySlot4,ENFEEBLED)
-		CheckSpellState(PartySlot4,HELD)
-		CheckSpellState(PartySlot4,ENTANGLE)
-		CheckSpellState(PartySlot4,WEB)
-		CheckSpellState(PartySlot4,DOOM)
-		CheckSpellState(PartySlot4,MISCAST_MAGIC)
-		StateCheck(PartySlot4,STATE_PANIC)
-		StateCheck(PartySlot4,STATE_CHARMED)
-		StateCheck(PartySlot4,STATE_CONFUSED)
-		StateCheck(PartySlot4,STATE_SLEEPING)
-		StateCheck(PartySlot4,STATE_SLOWED)
-		StateCheck(PartySlot4,STATE_FEEBLEMINDED)
-		CheckStatGT(PartySlot4,0,CLERIC_INSECT_PLAGUE)
-	See(PartySlot4)
+		CheckSpellState(Player4,HOPELESSNESS)
+		CheckSpellState(Player4,ENFEEBLED)
+		CheckSpellState(Player4,HELD)
+		CheckSpellState(Player4,ENTANGLE)
+		CheckSpellState(Player4,WEB)
+		CheckSpellState(Player4,DOOM)
+		CheckSpellState(Player4,MISCAST_MAGIC)
+		StateCheck(Player4,STATE_PANIC)
+		StateCheck(Player4,STATE_CHARMED)
+		StateCheck(Player4,STATE_CONFUSED)
+		StateCheck(Player4,STATE_SLEEPING)
+		StateCheck(Player4,STATE_SLOWED)
+		StateCheck(Player4,STATE_FEEBLEMINDED)
+		CheckStatGT(Player4,0,CLERIC_INSECT_PLAGUE)
+	See(Player4)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -3074,27 +3098,28 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	OR(14)
-		CheckSpellState(PartySlot5,HOPELESSNESS)
-		CheckSpellState(PartySlot5,ENFEEBLED)
-		CheckSpellState(PartySlot5,HELD)
-		CheckSpellState(PartySlot5,ENTANGLE)
-		CheckSpellState(PartySlot5,WEB)
-		CheckSpellState(PartySlot5,DOOM)
-		CheckSpellState(PartySlot5,MISCAST_MAGIC)
-		StateCheck(PartySlot5,STATE_PANIC)
-		StateCheck(PartySlot5,STATE_CHARMED)
-		StateCheck(PartySlot5,STATE_CONFUSED)
-		StateCheck(PartySlot5,STATE_SLEEPING)
-		StateCheck(PartySlot5,STATE_SLOWED)
-		StateCheck(PartySlot5,STATE_FEEBLEMINDED)
-		CheckStatGT(PartySlot5,0,CLERIC_INSECT_PLAGUE)
-	See(PartySlot5)
+		CheckSpellState(Player5,HOPELESSNESS)
+		CheckSpellState(Player5,ENFEEBLED)
+		CheckSpellState(Player5,HELD)
+		CheckSpellState(Player5,ENTANGLE)
+		CheckSpellState(Player5,WEB)
+		CheckSpellState(Player5,DOOM)
+		CheckSpellState(Player5,MISCAST_MAGIC)
+		StateCheck(Player5,STATE_PANIC)
+		StateCheck(Player5,STATE_CHARMED)
+		StateCheck(Player5,STATE_CONFUSED)
+		StateCheck(Player5,STATE_SLEEPING)
+		StateCheck(Player5,STATE_SLOWED)
+		StateCheck(Player5,STATE_FEEBLEMINDED)
+		CheckStatGT(Player5,0,CLERIC_INSECT_PLAGUE)
+	See(Player5)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -3112,27 +3137,28 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
 	OR(14)
-		CheckSpellState(PartySlot6,HOPELESSNESS)
-		CheckSpellState(PartySlot6,ENFEEBLED)
-		CheckSpellState(PartySlot6,HELD)
-		CheckSpellState(PartySlot6,ENTANGLE)
-		CheckSpellState(PartySlot6,WEB)
-		CheckSpellState(PartySlot6,DOOM)
-		CheckSpellState(PartySlot6,MISCAST_MAGIC)
-		StateCheck(PartySlot6,STATE_PANIC)
-		StateCheck(PartySlot6,STATE_CHARMED)
-		StateCheck(PartySlot6,STATE_CONFUSED)
-		StateCheck(PartySlot6,STATE_SLEEPING)
-		StateCheck(PartySlot6,STATE_SLOWED)
-		StateCheck(PartySlot6,STATE_FEEBLEMINDED)
-		CheckStatGT(PartySlot6,0,CLERIC_INSECT_PLAGUE)
-	See(PartySlot6)
+		CheckSpellState(Player6,HOPELESSNESS)
+		CheckSpellState(Player6,ENFEEBLED)
+		CheckSpellState(Player6,HELD)
+		CheckSpellState(Player6,ENTANGLE)
+		CheckSpellState(Player6,WEB)
+		CheckSpellState(Player6,DOOM)
+		CheckSpellState(Player6,MISCAST_MAGIC)
+		StateCheck(Player6,STATE_PANIC)
+		StateCheck(Player6,STATE_CHARMED)
+		StateCheck(Player6,STATE_CONFUSED)
+		StateCheck(Player6,STATE_SLEEPING)
+		StateCheck(Player6,STATE_SLOWED)
+		StateCheck(Player6,STATE_FEEBLEMINDED)
+		CheckStatGT(Player6,0,CLERIC_INSECT_PLAGUE)
+	See(Player6)
 
 	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ALLY)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -3192,7 +3218,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
@@ -3230,7 +3257,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
@@ -3267,7 +3295,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
@@ -3303,7 +3332,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
@@ -3538,7 +3568,8 @@ IF
 
 	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
 	!StateCheck(NearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 
 	!InParty(NearestEnemyOf(Myself))
@@ -3647,7 +3678,8 @@ IF
 
 	!StateCheck(NearestEnemyOf(Myself),STATE_INVISIBLE)
 	!StateCheck(NearestEnemyOf(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 
 	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSWANDS)
@@ -3908,17 +3940,18 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DEATH_WARD)
-	!CheckSpellState(PartySlot1,DEATH_WARD)
-	!CheckStat(PartySlot1,1,DEATH_WARD)
+	!CheckSpellState(Player1,DEATH_WARD)
+	!CheckStat(Player1,1,DEATH_WARD)
 
-	!CheckStat(PartySlot1,1,MINORGLOBE)
-	!CheckStat(PartySlot1,7,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot1,4)
-	!StateCheck(PartySlot1,STATE_INVISIBLE)
-	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+	!CheckStat(Player1,1,MINORGLOBE)
+	!CheckStat(Player1,7,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player1,4)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -3927,24 +3960,25 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103366) // Spell: Death Ward
-		Spell(PartySlot1,CLERIC_DEATH_WARD)
+		Spell(Player1,CLERIC_DEATH_WARD)
 END
 
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DEATH_WARD)
-	!CheckSpellState(PartySlot2,DEATH_WARD)
-	!CheckStat(PartySlot2,1,DEATH_WARD)
+	!CheckSpellState(Player2,DEATH_WARD)
+	!CheckStat(Player2,1,DEATH_WARD)
 
-	!CheckStat(PartySlot2,1,MINORGLOBE)
-	!CheckStat(PartySlot2,7,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot2,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot2,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot2,4)
-	!StateCheck(PartySlot2,STATE_INVISIBLE)
-	!StateCheck(PartySlot2,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot2,STATE_NOT_TARGETABLE)
+	!CheckStat(Player2,1,MINORGLOBE)
+	!CheckStat(Player2,7,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player2,4)
+	!StateCheck(Player2,STATE_INVISIBLE)
+	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player2,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -3953,24 +3987,25 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103366) // Spell: Death Ward
-		Spell(PartySlot2,CLERIC_DEATH_WARD)
+		Spell(Player2,CLERIC_DEATH_WARD)
 END
 
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DEATH_WARD)
-	!CheckSpellState(PartySlot3,DEATH_WARD)
-	!CheckStat(PartySlot3,1,DEATH_WARD)
+	!CheckSpellState(Player3,DEATH_WARD)
+	!CheckStat(Player3,1,DEATH_WARD)
 
-	!CheckStat(PartySlot3,1,MINORGLOBE)
-	!CheckStat(PartySlot3,7,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot3,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot3,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot3,4)
-	!StateCheck(PartySlot3,STATE_INVISIBLE)
-	!StateCheck(PartySlot3,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot3,STATE_NOT_TARGETABLE)
+	!CheckStat(Player3,1,MINORGLOBE)
+	!CheckStat(Player3,7,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player3,4)
+	!StateCheck(Player3,STATE_INVISIBLE)
+	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player3,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -3979,24 +4014,25 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103366) // Spell: Death Ward
-		Spell(PartySlot3,CLERIC_DEATH_WARD)
+		Spell(Player3,CLERIC_DEATH_WARD)
 END
 
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DEATH_WARD)
-	!CheckSpellState(PartySlot4,DEATH_WARD)
-	!CheckStat(PartySlot4,1,DEATH_WARD)
+	!CheckSpellState(Player4,DEATH_WARD)
+	!CheckStat(Player4,1,DEATH_WARD)
 
-	!CheckStat(PartySlot4,1,MINORGLOBE)
-	!CheckStat(PartySlot4,7,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot4,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot4,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot4,4)
-	!StateCheck(PartySlot4,STATE_INVISIBLE)
-	!StateCheck(PartySlot4,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot4,STATE_NOT_TARGETABLE)
+	!CheckStat(Player4,1,MINORGLOBE)
+	!CheckStat(Player4,7,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player4,4)
+	!StateCheck(Player4,STATE_INVISIBLE)
+	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player4,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4005,24 +4041,25 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103366) // Spell: Death Ward
-		Spell(PartySlot4,CLERIC_DEATH_WARD)
+		Spell(Player4,CLERIC_DEATH_WARD)
 END
 
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DEATH_WARD)
-	!CheckSpellState(PartySlot5,DEATH_WARD)
-	!CheckStat(PartySlot5,1,DEATH_WARD)
+	!CheckSpellState(Player5,DEATH_WARD)
+	!CheckStat(Player5,1,DEATH_WARD)
 
-	!CheckStat(PartySlot5,1,MINORGLOBE)
-	!CheckStat(PartySlot5,7,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot5,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot5,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot5,4)
-	!StateCheck(PartySlot5,STATE_INVISIBLE)
-	!StateCheck(PartySlot5,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot5,STATE_NOT_TARGETABLE)
+	!CheckStat(Player5,1,MINORGLOBE)
+	!CheckStat(Player5,7,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player5,4)
+	!StateCheck(Player5,STATE_INVISIBLE)
+	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player5,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4031,24 +4068,25 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103366) // Spell: Death Ward
-		Spell(PartySlot5,CLERIC_DEATH_WARD)
+		Spell(Player5,CLERIC_DEATH_WARD)
 END
 
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DEATH_WARD)
-	!CheckSpellState(PartySlot6,DEATH_WARD)
-	!CheckStat(PartySlot6,1,DEATH_WARD)
+	!CheckSpellState(Player6,DEATH_WARD)
+	!CheckStat(Player6,1,DEATH_WARD)
 
-	!CheckStat(PartySlot6,1,MINORGLOBE)
-	!CheckStat(PartySlot6,7,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot6,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot6,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot6,4)
-	!StateCheck(PartySlot6,STATE_INVISIBLE)
-	!StateCheck(PartySlot6,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot6,STATE_NOT_TARGETABLE)
+	!CheckStat(Player6,1,MINORGLOBE)
+	!CheckStat(Player6,7,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player6,4)
+	!StateCheck(Player6,STATE_INVISIBLE)
+	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player6,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4057,7 +4095,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103366) // Spell: Death Ward
-		Spell(PartySlot6,CLERIC_DEATH_WARD)
+		Spell(Player6,CLERIC_DEATH_WARD)
 END
 
 // Level 4 - Abjuration 1
@@ -4066,16 +4104,17 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_PROTECTION_FROM_LIGHTNING)
-	CheckStatLT(PartySlot1,99,RESISTELECTRICITY)
+	CheckStatLT(Player1,99,RESISTELECTRICITY)
 
-	!CheckStat(PartySlot1,1,MINORGLOBE)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot1,4)
-	!StateCheck(PartySlot1,STATE_INVISIBLE)
-	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+	!CheckStat(Player1,1,MINORGLOBE)
+	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player1,4)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4084,7 +4123,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103296) // Spell: Protection From Lightning
-		Spell(PartySlot1,CLERIC_PROTECTION_FROM_LIGHTNING)
+		Spell(Player1,CLERIC_PROTECTION_FROM_LIGHTNING)
 END
 
 // Level 4
@@ -4111,16 +4150,17 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(PartySlot1,0,CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(Player1,0,CLERIC_CHAOTIC_COMMANDS)
 
-	!CheckStat(PartySlot1,1,MINORGLOBE)
-	!CheckStat(PartySlot1,4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot1,5)
-	!StateCheck(PartySlot1,STATE_INVISIBLE)
-	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+	!CheckStat(Player1,1,MINORGLOBE)
+	!CheckStat(Player1,4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player1,5)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4129,7 +4169,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103300) // Spell: Chaotic Commands
-		Spell(PartySlot1,CLERIC_CHAOTIC_COMMANDS)
+		Spell(Player1,CLERIC_CHAOTIC_COMMANDS)
 END
 
 // Level 5 - Enchantment 4
@@ -4138,16 +4178,17 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(PartySlot2,0,CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(Player2,0,CLERIC_CHAOTIC_COMMANDS)
 
-	!CheckStat(PartySlot2,1,MINORGLOBE)
-	!CheckStat(PartySlot2,4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot2,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot2,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot2,5)
-	!StateCheck(PartySlot2,STATE_INVISIBLE)
-	!StateCheck(PartySlot2,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot2,STATE_NOT_TARGETABLE)
+	!CheckStat(Player2,1,MINORGLOBE)
+	!CheckStat(Player2,4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player2,5)
+	!StateCheck(Player2,STATE_INVISIBLE)
+	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player2,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4156,7 +4197,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103300) // Spell: Chaotic Commands
-		Spell(PartySlot2,CLERIC_CHAOTIC_COMMANDS)
+		Spell(Player2,CLERIC_CHAOTIC_COMMANDS)
 END
 
 // Level 5 - Enchantment 4
@@ -4165,16 +4206,17 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(PartySlot3,0,CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(Player3,0,CLERIC_CHAOTIC_COMMANDS)
 
-	!CheckStat(PartySlot3,1,MINORGLOBE)
-	!CheckStat(PartySlot3,4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot3,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot3,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot3,5)
-	!StateCheck(PartySlot3,STATE_INVISIBLE)
-	!StateCheck(PartySlot3,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot3,STATE_NOT_TARGETABLE)
+	!CheckStat(Player3,1,MINORGLOBE)
+	!CheckStat(Player3,4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player3,5)
+	!StateCheck(Player3,STATE_INVISIBLE)
+	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player3,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4183,7 +4225,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103300) // Spell: Chaotic Commands
-		Spell(PartySlot3,CLERIC_CHAOTIC_COMMANDS)
+		Spell(Player3,CLERIC_CHAOTIC_COMMANDS)
 END
 
 // Level 5 - Enchantment 4
@@ -4192,16 +4234,17 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(PartySlot4,0,CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(Player4,0,CLERIC_CHAOTIC_COMMANDS)
 
-	!CheckStat(PartySlot4,1,MINORGLOBE)
-	!CheckStat(PartySlot4,4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot4,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot4,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot4,5)
-	!StateCheck(PartySlot4,STATE_INVISIBLE)
-	!StateCheck(PartySlot4,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot4,STATE_NOT_TARGETABLE)
+	!CheckStat(Player4,1,MINORGLOBE)
+	!CheckStat(Player4,4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player4,5)
+	!StateCheck(Player4,STATE_INVISIBLE)
+	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player4,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4210,7 +4253,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103300) // Spell: Chaotic Commands
-		Spell(PartySlot4,CLERIC_CHAOTIC_COMMANDS)
+		Spell(Player4,CLERIC_CHAOTIC_COMMANDS)
 END
 
 // Level 5 - Enchantment 4
@@ -4219,16 +4262,17 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(PartySlot5,0,CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(Player5,0,CLERIC_CHAOTIC_COMMANDS)
 
-	!CheckStat(PartySlot5,1,MINORGLOBE)
-	!CheckStat(PartySlot5,4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot5,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot5,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot5,5)
-	!StateCheck(PartySlot5,STATE_INVISIBLE)
-	!StateCheck(PartySlot5,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot5,STATE_NOT_TARGETABLE)
+	!CheckStat(Player5,1,MINORGLOBE)
+	!CheckStat(Player5,4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player5,5)
+	!StateCheck(Player5,STATE_INVISIBLE)
+	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player5,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4237,7 +4281,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103300) // Spell: Chaotic Commands
-		Spell(PartySlot5,CLERIC_CHAOTIC_COMMANDS)
+		Spell(Player5,CLERIC_CHAOTIC_COMMANDS)
 END
 
 // Level 5 - Enchantment 4
@@ -4246,16 +4290,17 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(PartySlot6,0,CLERIC_CHAOTIC_COMMANDS)
+	!CheckStatGT(Player6,0,CLERIC_CHAOTIC_COMMANDS)
 
-	!CheckStat(PartySlot6,1,MINORGLOBE)
-	!CheckStat(PartySlot6,4,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot6,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot6,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot6,5)
-	!StateCheck(PartySlot6,STATE_INVISIBLE)
-	!StateCheck(PartySlot6,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot6,STATE_NOT_TARGETABLE)
+	!CheckStat(Player6,1,MINORGLOBE)
+	!CheckStat(Player6,4,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player6,5)
+	!StateCheck(Player6,STATE_INVISIBLE)
+	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player6,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4264,7 +4309,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103300) // Spell: Chaotic Commands
-		Spell(PartySlot6,CLERIC_CHAOTIC_COMMANDS)
+		Spell(Player6,CLERIC_CHAOTIC_COMMANDS)
 END
 
 // Level 1 - Abjuration 1
@@ -4273,17 +4318,18 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
-	!CheckSpellState(PartySlot1,PROTECTION_FROM_EVIL)
-	!CheckStatGT(PartySlot1,0,PROTECTION_FROM_EVIL)
+	!CheckSpellState(Player1,PROTECTION_FROM_EVIL)
+	!CheckStatGT(Player1,0,PROTECTION_FROM_EVIL)
 
-	!CheckStat(PartySlot1,1,MINORGLOBE)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot1,1)
-	!StateCheck(PartySlot1,STATE_INVISIBLE)
-	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+	!CheckStat(Player1,1,MINORGLOBE)
+	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player1,1)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4292,7 +4338,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103305) // Spell: Protection From Evil
-		Spell(PartySlot1,CLERIC_PROTECT_FROM_EVIL)
+		Spell(Player1,CLERIC_PROTECT_FROM_EVIL)
 END
 
 // Level 1
@@ -4301,17 +4347,18 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
-	!CheckSpellState(PartySlot2,PROTECTION_FROM_EVIL)
-	!CheckStatGT(PartySlot2,0,PROTECTION_FROM_EVIL)
+	!CheckSpellState(Player2,PROTECTION_FROM_EVIL)
+	!CheckStatGT(Player2,0,PROTECTION_FROM_EVIL)
 
-	!CheckStat(PartySlot2,1,MINORGLOBE)
-	!CheckStat(PartySlot2,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot2,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot2,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot2,1)
-	!StateCheck(PartySlot2,STATE_INVISIBLE)
-	!StateCheck(PartySlot2,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot2,STATE_NOT_TARGETABLE)
+	!CheckStat(Player2,1,MINORGLOBE)
+	!CheckStat(Player2,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player2,1)
+	!StateCheck(Player2,STATE_INVISIBLE)
+	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player2,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4320,7 +4367,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103305) // Spell: Protection From Evil
-		Spell(PartySlot2,CLERIC_PROTECT_FROM_EVIL)
+		Spell(Player2,CLERIC_PROTECT_FROM_EVIL)
 END
 
 // Level 1
@@ -4329,17 +4376,18 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
-	!CheckSpellState(PartySlot3,PROTECTION_FROM_EVIL)
-	!CheckStatGT(PartySlot3,0,PROTECTION_FROM_EVIL)
+	!CheckSpellState(Player3,PROTECTION_FROM_EVIL)
+	!CheckStatGT(Player3,0,PROTECTION_FROM_EVIL)
 
-	!CheckStat(PartySlot3,1,MINORGLOBE)
-	!CheckStat(PartySlot3,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot3,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot3,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot3,1)
-	!StateCheck(PartySlot3,STATE_INVISIBLE)
-	!StateCheck(PartySlot3,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot3,STATE_NOT_TARGETABLE)
+	!CheckStat(Player3,1,MINORGLOBE)
+	!CheckStat(Player3,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player3,1)
+	!StateCheck(Player3,STATE_INVISIBLE)
+	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player3,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4348,7 +4396,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103305) // Spell: Protection From Evil
-		Spell(PartySlot3,CLERIC_PROTECT_FROM_EVIL)
+		Spell(Player3,CLERIC_PROTECT_FROM_EVIL)
 END
 
 // Level 1
@@ -4357,17 +4405,18 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
-	!CheckSpellState(PartySlot4,PROTECTION_FROM_EVIL)
-	!CheckStatGT(PartySlot4,0,PROTECTION_FROM_EVIL)
+	!CheckSpellState(Player4,PROTECTION_FROM_EVIL)
+	!CheckStatGT(Player4,0,PROTECTION_FROM_EVIL)
 
-	!CheckStat(PartySlot4,1,MINORGLOBE)
-	!CheckStat(PartySlot4,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot4,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot4,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot4,1)
-	!StateCheck(PartySlot4,STATE_INVISIBLE)
-	!StateCheck(PartySlot4,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot4,STATE_NOT_TARGETABLE)
+	!CheckStat(Player4,1,MINORGLOBE)
+	!CheckStat(Player4,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player4,1)
+	!StateCheck(Player4,STATE_INVISIBLE)
+	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player4,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4376,7 +4425,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103305) // Spell: Protection From Evil
-		Spell(PartySlot4,CLERIC_PROTECT_FROM_EVIL)
+		Spell(Player4,CLERIC_PROTECT_FROM_EVIL)
 END
 
 // Level 1
@@ -4385,17 +4434,18 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
-	!CheckSpellState(PartySlot5,PROTECTION_FROM_EVIL)
-	!CheckStatGT(PartySlot5,0,PROTECTION_FROM_EVIL)
+	!CheckSpellState(Player5,PROTECTION_FROM_EVIL)
+	!CheckStatGT(Player5,0,PROTECTION_FROM_EVIL)
 
-	!CheckStat(PartySlot5,1,MINORGLOBE)
-	!CheckStat(PartySlot5,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot5,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot5,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot5,1)
-	!StateCheck(PartySlot5,STATE_INVISIBLE)
-	!StateCheck(PartySlot5,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot5,STATE_NOT_TARGETABLE)
+	!CheckStat(Player5,1,MINORGLOBE)
+	!CheckStat(Player5,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player5,1)
+	!StateCheck(Player5,STATE_INVISIBLE)
+	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player5,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4404,7 +4454,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103305) // Spell: Protection From Evil
-		Spell(PartySlot5,CLERIC_PROTECT_FROM_EVIL)
+		Spell(Player5,CLERIC_PROTECT_FROM_EVIL)
 END
 
 // Level 1
@@ -4413,17 +4463,18 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
-	!CheckSpellState(PartySlot6,PROTECTION_FROM_EVIL)
-	!CheckStatGT(PartySlot6,0,PROTECTION_FROM_EVIL)
+	!CheckSpellState(Player6,PROTECTION_FROM_EVIL)
+	!CheckStatGT(Player6,0,PROTECTION_FROM_EVIL)
 
-	!CheckStat(PartySlot6,1,MINORGLOBE)
-	!CheckStat(PartySlot6,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot6,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot6,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot6,1)
-	!StateCheck(PartySlot6,STATE_INVISIBLE)
-	!StateCheck(PartySlot6,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot6,STATE_NOT_TARGETABLE)
+	!CheckStat(Player6,1,MINORGLOBE)
+	!CheckStat(Player6,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player6,1)
+	!StateCheck(Player6,STATE_INVISIBLE)
+	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player6,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4432,7 +4483,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103305) // Spell: Protection From Evil
-		Spell(PartySlot6,CLERIC_PROTECT_FROM_EVIL)
+		Spell(Player6,CLERIC_PROTECT_FROM_EVIL)
 END
 
 // Level 5 - Alteration 8
@@ -4450,7 +4501,8 @@ IF
 	!ImmuneToSpellLevel(WeakestOf(Myself),5)
 	!StateCheck(WeakestOf(Myself),STATE_INVISIBLE)
 	!StateCheck(WeakestOf(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(WeakestOf(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(WeakestOf(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4468,17 +4520,18 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_FREE_ACTION)
-	CheckStat(PartySlot1,0,CLERIC_FREE_ACTION)
-	!CheckSpellState(PartySlot1,FREE_ACTION)
+	CheckStat(Player1,0,CLERIC_FREE_ACTION)
+	!CheckSpellState(Player1,FREE_ACTION)
 
-	!CheckStat(PartySlot1,1,MINORGLOBE)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot1,4)
-	!StateCheck(PartySlot1,STATE_INVISIBLE)
-	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+	!CheckStat(Player1,1,MINORGLOBE)
+	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player1,4)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4487,7 +4540,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Free Action
-		Spell(PartySlot1,CLERIC_FREE_ACTION)
+		Spell(Player1,CLERIC_FREE_ACTION)
 END
 
 // Level 4 - Abjuration 1
@@ -4496,17 +4549,18 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_FREE_ACTION)
-	CheckStat(PartySlot2,0,CLERIC_FREE_ACTION)
-	!CheckSpellState(PartySlot2,FREE_ACTION)
+	CheckStat(Player2,0,CLERIC_FREE_ACTION)
+	!CheckSpellState(Player2,FREE_ACTION)
 
-	!CheckStat(PartySlot2,1,MINORGLOBE)
-	!CheckStat(PartySlot2,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot2,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot2,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot2,4)
-	!StateCheck(PartySlot2,STATE_INVISIBLE)
-	!StateCheck(PartySlot2,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot2,STATE_NOT_TARGETABLE)
+	!CheckStat(Player2,1,MINORGLOBE)
+	!CheckStat(Player2,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player2,4)
+	!StateCheck(Player2,STATE_INVISIBLE)
+	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player2,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4515,7 +4569,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Free Action
-		Spell(PartySlot2,CLERIC_FREE_ACTION)
+		Spell(Player2,CLERIC_FREE_ACTION)
 END
 
 // Level 4 - Abjuration 1
@@ -4524,17 +4578,18 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_FREE_ACTION)
-	CheckStat(PartySlot3,0,CLERIC_FREE_ACTION)
-	!CheckSpellState(PartySlot3,FREE_ACTION)
+	CheckStat(Player3,0,CLERIC_FREE_ACTION)
+	!CheckSpellState(Player3,FREE_ACTION)
 
-	!CheckStat(PartySlot3,1,MINORGLOBE)
-	!CheckStat(PartySlot3,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot3,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot3,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot3,4)
-	!StateCheck(PartySlot3,STATE_INVISIBLE)
-	!StateCheck(PartySlot3,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot3,STATE_NOT_TARGETABLE)
+	!CheckStat(Player3,1,MINORGLOBE)
+	!CheckStat(Player3,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player3,4)
+	!StateCheck(Player3,STATE_INVISIBLE)
+	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player3,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4543,7 +4598,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Free Action
-		Spell(PartySlot3,CLERIC_FREE_ACTION)
+		Spell(Player3,CLERIC_FREE_ACTION)
 END
 
 // Level 4 - Abjuration 1
@@ -4552,17 +4607,18 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_FREE_ACTION)
-	CheckStat(PartySlot4,0,CLERIC_FREE_ACTION)
-	!CheckSpellState(PartySlot4,FREE_ACTION)
+	CheckStat(Player4,0,CLERIC_FREE_ACTION)
+	!CheckSpellState(Player4,FREE_ACTION)
 
-	!CheckStat(PartySlot4,1,MINORGLOBE)
-	!CheckStat(PartySlot4,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot4,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot4,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot4,4)
-	!StateCheck(PartySlot4,STATE_INVISIBLE)
-	!StateCheck(PartySlot4,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot4,STATE_NOT_TARGETABLE)
+	!CheckStat(Player4,1,MINORGLOBE)
+	!CheckStat(Player4,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player4,4)
+	!StateCheck(Player4,STATE_INVISIBLE)
+	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player4,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4571,7 +4627,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Free Action
-		Spell(PartySlot4,CLERIC_FREE_ACTION)
+		Spell(Player4,CLERIC_FREE_ACTION)
 END
 
 // Level 4 - Abjuration 1
@@ -4580,17 +4636,18 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_FREE_ACTION)
-	CheckStat(PartySlot5,0,CLERIC_FREE_ACTION)
-	!CheckSpellState(PartySlot5,FREE_ACTION)
+	CheckStat(Player5,0,CLERIC_FREE_ACTION)
+	!CheckSpellState(Player5,FREE_ACTION)
 
-	!CheckStat(PartySlot5,1,MINORGLOBE)
-	!CheckStat(PartySlot5,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot5,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot5,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot5,4)
-	!StateCheck(PartySlot5,STATE_INVISIBLE)
-	!StateCheck(PartySlot5,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot5,STATE_NOT_TARGETABLE)
+	!CheckStat(Player5,1,MINORGLOBE)
+	!CheckStat(Player5,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player5,4)
+	!StateCheck(Player5,STATE_INVISIBLE)
+	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player5,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4599,7 +4656,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Free Action
-		Spell(PartySlot5,CLERIC_FREE_ACTION)
+		Spell(Player5,CLERIC_FREE_ACTION)
 END
 
 // Level 4 - Abjuration 1
@@ -4608,17 +4665,18 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_FREE_ACTION)
-	CheckStat(PartySlot6,0,CLERIC_FREE_ACTION)
-	!CheckSpellState(PartySlot6,FREE_ACTION)
+	CheckStat(Player6,0,CLERIC_FREE_ACTION)
+	!CheckSpellState(Player6,FREE_ACTION)
 
-	!CheckStat(PartySlot6,1,MINORGLOBE)
-	!CheckStat(PartySlot6,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot6,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot6,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot6,4)
-	!StateCheck(PartySlot6,STATE_INVISIBLE)
-	!StateCheck(PartySlot6,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot6,STATE_NOT_TARGETABLE)
+	!CheckStat(Player6,1,MINORGLOBE)
+	!CheckStat(Player6,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player6,4)
+	!StateCheck(Player6,STATE_INVISIBLE)
+	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player6,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4627,7 +4685,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Free Action
-		Spell(PartySlot6,CLERIC_FREE_ACTION)
+		Spell(Player6,CLERIC_FREE_ACTION)
 END
 
 // Level 2 - Alteration 8
@@ -4636,19 +4694,20 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BARKSKIN)
-	!CheckSpellState(PartySlot1,BARKSKIN)
+	!CheckSpellState(Player1,BARKSKIN)
 	NumInPartyGT(0)
 
 	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
 
-	!CheckStat(PartySlot1,1,MINORGLOBE)
-	!CheckStat(PartySlot1,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot1,2)
-	!StateCheck(PartySlot1,STATE_INVISIBLE)
-	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+	!CheckStat(Player1,1,MINORGLOBE)
+	!CheckStat(Player1,8,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player1,2)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4658,7 +4717,7 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103303) // Spell: Barkskin
 		Shout(CASTING_BARKSKIN) // Casting Barksin
-		Spell(PartySlot1,CLERIC_BARKSKIN)
+		Spell(Player1,CLERIC_BARKSKIN)
 END
 
 // Level 2 - Alteration 8
@@ -4667,19 +4726,20 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BARKSKIN)
-	!CheckSpellState(PartySlot2,BARKSKIN)
+	!CheckSpellState(Player2,BARKSKIN)
 	NumInPartyGT(1)
 
 	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
 
-	!CheckStat(PartySlot2,1,MINORGLOBE)
-	!CheckStat(PartySlot2,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot2,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot2,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot2,2)
-	!StateCheck(PartySlot2,STATE_INVISIBLE)
-	!StateCheck(PartySlot2,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot2,STATE_NOT_TARGETABLE)
+	!CheckStat(Player2,1,MINORGLOBE)
+	!CheckStat(Player2,8,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player2,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player2,2)
+	!StateCheck(Player2,STATE_INVISIBLE)
+	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player2,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4689,7 +4749,7 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103303) // Spell: Barkskin
 		Shout(CASTING_BARKSKIN) // Casting Barksin
-		Spell(PartySlot2,CLERIC_BARKSKIN)
+		Spell(Player2,CLERIC_BARKSKIN)
 END
 
 // Level 2 - Alteration 8
@@ -4698,19 +4758,20 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BARKSKIN)
-	!CheckSpellState(PartySlot3,BARKSKIN)
+	!CheckSpellState(Player3,BARKSKIN)
 	NumInPartyGT(2)
 
 	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
 
-	!CheckStat(PartySlot3,1,MINORGLOBE)
-	!CheckStat(PartySlot3,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot3,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot3,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot3,2)
-	!StateCheck(PartySlot3,STATE_INVISIBLE)
-	!StateCheck(PartySlot3,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot3,STATE_NOT_TARGETABLE)
+	!CheckStat(Player3,1,MINORGLOBE)
+	!CheckStat(Player3,8,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player3,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player3,2)
+	!StateCheck(Player3,STATE_INVISIBLE)
+	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player3,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4720,7 +4781,7 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103303) // Spell: Barkskin
 		Shout(CASTING_BARKSKIN) // Casting Barksin
-		Spell(PartySlot3,CLERIC_BARKSKIN)
+		Spell(Player3,CLERIC_BARKSKIN)
 END
 
 // Level 2 - Alteration 8
@@ -4729,19 +4790,20 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BARKSKIN)
-	!CheckSpellState(PartySlot4,BARKSKIN)
+	!CheckSpellState(Player4,BARKSKIN)
 	NumInPartyGT(3)
 
 	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
 
-	!CheckStat(PartySlot4,1,MINORGLOBE)
-	!CheckStat(PartySlot4,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot4,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot4,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot4,2)
-	!StateCheck(PartySlot4,STATE_INVISIBLE)
-	!StateCheck(PartySlot4,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot4,STATE_NOT_TARGETABLE)
+	!CheckStat(Player4,1,MINORGLOBE)
+	!CheckStat(Player4,8,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player4,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player4,2)
+	!StateCheck(Player4,STATE_INVISIBLE)
+	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player4,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4751,7 +4813,7 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103303) // Spell: Barkskin
 		Shout(CASTING_BARKSKIN) // Casting Barksin
-		Spell(PartySlot4,CLERIC_BARKSKIN)
+		Spell(Player4,CLERIC_BARKSKIN)
 END
 
 // Level 2 - Alteration 8
@@ -4760,19 +4822,20 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BARKSKIN)
-	!CheckSpellState(PartySlot5,BARKSKIN)
+	!CheckSpellState(Player5,BARKSKIN)
 	NumInPartyGT(4)
 
 	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
 
-	!CheckStat(PartySlot5,1,MINORGLOBE)
-	!CheckStat(PartySlot5,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot5,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot5,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot5,2)
-	!StateCheck(PartySlot5,STATE_INVISIBLE)
-	!StateCheck(PartySlot5,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot5,STATE_NOT_TARGETABLE)
+	!CheckStat(Player5,1,MINORGLOBE)
+	!CheckStat(Player5,8,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player5,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player5,2)
+	!StateCheck(Player5,STATE_INVISIBLE)
+	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player5,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4782,7 +4845,7 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103303) // Spell: Barkskin
 		Shout(CASTING_BARKSKIN) // Casting Barksin
-		Spell(PartySlot5,CLERIC_BARKSKIN)
+		Spell(Player5,CLERIC_BARKSKIN)
 END
 
 // Level 2 - Alteration 8
@@ -4791,19 +4854,20 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BARKSKIN)
-	!CheckSpellState(PartySlot6,BARKSKIN)
+	!CheckSpellState(Player6,BARKSKIN)
 	NumInPartyGT(5)
 
 	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
 
-	!CheckStat(PartySlot6,1,MINORGLOBE)
-	!CheckStat(PartySlot6,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot6,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot6,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot6,2)
-	!StateCheck(PartySlot6,STATE_INVISIBLE)
-	!StateCheck(PartySlot6,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot6,STATE_NOT_TARGETABLE)
+	!CheckStat(Player6,1,MINORGLOBE)
+	!CheckStat(Player6,8,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player6,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player6,2)
+	!StateCheck(Player6,STATE_INVISIBLE)
+	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player6,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4813,7 +4877,7 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103303) // Spell: Barkskin
 		Shout(CASTING_BARKSKIN) // Casting Barksin
-		Spell(PartySlot6,CLERIC_BARKSKIN)
+		Spell(Player6,CLERIC_BARKSKIN)
 END
 
 // Level 1
@@ -4884,16 +4948,17 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_PROTECTION_FROM_FIRE)
-	CheckStatLT(PartySlot1,99,RESISTFIRE)
+	CheckStatLT(Player1,99,RESISTFIRE)
 
-	!CheckStat(PartySlot1,1,MINORGLOBE)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot1,3)
-	!StateCheck(PartySlot1,STATE_INVISIBLE)
-	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+	!CheckStat(Player1,1,MINORGLOBE)
+	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player1,3)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4902,7 +4967,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103295) // Spell: Protection From Fire
-		Spell(PartySlot1,CLERIC_PROTECTION_FROM_FIRE)
+		Spell(Player1,CLERIC_PROTECTION_FROM_FIRE)
 END
 
 // Level 5 - Alteration 8
@@ -4911,16 +4976,17 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_MAGIC_RESISTANCE)
-	CheckStatLT(PartySlot1,99,RESISTMAGIC)
+	CheckStatLT(Player1,99,RESISTMAGIC)
 
-	!CheckStat(PartySlot1,1,MINORGLOBE)
-	!CheckStat(PartySlot1,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot1,5)
-	!StateCheck(PartySlot1,STATE_INVISIBLE)
-	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+	!CheckStat(Player1,1,MINORGLOBE)
+	!CheckStat(Player1,8,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player1,5)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4929,7 +4995,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103294) // Spell: Magic Resistance
-		Spell(PartySlot1,CLERIC_MAGIC_RESISTANCE)
+		Spell(Player1,CLERIC_MAGIC_RESISTANCE)
 END
 
 // Level 2 - Necromancy 2, Conjuration 7
@@ -4938,17 +5004,18 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_AID)
-	!CheckSpellState(PartySlot1,AID)
+	!CheckSpellState(Player1,AID)
 
-	!CheckStat(PartySlot1,1,MINORGLOBE)
-	!CheckStat(PartySlot1,2,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,7,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot1,2)
-	!StateCheck(PartySlot1,STATE_INVISIBLE)
-	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+	!CheckStat(Player1,1,MINORGLOBE)
+	!CheckStat(Player1,2,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,7,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player1,2)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -4957,7 +5024,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103288) // Spell: Aid
-		Spell(PartySlot1,CLERIC_AID)
+		Spell(Player1,CLERIC_AID)
 END
 
 IF
@@ -5016,17 +5083,18 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_RESIST_FIRE)
 	OR(2)
-		CheckStatLT(PartySlot1,99,RESISTFIRE)
-		CheckStatLT(PartySlot1,99,RESISTCOLD)
+		CheckStatLT(Player1,99,RESISTFIRE)
+		CheckStatLT(Player1,99,RESISTCOLD)
 
-	!CheckStat(PartySlot1,1,MINORGLOBE)
-	!CheckStat(PartySlot1,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot1,2)
-	!StateCheck(PartySlot1,STATE_INVISIBLE)
-	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+	!CheckStat(Player1,1,MINORGLOBE)
+	!CheckStat(Player1,8,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player1,2)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -5035,7 +5103,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103293) // Spell: Resist Fire And Cold
-		Spell(PartySlot1,CLERIC_RESIST_FIRE)
+		Spell(Player1,CLERIC_RESIST_FIRE)
 END
 
 // Level 4
@@ -5096,16 +5164,17 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CHANT)  // SPPR203.SPL (Chant)
-	!StateCheck(PartySlot1,STATE_CHANT)
+	!StateCheck(Player1,STATE_CHANT)
 
-	!CheckStat(PartySlot1,1,MINORGLOBE)
-	!CheckStat(PartySlot1,2,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot1,2)
-	!StateCheck(PartySlot1,STATE_INVISIBLE)
-	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+	!CheckStat(Player1,1,MINORGLOBE)
+	!CheckStat(Player1,2,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player1,2)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -5114,7 +5183,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103286) // Spell: Chant
-		Spell(PartySlot1,CLERIC_CHANT)  // SPPR203.SPL (Chant)
+		Spell(Player1,CLERIC_CHANT)  // SPPR203.SPL (Chant)
 END
 
 // Level 1 - Conjuration 2
@@ -5123,16 +5192,17 @@ IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_BLESS)  // SPPR101.SPL (Bless)
-	!StateCheck(PartySlot1,STATE_BLESS)
+	!StateCheck(Player1,STATE_BLESS)
 
-	!CheckStat(PartySlot1,1,MINORGLOBE)
-	!CheckStat(PartySlot1,2,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot1,1)
-	!StateCheck(PartySlot1,STATE_INVISIBLE)
-	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+	!CheckStat(Player1,1,MINORGLOBE)
+	!CheckStat(Player1,2,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player1,1)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -5141,7 +5211,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103287) // Spell: Bless
-		Spell(PartySlot1,CLERIC_BLESS)  // SPPR101.SPL (Bless)
+		Spell(Player1,CLERIC_BLESS)  // SPPR101.SPL (Bless)
 END
 
 // Level 4
@@ -5258,16 +5328,17 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_CATS_GRACE)
-	CheckStatLT(PartySlot1,19,DEX)
-	!CheckSpellState(PartySlot1,CATS_GRACE)
+	CheckStatLT(Player1,19,DEX)
+	!CheckSpellState(Player1,CATS_GRACE)
 	
-	!CheckStat(PartySlot1,1,MINORGLOBE)
-	!CheckStat(PartySlot1,8,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
-	!StateCheck(PartySlot1,STATE_INVISIBLE)
-	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+	!CheckStat(Player1,1,MINORGLOBE)
+	!CheckStat(Player1,8,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -5275,7 +5346,7 @@ IF
 THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
-		Spell(PartySlot1,WIZARD_CATS_GRACE)
+		Spell(Player1,WIZARD_CATS_GRACE)
 END
 
 IF
@@ -5349,7 +5420,8 @@ IF
 	!ImmuneToSpellLevel(WeakestOf(Myself),2)
 	!StateCheck(WeakestOf(Myself),STATE_INVISIBLE)
 	!StateCheck(WeakestOf(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(WeakestOf(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(WeakestOf(Myself),STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -5369,16 +5441,17 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_PROTECTION_FROM_ACID)
-	CheckStatLT(PartySlot1,99,RESISTACID)
+	CheckStatLT(Player1,99,RESISTACID)
 
-	!CheckStat(PartySlot1,1,MINORGLOBE)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot1,5)
-	!StateCheck(PartySlot1,STATE_INVISIBLE)
-	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+	!CheckStat(Player1,1,MINORGLOBE)
+	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player1,5)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -5387,7 +5460,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103277) // Spell: Protection From Acid
-		Spell(PartySlot1,WIZARD_PROTECTION_FROM_ACID)
+		Spell(Player1,WIZARD_PROTECTION_FROM_ACID)
 END
 
 // Level 3 - Abjuration 1
@@ -5398,16 +5471,17 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_PROTECTION_FROM_FIRE)
-	CheckStatLT(PartySlot1,99,RESISTFIRE)
+	CheckStatLT(Player1,99,RESISTFIRE)
 
-	!CheckStat(PartySlot1,1,MINORGLOBE)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_IMMUNITY)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_DEFLECTION)
-	!CheckStat(PartySlot1,1,WIZARD_SPELL_TURNING)
-	!ImmuneToSpellLevel(PartySlot1,3)
-	!StateCheck(PartySlot1,STATE_INVISIBLE)
-	!StateCheck(PartySlot1,STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(PartySlot1,STATE_NOT_TARGETABLE)
+	!CheckStat(Player1,1,MINORGLOBE)
+	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
+	!CheckStat(Player1,1,WIZARD_SPELL_DEFLECTION)
+	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
+	!ImmuneToSpellLevel(Player1,3)
+	!StateCheck(Player1,STATE_INVISIBLE)
+	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -5416,7 +5490,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103276) // Spell: Protection From Fire
-		Spell(PartySlot1,WIZARD_PROTECTION_FROM_FIRE)
+		Spell(Player1,WIZARD_PROTECTION_FROM_FIRE)
 END
 
 // Level 1
@@ -5549,7 +5623,8 @@ IF
 	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_SLEEPING)
 	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_DISABLED)
 	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_PANIC)
-	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_NOT_TARGETABLE)
 
 	See(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])))
 THEN
@@ -5564,8 +5639,8 @@ IF
 
 	// Skip if protecting wizard
 	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
+		!HPPercentGT(LastAttackerOf(Player1),0)
+		!See(LastAttackerOf(Player1))
 
 	HPPercentLT(MostDamagedOf(Myself),80)
 	HPPercentGT(LastAttackerOf(MostDamagedOf(Myself)),0)
@@ -5579,7 +5654,8 @@ IF
 	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_SLEEPING)
 	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_DISABLED)
 	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_PANIC)
-	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_NOT_TARGETABLE)
 
 	See(LastAttackerOf(MostDamagedOf(Myself)))
 THEN
@@ -5599,8 +5675,8 @@ IF
 
 	// Skip if protecting wizard
 	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
+		!HPPercentGT(LastAttackerOf(Player1),0)
+		!See(LastAttackerOf(Player1))
 
 	HPPercentGT(NearestEnemyOfType([0.0.0.MAGE_ALL]),0)
 
@@ -5613,7 +5689,8 @@ IF
 	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_DISABLED)
 	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_PANIC)
-	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(NearestEnemyOfType([0.0.0.MAGE_ALL]),STATE_NOT_TARGETABLE)
 
 	See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 THEN
@@ -5632,8 +5709,8 @@ IF
 
 	// Skip if protecting wizard
 	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
+		!HPPercentGT(LastAttackerOf(Player1),0)
+		!See(LastAttackerOf(Player1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -5651,7 +5728,8 @@ IF
 	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_DISABLED)
 	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_PANIC)
-	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(NearestEnemyOfType([0.0.0.CLERIC_ALL]),STATE_NOT_TARGETABLE)
 
 	See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
 THEN
@@ -5670,8 +5748,8 @@ IF
 
 	// Skip if protecting wizard
 	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
+		!HPPercentGT(LastAttackerOf(Player1),0)
+		!See(LastAttackerOf(Player1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -5692,7 +5770,8 @@ IF
 	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_DISABLED)
 	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_PANIC)
-	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(NearestEnemyOfType([0.0.0.DRUID_ALL]),STATE_NOT_TARGETABLE)
 
 	See(NearestEnemyOfType([0.0.0.DRUID_ALL]))
 THEN
@@ -5711,8 +5790,8 @@ IF
 
 	// Skip if protecting wizard
 	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
+		!HPPercentGT(LastAttackerOf(Player1),0)
+		!See(LastAttackerOf(Player1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -5736,7 +5815,8 @@ IF
 	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_DISABLED)
 	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_PANIC)
-	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(NearestEnemyOfType([0.0.0.BARD_ALL]),STATE_NOT_TARGETABLE)
 
 	See(NearestEnemyOfType([0.0.0.BARD_ALL]))
 THEN
@@ -5751,8 +5831,8 @@ IF
 
 	// Skip if protecting wizard
 	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
+		!HPPercentGT(LastAttackerOf(Player1),0)
+		!See(LastAttackerOf(Player1))
 
 	// Skip if protecting wizard
 	OR(2)
@@ -5785,7 +5865,8 @@ IF
 	!StateCheck(LastAttackerOf(Myself),STATE_SLEEPING)
 	!StateCheck(LastAttackerOf(Myself),STATE_DISABLED)
 	!StateCheck(LastAttackerOf(Myself),STATE_PANIC)
-	!StateCheck(LastAttackerOf(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastAttackerOf(Myself),STATE_NOT_TARGETABLE)
 
 	See(LastAttackerOf(Myself))
 THEN
@@ -5805,8 +5886,8 @@ IF
 
 	// Skip if protecting wizard
 	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
+		!HPPercentGT(LastAttackerOf(Player1),0)
+		!See(LastAttackerOf(Player1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -5836,7 +5917,8 @@ IF
 	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
-	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 
 	See(NearestEnemyOf(Myself))
 THEN
@@ -5855,8 +5937,8 @@ IF
 
 	// Skip if protecting wizard
 	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
+		!HPPercentGT(LastAttackerOf(Player1),0)
+		!See(LastAttackerOf(Player1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -5889,7 +5971,8 @@ IF
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 
 	See(SecondNearestEnemyOf(Myself))
 THEN
@@ -5908,8 +5991,8 @@ IF
 
 	// Skip if protecting wizard
 	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
+		!HPPercentGT(LastAttackerOf(Player1),0)
+		!See(LastAttackerOf(Player1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -5943,7 +6026,8 @@ IF
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 
 	See(ThirdNearestEnemyOf(Myself))
 THEN
@@ -5963,8 +6047,8 @@ IF
 
 	// Skip if protecting wizard
 	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
+		!HPPercentGT(LastAttackerOf(Player1),0)
+		!See(LastAttackerOf(Player1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -5997,7 +6081,8 @@ IF
 	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
-	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 
 	See(NearestEnemyOf(Myself))
 THEN
@@ -6016,8 +6101,8 @@ IF
 
 	// Skip if protecting wizard
 	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
+		!HPPercentGT(LastAttackerOf(Player1),0)
+		!See(LastAttackerOf(Player1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -6050,7 +6135,8 @@ IF
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 
 	See(SecondNearestEnemyOf(Myself))
 THEN
@@ -6069,8 +6155,8 @@ IF
 
 	// Skip if protecting wizard
 	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
+		!HPPercentGT(LastAttackerOf(Player1),0)
+		!See(LastAttackerOf(Player1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -6103,7 +6189,8 @@ IF
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_DISABLED)
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 
 	See(ThirdNearestEnemyOf(Myself))
 THEN
@@ -6123,8 +6210,8 @@ IF
 
 	// Skip if protecting wizard
 	OR(2)
-		!HPPercentGT(LastAttackerOf(PartySlot1),0)
-		!See(LastAttackerOf(PartySlot1))
+		!HPPercentGT(LastAttackerOf(Player1),0)
+		!See(LastAttackerOf(Player1))
 
 	// Skip if attacking spellcaster
 	OR(2)
@@ -6188,7 +6275,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
@@ -6222,7 +6310,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatGT(LastSeenBy(Myself),50,RESISTMAGIC)
 
@@ -6257,7 +6346,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
@@ -6294,7 +6384,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
@@ -6324,7 +6415,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
@@ -6354,7 +6446,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),49,RESISTMAGIC)
 	CheckStatLT(LastSeenBy(Myself),49,RESISTELECTRICITY)
@@ -6405,7 +6498,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
@@ -6436,7 +6530,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
@@ -6467,7 +6562,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
@@ -6501,7 +6597,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTACID)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
@@ -6533,7 +6630,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
@@ -6562,7 +6660,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
@@ -6591,7 +6690,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
@@ -6620,7 +6720,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
@@ -6712,12 +6813,12 @@ END
 //IF
 //	Class(Myself,MAGE_ALL)
 //	HasItem("wand05",Myself)
-	//!InLine(LastSeenBy(Myself),PartySlot1)
-	//!InLine(LastSeenBy(Myself),PartySlot2)
-	//!InLine(LastSeenBy(Myself),PartySlot3)
-	//!InLine(LastSeenBy(Myself),PartySlot4)
-	//!InLine(LastSeenBy(Myself),PartySlot5)
-	//!InLine(LastSeenBy(Myself),PartySlot6)
+	//!InLine(LastSeenBy(Myself),Player1)
+	//!InLine(LastSeenBy(Myself),Player2)
+	//!InLine(LastSeenBy(Myself),Player3)
+	//!InLine(LastSeenBy(Myself),Player4)
+	//!InLine(LastSeenBy(Myself),Player5)
+	//!InLine(LastSeenBy(Myself),Player6)
 
 //	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 //	!CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY) 
@@ -6788,7 +6889,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
@@ -7006,7 +7108,8 @@ IF
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTFIRE)
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
@@ -7049,11 +7152,11 @@ END
 IF
 	ActionListEmpty()
 	IsWeaponRanged(Myself)
-	HPPercentGT(LastAttackerOf(PartySlot1),0)
-	!InParty(LastAttackerOf(PartySlot1))
+	HPPercentGT(LastAttackerOf(Player1),0)
+	!InParty(LastAttackerOf(Player1))
 THEN
 	RESPONSE #100
-		AttackOneRound(LastAttackerOf(PartySlot1))
+		AttackOneRound(LastAttackerOf(Player1))
 		SetGlobal("usingNormalAttack","LOCALS",1)
 		//FloatMessage(Myself,103247) // Helping Allies
 END
@@ -7061,11 +7164,11 @@ END
 IF
 	ActionListEmpty()
 	IsWeaponRanged(Myself)
-	HPPercentGT(LastAttackerOf(PartySlot2),0)
-	!InParty(LastAttackerOf(PartySlot2))
+	HPPercentGT(LastAttackerOf(Player2),0)
+	!InParty(LastAttackerOf(Player2))
 THEN
 	RESPONSE #100
-		AttackOneRound(LastAttackerOf(PartySlot2))
+		AttackOneRound(LastAttackerOf(Player2))
 		SetGlobal("usingNormalAttack","LOCALS",1)
 		//FloatMessage(Myself,103247) // Helping Allies
 END
@@ -7073,11 +7176,11 @@ END
 IF
 	ActionListEmpty()
 	IsWeaponRanged(Myself)
-	HPPercentGT(LastAttackerOf(PartySlot3),0)
-	!InParty(LastAttackerOf(PartySlot3))
+	HPPercentGT(LastAttackerOf(Player3),0)
+	!InParty(LastAttackerOf(Player3))
 THEN
 	RESPONSE #100
-		AttackOneRound(LastAttackerOf(PartySlot3))
+		AttackOneRound(LastAttackerOf(Player3))
 		SetGlobal("usingNormalAttack","LOCALS",1)
 		//FloatMessage(Myself,103247) // Helping Allies
 END
@@ -7085,11 +7188,11 @@ END
 IF
 	ActionListEmpty()
 	IsWeaponRanged(Myself)
-	HPPercentGT(LastAttackerOf(PartySlot4),0)
-	!InParty(LastAttackerOf(PartySlot4))
+	HPPercentGT(LastAttackerOf(Player4),0)
+	!InParty(LastAttackerOf(Player4))
 THEN
 	RESPONSE #100
-		AttackOneRound(LastAttackerOf(PartySlot4))
+		AttackOneRound(LastAttackerOf(Player4))
 		SetGlobal("usingNormalAttack","LOCALS",1)
 		//FloatMessage(Myself,103247) // Helping Allies
 END
@@ -7097,11 +7200,11 @@ END
 IF
 	ActionListEmpty()
 	IsWeaponRanged(Myself)
-	HPPercentGT(LastAttackerOf(PartySlot5),0)
-	!InParty(LastAttackerOf(PartySlot5))
+	HPPercentGT(LastAttackerOf(Player5),0)
+	!InParty(LastAttackerOf(Player5))
 THEN
 	RESPONSE #100
-		AttackOneRound(LastAttackerOf(PartySlot5))
+		AttackOneRound(LastAttackerOf(Player5))
 		SetGlobal("usingNormalAttack","LOCALS",1)
 		//FloatMessage(Myself,103247) // Helping Allies
 END
@@ -7109,11 +7212,11 @@ END
 IF
 	ActionListEmpty()
 	IsWeaponRanged(Myself)
-	HPPercentGT(LastAttackerOf(PartySlot6),0)
-	!InParty(LastAttackerOf(PartySlot6))
+	HPPercentGT(LastAttackerOf(Player6),0)
+	!InParty(LastAttackerOf(Player6))
 THEN
 	RESPONSE #100
-		AttackOneRound(LastAttackerOf(PartySlot6))
+		AttackOneRound(LastAttackerOf(Player6))
 		SetGlobal("usingNormalAttack","LOCALS",1)
 		//FloatMessage(Myself,103247) // Helping Allies
 END
@@ -7121,15 +7224,16 @@ END
 ////////////////////////////////////////////////////////// Wizard Use Healing If No Enemies
 
 /////////////////////////////////////////////////////////// Find traps
-IF
-	ActionListEmpty()
-	Class(Myself,THIEF_ALL)
-	!ModalState(DETECTTRAPS)
-THEN
-	RESPONSE #100
-		//FloatMessage(Myself,103248) // Finding Traps
-		FindTraps()
-END
+// [IWD2 PORT] block commented out: contains DETECTTRAPS (not in OBJECT.IDS)
+// IF
+// 	ActionListEmpty()
+// 	Class(Myself,THIEF_ALL)
+// 	!ModalState(DETECTTRAPS)
+// THEN
+// 	RESPONSE #100
+// 		//FloatMessage(Myself,103248) // Finding Traps
+// 		FindTraps()
+// END
 
 ////////////////////////////////////////////////////////// Randomly turn around, makes them look more alive
 //IF
