@@ -556,7 +556,7 @@ IF
     OR(2)
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_STONE_SKIN)
+	HaveSpell(WIZARD_STONESKIN)
 	!CheckSpellState(Myself,STONESKIN)
 	!CheckStatGT(Myself,0,STONESKINS)
 
@@ -568,7 +568,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103275) // Spell: Stoneskin
-		Spell(Myself,WIZARD_STONE_SKIN)
+		Spell(Myself,WIZARD_STONESKIN)
 END
 
 // Level 5
@@ -576,7 +576,7 @@ END
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_IRONSKIN)
+	HaveSpell(CLERIC_IRONSKINS)
 	!CheckSpellState(Myself,IRON_SKINS)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
@@ -587,7 +587,7 @@ THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103292) // Spell: Iron Skins
-		Spell(Myself,CLERIC_IRONSKIN)
+		Spell(Myself,CLERIC_IRONSKINS)
 END
 
 //////////////////////////////////////////////////////////////////// If ally health is low and have heal spell, heal them
@@ -617,7 +617,7 @@ IF
 
 	Global("u_healingSpellsOn","LOCALS",1)
 
-	HaveSpell(CLERIC_CURE_MEDIUM_WOUNDS)
+	HaveSpell(CLERIC_CURE_MODERATE_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),80) 
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
@@ -628,7 +628,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103342) // Spell: Cure Medium Wounds
-		Spell(MostDamagedOf(Myself),CLERIC_CURE_MEDIUM_WOUNDS)
+		Spell(MostDamagedOf(Myself),CLERIC_CURE_MODERATE_WOUNDS)
 END
 
 IF
@@ -697,7 +697,7 @@ IF
 
 	Global("u_healingSpellsOn","LOCALS",1)
 
-	HaveSpell(CLERIC_REGENERATE)  // SPPR514.SPL (Mass Cure)
+	HaveSpell(CLERIC_REGENERATION)  // SPPR514.SPL (Mass Cure)
 	HPPercentLT(MostDamagedOf(Myself),70)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
@@ -708,7 +708,7 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Regenerate
-		Spell(MostDamagedOf(Myself),CLERIC_REGENERATE)
+		Spell(MostDamagedOf(Myself),CLERIC_REGENERATION)
 END
 
 /////////////////////////////////////////////////////////////////// If health is low use a healing potion
@@ -1108,13 +1108,13 @@ IF
 THEN
     RESPONSE #100
 		//FloatMessage(Myself,103337) // Help: Need Potion Of Healing
-        Shout(NEED_POTION_OF_HEALING) // Shout for help
+        Shout(205) // Shout for help
 		Continue()
 END
 
 IF
 	ActionListEmpty()
-    Heard([ANYONE],NEED_POTION_OF_HEALING) // If someone shouted for help
+    Heard([ANYONE],205) // If someone shouted for help
     !HasItem("potn08",LastHeardBy(Myself))
 	HasItem("potn08",Myself)
 THEN
@@ -1326,276 +1326,287 @@ END
 
 /////////////////////////////////////////////////////////////////////////////////////// Prevent Summons Being Dispelled
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
-	!CheckStatGT(NearestMyGroupOfType([GOODCUTOFF.0.0.0.0.SUMMONED]),0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
-	CheckStatLT(NearestMyGroupOfType([GOODCUTOFF.0.0.0.0.SUMMONED]),99,RESISTMAGIC)
-	!Heard([ANYONE],CASTING_PROTECTION_FROM_MAGIC_ENERGY) // If someone else casting protection from magic energy
+ActionListEmpty()
+OR(2)
+CheckStat(Myself,1,AURACLEANSING)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(WIZARD_PROTECTION_FROM_THE_ELEMENTS)
+// [IWD2 PORT] removed coordination: !CheckStatGT(NearestMyGroupOfType([GOODCUTOFF.0.0.0.0.SUMMONED]),0,WIZARD_PROTECTION_FROM_THE_ELEMENTS)
+// [IWD2 PORT] removed coordination: CheckStatLT(NearestMyGroupOfType([GOODCUTOFF.0.0.0.0.SUMMONED]),99,RESISTMAGIC)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],CASTING_PROTECTION_FROM_MAGIC_ENERGY) // If someone else casting protection from magic energy
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(CASTING_PROTECTION_FROM_MAGIC_ENERGY)
-		////FloatMessage(Myself,?) // Spell: Protection From Magic Energy
-		Spell(NearestMyGroupOfType([GOODCUTOFF.0.0.0.0.SUMMONED]),WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(CASTING_PROTECTION_FROM_MAGIC_ENERGY)
+////FloatMessage(Myself,?) // Spell: Protection From Magic Energy
+// [IWD2 PORT] removed coordination: Spell(NearestMyGroupOfType([GOODCUTOFF.0.0.0.0.SUMMONED]),WIZARD_PROTECTION_FROM_THE_ELEMENTS)
 END
 
 ////////////////////////////////////////////////////////////////////////////// Short Duration Summon spells
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreature([GOODCUTOFF.0.PLANATAR],0)
-	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
-	NumCreature([GOODCUTOFF.0.SOLAR],0)
-	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SUMMON_PLANATAR_GOOD)
+NumCreature([GOODCUTOFF.0.PLANATAR],0)
+NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+NumCreature([GOODCUTOFF.0.SOLAR],0)
+// [IWD2 PORT] removed coordination: NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+OR(2)
+CheckStat(Myself,1,AURACLEANSING)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(WIZARD_MONSTER_SUMMONING_VI)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		////FloatMessage(Myself,?) // Spell: Summon Planetar
-		Spell(Myself,WIZARD_SUMMON_PLANATAR_GOOD)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+////FloatMessage(Myself,?) // Spell: Summon Planetar
+Spell(Myself,WIZARD_MONSTER_SUMMONING_VI)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreature([GOODCUTOFF.0.PLANATAR],0)
-	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
-	NumCreature([GOODCUTOFF.0.SOLAR],0)
-	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SUMMON_PLANATAR_EVIL)
+NumCreature([GOODCUTOFF.0.PLANATAR],0)
+NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+NumCreature([GOODCUTOFF.0.SOLAR],0)
+// [IWD2 PORT] removed coordination: NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+OR(2)
+CheckStat(Myself,1,AURACLEANSING)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(WIZARD_MONSTER_SUMMONING_VI)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		////FloatMessage(Myself,?) // Spell: Summon Planetar
-		Spell(Myself,WIZARD_SUMMON_PLANATAR_EVIL)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+////FloatMessage(Myself,?) // Spell: Summon Planetar
+Spell(Myself,WIZARD_MONSTER_SUMMONING_VI)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreature([GOODCUTOFF.0.PLANATAR],0)
-	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
-	NumCreature([GOODCUTOFF.0.SOLAR],0)
-	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_SUMMON_FALLEN_DEVA)
+NumCreature([GOODCUTOFF.0.PLANATAR],0)
+NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+NumCreature([GOODCUTOFF.0.SOLAR],0)
+// [IWD2 PORT] removed coordination: NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(CLERIC_SUMMON_FALLEN_DEVA)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		////FloatMessage(Myself,?) // Spell: Summon Fallen Deva
-		Spell(Myself,CLERIC_SUMMON_FALLEN_DEVA)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+////FloatMessage(Myself,?) // Spell: Summon Fallen Deva
+Spell(Myself,CLERIC_SUMMON_FALLEN_DEVA)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreature([GOODCUTOFF.0.PLANATAR],0)
-	NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
-	NumCreature([GOODCUTOFF.0.SOLAR],0)
-	NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_SUMMON_DEVA)
+NumCreature([GOODCUTOFF.0.PLANATAR],0)
+NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+NumCreature([GOODCUTOFF.0.SOLAR],0)
+// [IWD2 PORT] removed coordination: NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(CLERIC_SUMMON_DEVA)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		////FloatMessage(Myself,?) // Spell: Summon Deva
-		Spell(Myself,CLERIC_SUMMON_DEVA)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+////FloatMessage(Myself,?) // Spell: Summon Deva
+Spell(Myself,CLERIC_SUMMON_DEVA)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_GREATER_ELEMENTAL_SWARM)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+OR(2)
+CheckStat(Myself,1,AURACLEANSING)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(CLERIC_GREATER_ELEMENTAL_SWARM)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		////FloatMessage(Myself,?) // Spell: Greater Elemental
-		Spell(Myself,CLERIC_GREATER_ELEMENTAL_SWARM)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+////FloatMessage(Myself,?) // Spell: Greater Elemental
+Spell(Myself,CLERIC_GREATER_ELEMENTAL_SWARM)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_ELEMENTAL_SWARM)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+OR(2)
+CheckStat(Myself,1,AURACLEANSING)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(CLERIC_ELEMENTAL_SWARM)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		////FloatMessage(Myself,?) // Spell: Greater Elemental
-		Spell(Myself,CLERIC_ELEMENTAL_SWARM)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+////FloatMessage(Myself,?) // Spell: Greater Elemental
+Spell(Myself,CLERIC_ELEMENTAL_SWARM)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MORDENKAINENS_SWORD)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+OR(2)
+CheckStat(Myself,1,AURACLEANSING)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(WIZARD_MORDENKAINENS_SWORD)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		////FloatMessage(Myself,?) // Spell: Mordenkainen's Sword
-		Spell(Myself,WIZARD_MORDENKAINENS_SWORD)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+////FloatMessage(Myself,?) // Spell: Mordenkainen's Sword
+Spell(Myself,WIZARD_MORDENKAINENS_SWORD)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_WYVERN_CALL)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+OR(2)
+CheckStat(Myself,1,AURACLEANSING)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(WIZARD_WYVERN_CALL)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		////FloatMessage(Myself,?) // Spell: Wyvern Call
-		Spell(Myself,WIZARD_WYVERN_CALL)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+////FloatMessage(Myself,?) // Spell: Wyvern Call
+Spell(Myself,WIZARD_WYVERN_CALL)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CONJURE_ANIMALS)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(CLERIC_CONJURE_ANIMALS)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//FloatMessage(Myself,103308) // Spell: Conjure Animals
-		Spell(Myself,CLERIC_CONJURE_ANIMALS)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+//FloatMessage(Myself,103308) // Spell: Conjure Animals
+Spell(Myself,CLERIC_CONJURE_ANIMALS)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CALL_WOODLAND_BEINGS)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(CLERIC_CALL_WOODLAND_BEINGS)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//FloatMessage(Myself,103312) // Spell: Call Woodland Beings
-		Spell(Myself,CLERIC_CALL_WOODLAND_BEINGS)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+//FloatMessage(Myself,103312) // Spell: Call Woodland Beings
+Spell(Myself,CLERIC_CALL_WOODLAND_BEINGS)
 END
 
 //IF
@@ -1619,358 +1630,374 @@ END
 //		Spell(Myself,TOTEMIC_DRUID_SUMMON_SPIRIT_ANIMAL)
 //END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(CLERIC_ANIMAL_SUMMONING_3)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//FloatMessage(Myself,103311) // Spell: Animal Summoning 3
-		Spell(Myself,CLERIC_ANIMAL_SUMMONING_3)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+//FloatMessage(Myself,103311) // Spell: Animal Summoning 3
+Spell(Myself,CLERIC_ANIMAL_SUMMONING_3)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_ANIMAL_SUMMONING_2)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(CLERIC_ANIMAL_SUMMONING_2)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//FloatMessage(Myself,103310) // Spell: Animal Summoning 2
-		Spell(Myself,CLERIC_ANIMAL_SUMMONING_2)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+//FloatMessage(Myself,103310) // Spell: Animal Summoning 2
+Spell(Myself,CLERIC_ANIMAL_SUMMONING_2)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_ANIMAL_SUMMONING_1)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(CLERIC_ANIMAL_SUMMONING_1)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//FloatMessage(Myself,103309) // Spell: Animal Summoning 1
-		Spell(Myself,CLERIC_ANIMAL_SUMMONING_1)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+//FloatMessage(Myself,103309) // Spell: Animal Summoning 1
+Spell(Myself,CLERIC_ANIMAL_SUMMONING_1)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_DEMI_SHADOW_MONSTERS)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(WIZARD_DEMI_SHADOW_MONSTERS)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//FloatMessage(Myself,103309) // Spell: Animal Summoning 1
-		Spell(Myself,WIZARD_DEMI_SHADOW_MONSTERS)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+//FloatMessage(Myself,103309) // Spell: Animal Summoning 1
+Spell(Myself,WIZARD_DEMI_SHADOW_MONSTERS)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SUMMON_SHADOW)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(WIZARD_SUMMON_SHADOW)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//FloatMessage(Myself,103309) // Spell: Animal Summoning 1
-		Spell(Myself,WIZARD_SUMMON_SHADOW)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+//FloatMessage(Myself,103309) // Spell: Animal Summoning 1
+Spell(Myself,WIZARD_SUMMON_SHADOW)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MONSTER_SUMMONING_4)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(WIZARD_MONSTER_SUMMONING_4)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//FloatMessage(Myself,103309) // Spell: Animal Summoning 1
-		Spell(Myself,WIZARD_MONSTER_SUMMONING_4)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+//FloatMessage(Myself,103309) // Spell: Animal Summoning 1
+Spell(Myself,WIZARD_MONSTER_SUMMONING_4)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useShortSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SPIDER_SPAWN)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(WIZARD_SPIDER_SPAWN)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//FloatMessage(Myself,103309) // Spell: Animal Summoning 1
-		Spell(Myself,WIZARD_SPIDER_SPAWN)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+//FloatMessage(Myself,103309) // Spell: Animal Summoning 1
+Spell(Myself,WIZARD_SPIDER_SPAWN)
 END
 
 /////////////////////////////////////////////////////////////////////////////////////// Long Duration Summon spells
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useLongSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useLongSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_AERIAL_SERVANT)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(CLERIC_AERIAL_SERVANT)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//? //FloatMessage(Myself,?) // Spell: Aerial Servant
-		Spell(Myself,CLERIC_AERIAL_SERVANT)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+//? //FloatMessage(Myself,?) // Spell: Aerial Servant
+Spell(Myself,CLERIC_AERIAL_SERVANT)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useLongSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useLongSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_ANIMATE_DEAD)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(CLERIC_ANIMATE_DEAD)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//FloatMessage(Myself,103313) // Spell: Animate Undead
-		Spell(Myself,CLERIC_ANIMATE_DEAD)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+//FloatMessage(Myself,103313) // Spell: Animate Undead
+Spell(Myself,CLERIC_ANIMATE_DEAD)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useLongSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useLongSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_ANIMATE_DEAD)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+OR(2)
+CheckStat(Myself,1,AURACLEANSING)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(WIZARD_ANIMATE_DEAD)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//FloatMessage(Myself,103313) // Spell: Animate Undead
-		Spell(Myself,WIZARD_ANIMATE_DEAD)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+//FloatMessage(Myself,103313) // Spell: Animate Undead
+Spell(Myself,WIZARD_ANIMATE_DEAD)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useLongSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useLongSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CONJURE_EARTH_ELEMENTAL)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(CLERIC_CONJURE_EARTH_ELEMENTAL)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		////FloatMessage(Myself,?) // Spell: Conjure Earth Elemental
-		Spell(Myself,CLERIC_CONJURE_EARTH_ELEMENTAL)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+////FloatMessage(Myself,?) // Spell: Conjure Earth Elemental
+Spell(Myself,CLERIC_CONJURE_EARTH_ELEMENTAL)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useLongSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useLongSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CONJURE_FIRE_ELEMENTAL)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(CLERIC_CONJURE_FIRE_ELEMENTAL)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//FloatMessage(Myself,103307) // Spell: Conjure Fire Elemental
-		Spell(Myself,CLERIC_CONJURE_FIRE_ELEMENTAL)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+//FloatMessage(Myself,103307) // Spell: Conjure Fire Elemental
+Spell(Myself,CLERIC_CONJURE_FIRE_ELEMENTAL)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useLongSummonSpells","LOCALS",1)
-	!Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+Global("u_useLongSummonSpells","LOCALS",1)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
-	NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_CONJURE_FIRE_ELEMENTAL)
+// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(WIZARD_CONJURE_FIRE_ELEMENTAL)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(SUMMONING_CREATURE) // Summoning Creature
-		//FloatMessage(Myself,103307) // Spell: Conjure Fire Elemental
-		Spell(Myself,WIZARD_CONJURE_FIRE_ELEMENTAL)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+//FloatMessage(Myself,103307) // Spell: Conjure Fire Elemental
+Spell(Myself,WIZARD_CONJURE_FIRE_ELEMENTAL)
 END
 
 ////////////////////////////////////////////////////////////////////////////// Item Summons
 
 ////////////////////////////////////////////////////////////////////////////////// Scrolls: Summoning Spells
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
+Global("u_useShortSummonSpells","LOCALS",1)
 
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HasItem("SCRL1L",Myself)
+// [IWD2 PORT] removed coordination: !HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HasItem("SCRL1L",Myself)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103367) // Spell: Monster Summoning 1
-		UseItem("SCRL1L",Myself)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+//FloatMessage(Myself,103367) // Spell: Monster Summoning 1
+UseItem("SCRL1L",Myself)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
+Global("u_useShortSummonSpells","LOCALS",1)
 
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HasItem("SCRL2A",Myself)
+// [IWD2 PORT] removed coordination: !HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HasItem("SCRL2A",Myself)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103368) // Spell: Monster Summoning 2
-		UseItem("SCRL2A",Myself)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+//FloatMessage(Myself,103368) // Spell: Monster Summoning 2
+UseItem("SCRL2A",Myself)
 END
 
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	Global("u_useShortSummonSpells","LOCALS",1)
+Global("u_useShortSummonSpells","LOCALS",1)
 
-	!HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HasItem("SCRL2G",Myself)
+// [IWD2 PORT] removed coordination: !HPGT(FifthNearestMyGroupOfType([ALLY.0.0.0.0.SUMMONED.0]),0)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HasItem("SCRL2G",Myself)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103369) // Spell: Monster Summoning 3
-		UseItem("SCRL2G",Myself)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+//FloatMessage(Myself,103369) // Spell: Monster Summoning 3
+UseItem("SCRL2G",Myself)
 END
 
 ////////////////////////////////////////////////////////////////////////////////////// Debuff/Control Spells
@@ -5708,25 +5735,26 @@ END
 
 // Level 6
 // 10 Rounds/Level (60 seconds/level) - 1 Creature
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
-	!CheckStatGT(Myself,0,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
-	!Heard([ANYONE],CASTING_PROTECTION_FROM_MAGIC_ENERGY) // If someone else casting protection from magic energy
+ActionListEmpty()
+OR(2)
+CheckStat(Myself,1,AURACLEANSING)
+!GlobalTimerNotExpired("castnattack","LOCALS")
+HaveSpell(WIZARD_PROTECTION_FROM_THE_ELEMENTS)
+// [IWD2 PORT] removed stat-based cast coordination: !CheckStatGT(Myself,0,WIZARD_PROTECTION_FROM_THE_ELEMENTS)
+// [IWD2 PORT] removed coordination: !Heard([ANYONE],CASTING_PROTECTION_FROM_MAGIC_ENERGY) // If someone else casting protection from magic energy
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+!StateCheck(Myself,STATE_SILENCED)
+CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Shout(CASTING_PROTECTION_FROM_MAGIC_ENERGY)
-		////FloatMessage(Myself,103373) // Spell: Protection From Magic Energy
-		Spell(Myself,WIZARD_PROTECTION_FROM_MAGIC_ENERGY)
+RESPONSE #100
+SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] removed coordination: Shout(CASTING_PROTECTION_FROM_MAGIC_ENERGY)
+////FloatMessage(Myself,103373) // Spell: Protection From Magic Energy
+Spell(Myself,WIZARD_PROTECTION_FROM_THE_ELEMENTS)
 END
 
 // Level 2 - Alteration 8
@@ -5949,29 +5977,30 @@ END
 
 //////////////////////////////////////////////////////////////////////////// Decide On Next Target You Can See
 // Protect The Wizard if their attacker is not disabled
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
-	ActionListEmpty()
+ActionListEmpty()
 
-	HPPercentGT(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),0)
-	!InParty(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])))
+// [IWD2 PORT] removed coordination: HPPercentGT(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),0)
+// [IWD2 PORT] removed coordination: !InParty(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])))
 
-	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),HOPELESSNESS)
-	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),HELD)
-	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),ENTANGLE)
-	!CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),WEB)
-	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_CHARMED)
-	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_CONFUSED)
-	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_SLEEPING)
-	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_DISABLED)
-	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_PANIC)
+// [IWD2 PORT] removed coordination: !CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),HOPELESSNESS)
+// [IWD2 PORT] removed coordination: !CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),HELD)
+// [IWD2 PORT] removed coordination: !CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),ENTANGLE)
+// [IWD2 PORT] removed coordination: !CheckSpellState(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),WEB)
+// [IWD2 PORT] removed coordination: !StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_CHARMED)
+// [IWD2 PORT] removed coordination: !StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_CONFUSED)
+// [IWD2 PORT] removed coordination: !StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_SLEEPING)
+// [IWD2 PORT] removed coordination: !StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_DISABLED)
+// [IWD2 PORT] removed coordination: !StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_PANIC)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_NOT_TARGETABLE)
+// [IWD2 PORT] removed coordination: // 	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_NOT_TARGETABLE)
 
-	See(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])))
+// [IWD2 PORT] removed coordination: See(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])))
 THEN
-	RESPONSE #100
-		//FloatMessage(Myself,103271) // Helping Wizard
-		Continue()
+RESPONSE #100
+//FloatMessage(Myself,103271) // Helping Wizard
+Continue()
 END
 
 // Help hurt allies if their attacker is not disabled
