@@ -576,7 +576,7 @@ END
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_IRONSKINS)
+	HaveSpell(CLERIC_IRON_SKINS)
 	!CheckSpellState(Myself,IRON_SKINS)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
@@ -587,7 +587,7 @@ THEN
 	RESPONSE #100
 	    SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103292) // Spell: Iron Skins
-		Spell(Myself,CLERIC_IRONSKINS)
+		Spell(Myself,CLERIC_IRON_SKINS)
 END
 
 //////////////////////////////////////////////////////////////////// If ally health is low and have heal spell, heal them
@@ -697,7 +697,7 @@ IF
 
 	Global("u_healingSpellsOn","LOCALS",1)
 
-	HaveSpell(CLERIC_REGENERATION)  // SPPR514.SPL (Mass Cure)
+	HaveSpell(CLERIC_HEALING_CIRCLE)  // SPPR514.SPL (Mass Cure)
 	HPPercentLT(MostDamagedOf(Myself),70)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
@@ -708,7 +708,7 @@ THEN
 	RESPONSE #100
 		SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Regenerate
-		Spell(MostDamagedOf(Myself),CLERIC_REGENERATION)
+		Spell(MostDamagedOf(Myself),CLERIC_HEALING_CIRCLE)
 END
 
 /////////////////////////////////////////////////////////////////// If health is low use a healing potion
@@ -1422,7 +1422,7 @@ NumCreature([GOODCUTOFF.0.SOLAR],0)
 // [IWD2 PORT] removed coordination: NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
 // [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
 !GlobalTimerNotExpired("castnattack","LOCALS")
-HaveSpell(CLERIC_SUMMON_FALLEN_DEVA)
+HaveSpell(CLERIC_SUMMON_NATURES_ALLY_8)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -1433,7 +1433,7 @@ RESPONSE #100
 SetGlobalTimer("castnattack","LOCALS",6)
 // [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
 ////FloatMessage(Myself,?) // Spell: Summon Fallen Deva
-Spell(Myself,CLERIC_SUMMON_FALLEN_DEVA)
+Spell(Myself,CLERIC_SUMMON_NATURES_ALLY_8)
 END
 
 // [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
@@ -1449,7 +1449,7 @@ NumCreature([GOODCUTOFF.0.SOLAR],0)
 // [IWD2 PORT] removed coordination: NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
 // [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
 !GlobalTimerNotExpired("castnattack","LOCALS")
-HaveSpell(CLERIC_SUMMON_DEVA)
+HaveSpell(CLERIC_SUMMON_NATURES_ALLY_8)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -1460,7 +1460,7 @@ RESPONSE #100
 SetGlobalTimer("castnattack","LOCALS",6)
 // [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
 ////FloatMessage(Myself,?) // Spell: Summon Deva
-Spell(Myself,CLERIC_SUMMON_DEVA)
+Spell(Myself,CLERIC_SUMMON_NATURES_ALLY_8)
 END
 
 // [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
