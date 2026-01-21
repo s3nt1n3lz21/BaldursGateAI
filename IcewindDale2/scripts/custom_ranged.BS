@@ -5,6 +5,22 @@
 // 203 = 203
 // 204 = 204
 
+// StringRefs
+// 47680 - Melee Attack
+// 47681 - Ranged Attack
+// 47682 - Run Away
+// 47683 - Heal Self
+// 47684 - Shout Help
+// 47685 - Attack Reevaluate
+// 47686 - Drink Antidote
+// 47687 - Low HP
+// 47688 - Casting Spell
+// 47689 - Idle With Enemy
+// 47690 - Spell Failed / Aborted
+// 47691 - No Valid Target
+// 47692 - Cooldown Blocking Action
+// 47693 - ClearAllActions Fired
+
 // TESTING
 // //FloatMessage(Myself,103365) // Test
 
