@@ -2017,7 +2017,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_NEUTRALIZE_POISON)  // SPPR318.SPL (Zone of Sweet Air)
-	// OR(11)
+	OR(11)
 // [IWD2 PORT] commented: SpellCast() trigger not in IWD2 TRIGGER.IDS
 // 		SpellCast([ANYONE],WIZARD_INCENDIARY_CLOUD)  // SPWI810.SPL (Incendiary Cloud)
 // [IWD2 PORT] commented: SpellCast() trigger not in IWD2 TRIGGER.IDS
@@ -2104,7 +2104,7 @@ IF
 	HaveSpell(WIZARD_DISPEL_MAGIC)
 	See(NearestEnemyOf(Myself))
 
-	OR(2)
+	OR(12)
 		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
@@ -2237,7 +2237,7 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DETECT_INVISIBILITY)
-	// OR(2)
+	OR(2)
 // [IWD2 PORT] commented: SpellCast() trigger not in IWD2 TRIGGER.IDS
 // 		SpellCast([EVILCUTOFF],WIZARD_INVISIBILITY)
 // [IWD2 PORT] commented: SpellCast() trigger not in IWD2 TRIGGER.IDS
@@ -2285,10 +2285,14 @@ IF
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-	!Kit(LastSeenBy(Myself),INQUISITOR)
-	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
-	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: kit constant not in KIT.IDS
+// 	!Kit(LastSeenBy(Myself),INQUISITOR)
+// [IWD2 PORT] commented: kit constant not in KIT.IDS
+// 	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 
 
 
@@ -2331,10 +2335,14 @@ IF
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-	!Kit(LastSeenBy(Myself),INQUISITOR)
-	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
-	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: kit constant not in KIT.IDS
+// 	!Kit(LastSeenBy(Myself),INQUISITOR)
+// [IWD2 PORT] commented: kit constant not in KIT.IDS
+// 	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
 	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
 
@@ -2377,10 +2385,14 @@ IF
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-	!Kit(LastSeenBy(Myself),INQUISITOR)
-	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
-	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: kit constant not in KIT.IDS
+// 	!Kit(LastSeenBy(Myself),INQUISITOR)
+// [IWD2 PORT] commented: kit constant not in KIT.IDS
+// 	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 
 
 
@@ -2426,10 +2438,14 @@ IF
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-	!Kit(LastSeenBy(Myself),INQUISITOR)
-	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
-	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: kit constant not in KIT.IDS
+// 	!Kit(LastSeenBy(Myself),INQUISITOR)
+// [IWD2 PORT] commented: kit constant not in KIT.IDS
+// 	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 
 
 
@@ -2474,10 +2490,14 @@ IF
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-	!Kit(LastSeenBy(Myself),INQUISITOR)
-	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
-	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: kit constant not in KIT.IDS
+// 	!Kit(LastSeenBy(Myself),INQUISITOR)
+// [IWD2 PORT] commented: kit constant not in KIT.IDS
+// 	!Kit(LastSeenBy(Myself),UNDEADHUNTER)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 
 
 
@@ -2742,8 +2762,10 @@ IF
 		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
 		CheckStatGT(LastSeenBy(Myself),0,TRUE_SIGHT)
 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_DEFENSIVE_HARMONY)
-		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
-		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 		CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
 		CheckStatGT(LastSeenBy(Myself),0,DEATH_WARD)
 		CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)
@@ -3072,8 +3094,10 @@ IF
 		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
 		CheckStatGT(LastSeenBy(Myself),0,TRUE_SIGHT)
 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_DEFENSIVE_HARMONY)
-		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
-		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 		CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
 		CheckStatGT(LastSeenBy(Myself),0,DEATH_WARD)
 		CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)
@@ -3147,8 +3171,10 @@ IF
 		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
 		CheckStatGT(LastSeenBy(Myself),0,TRUE_SIGHT)
 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_DEFENSIVE_HARMONY)
-		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
-		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 		CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
 		CheckStatGT(LastSeenBy(Myself),0,DEATH_WARD)
 		CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)
@@ -3468,8 +3494,10 @@ IF
 		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
 		CheckStatGT(LastSeenBy(Myself),0,TRUE_SIGHT)
 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_DEFENSIVE_HARMONY)
-		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
-		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 		CheckStatGT(LastSeenBy(Myself),0,WIZARD_FIRE_SHIELD)
 		CheckStatGT(LastSeenBy(Myself),0,DEATH_WARD)
 		CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)
@@ -3662,7 +3690,7 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DOOM)
 	See(NearestEnemyOf(Myself))
-	OR(3)
+	OR(4)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
 		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
@@ -3691,7 +3719,7 @@ IF
 	HaveSpell(WIZARD_GREATER_MALISON)
 	See(NearestEnemyOf(Myself))
 	!CheckSpellState(NearestEnemyOf(Myself),MALISON)
-	OR(3)
+	OR(4)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
 		CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
@@ -4538,8 +4566,10 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(Player1,0,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Player1,0,CLERIC_CHAOTIC_COMMANDS)
 
 	!CheckStat(Player1,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -4563,7 +4593,8 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103300) // Spell: Chaotic Commands
-		Spell(Player1,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		Spell(Player1,CLERIC_CHAOTIC_COMMANDS)
 END
 
 // Level 5 - Enchantment 4
@@ -4571,8 +4602,10 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(Player2,0,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Player2,0,CLERIC_CHAOTIC_COMMANDS)
 
 	!CheckStat(Player2,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -4596,7 +4629,8 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103300) // Spell: Chaotic Commands
-		Spell(Player2,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		Spell(Player2,CLERIC_CHAOTIC_COMMANDS)
 END
 
 // Level 5 - Enchantment 4
@@ -4604,8 +4638,10 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(Player3,0,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Player3,0,CLERIC_CHAOTIC_COMMANDS)
 
 	!CheckStat(Player3,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -4629,7 +4665,8 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103300) // Spell: Chaotic Commands
-		Spell(Player3,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		Spell(Player3,CLERIC_CHAOTIC_COMMANDS)
 END
 
 // Level 5 - Enchantment 4
@@ -4637,8 +4674,10 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(Player4,0,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Player4,0,CLERIC_CHAOTIC_COMMANDS)
 
 	!CheckStat(Player4,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -4662,7 +4701,8 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103300) // Spell: Chaotic Commands
-		Spell(Player4,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		Spell(Player4,CLERIC_CHAOTIC_COMMANDS)
 END
 
 // Level 5 - Enchantment 4
@@ -4670,8 +4710,10 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(Player5,0,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Player5,0,CLERIC_CHAOTIC_COMMANDS)
 
 	!CheckStat(Player5,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -4695,7 +4737,8 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103300) // Spell: Chaotic Commands
-		Spell(Player5,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		Spell(Player5,CLERIC_CHAOTIC_COMMANDS)
 END
 
 // Level 5 - Enchantment 4
@@ -4703,8 +4746,10 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
-	!CheckStatGT(Player6,0,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	HaveSpell(CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Player6,0,CLERIC_CHAOTIC_COMMANDS)
 
 	!CheckStat(Player6,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -4728,7 +4773,8 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103300) // Spell: Chaotic Commands
-		Spell(Player6,CLERIC_CHAOTIC_COMMANDS)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		Spell(Player6,CLERIC_CHAOTIC_COMMANDS)
 END
 
 // Level 1 - Abjuration 1
@@ -4973,8 +5019,10 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_FREE_ACTION)
-	CheckStat(Player1,0,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	HaveSpell(CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	CheckStat(Player1,0,CLERIC_FREE_ACTION)
 	!CheckSpellState(Player1,FREE_ACTION)
 
 	!CheckStat(Player1,1,MINORGLOBE)
@@ -4999,7 +5047,8 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Free Action
-		Spell(Player1,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		Spell(Player1,CLERIC_FREE_ACTION)
 END
 
 // Level 4 - Abjuration 1
@@ -5007,8 +5056,10 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_FREE_ACTION)
-	CheckStat(Player2,0,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	HaveSpell(CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	CheckStat(Player2,0,CLERIC_FREE_ACTION)
 	!CheckSpellState(Player2,FREE_ACTION)
 
 	!CheckStat(Player2,1,MINORGLOBE)
@@ -5033,7 +5084,8 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Free Action
-		Spell(Player2,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		Spell(Player2,CLERIC_FREE_ACTION)
 END
 
 // Level 4 - Abjuration 1
@@ -5041,8 +5093,10 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_FREE_ACTION)
-	CheckStat(Player3,0,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	HaveSpell(CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	CheckStat(Player3,0,CLERIC_FREE_ACTION)
 	!CheckSpellState(Player3,FREE_ACTION)
 
 	!CheckStat(Player3,1,MINORGLOBE)
@@ -5067,7 +5121,8 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Free Action
-		Spell(Player3,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		Spell(Player3,CLERIC_FREE_ACTION)
 END
 
 // Level 4 - Abjuration 1
@@ -5075,8 +5130,10 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_FREE_ACTION)
-	CheckStat(Player4,0,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	HaveSpell(CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	CheckStat(Player4,0,CLERIC_FREE_ACTION)
 	!CheckSpellState(Player4,FREE_ACTION)
 
 	!CheckStat(Player4,1,MINORGLOBE)
@@ -5101,7 +5158,8 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Free Action
-		Spell(Player4,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		Spell(Player4,CLERIC_FREE_ACTION)
 END
 
 // Level 4 - Abjuration 1
@@ -5109,8 +5167,10 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_FREE_ACTION)
-	CheckStat(Player5,0,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	HaveSpell(CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	CheckStat(Player5,0,CLERIC_FREE_ACTION)
 	!CheckSpellState(Player5,FREE_ACTION)
 
 	!CheckStat(Player5,1,MINORGLOBE)
@@ -5135,7 +5195,8 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Free Action
-		Spell(Player5,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		Spell(Player5,CLERIC_FREE_ACTION)
 END
 
 // Level 4 - Abjuration 1
@@ -5143,8 +5204,10 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_FREE_ACTION)
-	CheckStat(Player6,0,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	HaveSpell(CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	CheckStat(Player6,0,CLERIC_FREE_ACTION)
 	!CheckSpellState(Player6,FREE_ACTION)
 
 	!CheckStat(Player6,1,MINORGLOBE)
@@ -5169,7 +5232,8 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Free Action
-		Spell(Player6,CLERIC_FREE_ACTION)
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 		Spell(Player6,CLERIC_FREE_ACTION)
 END
 
 // Level 2 - Alteration 8
