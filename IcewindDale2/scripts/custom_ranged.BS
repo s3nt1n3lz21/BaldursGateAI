@@ -2017,7 +2017,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_NEUTRALIZE_POISON)  // SPPR318.SPL (Zone of Sweet Air)
-	OR(11)
+// OR(11)
 // [IWD2 PORT] commented: SpellCast() trigger not in IWD2 TRIGGER.IDS
 // 		SpellCast([ANYONE],WIZARD_INCENDIARY_CLOUD)  // SPWI810.SPL (Incendiary Cloud)
 // [IWD2 PORT] commented: SpellCast() trigger not in IWD2 TRIGGER.IDS
@@ -2103,8 +2103,7 @@ IF
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DISPEL_MAGIC)
 	See(NearestEnemyOf(Myself))
-
-	OR(12)
+	OR(2)
 		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
@@ -2201,7 +2200,7 @@ IF
 		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
-	OR(4)
+	OR(1)
 		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
@@ -2237,7 +2236,7 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DETECT_INVISIBILITY)
-	OR(2)
+// OR(2)
 // [IWD2 PORT] commented: SpellCast() trigger not in IWD2 TRIGGER.IDS
 // 		SpellCast([EVILCUTOFF],WIZARD_INVISIBILITY)
 // [IWD2 PORT] commented: SpellCast() trigger not in IWD2 TRIGGER.IDS
@@ -2297,7 +2296,7 @@ IF
 
 
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
+	!HasItem("RING09",LastSeenBy(Myself))  // Edventar's Gift
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -2344,7 +2343,7 @@ IF
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
+	!HasItem("RING09",LastSeenBy(Myself))  // Edventar's Gift
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -2397,7 +2396,7 @@ IF
 
 
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
+	!HasItem("RING09",LastSeenBy(Myself))  // Edventar's Gift
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -2450,7 +2449,7 @@ IF
 
 
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
+	!HasItem("RING09",LastSeenBy(Myself))  // Edventar's Gift
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -2502,7 +2501,7 @@ IF
 
 
 	!HasItem("MORSWORD",LastSeenBy(Myself))  // Mordenkainen's Sword
-	!HasItemEquiped("RING09",LastSeenBy(Myself))  // Edventar's Gift
+	!HasItem("RING09",LastSeenBy(Myself))  // Edventar's Gift
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -2524,7 +2523,8 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_CHAOS)  // SPPR211.SPL (Silence, 15' Radius)
-	NumCreatureVsPartyGT(Myself,3)
+// [IWD2 PORT] commented: NumCreatureVsPartyGT() not in IWD2 TRIGGER.IDS
+// 	NumCreatureVsPartyGT(Myself,3)
 
 
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -2605,7 +2605,8 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_HORROR)
-	NumCreatureVsPartyGT(Myself,4)
+// [IWD2 PORT] commented: NumCreatureVsPartyGT() not in IWD2 TRIGGER.IDS
+// 	NumCreatureVsPartyGT(Myself,4)
 
 	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
 	!CheckStat(NearestEnemyOf(Myself),1,MINORGLOBE)
@@ -2615,12 +2616,16 @@ IF
 // 	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(NearestEnemyOf(Myself),2)
-	!CheckStatGT(NearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(NearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStatGT(NearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStat(NearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(NearestEnemyOf(Myself),UNDEAD)
 	!Race(NearestEnemyOf(Myself),DEMONIC)
-	!Kit(NearestEnemyOf(Myself),CAVALIER)
-	!Kit(NearestEnemyOf(Myself),Blackguard)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(NearestEnemyOf(Myself),CAVALIER)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(NearestEnemyOf(Myself),Blackguard)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)
@@ -2638,12 +2643,16 @@ IF
 // 	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(SecondNearestEnemyOf(Myself),2)
-	!CheckStatGT(SecondNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(SecondNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStatGT(SecondNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStat(SecondNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(SecondNearestEnemyOf(Myself),UNDEAD)
 	!Race(SecondNearestEnemyOf(Myself),DEMONIC)
-	!Kit(SecondNearestEnemyOf(Myself),CAVALIER)
-	!Kit(SecondNearestEnemyOf(Myself),Blackguard)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(SecondNearestEnemyOf(Myself),CAVALIER)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(SecondNearestEnemyOf(Myself),Blackguard)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	CheckStatGT(SecondNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
@@ -2661,12 +2670,16 @@ IF
 // 	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(ThirdNearestEnemyOf(Myself),2)
-	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(ThirdNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStat(ThirdNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(ThirdNearestEnemyOf(Myself),UNDEAD)
 	!Race(ThirdNearestEnemyOf(Myself),DEMONIC)
-	!Kit(ThirdNearestEnemyOf(Myself),CAVALIER)
-	!Kit(ThirdNearestEnemyOf(Myself),Blackguard)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(ThirdNearestEnemyOf(Myself),CAVALIER)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(ThirdNearestEnemyOf(Myself),Blackguard)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	CheckStatGT(ThirdNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
@@ -2684,12 +2697,16 @@ IF
 // 	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(FourthNearestEnemyOf(Myself),2)
-	!CheckStatGT(FourthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(FourthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStatGT(FourthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStat(FourthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(FourthNearestEnemyOf(Myself),UNDEAD)
 	!Race(FourthNearestEnemyOf(Myself),DEMONIC)
-	!Kit(FourthNearestEnemyOf(Myself),CAVALIER)
-	!Kit(FourthNearestEnemyOf(Myself),Blackguard)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(FourthNearestEnemyOf(Myself),CAVALIER)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(FourthNearestEnemyOf(Myself),Blackguard)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	CheckStatGT(FourthNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
@@ -2707,12 +2724,16 @@ IF
 // 	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(FifthNearestEnemyOf(Myself),2)
-	!CheckStatGT(FifthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(FifthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStatGT(FifthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStat(FifthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(FifthNearestEnemyOf(Myself),UNDEAD)
 	!Race(FifthNearestEnemyOf(Myself),DEMONIC)
-	!Kit(FifthNearestEnemyOf(Myself),CAVALIER)
-	!Kit(FifthNearestEnemyOf(Myself),Blackguard)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(FifthNearestEnemyOf(Myself),CAVALIER)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(FifthNearestEnemyOf(Myself),Blackguard)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	CheckStatGT(FifthNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMAGIC)
@@ -2754,7 +2775,7 @@ IF
 		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
-	OR(18)
+	OR(16)
 
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
@@ -2822,7 +2843,7 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	OR(14)
+	OR(13)
 		CheckSpellState(Player1,HOPELESSNESS)
 		CheckSpellState(Player1,ENFEEBLED)
 		CheckSpellState(Player1,HELD)
@@ -2865,7 +2886,7 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	OR(14)
+	OR(13)
 		CheckSpellState(Player2,HOPELESSNESS)
 		CheckSpellState(Player2,ENFEEBLED)
 		CheckSpellState(Player2,HELD)
@@ -2908,7 +2929,7 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	OR(14)
+	OR(13)
 		CheckSpellState(Player3,HOPELESSNESS)
 		CheckSpellState(Player3,ENFEEBLED)
 		CheckSpellState(Player3,HELD)
@@ -2951,7 +2972,7 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	OR(14)
+	OR(13)
 		CheckSpellState(Player4,HOPELESSNESS)
 		CheckSpellState(Player4,ENFEEBLED)
 		CheckSpellState(Player4,HELD)
@@ -2994,7 +3015,7 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	OR(14)
+	OR(13)
 		CheckSpellState(Player5,HOPELESSNESS)
 		CheckSpellState(Player5,ENFEEBLED)
 		CheckSpellState(Player5,HELD)
@@ -3037,7 +3058,7 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_TRUE_DISPEL_MAGIC)
-	OR(14)
+	OR(13)
 		CheckSpellState(Player6,HOPELESSNESS)
 		CheckSpellState(Player6,ENFEEBLED)
 		CheckSpellState(Player6,HELD)
@@ -3086,7 +3107,7 @@ IF
 		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
-	OR(18)
+	OR(17)
 
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
@@ -3163,7 +3184,7 @@ IF
 		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
-	OR(18)
+	OR(11)
 
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
@@ -3234,7 +3255,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	OR(14)
+	OR(13)
 		CheckSpellState(Player1,HOPELESSNESS)
 		CheckSpellState(Player1,ENFEEBLED)
 		CheckSpellState(Player1,HELD)
@@ -3275,7 +3296,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	OR(14)
+	OR(13)
 		CheckSpellState(Player2,HOPELESSNESS)
 		CheckSpellState(Player2,ENFEEBLED)
 		CheckSpellState(Player2,HELD)
@@ -3316,7 +3337,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	OR(14)
+	OR(13)
 		CheckSpellState(Player3,HOPELESSNESS)
 		CheckSpellState(Player3,ENFEEBLED)
 		CheckSpellState(Player3,HELD)
@@ -3357,7 +3378,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	OR(14)
+	OR(13)
 		CheckSpellState(Player4,HOPELESSNESS)
 		CheckSpellState(Player4,ENFEEBLED)
 		CheckSpellState(Player4,HELD)
@@ -3398,7 +3419,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	OR(14)
+	OR(13)
 		CheckSpellState(Player5,HOPELESSNESS)
 		CheckSpellState(Player5,ENFEEBLED)
 		CheckSpellState(Player5,HELD)
@@ -3439,7 +3460,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DISPEL_MAGIC)
-	OR(14)
+	OR(13)
 		CheckSpellState(Player6,HOPELESSNESS)
 		CheckSpellState(Player6,ENFEEBLED)
 		CheckSpellState(Player6,HELD)
@@ -3486,7 +3507,7 @@ IF
 		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
-	OR(18)
+	OR(16)
 
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
@@ -3690,7 +3711,7 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DOOM)
 	See(NearestEnemyOf(Myself))
-	OR(4)
+	OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
 		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
@@ -3719,7 +3740,7 @@ IF
 	HaveSpell(WIZARD_GREATER_MALISON)
 	See(NearestEnemyOf(Myself))
 	!CheckSpellState(NearestEnemyOf(Myself),MALISON)
-	OR(4)
+	OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
 		CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
@@ -3806,7 +3827,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	Class(Myself,MAGE_ALL)
 	HasItem("wand02",Myself)
-	NumCreatureVsPartyGT(Myself,4)
+// [IWD2 PORT] commented: NumCreatureVsPartyGT() not in IWD2 TRIGGER.IDS
+// 	NumCreatureVsPartyGT(Myself,4)
 
 	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
@@ -3817,12 +3839,16 @@ IF
 // 	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(NearestEnemyOf(Myself),2)
-	!CheckStatGT(NearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(NearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStatGT(NearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStat(NearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(NearestEnemyOf(Myself),UNDEAD)
 	!Race(NearestEnemyOf(Myself),DEMONIC)
-	!Kit(NearestEnemyOf(Myself),CAVALIER)
-	!Kit(NearestEnemyOf(Myself),Blackguard)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(NearestEnemyOf(Myself),CAVALIER)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(NearestEnemyOf(Myself),Blackguard)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)
@@ -3841,12 +3867,16 @@ IF
 // 	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(SecondNearestEnemyOf(Myself),2)
-	!CheckStatGT(SecondNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(SecondNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStatGT(SecondNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStat(SecondNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(SecondNearestEnemyOf(Myself),UNDEAD)
 	!Race(SecondNearestEnemyOf(Myself),DEMONIC)
-	!Kit(SecondNearestEnemyOf(Myself),CAVALIER)
-	!Kit(SecondNearestEnemyOf(Myself),Blackguard)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(SecondNearestEnemyOf(Myself),CAVALIER)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(SecondNearestEnemyOf(Myself),Blackguard)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	CheckStatGT(SecondNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
@@ -3865,12 +3895,16 @@ IF
 // 	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(ThirdNearestEnemyOf(Myself),2)
-	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(ThirdNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStat(ThirdNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(ThirdNearestEnemyOf(Myself),UNDEAD)
 	!Race(ThirdNearestEnemyOf(Myself),DEMONIC)
-	!Kit(ThirdNearestEnemyOf(Myself),CAVALIER)
-	!Kit(ThirdNearestEnemyOf(Myself),Blackguard)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(ThirdNearestEnemyOf(Myself),CAVALIER)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(ThirdNearestEnemyOf(Myself),Blackguard)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	CheckStatGT(ThirdNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
@@ -3889,12 +3923,16 @@ IF
 // 	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(FourthNearestEnemyOf(Myself),2)
-	!CheckStatGT(FourthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(FourthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStatGT(FourthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStat(FourthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(FourthNearestEnemyOf(Myself),UNDEAD)
 	!Race(FourthNearestEnemyOf(Myself),DEMONIC)
-	!Kit(FourthNearestEnemyOf(Myself),CAVALIER)
-	!Kit(FourthNearestEnemyOf(Myself),Blackguard)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(FourthNearestEnemyOf(Myself),CAVALIER)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(FourthNearestEnemyOf(Myself),Blackguard)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	CheckStatGT(FourthNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
@@ -3913,12 +3951,16 @@ IF
 // 	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(FifthNearestEnemyOf(Myself),2)
-	!CheckStatGT(FifthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(FifthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStatGT(FifthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStat(FifthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(FifthNearestEnemyOf(Myself),UNDEAD)
 	!Race(FifthNearestEnemyOf(Myself),DEMONIC)
-	!Kit(FifthNearestEnemyOf(Myself),CAVALIER)
-	!Kit(FifthNearestEnemyOf(Myself),Blackguard)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(FifthNearestEnemyOf(Myself),CAVALIER)
+// [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
+// 	!Kit(FifthNearestEnemyOf(Myself),Blackguard)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	CheckStatGT(FifthNearestEnemyOf(Myself),5,SAVEVSSPELL)
 	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMAGIC)
@@ -3946,7 +3988,8 @@ IF
   	ActionListEmpty()
 	Class(Myself,MAGE_ALL)
 	HasItem("wand08",Myself)
-	NumCreatureVsPartyGT(Myself,4)
+// [IWD2 PORT] commented: NumCreatureVsPartyGT() not in IWD2 TRIGGER.IDS
+// 	NumCreatureVsPartyGT(Myself,4)
 
 	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
@@ -3957,8 +4000,10 @@ IF
 // 	!CheckStat(NearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(NearestEnemyOf(Myself),1)
-	!CheckStatGT(NearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(NearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStatGT(NearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStat(NearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(NearestEnemyOf(Myself),UNDEAD)
 	!Race(NearestEnemyOf(Myself),DEMONIC)
 	!Race(NearestEnemyOf(Myself),ELF)
@@ -3978,8 +4023,10 @@ IF
 // 	!CheckStat(SecondNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(SecondNearestEnemyOf(Myself),1)
-	!CheckStatGT(SecondNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(SecondNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStatGT(SecondNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStat(SecondNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(SecondNearestEnemyOf(Myself),UNDEAD)
 	!Race(SecondNearestEnemyOf(Myself),DEMONIC)
 	!Race(SecondNearestEnemyOf(Myself),ELF)
@@ -3999,8 +4046,10 @@ IF
 // 	!CheckStat(ThirdNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(ThirdNearestEnemyOf(Myself),1)
-	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(ThirdNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStatGT(ThirdNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStat(ThirdNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(ThirdNearestEnemyOf(Myself),UNDEAD)
 	!Race(ThirdNearestEnemyOf(Myself),DEMONIC)
 	!Race(ThirdNearestEnemyOf(Myself),ELF)
@@ -4020,8 +4069,10 @@ IF
 // 	!CheckStat(FourthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(FourthNearestEnemyOf(Myself),1)
-	!CheckStatGT(FourthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(FourthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStatGT(FourthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStat(FourthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(FourthNearestEnemyOf(Myself),UNDEAD)
 	!Race(FourthNearestEnemyOf(Myself),DEMONIC)
 	!Race(FourthNearestEnemyOf(Myself),ELF)
@@ -4041,8 +4092,10 @@ IF
 // 	!CheckStat(FifthNearestEnemyOf(Myself),1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(FifthNearestEnemyOf(Myself),1)
-	!CheckStatGT(FifthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
-	!CheckStat(FifthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStatGT(FifthNearestEnemyOf(Myself),0,WIZARD_SPELL_TRAP)
+// [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
+// 	!CheckStat(FifthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(FifthNearestEnemyOf(Myself),UNDEAD)
 	!Race(FifthNearestEnemyOf(Myself),DEMONIC)
 	!Race(FifthNearestEnemyOf(Myself),ELF)
@@ -4078,7 +4131,7 @@ IF
 	!StateCheck(NearestEnemyOf(Myself),STATE_STUNNED | STATE_HELPLESS)
 	CheckStatGT(NearestEnemyOf(Myself),10,SAVEVSWANDS)
 	!General(NearestEnemyOf(Myself),UNDEAD)
-	OR(4)
+	OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
 		CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
@@ -4203,7 +4256,7 @@ IF
 	HaveSpell(CLERIC_AURA_OF_FLAMING_DEATH)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
-	OR(4)
+	OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
 		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
@@ -6935,7 +6988,7 @@ IF
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-	OR(4)
+	OR(2)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
 		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
@@ -6973,7 +7026,7 @@ IF
 
 	CheckStatGT(LastSeenBy(Myself),50,RESISTMAGIC)
 
-	OR(4)
+	OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
 		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
@@ -7013,7 +7066,7 @@ IF
 
 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-	OR(4)
+	OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
 		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
@@ -7488,7 +7541,7 @@ IF
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand11",Myself)
 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSWANDS)
-	OR(4)
+	OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
 		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
@@ -7676,14 +7729,14 @@ END
 /////////////////////////////////////////////////////////// Equip Arrows If Out Of Ammo
 
 //IF
-//	!HasItemEquiped("AROW01",Myself)
+//	!HasItem("AROW01",Myself)
 //THEN
 //	RESPONSE #100
 ///		//FloatMessage(Myself,10)
 //END
 
 IF
-	!HasItemEquiped("AROW01",Myself) // passing for both
+	!HasItem("AROW01",Myself) // passing for both
 	HasItemCategory(Myself,BOW,FALSE) // passing for both when false, neither when true
 	HasItem("AROW01",Myself) // Arrow
 THEN
