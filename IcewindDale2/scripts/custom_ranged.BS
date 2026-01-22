@@ -5,6 +5,7 @@
 // 203 = 203
 // 204 = 204  // CASTING_DISPEL_MAGIC_ALLY (fallback)
 // 205 = 205  // 205 (fallback)
+// 206 = 206  // CASTING_BARKSKIN (fallback)
 
 // StringRefs
 // 47680 - Melee Attack
@@ -469,9 +470,9 @@ END
 // 3 Rounds/Level (18 seconds/level) - Self
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("SCRL6G",Myself)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
 // 	!CheckStat(Myself,1,WIZARD_SPELL_DEFLECTION)
@@ -497,9 +498,9 @@ END
 // 3 Rounds/Level (18 seconds/level) - Self
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("SCRL7D",Myself)
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStat(Myself,1,WIZARD_SPELL_TURNING)
@@ -525,9 +526,9 @@ END
 // 1 Round/Level (6 seconds/level) - Self
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HasItem("SCRL1Z",Myself)
 	!CheckStat(Myself,1,MINORGLOBE)
 
@@ -554,9 +555,9 @@ END
 // 600 Rounds (1 Hour) - Self
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_STONESKIN)
 	!CheckSpellState(Myself,STONESKIN)
 	!CheckStatGT(Myself,0,STONESKINS)
@@ -1307,9 +1308,9 @@ END
 // 10 rounds (60 seconds) - Self
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_VOCALIZE)
 	StateCheck(Myself,STATE_SILENCED)
 
@@ -1331,8 +1332,8 @@ END
 IF
 ActionListEmpty()
 OR(2)
-CheckStat(Myself,1,AURACLEANSING)
-!GlobalTimerNotExpired("castnattack","LOCALS")
+	CheckStat(Myself,1,AURACLEANSING)
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 HaveSpell(WIZARD_PROTECTION_FROM_THE_ELEMENTS)
 // [IWD2 PORT] removed coordination: !CheckStatGT(NearestMyGroupOfType([GOODCUTOFF.0.0.0.0.SUMMONED]),0,WIZARD_PROTECTION_FROM_THE_ELEMENTS)
 // [IWD2 PORT] removed coordination: CheckStatLT(NearestMyGroupOfType([GOODCUTOFF.0.0.0.0.SUMMONED]),99,RESISTMAGIC)
@@ -1368,8 +1369,8 @@ Global("u_useShortSummonSpells","LOCALS",1)
 // [IWD2 PORT] removed coordination: NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
 // [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
 OR(2)
-CheckStat(Myself,1,AURACLEANSING)
-!GlobalTimerNotExpired("castnattack","LOCALS")
+	CheckStat(Myself,1,AURACLEANSING)
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 HaveSpell(WIZARD_MONSTER_SUMMONING_VI)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
@@ -1400,8 +1401,8 @@ Global("u_useShortSummonSpells","LOCALS",1)
 // [IWD2 PORT] removed coordination: NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
 // [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
 OR(2)
-CheckStat(Myself,1,AURACLEANSING)
-!GlobalTimerNotExpired("castnattack","LOCALS")
+	CheckStat(Myself,1,AURACLEANSING)
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 HaveSpell(WIZARD_MONSTER_SUMMONING_VI)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
@@ -1484,7 +1485,7 @@ Global("u_useShortSummonSpells","LOCALS",1)
 // [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 // [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-OR(2)
+// [IWD2 PORT] removed empty OR block: OR(0)
 CheckStat(Myself,1,AURACLEANSING)
 !GlobalTimerNotExpired("castnattack","LOCALS")
 HaveSpell(CLERIC_SUMMON_NATURES_ALLY_8)
@@ -1509,7 +1510,7 @@ Global("u_useShortSummonSpells","LOCALS",1)
 // [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 // [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-OR(2)
+// [IWD2 PORT] removed empty OR block: OR(0)
 CheckStat(Myself,1,AURACLEANSING)
 !GlobalTimerNotExpired("castnattack","LOCALS")
 HaveSpell(CLERIC_ELEMENTAL_SWARM)
@@ -1534,7 +1535,7 @@ Global("u_useShortSummonSpells","LOCALS",1)
 // [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 // [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-OR(2)
+// [IWD2 PORT] removed empty OR block: OR(0)
 CheckStat(Myself,1,AURACLEANSING)
 !GlobalTimerNotExpired("castnattack","LOCALS")
 HaveSpell(WIZARD_MORDENKAINENS_SWORD)
@@ -1559,7 +1560,7 @@ Global("u_useShortSummonSpells","LOCALS",1)
 // [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
 
 // [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
-OR(2)
+// [IWD2 PORT] removed empty OR block: OR(0)
 CheckStat(Myself,1,AURACLEANSING)
 !GlobalTimerNotExpired("castnattack","LOCALS")
 HaveSpell(WIZARD_WYVERN_CALL)
@@ -1861,8 +1862,8 @@ Global("u_useLongSummonSpells","LOCALS",1)
 
 // [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
 OR(2)
-CheckStat(Myself,1,AURACLEANSING)
-!GlobalTimerNotExpired("castnattack","LOCALS")
+	CheckStat(Myself,1,AURACLEANSING)
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 HaveSpell(WIZARD_ANIMATE_DEAD)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
@@ -2100,8 +2101,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DISPEL_MAGIC)
 	See(NearestEnemyOf(Myself))
 	OR(2)
@@ -2153,8 +2154,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_LOWER_RESISTANCE)
 	See(NearestEnemyOf(Myself))
 
@@ -2193,8 +2194,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DISPEL_MAGIC)
 	OR(4)
 		See(NearestEnemyOf([0.0.0.BARD_ALL]))
@@ -2234,8 +2235,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DETECT_INVISIBILITY)
 // OR(2)
 // [IWD2 PORT] commented: SpellCast() trigger not in IWD2 TRIGGER.IDS
@@ -2363,8 +2364,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_SLEEP)
 	See([EVILCUTOFF.HUMANOID])
 	!StateCheck(LastSeenBy(Myself),STATE_SLEEPING)
@@ -2417,8 +2418,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_HOLD_PERSON)
 	See([EVILCUTOFF.HUMANOID])
 	!CheckSpellState(LastSeenBy(Myself),HELD)
@@ -2469,8 +2470,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_HOLD_MONSTER)
 	See(NearestEnemyOf(Myself))
 	!CheckSpellState(LastSeenBy(Myself),HELD)
@@ -2521,8 +2522,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_CHAOS)  // SPPR211.SPL (Silence, 15' Radius)
 // [IWD2 PORT] commented: NumCreatureVsPartyGT() not in IWD2 TRIGGER.IDS
 // 	NumCreatureVsPartyGT(Myself,3)
@@ -2603,8 +2604,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_HORROR)
 // [IWD2 PORT] commented: NumCreatureVsPartyGT() not in IWD2 TRIGGER.IDS
 // 	NumCreatureVsPartyGT(Myself,4)
@@ -2776,8 +2777,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	// [IWD2 PORT] HaveSpell(WIZARD_BREACH)  // Breach not found in IWD2 SPELL.IDS
 	OR(4)
 		See(NearestEnemyOf([0.0.0.BARD_ALL]))
@@ -2853,8 +2854,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DISPEL_MAGIC)
 	OR(13)
 		CheckSpellState(Player1,HOPELESSNESS)
@@ -2896,8 +2897,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DISPEL_MAGIC)
 	OR(13)
 		CheckSpellState(Player2,HOPELESSNESS)
@@ -2939,8 +2940,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DISPEL_MAGIC)
 	OR(13)
 		CheckSpellState(Player3,HOPELESSNESS)
@@ -2982,8 +2983,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DISPEL_MAGIC)
 	OR(13)
 		CheckSpellState(Player4,HOPELESSNESS)
@@ -3025,8 +3026,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DISPEL_MAGIC)
 	OR(13)
 		CheckSpellState(Player5,HOPELESSNESS)
@@ -3068,8 +3069,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DISPEL_MAGIC)
 	OR(13)
 		CheckSpellState(Player6,HOPELESSNESS)
@@ -3112,8 +3113,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DISPEL_MAGIC)
 	OR(4)
 		See(NearestEnemyOf([0.0.0.BARD_ALL]))
@@ -3193,8 +3194,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DISPEL_MAGIC)
 	OR(4)
 		See(NearestEnemyOf([0.0.0.BARD_ALL]))
@@ -3762,8 +3763,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_GREATER_MALISON)
 	See(NearestEnemyOf(Myself))
 	!CheckSpellState(NearestEnemyOf(Myself),MALISON)
@@ -5552,7 +5553,7 @@ IF
 	!CheckSpellState(Player1,BARKSKIN)
 	NumInPartyGT(0)
 
-	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
+	!Heard([ANYONE],206) // If someone else casting barkskin
 
 	!CheckStat(Player1,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -5576,7 +5577,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103303) // Spell: Barkskin
-		Shout(CASTING_BARKSKIN) // Casting Barksin
+		Shout(206) // Casting Barksin
 		Spell(Player1,CLERIC_BARKSKIN)
 END
 
@@ -5589,7 +5590,7 @@ IF
 	!CheckSpellState(Player2,BARKSKIN)
 	NumInPartyGT(1)
 
-	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
+	!Heard([ANYONE],206) // If someone else casting barkskin
 
 	!CheckStat(Player2,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -5613,7 +5614,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103303) // Spell: Barkskin
-		Shout(CASTING_BARKSKIN) // Casting Barksin
+		Shout(206) // Casting Barksin
 		Spell(Player2,CLERIC_BARKSKIN)
 END
 
@@ -5626,7 +5627,7 @@ IF
 	!CheckSpellState(Player3,BARKSKIN)
 	NumInPartyGT(2)
 
-	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
+	!Heard([ANYONE],206) // If someone else casting barkskin
 
 	!CheckStat(Player3,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -5650,7 +5651,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103303) // Spell: Barkskin
-		Shout(CASTING_BARKSKIN) // Casting Barksin
+		Shout(206) // Casting Barksin
 		Spell(Player3,CLERIC_BARKSKIN)
 END
 
@@ -5663,7 +5664,7 @@ IF
 	!CheckSpellState(Player4,BARKSKIN)
 	NumInPartyGT(3)
 
-	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
+	!Heard([ANYONE],206) // If someone else casting barkskin
 
 	!CheckStat(Player4,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -5687,7 +5688,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103303) // Spell: Barkskin
-		Shout(CASTING_BARKSKIN) // Casting Barksin
+		Shout(206) // Casting Barksin
 		Spell(Player4,CLERIC_BARKSKIN)
 END
 
@@ -5700,7 +5701,7 @@ IF
 	!CheckSpellState(Player5,BARKSKIN)
 	NumInPartyGT(4)
 
-	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
+	!Heard([ANYONE],206) // If someone else casting barkskin
 
 	!CheckStat(Player5,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -5724,7 +5725,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103303) // Spell: Barkskin
-		Shout(CASTING_BARKSKIN) // Casting Barksin
+		Shout(206) // Casting Barksin
 		Spell(Player5,CLERIC_BARKSKIN)
 END
 
@@ -5737,7 +5738,7 @@ IF
 	!CheckSpellState(Player6,BARKSKIN)
 	NumInPartyGT(5)
 
-	!Heard([ANYONE],CASTING_BARKSKIN) // If someone else casting barkskin
+	!Heard([ANYONE],206) // If someone else casting barkskin
 
 	!CheckStat(Player6,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -5761,7 +5762,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103303) // Spell: Barkskin
-		Shout(CASTING_BARKSKIN) // Casting Barksin
+		Shout(206) // Casting Barksin
 		Spell(Player6,CLERIC_BARKSKIN)
 END
 
@@ -5931,69 +5932,72 @@ THEN
 		Spell(Player1,CLERIC_AID)
 END
 
-IF
-	ActionListEmpty()
-	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_RECITATION)  // SPPR513.SPL (Righteous Magic)
-
+// [IWD2 PORT] commented out block: spell not available (CLERIC_RESIST_FIRE not in IWD2 SPELL.IDS)
+// IF
+// 	ActionListEmpty()
+// 	!GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(CLERIC_RECITATION)  // SPPR513.SPL (Righteous Magic)
+// 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-	    SetGlobalTimer("castnattack","LOCALS",6)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+// THEN
+// 	RESPONSE #100
+// 	    SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103290) // Spell: Righteous Magic
-		Spell(Myself,CLERIC_RECITATION)
-END
-
-IF
-	ActionListEmpty()
-	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_RIGHTEOUS_WRATH_OF_THE_FAITHFUL)  // SPPR513.SPL (Righteous Magic)
-
+// 		Spell(Myself,CLERIC_RECITATION)
+// END
+// 
+// [IWD2 PORT] commented out block: spell not available (CLERIC_RIGHTEOUS_WRATH_OF_THE_FAITHFUL not in IWD2 SPELL.IDS)
+// IF
+// 	ActionListEmpty()
+// 	!GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(CLERIC_RIGHTEOUS_WRATH_OF_THE_FAITHFUL)  // SPPR513.SPL (Righteous Magic)
+// 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-	    SetGlobalTimer("castnattack","LOCALS",6)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+// THEN
+// 	RESPONSE #100
+// 	    SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103290) // Spell: Righteous Magic
-		Spell(Myself,CLERIC_RIGHTEOUS_WRATH_OF_THE_FAITHFUL)
-END
-
+// 		Spell(Myself,CLERIC_RIGHTEOUS_WRATH_OF_THE_FAITHFUL)
+// END
+// 
 // Level 5
 // 1 Round/Level (6 seconds/level) - Self
-IF
-	ActionListEmpty()
-	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_RIGHTEOUS_MAGIC)  // SPPR513.SPL (Righteous Magic)
-
+// [IWD2 PORT] commented out block: spell not available (CLERIC_RIGHTEOUS_MAGIC not in IWD2 SPELL.IDS)
+// IF
+// 	ActionListEmpty()
+// 	!GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(CLERIC_RIGHTEOUS_MAGIC)  // SPPR513.SPL (Righteous Magic)
+// 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-	    SetGlobalTimer("castnattack","LOCALS",6)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+// THEN
+// 	RESPONSE #100
+// 	    SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103290) // Spell: Righteous Magic
-		Spell(WeakestOf(Myself),CLERIC_RIGHTEOUS_MAGIC)
-END
-
+// 		Spell(WeakestOf(Myself),CLERIC_RIGHTEOUS_MAGIC)
+// END
+// 
 // Note: There is no resist fire or resist cold spell for clerics but a single resist fire and cold spell
 // Casting CLERIC_RESIST_FIRE or CLERIC_RESIST_COLD actually casts the resist fire and cold spell
 // Level 2 - Alteration 8
 // 1 Round/Level (6 seconds/level) - 1 Creature
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_RESIST_FIRE)
-	OR(2)
-		CheckStatLT(Player1,99,RESISTFIRE)
-		CheckStatLT(Player1,99,RESISTCOLD)
-
-	!CheckStat(Player1,1,MINORGLOBE)
+// IF
+// 	ActionListEmpty()
+//     !GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(CLERIC_RESIST_FIRE)
+// 	OR(2)
+// 		CheckStatLT(Player1,99,RESISTFIRE)
+// 		CheckStatLT(Player1,99,RESISTCOLD)
+// 
+// 	!CheckStat(Player1,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	!CheckStat(Player1,8,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
@@ -6002,21 +6006,21 @@ IF
 // 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(Player1,2)
-	!StateCheck(Player1,STATE_INVISIBLE)
-	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// 	!StateCheck(Player1,STATE_INVISIBLE)
+// 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
-
+// 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+// THEN
+// 	RESPONSE #100
+//         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103293) // Spell: Resist Fire And Cold
-		Spell(Player1,CLERIC_RESIST_FIRE)
-END
+// 		Spell(Player1,CLERIC_RESIST_FIRE)
+// END
 
 // Level 4
 // 1 Rounds/Level (6 seconds/level) - Self
@@ -6181,31 +6185,32 @@ END
 
 // Level 10
 // 4 Minutes or Until Charges Depleted - Self
-IF
-	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_ENERGY_BLADES)
-	!HasItem("ENEBLADE",Myself)
-	!HasItem("MELFMET",Myself)
-
-	OR(4)
-		See(NearestEnemyOf([0.0.0.BARD_ALL]))
-		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
-
+// [IWD2 PORT] commented out block: spell not available (WIZARD_ENERGY_BLADES not in IWD2 SPELL.IDS)
+// IF
+// 	ActionListEmpty()
+//     OR(2)
+//   		CheckStat(Myself,1,AURACLEANSING)
+//   		!GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(WIZARD_ENERGY_BLADES)
+// 	!HasItem("ENEBLADE",Myself)
+// 	!HasItem("MELFMET",Myself)
+// 
+// 	OR(4)
+// 		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+// 		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+// 		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+// 		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
+// 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+// THEN
+// 	RESPONSE #100
+//         SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Energy Blades
-		Spell(Myself,WIZARD_ENERGY_BLADES)
-END
+// 		Spell(Myself,WIZARD_ENERGY_BLADES)
+// END
 
 IF
 	ActionListEmpty()
@@ -6235,9 +6240,9 @@ END
 // Until Charges Depleted - Self
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MELF_METEOR)
 	!HasItem("ENEBLADE",Myself)
 	!HasItem("MELFMET",Myself)
@@ -6256,8 +6261,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_CATS_GRACE)
 	CheckStatLT(Player1,19,DEX)
 	!CheckSpellState(Player1,CATS_GRACE)
@@ -6286,9 +6291,9 @@ END
 
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_EMOTION_HOPE)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
@@ -6303,9 +6308,9 @@ END
 
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_EMOTION_COURAGE)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
@@ -6324,8 +6329,8 @@ END
 IF
 ActionListEmpty()
 OR(2)
-CheckStat(Myself,1,AURACLEANSING)
-!GlobalTimerNotExpired("castnattack","LOCALS")
+	CheckStat(Myself,1,AURACLEANSING)
+	!GlobalTimerNotExpired("castnattack","LOCALS")
 HaveSpell(WIZARD_PROTECTION_FROM_THE_ELEMENTS)
 // [IWD2 PORT] removed stat-based cast coordination: !CheckStatGT(Myself,0,WIZARD_PROTECTION_FROM_THE_ELEMENTS)
 // [IWD2 PORT] removed coordination: !Heard([ANYONE],CASTING_PROTECTION_FROM_MAGIC_ENERGY) // If someone else casting protection from magic energy
@@ -6347,8 +6352,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_STRENGTH)
 	CheckStatLT(WeakestOf(Myself),18,STR)
 
@@ -6381,9 +6386,9 @@ END
 // 10 Rounds/Level (60 seconds/level) - 1 Creature
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_PROTECTION_FROM_ACID)
 	CheckStatLT(Player1,99,RESISTACID)
 
@@ -6416,9 +6421,9 @@ END
 // 10 Rounds/Level (60 seconds/level) - 1 Creature
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_PROTECTION_FROM_FIRE)
 	CheckStatLT(Player1,99,RESISTFIRE)
 
@@ -6469,9 +6474,9 @@ END
 // 50 Rounds (5 minutes) - 15ft Radius
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_RESIST_FEAR)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
@@ -6487,9 +6492,9 @@ END
 
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_SEVEN_EYES)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
@@ -6507,9 +6512,9 @@ END
 // 4 Rounds + 2 Round/Level (24 seconds + 12 seconds/level) - Self
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_BLUR)
 	!StateCheck(Myself,STATE_BLUR)
 
@@ -6528,9 +6533,9 @@ END
 // 3 Rounds + 1 Rounds/Level (18 seconds + 6 seconds/level) - Self
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MIRROR_IMAGE)
 	!StateCheck(Myself,STATE_MIRRORIMAGE)
 
@@ -6549,9 +6554,9 @@ END
 // 3 Rounds + 1 Rounds/Level (18 seconds + 6 seconds/level) - 1 Creature
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_IMPROVED_INVISIBILITY)
 	!StateCheck(Myself,STATE_IMPROVEDINVISIBILITY)
 
@@ -7256,8 +7261,8 @@ END
 IF
 	ActionListEmpty()
 	OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(BERSERKER_RAGE)
 	!StateCheck(Myself,STATE_BERSERK)
 	HPPercentGT(NearestEnemyOf(Myself),0)
@@ -7273,9 +7278,9 @@ END
 // Level 7 - Alteration (8)
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_SPHERE_OF_CHAOS)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -7313,9 +7318,9 @@ END
 // Level 10
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DRAGONS_BREATH)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -7351,9 +7356,9 @@ END
 // Level 8 - Necromancy (7)
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_ABI_DALZIMS_HORRID_WILTING)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -7390,9 +7395,9 @@ END
 
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DISINTEGRATE)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -7425,9 +7430,9 @@ END
 
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MORDENKAINENS_FORCE_MISSILES)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -7461,9 +7466,9 @@ END
 // Level 6 - Evocation
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_CHAIN_LIGHTNING)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -7516,9 +7521,9 @@ END
 // Level 1 - Evocation
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MAGIC_MISSILE)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -7553,9 +7558,9 @@ END
 // Level 1 - Evocation
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_CHROMATIC_ORB)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -7589,9 +7594,9 @@ END
 // Level 3 - Conjuration
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_FLAME_ARROW)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -7629,9 +7634,9 @@ END
 // Level 2 - Conjuration
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MELF_ACID_ARROW)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
@@ -7666,9 +7671,9 @@ END
 // Level 2 - Evocation
 IF
 	ActionListEmpty()
-    OR(2)
-  		CheckStat(Myself,1,AURACLEANSING)
-  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_AGANNAZAR_SCORCHER)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 
