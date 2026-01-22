@@ -3647,7 +3647,8 @@ END
 IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_SUMMON_INSECTS)
+// [IWD2 PORT] commented: CLERIC_SUMMON_INSECTS not in IWD2 SPELL.IDS (no direct replacement)
+// 	HaveSpell(CLERIC_SUMMON_INSECTS)
 	OR(4)
 		See(NearestEnemyOf([0.0.0.BARD_ALL]))
 		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
@@ -3685,7 +3686,8 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Summon Insects
-		Spell(LastSeenBy(Myself),CLERIC_SUMMON_INSECTS)
+// [IWD2 PORT] commented: CLERIC_SUMMON_INSECTS not in IWD2 SPELL.IDS (no direct replacement)
+// 		Spell(LastSeenBy(Myself),CLERIC_SUMMON_INSECTS)
 END
 
 // Level 3 - Enchantment
@@ -4153,7 +4155,8 @@ IF
 	CheckStatLT(NearestEnemyOf(Myself),1,HELD)
 	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOf(Myself),STATE_CONFUSED)
-	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSWANDS)
+// [IWD2 PORT] commented: SAVEVSWANDS not in IWD2 STATS.IDS (no direct replacement)
+// 	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSWANDS)
 
 	!InParty(NearestEnemyOf(Myself))
 THEN
@@ -4170,7 +4173,8 @@ IF
 	HasItem("wand04",Myself)
 	!CheckSpellState(NearestEnemyOf(Myself),HELD)
 	!StateCheck(NearestEnemyOf(Myself),STATE_STUNNED | STATE_HELPLESS)
-	CheckStatGT(NearestEnemyOf(Myself),10,SAVEVSWANDS)
+// [IWD2 PORT] commented: SAVEVSWANDS not in IWD2 STATS.IDS (no direct replacement)
+// 	CheckStatGT(NearestEnemyOf(Myself),10,SAVEVSWANDS)
 	!General(NearestEnemyOf(Myself),UNDEAD)
 	OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -4188,106 +4192,191 @@ END
 
 /////////////////////////////////////////////////////////////////////////////////////// Turn Undead
 // Start turning undead if can turn nearby undead
-IF
-	ActionListEmpty()
-	!ModalState(TURNUNDEAD)
-	Range(Nearest([EVILCUTOFF.UNDEAD]),12)
-	CanTurn(Nearest([EVILCUTOFF.UNDEAD]),5)
-	!ButtonDisabled(BUTTON_TURNUNDEAD)
-THEN
-	RESPONSE #100
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// IF
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	!ModalState(TURNUNDEAD)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	Range(Nearest([EVILCUTOFF.UNDEAD]),12)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	CanTurn(Nearest([EVILCUTOFF.UNDEAD]),5)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	!ButtonDisabled(BUTTON_TURNUNDEAD)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// THEN
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	RESPONSE #100
 		//FloatMessage(Myself,103315) // Turn Undead
-		Turn()
-END
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 		Turn()
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// END
 
-IF
-	ActionListEmpty()
-	!ModalState(TURNUNDEAD)
-	Range(SecondNearest([EVILCUTOFF.UNDEAD]),12)
-	CanTurn(SecondNearest([EVILCUTOFF.UNDEAD]),5)
-	!ButtonDisabled(BUTTON_TURNUNDEAD)
-THEN
-	RESPONSE #100
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// IF
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	!ModalState(TURNUNDEAD)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	Range(SecondNearest([EVILCUTOFF.UNDEAD]),12)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	CanTurn(SecondNearest([EVILCUTOFF.UNDEAD]),5)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	!ButtonDisabled(BUTTON_TURNUNDEAD)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// THEN
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	RESPONSE #100
 		//FloatMessage(Myself,103315) // Turn Undead
-		Turn()
-END
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 		Turn()
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// END
 
-IF
-	ActionListEmpty()
-	!ModalState(TURNUNDEAD)
-	Range(ThirdNearest([EVILCUTOFF.UNDEAD]),12)
-	CanTurn(ThirdNearest([EVILCUTOFF.UNDEAD]),5)
-	!ButtonDisabled(BUTTON_TURNUNDEAD)
-THEN
-	RESPONSE #100
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// IF
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	!ModalState(TURNUNDEAD)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	Range(ThirdNearest([EVILCUTOFF.UNDEAD]),12)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	CanTurn(ThirdNearest([EVILCUTOFF.UNDEAD]),5)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	!ButtonDisabled(BUTTON_TURNUNDEAD)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// THEN
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	RESPONSE #100
 		//FloatMessage(Myself,103315) // Turn Undead
-		Turn()
-END
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 		Turn()
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// END
 
-IF
-	ActionListEmpty()
-	!ModalState(TURNUNDEAD)
-	Range(FourthNearest([EVILCUTOFF.UNDEAD]),12)
-	CanTurn(FourthNearest([EVILCUTOFF.UNDEAD]),5)
-	!ButtonDisabled(BUTTON_TURNUNDEAD)
-THEN
-	RESPONSE #100
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// IF
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	!ModalState(TURNUNDEAD)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	Range(FourthNearest([EVILCUTOFF.UNDEAD]),12)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	CanTurn(FourthNearest([EVILCUTOFF.UNDEAD]),5)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	!ButtonDisabled(BUTTON_TURNUNDEAD)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// THEN
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	RESPONSE #100
 		//FloatMessage(Myself,103315) // Turn Undead
-		Turn()
-END
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 		Turn()
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// END
 
-IF
-	ActionListEmpty()
-	!ModalState(TURNUNDEAD)
-	Range(FifthNearest([EVILCUTOFF.UNDEAD]),12)
-	CanTurn(FifthNearest([EVILCUTOFF.UNDEAD]),5)
-	!ButtonDisabled(BUTTON_TURNUNDEAD)
-THEN
-	RESPONSE #100
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// IF
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	!ModalState(TURNUNDEAD)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	Range(FifthNearest([EVILCUTOFF.UNDEAD]),12)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	CanTurn(FifthNearest([EVILCUTOFF.UNDEAD]),5)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	!ButtonDisabled(BUTTON_TURNUNDEAD)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// THEN
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	RESPONSE #100
 		//FloatMessage(Myself,103315) // Turn Undead
-		Turn()
-END
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 		Turn()
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// END
 
-IF
-	ActionListEmpty()
-	!ModalState(TURNUNDEAD)
-	Range(SixthNearest([EVILCUTOFF.UNDEAD]),12)
-	CanTurn(SixthNearest([EVILCUTOFF.UNDEAD]),5)
-	!ButtonDisabled(BUTTON_TURNUNDEAD)
-THEN
-	RESPONSE #100
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// IF
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	!ModalState(TURNUNDEAD)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	Range(SixthNearest([EVILCUTOFF.UNDEAD]),12)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	CanTurn(SixthNearest([EVILCUTOFF.UNDEAD]),5)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	!ButtonDisabled(BUTTON_TURNUNDEAD)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// THEN
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	RESPONSE #100
 		//FloatMessage(Myself,103315) // Turn Undead
-		Turn()
-END
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 		Turn()
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// END
 
-IF
-	ActionListEmpty()
-	!ModalState(TURNUNDEAD)
-	Range(SeventhNearest([EVILCUTOFF.UNDEAD]),12)
-	CanTurn(SeventhNearest([EVILCUTOFF.UNDEAD]),5)
-	!ButtonDisabled(BUTTON_TURNUNDEAD)
-THEN
-	RESPONSE #100
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// IF
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	!ModalState(TURNUNDEAD)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	Range(SeventhNearest([EVILCUTOFF.UNDEAD]),12)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	CanTurn(SeventhNearest([EVILCUTOFF.UNDEAD]),5)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	!ButtonDisabled(BUTTON_TURNUNDEAD)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// THEN
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	RESPONSE #100
 		//FloatMessage(Myself,103315) // Turn Undead
-		Turn()
-END
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 		Turn()
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// END
 
 // Keep turning undead if already turning nearby undead
-IF
-	ActionListEmpty()
-	ModalState(TURNUNDEAD)
-	Range([EVILCUTOFF.UNDEAD],12)
-	OR(7)
-		CanTurn(Nearest([EVILCUTOFF.UNDEAD]),5)
-		CanTurn(SecondNearest([EVILCUTOFF.UNDEAD]),5)
-		CanTurn(ThirdNearest([EVILCUTOFF.UNDEAD]),5)
-		CanTurn(FourthNearest([EVILCUTOFF.UNDEAD]),5)
-		CanTurn(FifthNearest([EVILCUTOFF.UNDEAD]),5)
-		CanTurn(SixthNearest([EVILCUTOFF.UNDEAD]),5)
-		CanTurn(SeventhNearest([EVILCUTOFF.UNDEAD]),5)
-THEN
-	RESPONSE #100
-END
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// IF
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	ModalState(TURNUNDEAD)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	Range([EVILCUTOFF.UNDEAD],12)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	OR(7)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 		CanTurn(Nearest([EVILCUTOFF.UNDEAD]),5)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 		CanTurn(SecondNearest([EVILCUTOFF.UNDEAD]),5)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 		CanTurn(ThirdNearest([EVILCUTOFF.UNDEAD]),5)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 		CanTurn(FourthNearest([EVILCUTOFF.UNDEAD]),5)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 		CanTurn(FifthNearest([EVILCUTOFF.UNDEAD]),5)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 		CanTurn(SixthNearest([EVILCUTOFF.UNDEAD]),5)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 		CanTurn(SeventhNearest([EVILCUTOFF.UNDEAD]),5)
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// THEN
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// 	RESPONSE #100
+// [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
+// END
 
 ////////////////////////////////////////////////////////////////////////////////// Aura Of Flaming Death
 
@@ -7615,7 +7704,8 @@ IF
 	Class(Myself,MAGE_ALL)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand03",Myself)
-	CheckStatGT(LastSeenBy(Myself),5,SAVEVSWANDS)
+// [IWD2 PORT] commented: SAVEVSWANDS not in IWD2 STATS.IDS (no direct replacement)
+// 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSWANDS)
 	!InParty(LastSeenBy(Myself))
 THEN
 	RESPONSE #100
@@ -7630,7 +7720,8 @@ IF
 	Class(Myself,CLERIC_ALL)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	HasItem("wand11",Myself)
-	CheckStatGT(LastSeenBy(Myself),5,SAVEVSWANDS)
+// [IWD2 PORT] commented: SAVEVSWANDS not in IWD2 STATS.IDS (no direct replacement)
+// 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSWANDS)
 	OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
