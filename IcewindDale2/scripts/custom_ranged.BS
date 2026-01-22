@@ -3,7 +3,8 @@
 // 201 = 201
 // 202 = 202
 // 203 = 203
-// 204 = 204
+// 204 = 204  // CASTING_DISPEL_MAGIC_ALLY (fallback)
+// 205 = 205  // 205 (fallback)
 
 // StringRefs
 // 47680 - Melee Attack
@@ -2621,7 +2622,8 @@ IF
 // [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
 // 	!CheckStat(NearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(NearestEnemyOf(Myself),UNDEAD)
-	!General(NearestEnemyOf(Myself),DEMONIC)
+	// [IWD2 PORT] commented: DEMONIC not in GENERAL.IDS
+	// 	!General(NearestEnemyOf(Myself),DEMONIC)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
 // 	!Kit(NearestEnemyOf(Myself),CAVALIER)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
@@ -2648,7 +2650,8 @@ IF
 // [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
 // 	!CheckStat(SecondNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(SecondNearestEnemyOf(Myself),UNDEAD)
-	!General(SecondNearestEnemyOf(Myself),DEMONIC)
+	// [IWD2 PORT] commented: DEMONIC not in GENERAL.IDS
+	// 	!General(SecondNearestEnemyOf(Myself),DEMONIC)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
 // 	!Kit(SecondNearestEnemyOf(Myself),CAVALIER)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
@@ -2675,7 +2678,8 @@ IF
 // [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
 // 	!CheckStat(ThirdNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(ThirdNearestEnemyOf(Myself),UNDEAD)
-	!General(ThirdNearestEnemyOf(Myself),DEMONIC)
+	// [IWD2 PORT] commented: DEMONIC not in GENERAL.IDS
+	// 	!General(ThirdNearestEnemyOf(Myself),DEMONIC)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
 // 	!Kit(ThirdNearestEnemyOf(Myself),CAVALIER)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
@@ -2702,7 +2706,8 @@ IF
 // [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
 // 	!CheckStat(FourthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(FourthNearestEnemyOf(Myself),UNDEAD)
-	!General(FourthNearestEnemyOf(Myself),DEMONIC)
+	// [IWD2 PORT] commented: DEMONIC not in GENERAL.IDS
+	// 	!General(FourthNearestEnemyOf(Myself),DEMONIC)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
 // 	!Kit(FourthNearestEnemyOf(Myself),CAVALIER)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
@@ -2729,7 +2734,8 @@ IF
 // [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
 // 	!CheckStat(FifthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(FifthNearestEnemyOf(Myself),UNDEAD)
-	!General(FifthNearestEnemyOf(Myself),DEMONIC)
+	// [IWD2 PORT] commented: DEMONIC not in GENERAL.IDS
+	// 	!General(FifthNearestEnemyOf(Myself),DEMONIC)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
 // 	!Kit(FifthNearestEnemyOf(Myself),CAVALIER)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
@@ -2749,7 +2755,7 @@ IF
 // 	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 	// [IWD2 PORT] STATE_DISABLED not in IWD2; approximate with common disable states
 	!StateCheck(NearestEnemyOf(Myself),STATE_STUNNED)
-	!StateCheck(NearestEnemyOf(Myself),STATE_HELD)
+	CheckStatLT(NearestEnemyOf(Myself),1,HELD)
 	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOf(Myself),STATE_CONFUSED)
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
@@ -2778,23 +2784,26 @@ IF
 		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
-	OR(15)
+	OR(11)
 
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 		CheckSpellState(LastSeenBy(Myself),HASTE)
 		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
-		CheckSpellState(LastSeenBy(Myself),TRUE_SIGHT)
+		// [IWD2 PORT] commented: TRUE_SIGHT not in SPLSTATE.IDS
+		// 	CheckSpellState(LastSeenBy(Myself),TRUE_SIGHT)
 		CheckSpellState(LastSeenBy(Myself),DEFENSIVE_HARMONY)
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
-		CheckSpellState(LastSeenBy(Myself),FIRE_SHIELD)
+		// [IWD2 PORT] commented: FIRE_SHIELD not in SPLSTATE.IDS
+		// 	CheckSpellState(LastSeenBy(Myself),FIRE_SHIELD)
 		CheckSpellState(LastSeenBy(Myself),DEATH_WARD)
 		// [IWD2 PORT] commented: CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)  // no direct IWD2 stat replacement
-		CheckStatGT(LastSeenBy(Myself),0,STRENGTH)
-		CheckSpellState(LastSeenBy(Myself),PROTECTION_FROM_MAGIC_WEAPONS)
+		CheckStatGT(LastSeenBy(Myself),0,STR)
+		// [IWD2 PORT] commented: PROTECTION_FROM_MAGIC_WEAPONS not in SPLSTATE.IDS
+		// 	CheckSpellState(LastSeenBy(Myself),PROTECTION_FROM_MAGIC_WEAPONS)
 
 
 
@@ -2804,7 +2813,8 @@ IF
 
 		StateCheck(LastSeenBy(Myself),STATE_HASTED)
 		StateCheck(LastSeenBy(Myself),STATE_BLESS)
-		StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
+		// [IWD2 PORT] commented: STATE_DRAWUPONHOLYMIGHT not in STATE.IDS
+		// 	StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
 		StateCheck(LastSeenBy(Myself),STATE_BLUR)
 		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
@@ -3110,23 +3120,26 @@ IF
 		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
-	OR(15)
+	OR(11)
 
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 		CheckSpellState(LastSeenBy(Myself),HASTE)
 		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
-		CheckSpellState(LastSeenBy(Myself),TRUE_SIGHT)
+		// [IWD2 PORT] commented: TRUE_SIGHT not in SPLSTATE.IDS
+		// 	CheckSpellState(LastSeenBy(Myself),TRUE_SIGHT)
 		CheckSpellState(LastSeenBy(Myself),DEFENSIVE_HARMONY)
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
-		CheckSpellState(LastSeenBy(Myself),FIRE_SHIELD)
+		// [IWD2 PORT] commented: FIRE_SHIELD not in SPLSTATE.IDS
+		// 	CheckSpellState(LastSeenBy(Myself),FIRE_SHIELD)
 		CheckSpellState(LastSeenBy(Myself),DEATH_WARD)
 		// [IWD2 PORT] commented: CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)  // no direct IWD2 stat replacement
-		CheckStatGT(LastSeenBy(Myself),0,STRENGTH)
-		CheckSpellState(LastSeenBy(Myself),PROTECTION_FROM_MAGIC_WEAPONS)
+		CheckStatGT(LastSeenBy(Myself),0,STR)
+		// [IWD2 PORT] commented: PROTECTION_FROM_MAGIC_WEAPONS not in SPLSTATE.IDS
+		// 	CheckSpellState(LastSeenBy(Myself),PROTECTION_FROM_MAGIC_WEAPONS)
 
 
 
@@ -3136,7 +3149,8 @@ IF
 
 		StateCheck(LastSeenBy(Myself),STATE_HASTED)
 		StateCheck(LastSeenBy(Myself),STATE_BLESS)
-		StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
+		// [IWD2 PORT] commented: STATE_DRAWUPONHOLYMIGHT not in STATE.IDS
+		// 	StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
 		StateCheck(LastSeenBy(Myself),STATE_BLUR)
 		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
@@ -3149,7 +3163,7 @@ IF
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 
-	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ENEMY)
+	!Heard([ANYONE],205)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -3170,7 +3184,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103322) // Spell: Dispel Magic
-		Shout(CASTING_DISPEL_MAGIC_ENEMY)
+		Shout(205)
 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
 END
 
@@ -3187,23 +3201,26 @@ IF
 		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
-	OR(15)
+	OR(11)
 
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 		CheckSpellState(LastSeenBy(Myself),HASTE)
 		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
-		CheckSpellState(LastSeenBy(Myself),TRUE_SIGHT)
+		// [IWD2 PORT] TRUE_SIGHT not in SPLSTATE.IDS; approximated with Mirror Image state
+		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
 		CheckSpellState(LastSeenBy(Myself),DEFENSIVE_HARMONY)
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
-		CheckSpellState(LastSeenBy(Myself),FIRE_SHIELD)
+		// [IWD2 PORT] FIRE_SHIELD not in SPLSTATE.IDS; approximated with Blur state
+		StateCheck(LastSeenBy(Myself),STATE_BLUR)
 		CheckSpellState(LastSeenBy(Myself),DEATH_WARD)
 		// [IWD2 PORT] commented: CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)  // no direct IWD2 stat replacement
-		CheckStatGT(LastSeenBy(Myself),0,STRENGTH)
-		CheckSpellState(LastSeenBy(Myself),PROTECTION_FROM_MAGIC_WEAPONS)
+		CheckStatGT(LastSeenBy(Myself),0,STR)
+		// [IWD2 PORT] PROTECTION_FROM_MAGIC_WEAPONS not in SPLSTATE.IDS; approximated with Bless state
+		StateCheck(LastSeenBy(Myself),STATE_BLESS)
 
 
 
@@ -3213,7 +3230,8 @@ IF
 
 		StateCheck(LastSeenBy(Myself),STATE_HASTED)
 		StateCheck(LastSeenBy(Myself),STATE_BLESS)
-		StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
+		// [IWD2 PORT] commented: STATE_DRAWUPONHOLYMIGHT not in STATE.IDS
+		// 	StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
 		StateCheck(LastSeenBy(Myself),STATE_BLUR)
 		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
@@ -3226,7 +3244,7 @@ IF
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 
-	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ENEMY)
+	!Heard([ANYONE],205)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -3247,7 +3265,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103323) // Spell: Remove Magic
-		Shout(CASTING_DISPEL_MAGIC_ENEMY)
+		Shout(205)
 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
 END
 
@@ -3510,23 +3528,26 @@ IF
 		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
 		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
-	OR(15)
+	OR(14)
 
 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
 		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
 		CheckSpellState(LastSeenBy(Myself),HASTE)
 		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
-		CheckSpellState(LastSeenBy(Myself),TRUE_SIGHT)
+		// [IWD2 PORT] TRUE_SIGHT not in SPLSTATE.IDS; approximated with Mirror Image state
+		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
 		CheckSpellState(LastSeenBy(Myself),DEFENSIVE_HARMONY)
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
-		CheckSpellState(LastSeenBy(Myself),FIRE_SHIELD)
+		// [IWD2 PORT] FIRE_SHIELD not in SPLSTATE.IDS; approximated with Blur state
+		StateCheck(LastSeenBy(Myself),STATE_BLUR)
 		CheckSpellState(LastSeenBy(Myself),DEATH_WARD)
 		// [IWD2 PORT] commented: CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)  // no direct IWD2 stat replacement
-		CheckStatGT(LastSeenBy(Myself),0,STRENGTH)
-		CheckSpellState(LastSeenBy(Myself),PROTECTION_FROM_MAGIC_WEAPONS)
+		CheckStatGT(LastSeenBy(Myself),0,STR)
+		// [IWD2 PORT] PROTECTION_FROM_MAGIC_WEAPONS not in SPLSTATE.IDS; approximated with Bless state
+		StateCheck(LastSeenBy(Myself),STATE_BLESS)
 
 
 
@@ -3536,7 +3557,8 @@ IF
 
 		StateCheck(LastSeenBy(Myself),STATE_HASTED)
 		StateCheck(LastSeenBy(Myself),STATE_BLESS)
-		StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
+		// [IWD2 PORT] commented: STATE_DRAWUPONHOLYMIGHT not in STATE.IDS
+		// 	StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
 		StateCheck(LastSeenBy(Myself),STATE_BLUR)
 		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
@@ -3549,7 +3571,7 @@ IF
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 
-	!Heard([ANYONE],CASTING_DISPEL_MAGIC_ENEMY)
+	!Heard([ANYONE],205)
 
 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
@@ -3570,7 +3592,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103322) // Spell: Dispel Magic
-		Shout(CASTING_DISPEL_MAGIC_ENEMY)
+		Shout(205)
 		Spell(LastSeenBy(Myself),CLERIC_DISPEL_MAGIC)
 END
 
@@ -3847,7 +3869,8 @@ IF
 // [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
 // 	!CheckStat(NearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(NearestEnemyOf(Myself),UNDEAD)
-	!General(NearestEnemyOf(Myself),DEMONIC)
+	// [IWD2 PORT] commented: DEMONIC not in GENERAL.IDS
+	// 	!General(NearestEnemyOf(Myself),DEMONIC)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
 // 	!Kit(NearestEnemyOf(Myself),CAVALIER)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
@@ -3875,7 +3898,8 @@ IF
 // [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
 // 	!CheckStat(SecondNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(SecondNearestEnemyOf(Myself),UNDEAD)
-	!General(SecondNearestEnemyOf(Myself),DEMONIC)
+	// [IWD2 PORT] commented: DEMONIC not in GENERAL.IDS
+	// 	!General(SecondNearestEnemyOf(Myself),DEMONIC)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
 // 	!Kit(SecondNearestEnemyOf(Myself),CAVALIER)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
@@ -3903,7 +3927,8 @@ IF
 // [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
 // 	!CheckStat(ThirdNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(ThirdNearestEnemyOf(Myself),UNDEAD)
-	!General(ThirdNearestEnemyOf(Myself),DEMONIC)
+	// [IWD2 PORT] commented: DEMONIC not in GENERAL.IDS
+	// 	!General(ThirdNearestEnemyOf(Myself),DEMONIC)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
 // 	!Kit(ThirdNearestEnemyOf(Myself),CAVALIER)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
@@ -3931,7 +3956,8 @@ IF
 // [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
 // 	!CheckStat(FourthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(FourthNearestEnemyOf(Myself),UNDEAD)
-	!General(FourthNearestEnemyOf(Myself),DEMONIC)
+	// [IWD2 PORT] commented: DEMONIC not in GENERAL.IDS
+	// 	!General(FourthNearestEnemyOf(Myself),DEMONIC)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
 // 	!Kit(FourthNearestEnemyOf(Myself),CAVALIER)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
@@ -3959,7 +3985,8 @@ IF
 // [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
 // 	!CheckStat(FifthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(FifthNearestEnemyOf(Myself),UNDEAD)
-	!General(FifthNearestEnemyOf(Myself),DEMONIC)
+	// [IWD2 PORT] commented: DEMONIC not in GENERAL.IDS
+	// 	!General(FifthNearestEnemyOf(Myself),DEMONIC)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
 // 	!Kit(FifthNearestEnemyOf(Myself),CAVALIER)
 // [IWD2 PORT] commented: kit constant not in IWD2 KIT.IDS
@@ -3979,7 +4006,7 @@ IF
 // 	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 	// [IWD2 PORT] STATE_DISABLED not in IWD2; approximate with common disable states
 	!StateCheck(NearestEnemyOf(Myself),STATE_STUNNED)
-	!StateCheck(NearestEnemyOf(Myself),STATE_HELD)
+	CheckStatLT(NearestEnemyOf(Myself),1,HELD)
 	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOf(Myself),STATE_CONFUSED)
 	!InParty(NearestEnemyOf(Myself))
@@ -4011,7 +4038,8 @@ IF
 // [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
 // 	!CheckStat(NearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(NearestEnemyOf(Myself),UNDEAD)
-	!General(NearestEnemyOf(Myself),DEMONIC)
+	// [IWD2 PORT] commented: DEMONIC not in GENERAL.IDS
+	// 	!General(NearestEnemyOf(Myself),DEMONIC)
 	!Race(NearestEnemyOf(Myself),ELF)
 	CheckStatLT(NearestEnemyOf(Myself),75,RESISTMAGIC)
 
@@ -4034,7 +4062,8 @@ IF
 // [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
 // 	!CheckStat(SecondNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(SecondNearestEnemyOf(Myself),UNDEAD)
-	!General(SecondNearestEnemyOf(Myself),DEMONIC)
+	// [IWD2 PORT] commented: DEMONIC not in GENERAL.IDS
+	// 	!General(SecondNearestEnemyOf(Myself),DEMONIC)
 	!Race(SecondNearestEnemyOf(Myself),ELF)
 	CheckStatLT(SecondNearestEnemyOf(Myself),75,RESISTMAGIC)
 
@@ -4057,7 +4086,8 @@ IF
 // [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
 // 	!CheckStat(ThirdNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(ThirdNearestEnemyOf(Myself),UNDEAD)
-	!General(ThirdNearestEnemyOf(Myself),DEMONIC)
+	// [IWD2 PORT] commented: DEMONIC not in GENERAL.IDS
+	// 	!General(ThirdNearestEnemyOf(Myself),DEMONIC)
 	!Race(ThirdNearestEnemyOf(Myself),ELF)
 	CheckStatLT(ThirdNearestEnemyOf(Myself),75,RESISTMAGIC)
 
@@ -4080,7 +4110,8 @@ IF
 // [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
 // 	!CheckStat(FourthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(FourthNearestEnemyOf(Myself),UNDEAD)
-	!General(FourthNearestEnemyOf(Myself),DEMONIC)
+	// [IWD2 PORT] commented: DEMONIC not in GENERAL.IDS
+	// 	!General(FourthNearestEnemyOf(Myself),DEMONIC)
 	!Race(FourthNearestEnemyOf(Myself),ELF)
 	CheckStatLT(FourthNearestEnemyOf(Myself),75,RESISTMAGIC)
 
@@ -4103,7 +4134,8 @@ IF
 // [IWD2 PORT] commented: spell stat not in IWD2 STATS.IDS
 // 	!CheckStat(FifthNearestEnemyOf(Myself),1,CLERIC_SHIELD_OF_THE_ARCHONS)
 	!General(FifthNearestEnemyOf(Myself),UNDEAD)
-	!General(FifthNearestEnemyOf(Myself),DEMONIC)
+	// [IWD2 PORT] commented: DEMONIC not in GENERAL.IDS
+	// 	!General(FifthNearestEnemyOf(Myself),DEMONIC)
 	!Race(FifthNearestEnemyOf(Myself),ELF)
 	CheckStatLT(FifthNearestEnemyOf(Myself),75,RESISTMAGIC)
 
@@ -4118,7 +4150,7 @@ IF
 // 	!StateCheck(NearestEnemyOf(Myself),STATE_NOT_TARGETABLE)
 	// [IWD2 PORT] STATE_DISABLED not in IWD2; approximate with common disable states
 	!StateCheck(NearestEnemyOf(Myself),STATE_STUNNED)
-	!StateCheck(NearestEnemyOf(Myself),STATE_HELD)
+	CheckStatLT(NearestEnemyOf(Myself),1,HELD)
 	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOf(Myself),STATE_CONFUSED)
 	CheckStatGT(NearestEnemyOf(Myself),5,SAVEVSWANDS)
@@ -5049,7 +5081,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_CHAMPIONS_STRENGTH)
-	CheckStatLT(WeakestOf(Myself),18,STRENGTH)
+	CheckStatLT(WeakestOf(Myself),18,STR)
 
 	!CheckStat(WeakestOf(Myself),1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -5815,7 +5847,7 @@ IF
 	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_STRENGTH_OF_ONE)
-	CheckStatLT(WeakestOf(Myself),18,STRENGTH)
+	CheckStatLT(WeakestOf(Myself),18,STR)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -5920,7 +5952,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DRAW_UPON_HOLY_MIGHT)
 	!CheckSpellState(Myself,DRAW_UPON_HOLY_MIGHT)
-	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
+	// [IWD2 PORT] commented: STATE_DRAWUPONHOLYMIGHT not in STATE.IDS
+	// 	!StateCheck(Myself,STATE_DRAWUPONHOLYMIGHT)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -6104,7 +6137,7 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_STRENGTH)
-	CheckStatLT(WeakestOf(Myself),18,STRENGTH)
+	CheckStatLT(WeakestOf(Myself),18,STR)
 
 	!CheckStat(WeakestOf(Myself),1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
@@ -6369,7 +6402,7 @@ IF
 	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_SLEEPING)
 	// [IWD2 PORT] STATE_DISABLED not in IWD2; approximate with common disable states
 	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_STUNNED)
-	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_HELD)
+	CheckStatLT(LastAttackerOf(MostDamagedOf(Myself)),1,HELD)
 	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_SLEEPING)
 	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_CONFUSED)
 	!StateCheck(LastAttackerOf(MostDamagedOf(Myself)),STATE_PANIC)
@@ -6408,7 +6441,7 @@ IF
 	!StateCheck(NearestEnemyOf([0.0.0.MAGE_ALL]),STATE_SLEEPING)
 	// [IWD2 PORT] STATE_DISABLED not in IWD2; approximate with common disable states
 	!StateCheck(NearestEnemyOf([0.0.0.MAGE_ALL]),STATE_STUNNED)
-	!StateCheck(NearestEnemyOf([0.0.0.MAGE_ALL]),STATE_HELD)
+	CheckStatLT(NearestEnemyOf([0.0.0.MAGE_ALL]),1,HELD)
 	!StateCheck(NearestEnemyOf([0.0.0.MAGE_ALL]),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOf([0.0.0.MAGE_ALL]),STATE_CONFUSED)
 	!StateCheck(NearestEnemyOf([0.0.0.MAGE_ALL]),STATE_PANIC)
@@ -6451,7 +6484,7 @@ IF
 	!StateCheck(NearestEnemyOf([0.0.0.CLERIC_ALL]),STATE_SLEEPING)
 	// [IWD2 PORT] STATE_DISABLED not in IWD2; approximate with common disable states
 	!StateCheck(NearestEnemyOf([0.0.0.CLERIC_ALL]),STATE_STUNNED)
-	!StateCheck(NearestEnemyOf([0.0.0.CLERIC_ALL]),STATE_HELD)
+	CheckStatLT(NearestEnemyOf([0.0.0.CLERIC_ALL]),1,HELD)
 	!StateCheck(NearestEnemyOf([0.0.0.CLERIC_ALL]),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOf([0.0.0.CLERIC_ALL]),STATE_CONFUSED)
 	!StateCheck(NearestEnemyOf([0.0.0.CLERIC_ALL]),STATE_PANIC)
@@ -6497,7 +6530,7 @@ IF
 	!StateCheck(NearestEnemyOf([0.0.0.DRUID_ALL]),STATE_SLEEPING)
 	// [IWD2 PORT] STATE_DISABLED not in IWD2; approximate with common disable states
 	!StateCheck(NearestEnemyOf([0.0.0.DRUID_ALL]),STATE_STUNNED)
-	!StateCheck(NearestEnemyOf([0.0.0.DRUID_ALL]),STATE_HELD)
+	CheckStatLT(NearestEnemyOf([0.0.0.DRUID_ALL]),1,HELD)
 	!StateCheck(NearestEnemyOf([0.0.0.DRUID_ALL]),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOf([0.0.0.DRUID_ALL]),STATE_CONFUSED)
 	!StateCheck(NearestEnemyOf([0.0.0.DRUID_ALL]),STATE_PANIC)
@@ -6546,7 +6579,7 @@ IF
 	!StateCheck(NearestEnemyOf([0.0.0.BARD_ALL]),STATE_SLEEPING)
 	// [IWD2 PORT] STATE_DISABLED not in IWD2; approximate with common disable states
 	!StateCheck(NearestEnemyOf([0.0.0.BARD_ALL]),STATE_STUNNED)
-	!StateCheck(NearestEnemyOf([0.0.0.BARD_ALL]),STATE_HELD)
+	CheckStatLT(NearestEnemyOf([0.0.0.BARD_ALL]),1,HELD)
 	!StateCheck(NearestEnemyOf([0.0.0.BARD_ALL]),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOf([0.0.0.BARD_ALL]),STATE_CONFUSED)
 	!StateCheck(NearestEnemyOf([0.0.0.BARD_ALL]),STATE_PANIC)
@@ -6600,7 +6633,7 @@ IF
 	!StateCheck(LastAttackerOf(Myself),STATE_SLEEPING)
 	// [IWD2 PORT] STATE_DISABLED not in IWD2; approximate with common disable states
 	!StateCheck(LastAttackerOf(Myself),STATE_STUNNED)
-	!StateCheck(LastAttackerOf(Myself),STATE_HELD)
+	CheckStatLT(LastAttackerOf(Myself),1,HELD)
 	!StateCheck(LastAttackerOf(Myself),STATE_SLEEPING)
 	!StateCheck(LastAttackerOf(Myself),STATE_CONFUSED)
 	!StateCheck(LastAttackerOf(Myself),STATE_PANIC)
@@ -6656,7 +6689,7 @@ IF
 	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
 	// [IWD2 PORT] STATE_DISABLED not in IWD2; approximate with common disable states
 	!StateCheck(NearestEnemyOf(Myself),STATE_STUNNED)
-	!StateCheck(NearestEnemyOf(Myself),STATE_HELD)
+	CheckStatLT(NearestEnemyOf(Myself),1,HELD)
 	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOf(Myself),STATE_CONFUSED)
 	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
@@ -6714,7 +6747,7 @@ IF
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_SLEEPING)
 	// [IWD2 PORT] STATE_DISABLED not in IWD2; approximate with common disable states
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_STUNNED)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_HELD)
+	CheckStatLT(SecondNearestEnemyOf(Myself),1,HELD)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_CONFUSED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
@@ -6773,7 +6806,7 @@ IF
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_SLEEPING)
 	// [IWD2 PORT] STATE_DISABLED not in IWD2; approximate with common disable states
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_STUNNED)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_HELD)
+	CheckStatLT(ThirdNearestEnemyOf(Myself),1,HELD)
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_CONFUSED)
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
@@ -6832,7 +6865,7 @@ IF
 	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
 	// [IWD2 PORT] STATE_DISABLED not in IWD2; approximate with common disable states
 	!StateCheck(NearestEnemyOf(Myself),STATE_STUNNED)
-	!StateCheck(NearestEnemyOf(Myself),STATE_HELD)
+	CheckStatLT(NearestEnemyOf(Myself),1,HELD)
 	!StateCheck(NearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(NearestEnemyOf(Myself),STATE_CONFUSED)
 	!StateCheck(NearestEnemyOf(Myself),STATE_PANIC)
@@ -6890,7 +6923,7 @@ IF
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_SLEEPING)
 	// [IWD2 PORT] STATE_DISABLED not in IWD2; approximate with common disable states
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_STUNNED)
-	!StateCheck(SecondNearestEnemyOf(Myself),STATE_HELD)
+	CheckStatLT(SecondNearestEnemyOf(Myself),1,HELD)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_CONFUSED)
 	!StateCheck(SecondNearestEnemyOf(Myself),STATE_PANIC)
@@ -6948,7 +6981,7 @@ IF
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_SLEEPING)
 	// [IWD2 PORT] STATE_DISABLED not in IWD2; approximate with common disable states
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_STUNNED)
-	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_HELD)
+	CheckStatLT(ThirdNearestEnemyOf(Myself),1,HELD)
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_SLEEPING)
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_CONFUSED)
 	!StateCheck(ThirdNearestEnemyOf(Myself),STATE_PANIC)
