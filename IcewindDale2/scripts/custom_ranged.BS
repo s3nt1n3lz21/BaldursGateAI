@@ -4380,29 +4380,45 @@ END
 
 ////////////////////////////////////////////////////////////////////////////////// Aura Of Flaming Death
 
-IF
-	ActionListEmpty()
-	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_AURA_OF_FLAMING_DEATH)
-	HPPercentGT(NearestEnemyOf(Myself),0)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// IF
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!GlobalTimerNotExpired("castnattack","LOCALS")
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	HaveSpell(CLERIC_AURA_OF_FLAMING_DEATH)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	HPPercentGT(NearestEnemyOf(Myself),0)
 
-	OR(3)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
-		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
-		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
-		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 		CheckStatLT(LastSeenBy(Myself),10,THAC0)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-	    SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Myself,STATE_SILENCED)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// THEN
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	RESPONSE #100
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	    SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Aura Of Flaming Death
-		Spell(Myself,CLERIC_AURA_OF_FLAMING_DEATH)
-END
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 		Spell(Myself,CLERIC_AURA_OF_FLAMING_DEATH)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// END
 
 ////////////////////////////////////////////////////////////////////////////////// Buff Items
 
@@ -4727,22 +4743,34 @@ END
 
 // Level 4
 // 4 Rounds/Level (24 seconds/Level) - 15ft Radius
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
-	!CheckSpellState(Myself,PROTECTION_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// IF
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+//     !GlobalTimerNotExpired("castnattack","LOCALS")
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	HaveSpell(CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckSpellState(Myself,PROTECTION_FROM_EVIL)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Myself,STATE_SILENCED)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// THEN
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	RESPONSE #100
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+//         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103304) // Spell: Protection Group From Evil
-		Spell(Myself,CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
-END
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 		Spell(Myself,CLERIC_PROTECTION_FROM_EVIL_10_FOOT)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// END
 
 // Level 5 - Enchantment 4
 // 4 Rounds/Level (24 seconds/level) - 1 Creature
@@ -4962,14 +4990,21 @@ END
 
 // Level 1 - Abjuration 1
 // 3 Rounds/Level (18 seconds/Level) - 1 Creature
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
-	!CheckSpellState(Player1,PROTECTION_FROM_EVIL)
-	!CheckStatGT(Player1,0,PROTECTION_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// IF
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+//     !GlobalTimerNotExpired("castnattack","LOCALS")
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckSpellState(Player1,PROTECTION_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckStatGT(Player1,0,PROTECTION_FROM_EVIL)
 
-	!CheckStat(Player1,1,MINORGLOBE)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckStat(Player1,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
@@ -4978,32 +5013,48 @@ IF
 // 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(Player1,1)
-	!StateCheck(Player1,STATE_INVISIBLE)
-	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Player1,STATE_INVISIBLE)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Myself,STATE_SILENCED)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// THEN
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	RESPONSE #100
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+//         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103305) // Spell: Protection From Evil
-		Spell(Player1,CLERIC_PROTECT_FROM_EVIL)
-END
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 		Spell(Player1,CLERIC_PROTECT_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// END
 
 // Level 1
 // 3 Rounds/Level (18 seconds/Level) - 1 Creature
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
-	!CheckSpellState(Player2,PROTECTION_FROM_EVIL)
-	!CheckStatGT(Player2,0,PROTECTION_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// IF
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+//     !GlobalTimerNotExpired("castnattack","LOCALS")
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckSpellState(Player2,PROTECTION_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckStatGT(Player2,0,PROTECTION_FROM_EVIL)
 
-	!CheckStat(Player2,1,MINORGLOBE)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckStat(Player2,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	!CheckStat(Player2,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
@@ -5012,32 +5063,48 @@ IF
 // 	!CheckStat(Player2,1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(Player2,1)
-	!StateCheck(Player2,STATE_INVISIBLE)
-	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Player2,STATE_INVISIBLE)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player2,STATE_NOT_TARGETABLE)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Myself,STATE_SILENCED)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// THEN
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	RESPONSE #100
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+//         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103305) // Spell: Protection From Evil
-		Spell(Player2,CLERIC_PROTECT_FROM_EVIL)
-END
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 		Spell(Player2,CLERIC_PROTECT_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// END
 
 // Level 1
 // 3 Rounds/Level (18 seconds/Level) - 1 Creature
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
-	!CheckSpellState(Player3,PROTECTION_FROM_EVIL)
-	!CheckStatGT(Player3,0,PROTECTION_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// IF
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+//     !GlobalTimerNotExpired("castnattack","LOCALS")
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckSpellState(Player3,PROTECTION_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckStatGT(Player3,0,PROTECTION_FROM_EVIL)
 
-	!CheckStat(Player3,1,MINORGLOBE)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckStat(Player3,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	!CheckStat(Player3,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
@@ -5046,32 +5113,48 @@ IF
 // 	!CheckStat(Player3,1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(Player3,1)
-	!StateCheck(Player3,STATE_INVISIBLE)
-	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Player3,STATE_INVISIBLE)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player3,STATE_NOT_TARGETABLE)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Myself,STATE_SILENCED)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// THEN
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	RESPONSE #100
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+//         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103305) // Spell: Protection From Evil
-		Spell(Player3,CLERIC_PROTECT_FROM_EVIL)
-END
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 		Spell(Player3,CLERIC_PROTECT_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// END
 
 // Level 1
 // 3 Rounds/Level (18 seconds/Level) - 1 Creature
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
-	!CheckSpellState(Player4,PROTECTION_FROM_EVIL)
-	!CheckStatGT(Player4,0,PROTECTION_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// IF
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+//     !GlobalTimerNotExpired("castnattack","LOCALS")
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckSpellState(Player4,PROTECTION_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckStatGT(Player4,0,PROTECTION_FROM_EVIL)
 
-	!CheckStat(Player4,1,MINORGLOBE)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckStat(Player4,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	!CheckStat(Player4,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
@@ -5080,32 +5163,48 @@ IF
 // 	!CheckStat(Player4,1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(Player4,1)
-	!StateCheck(Player4,STATE_INVISIBLE)
-	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Player4,STATE_INVISIBLE)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Player4,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player4,STATE_NOT_TARGETABLE)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Myself,STATE_SILENCED)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// THEN
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	RESPONSE #100
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+//         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103305) // Spell: Protection From Evil
-		Spell(Player4,CLERIC_PROTECT_FROM_EVIL)
-END
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 		Spell(Player4,CLERIC_PROTECT_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// END
 
 // Level 1
 // 3 Rounds/Level (18 seconds/Level) - 1 Creature
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
-	!CheckSpellState(Player5,PROTECTION_FROM_EVIL)
-	!CheckStatGT(Player5,0,PROTECTION_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// IF
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+//     !GlobalTimerNotExpired("castnattack","LOCALS")
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckSpellState(Player5,PROTECTION_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckStatGT(Player5,0,PROTECTION_FROM_EVIL)
 
-	!CheckStat(Player5,1,MINORGLOBE)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckStat(Player5,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	!CheckStat(Player5,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
@@ -5114,32 +5213,48 @@ IF
 // 	!CheckStat(Player5,1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(Player5,1)
-	!StateCheck(Player5,STATE_INVISIBLE)
-	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Player5,STATE_INVISIBLE)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Player5,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player5,STATE_NOT_TARGETABLE)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Myself,STATE_SILENCED)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// THEN
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	RESPONSE #100
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+//         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103305) // Spell: Protection From Evil
-		Spell(Player5,CLERIC_PROTECT_FROM_EVIL)
-END
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 		Spell(Player5,CLERIC_PROTECT_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// END
 
 // Level 1
 // 3 Rounds/Level (18 seconds/Level) - 1 Creature
-IF
-	ActionListEmpty()
-    !GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
-	!CheckSpellState(Player6,PROTECTION_FROM_EVIL)
-	!CheckStatGT(Player6,0,PROTECTION_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// IF
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	ActionListEmpty()
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+//     !GlobalTimerNotExpired("castnattack","LOCALS")
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	HaveSpell(CLERIC_PROTECT_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckSpellState(Player6,PROTECTION_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckStatGT(Player6,0,PROTECTION_FROM_EVIL)
 
-	!CheckStat(Player6,1,MINORGLOBE)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!CheckStat(Player6,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	!CheckStat(Player6,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
@@ -5148,21 +5263,30 @@ IF
 // 	!CheckStat(Player6,1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(Player6,1)
-	!StateCheck(Player6,STATE_INVISIBLE)
-	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Player6,STATE_INVISIBLE)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Player6,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player6,STATE_NOT_TARGETABLE)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	!StateCheck(Myself,STATE_SILENCED)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// THEN
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 	RESPONSE #100
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+//         SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103305) // Spell: Protection From Evil
-		Spell(Player6,CLERIC_PROTECT_FROM_EVIL)
-END
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// 		Spell(Player6,CLERIC_PROTECT_FROM_EVIL)
+// [IWD2 PORT] commented: spell/state not available in IWD2 IDS
+// END
 
 // Level 5 - Alteration 8
 // 3 Rounds/Level (18 seconds/level) - 1 Creature
