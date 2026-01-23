@@ -6212,51 +6212,51 @@ END
 // 		Spell(Myself,WIZARD_ENERGY_BLADES)
 // END
 
-IF
-	ActionListEmpty()
-  	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_ENERGY_BLADES)
-	!HasItem("ENEBLADE",Myself)
-	!HasItem("MELFMET",Myself)
-
-	OR(4)
-		See(NearestEnemyOf([0.0.0.BARD_ALL]))
-		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
-
+//IF
+	//ActionListEmpty()
+  	//!GlobalTimerNotExpired("castnattack","LOCALS")
+	// HaveSpell(CLERIC_ENERGY_BLADES)
+	//!HasItem("ENEBLADE",Myself)
+	//!HasItem("MELFMET",Myself)
+//
+	//OR(4)
+		//See(NearestEnemyOf([0.0.0.BARD_ALL]))
+		//See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+		//See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+		//See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
+//
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+	//!StateCheck(Myself,STATE_SILENCED)
+	//CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+//THEN
+	//RESPONSE #100
+        //SetGlobalTimer("castnattack","LOCALS",6)
 		////FloatMessage(Myself,?) // Spell: Energy Blades
-		Spell(Myself,CLERIC_ENERGY_BLADES)
-END
+		// Spell(Myself,CLERIC_ENERGY_BLADES)
+//END
 
 // Level 3
 // Until Charges Depleted - Self
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MELF_METEOR)
-	!HasItem("ENEBLADE",Myself)
-	!HasItem("MELFMET",Myself)
-
+//IF
+	//ActionListEmpty()
+	//OR(2)
+		//CheckStat(Myself,1,AURACLEANSING)
+		//!GlobalTimerNotExpired("castnattack","LOCALS")
+	// HaveSpell(WIZARD_MELF_METEOR)
+	//!HasItem("ENEBLADE",Myself)
+	//!HasItem("MELFMET",Myself)
+//
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+	//!StateCheck(Myself,STATE_SILENCED)
+	//CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+//THEN
+	//RESPONSE #100
+        //SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103279) // Spell: Melfs Minute Meteors
-		Spell(Myself,WIZARD_MELF_METEOR)
-END
+		// Spell(Myself,WIZARD_MELF_METEOR)
+//END
 
 IF
 	ActionListEmpty()
@@ -6306,22 +6306,22 @@ THEN
 		Spell(Myself,WIZARD_EMOTION_HOPE)
 END
 
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_EMOTION_COURAGE)
-
+//IF
+	//ActionListEmpty()
+	//OR(2)
+		//CheckStat(Myself,1,AURACLEANSING)
+		//!GlobalTimerNotExpired("castnattack","LOCALS")
+	// HaveSpell(WIZARD_EMOTION_COURAGE)
+//
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Spell(Myself,WIZARD_EMOTION_COURAGE)
-END
+	//!StateCheck(Myself,STATE_SILENCED)
+	//CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+//THEN
+	//RESPONSE #100
+        //SetGlobalTimer("castnattack","LOCALS",6)
+		// Spell(Myself,WIZARD_EMOTION_COURAGE)
+//END
 
 // Level 6
 // 10 Rounds/Level (60 seconds/level) - 1 Creature
@@ -6419,15 +6419,15 @@ END
 
 // Level 3 - Abjuration 1
 // 10 Rounds/Level (60 seconds/level) - 1 Creature
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_PROTECTION_FROM_FIRE)
-	CheckStatLT(Player1,99,RESISTFIRE)
-
-	!CheckStat(Player1,1,MINORGLOBE)
+//IF
+	//ActionListEmpty()
+	//OR(2)
+		//CheckStat(Myself,1,AURACLEANSING)
+		//!GlobalTimerNotExpired("castnattack","LOCALS")
+	// HaveSpell(WIZARD_PROTECTION_FROM_FIRE)
+	//CheckStatLT(Player1,99,RESISTFIRE)
+//
+	//!CheckStat(Player1,1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	!CheckStat(Player1,1,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
@@ -6436,21 +6436,21 @@ IF
 // 	!CheckStat(Player1,1,WIZARD_SPELL_TURNING)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(Player1,3)
-	!StateCheck(Player1,STATE_INVISIBLE)
-	!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+	//!StateCheck(Player1,STATE_INVISIBLE)
+	//!StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(Player1,STATE_NOT_TARGETABLE)
-
+//
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+	//!StateCheck(Myself,STATE_SILENCED)
+	//CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+//THEN
+	//RESPONSE #100
+        //SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103276) // Spell: Protection From Fire
-		Spell(Player1,WIZARD_PROTECTION_FROM_FIRE)
-END
+		// Spell(Player1,WIZARD_PROTECTION_FROM_FIRE)
+//END
 
 // Level 1
 // 50 rounds (5 minutes) - Self
@@ -6472,23 +6472,23 @@ END
 
 // Level 2
 // 50 Rounds (5 minutes) - 15ft Radius
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_RESIST_FEAR)
-
+//IF
+	//ActionListEmpty()
+	//OR(2)
+		//CheckStat(Myself,1,AURACLEANSING)
+		//!GlobalTimerNotExpired("castnattack","LOCALS")
+	// HaveSpell(WIZARD_RESIST_FEAR)
+//
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+	//!StateCheck(Myself,STATE_SILENCED)
+	//CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+//THEN
+	//RESPONSE #100
+        //SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103283) // Spell: Resist Fear
-		Spell(Myself,WIZARD_RESIST_FEAR)
-END
+		// Spell(Myself,WIZARD_RESIST_FEAR)
+//END
 
 IF
 	ActionListEmpty()
@@ -7258,100 +7258,100 @@ END
 
 //////////////////////////////////////////////////////////////////////////////////// Berserker Rage
 
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(BERSERKER_RAGE)
-	!StateCheck(Myself,STATE_BERSERK)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		Spell(Myself,BERSERKER_RAGE)
-END
+//IF
+	//ActionListEmpty()
+	//OR(2)
+		//CheckStat(Myself,1,AURACLEANSING)
+		//!GlobalTimerNotExpired("castnattack","LOCALS")
+	// HaveSpell(BERSERKER_RAGE)
+	//!StateCheck(Myself,STATE_BERSERK)
+	//HPPercentGT(NearestEnemyOf(Myself),0)
+	//!InParty(LastSeenBy(Myself))
+//THEN
+	//RESPONSE #100
+        //SetGlobalTimer("castnattack","LOCALS",6)
+		// Spell(Myself,BERSERKER_RAGE)
+//END
 
 ////////////////////////////////////////////////////////////////////////////////////// Offensive Spells On Target You Can See
 
 // Level 7 - Alteration (8)
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_SPHERE_OF_CHAOS)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-
+//IF
+	//ActionListEmpty()
+	//OR(2)
+		//CheckStat(Myself,1,AURACLEANSING)
+		//!GlobalTimerNotExpired("castnattack","LOCALS")
+	// HaveSpell(WIZARD_SPHERE_OF_CHAOS)
+	//HPPercentGT(NearestEnemyOf(Myself),0)
+//
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(LastSeenBy(Myself),7)
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+//
+	//!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	//!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-
-	OR(2)
+//
+	//CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+//
+	//OR(2)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
-		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
-		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
-		CheckStatLT(LastSeenBy(Myself),10,THAC0)
-
+		//CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+		//CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
+		//CheckStatLT(LastSeenBy(Myself),10,THAC0)
+//
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+	//!StateCheck(Myself,STATE_SILENCED)
+	//CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	//!InParty(LastSeenBy(Myself))
+//THEN
+	//RESPONSE #100
+        //SetGlobalTimer("castnattack","LOCALS",6)
 		//////FloatMessage(Myself,?) // Spell: Sphere Of Chaos
-		Spell(LastSeenBy(Myself),WIZARD_SPHERE_OF_CHAOS)
-END
+		// Spell(LastSeenBy(Myself),WIZARD_SPHERE_OF_CHAOS)
+//END
 
 // Level 10
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_DRAGONS_BREATH)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-
+//IF
+	//ActionListEmpty()
+	//OR(2)
+		//CheckStat(Myself,1,AURACLEANSING)
+		//!GlobalTimerNotExpired("castnattack","LOCALS")
+	// HaveSpell(WIZARD_DRAGONS_BREATH)
+	//HPPercentGT(NearestEnemyOf(Myself),0)
+//
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(LastSeenBy(Myself),10)
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+//
+	//!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	//!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatGT(LastSeenBy(Myself),50,RESISTMAGIC)
-
-	OR(3)
+//
+	//CheckStatGT(LastSeenBy(Myself),50,RESISTMAGIC)
+//
+	//OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
-		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
-		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
-		CheckStatLT(LastSeenBy(Myself),10,THAC0)
-
+		//CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+		//CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
+		//CheckStatLT(LastSeenBy(Myself),10,THAC0)
+//
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+	//!StateCheck(Myself,STATE_SILENCED)
+	//CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	//!InParty(LastSeenBy(Myself))
+//THEN
+	//RESPONSE #100
+        //SetGlobalTimer("castnattack","LOCALS",6)
 		//////FloatMessage(Myself,?) // Spell: Dragons Breath
-		Spell(LastSeenBy(Myself),WIZARD_DRAGONS_BREATH)
-END
+		// Spell(LastSeenBy(Myself),WIZARD_DRAGONS_BREATH)
+//END
 
 // Level 8 - Necromancy (7)
 IF
@@ -7505,9 +7505,9 @@ IF
 	Class(Myself,MAGE_ALL)
 	HaveSpell(WIZARD_FIREBALL)
 	!Range(TenthNearestEnemyOf(Myself),17)
-	!StateCheck(TenthNearestEnemyOf(Myself),STATE_REALLY_DEAD)
+	// !StateCheck(TenthNearestEnemyOf(Myself),STATE_REALLY_DEAD)
 
-	!TriggerOverride(TenthNearestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
+	// !TriggerOverride(TenthNearestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
 	See(TenthNearestEnemyOf(Myself)) // Target the fireball target
 	!InParty(LastSeenBy(Myself))
 THEN
@@ -7632,41 +7632,41 @@ THEN
 END
 
 // Level 2 - Conjuration
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_MELF_ACID_ARROW)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-
-	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+//IF
+	//ActionListEmpty()
+	//OR(2)
+		//CheckStat(Myself,1,AURACLEANSING)
+		//!GlobalTimerNotExpired("castnattack","LOCALS")
+	// HaveSpell(WIZARD_MELF_ACID_ARROW)
+	//HPPercentGT(NearestEnemyOf(Myself),0)
+//
+	//!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING) 
 // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
 // 	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+//
+	//!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+	//!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
 // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
 // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatLT(LastSeenBy(Myself),75,RESISTACID)
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-
+//
+	//CheckStatLT(LastSeenBy(Myself),75,RESISTACID)
+	//CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+//
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+	//!StateCheck(Myself,STATE_SILENCED)
+	//CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+	//!InParty(LastSeenBy(Myself))
+//THEN
+	//RESPONSE #100
+        //SetGlobalTimer("castnattack","LOCALS",6)
 		//FloatMessage(Myself,103262) // Spell: Melf Acid Arrow
-		Spell(LastSeenBy(Myself),WIZARD_MELF_ACID_ARROW)
-END
+		// Spell(LastSeenBy(Myself),WIZARD_MELF_ACID_ARROW)
+//END
 
 // Level 2 - Evocation
 IF
@@ -7869,9 +7869,9 @@ IF
 	Class(Myself,MAGE_ALL)
 	HasItem("wand05",Myself)
 	!Range(TenthNearestEnemyOf(Myself),17)
-	!StateCheck(TenthNearestEnemyOf(Myself),STATE_REALLY_DEAD)
+	// !StateCheck(TenthNearestEnemyOf(Myself),STATE_REALLY_DEAD)
 
-	!TriggerOverride(TenthNearestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
+	// !TriggerOverride(TenthNearestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
 	See(TenthNearestEnemyOf(Myself)) // Target the fireball target
 	!InParty(LastSeenBy(Myself))
 THEN
