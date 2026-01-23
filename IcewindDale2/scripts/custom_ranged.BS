@@ -7865,23 +7865,23 @@ THEN
 		UseItem("wand11",LastSeenBy(Myself))
 END
 
-IF
-	Class(Myself,MAGE_ALL)
-	HasItem("wand05",Myself)
-	!Range(TenthNearestEnemyOf(Myself),17)
+// IF
+// 	Class(Myself,MAGE_ALL)
+// 	HasItem("wand05",Myself)
+// 	!Range(TenthNearestEnemyOf(Myself),17)
 	// !StateCheck(TenthNearestEnemyOf(Myself),STATE_REALLY_DEAD)
 
 	// !TriggerOverride(TenthNearestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
-	See(TenthNearestEnemyOf(Myself)) // Target the fireball target
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		SetGlobalTimer("castingfireball","LOCALS",6) // Starting fireball
+// 	See(TenthNearestEnemyOf(Myself)) // Target the fireball target
+// 	!InParty(LastSeenBy(Myself))
+// THEN
+// 	RESPONSE #100
+        // SetGlobalTimer("castnattack","LOCALS",6)
+// 		SetGlobalTimer("castingfireball","LOCALS",6) // Starting fireball
 		//FloatMessage(Myself,103259) // Wand: Fire
-		XEquipItem("wand05",Myself,SLOT_MISC0,EQUIP)
-		UseItemSlotAbility(TenthNearestEnemyOf(Myself),SLOT_MISC0,0)
-END
+// 		XEquipItem("wand05",Myself,SLOT_MISC0,EQUIP)
+// 		UseItemSlotAbility(TenthNearestEnemyOf(Myself),SLOT_MISC0,0)
+// END
 
 //IF
 //	Class(Myself,MAGE_ALL)
@@ -8045,16 +8045,16 @@ END
 ///		//FloatMessage(Myself,10)
 //END
 
-IF
-	!HasItem("AROW01",Myself) // passing for both
-	HasItemCategory(Myself,BOW,FALSE) // passing for both when false, neither when true
-	HasItem("AROW01",Myself) // Arrow
-THEN
-	RESPONSE #100
+// IF
+// 	!HasItem("AROW01",Myself) // passing for both
+// 	HasItemCategory(Myself,BOW,FALSE) // passing for both when false, neither when true
+// 	HasItem("AROW01",Myself) // Arrow
+// THEN
+// 	RESPONSE #100
 		//FloatMessage(Myself,103254) // Equipping Arrows
-		XEquipItem("AROW01",Myself,SLOT_AMMO0,EQUIP)
-		Continue()
-END
+// 		XEquipItem("AROW01",Myself,SLOT_AMMO0,EQUIP)
+// 		Continue()
+// END
 
 //	HasItem("AROW02",Myself) // Arrow + 1
 //	HasItem("AROW03",Myself) // Arrow Of Slaying
@@ -8083,97 +8083,97 @@ END
 
 //////////////////////////////////////////////////////// Share Ammo
 
-IF
-	!HasItem("AROW01",Myself) // Arrow
-	!HasItem("AROW02",Myself) // Arrow + 1
-	!HasItem("AROW03",Myself) // Arrow Of Slaying
-	!HasItem("AROW04",Myself) // Acid Arrow + 1
-	!HasItem("AROW05",Myself) // Arrow Of Biting
-	!HasItem("AROW06",Myself) // Arrow Of Detonation
-	!HasItem("AROW07",Myself) // Arrow Of Dispelling
-	!HasItem("AROW08",Myself) // Arrow Of Fire + 2
-	!HasItem("AROW09",Myself) // Arrow Of Ice
-	!HasItem("AROW10",Myself) // Arrow Of Piercing + 1
-	!HasItem("AROW11",Myself) // Arrow + 2
-	!HasItem("AROW12",Myself) // Arrow Of Biting
-	!HasItem("AROW15",Myself) // Arrow Of Ice
-	!HasItem("AROW16",Myself) // Arrow Of Ice
+// IF
+// 	!HasItem("AROW01",Myself) // Arrow
+// 	!HasItem("AROW02",Myself) // Arrow + 1
+// 	!HasItem("AROW03",Myself) // Arrow Of Slaying
+// 	!HasItem("AROW04",Myself) // Acid Arrow + 1
+// 	!HasItem("AROW05",Myself) // Arrow Of Biting
+// 	!HasItem("AROW06",Myself) // Arrow Of Detonation
+// 	!HasItem("AROW07",Myself) // Arrow Of Dispelling
+// 	!HasItem("AROW08",Myself) // Arrow Of Fire + 2
+// 	!HasItem("AROW09",Myself) // Arrow Of Ice
+// 	!HasItem("AROW10",Myself) // Arrow Of Piercing + 1
+// 	!HasItem("AROW11",Myself) // Arrow + 2
+// 	!HasItem("AROW12",Myself) // Arrow Of Biting
+// 	!HasItem("AROW15",Myself) // Arrow Of Ice
+// 	!HasItem("AROW16",Myself) // Arrow Of Ice
 //	!HasItem("bdarow01",Myself) // Arrow Of Antimagic + 1
 //	!HasItem("bdarow03",Myself) // Flaming Arrow
 //	!HasItem("bdarow04",Myself) // Arrow + 3
 //	!HasItem("CUTAROW1",Myself) // Arrow Of Ice
-	HasItemCategory(Myself,BOW,FALSE)
-THEN
-    RESPONSE #100
+// 	HasItemCategory(Myself,BOW,FALSE)
+// THEN
+    // RESPONSE #100
 		//FloatMessage(Myself,103253) // Help: Need Arrows
-        Shout(NEED_ARROWS) // Shout for help
-		Continue()
-END
+        // Shout(NEED_ARROWS) // Shout for help
+// 		Continue()
+// END
 
-IF
-    Heard([ANYONE],NEED_ARROWS) // If someone shouted for help
-    !HasItem("AROW01",LastHeardBy(Myself))
-	HasItem("AROW01",Myself)
-THEN
-    RESPONSE #100
+// IF
+    // Heard([ANYONE],NEED_ARROWS) // If someone shouted for help
+    // !HasItem("AROW01",LastHeardBy(Myself))
+// 	HasItem("AROW01",Myself)
+// THEN
+    // RESPONSE #100
 		//FloatMessage(Myself,103252) // Giving Arrows
-        GiveItem("AROW01",LastHeardBy(Myself))
-		Continue()
-END
+        // GiveItem("AROW01",LastHeardBy(Myself))
+// 		Continue()
+// END
 
 /////////////////////////////////////////////////////////// Change Ranged Ammo If Not Effective
 
-IF
-	ActionListEmpty()
-	IsWeaponRanged(Myself)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-	!WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
+// IF
+// 	ActionListEmpty()
+// 	IsWeaponRanged(Myself)
+// 	HPPercentGT(NearestEnemyOf(Myself),0)
+// 	!WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
 	//!WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
-THEN
-	RESPONSE #100
+// THEN
+// 	RESPONSE #100
 		//FloatMessage(Myself,103251) // Changing Weapon
-		SelectWeaponAbility(SLOT_AMMO0,0)
-		Continue()
-END
+// 		SelectWeaponAbility(SLOT_AMMO0,0)
+// 		Continue()
+// END
 
-IF
-	ActionListEmpty()
-	IsWeaponRanged(Myself)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-	!WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
+// IF
+// 	ActionListEmpty()
+// 	IsWeaponRanged(Myself)
+// 	HPPercentGT(NearestEnemyOf(Myself),0)
+// 	!WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
 	//!WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
-THEN
-	RESPONSE #100
+// THEN
+// 	RESPONSE #100
 		//FloatMessage(Myself,103251) // Changing Weapon
-		SelectWeaponAbility(SLOT_AMMO1,0)
-		Continue()
-END
+// 		SelectWeaponAbility(SLOT_AMMO1,0)
+// 		Continue()
+// END
 
-IF
-	ActionListEmpty()
-	IsWeaponRanged(Myself)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-	!WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
+// IF
+// 	ActionListEmpty()
+// 	IsWeaponRanged(Myself)
+// 	HPPercentGT(NearestEnemyOf(Myself),0)
+// 	!WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
 	//!WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
-THEN
-	RESPONSE #100
+// THEN
+// 	RESPONSE #100
 		//FloatMessage(Myself,103251) // Changing Weapon
-		SelectWeaponAbility(SLOT_AMMO2,0)
-		Continue()
-END
+// 		SelectWeaponAbility(SLOT_AMMO2,0)
+// 		Continue()
+// END
 
-IF
-	ActionListEmpty()
-	IsWeaponRanged(Myself)
-	HPPercentGT(NearestEnemyOf(Myself),0)
-	!WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
+// IF
+// 	ActionListEmpty()
+// 	IsWeaponRanged(Myself)
+// 	HPPercentGT(NearestEnemyOf(Myself),0)
+// 	!WeaponEffectiveVs(NearestEnemyOf(Myself),MAINHAND)
 	//!WeaponCanDamage(NearestEnemyOf(Myself),MAINHAND)
-THEN
-	RESPONSE #100
+// THEN
+// 	RESPONSE #100
 		//FloatMessage(Myself,103251) // Changing Weapon
-		SelectWeaponAbility(SLOT_AMMO3,0)
-		Continue()
-END
+// 		SelectWeaponAbility(SLOT_AMMO3,0)
+// 		Continue()
+// END
 
 /////////////////////////////////////////////////////////// Use Melfs Minute Meteors If Equipped
 
