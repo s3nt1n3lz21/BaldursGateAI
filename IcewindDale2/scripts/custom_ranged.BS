@@ -3742,7 +3742,8 @@ IF
 	OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
-		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+// [IWD2 PORT] disabled: ARMORCLASS causes runtime assertion in IWD2
+// CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
 		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
 		CheckStatLT(LastSeenBy(Myself),10,THAC0)
 	!CheckSpellState(LastSeenBy(Myself),DOOM)
@@ -3771,7 +3772,8 @@ IF
 	OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
-		CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
+// [IWD2 PORT] disabled: ARMORCLASS causes runtime assertion in IWD2
+// CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
 		CheckStatGT(NearestEnemyOf(Myself),75,MAXHITPOINTS)
 		CheckStatLT(NearestEnemyOf(Myself),10,THAC0)
 
@@ -4180,7 +4182,8 @@ IF
 	OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(NearestEnemyOf(Myself),5,SAVEVSSPELL)
-		CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
+// [IWD2 PORT] disabled: ARMORCLASS causes runtime assertion in IWD2
+// CheckStatLT(NearestEnemyOf(Myself),0,ARMORCLASS)
 		CheckStatGT(NearestEnemyOf(Myself),75,MAXHITPOINTS)
 		CheckStatLT(NearestEnemyOf(Myself),10,THAC0)
 	!InParty(NearestEnemyOf(Myself))
@@ -7377,7 +7380,8 @@ IF
 	OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
-		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+// [IWD2 PORT] disabled: ARMORCLASS causes runtime assertion in IWD2
+// CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
 		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
 		CheckStatLT(LastSeenBy(Myself),10,THAC0)
 
@@ -7854,7 +7858,8 @@ IF
 	OR(3)
 // [IWD2 PORT] commented: stat not in STATS.IDS
 // 		CheckStatLT(LastSeenBy(Myself),5,SAVEVSSPELL)
-		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+// [IWD2 PORT] disabled: ARMORCLASS causes runtime assertion in IWD2
+// CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
 		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
 		CheckStatLT(LastSeenBy(Myself),10,THAC0)
 	!InParty(LastSeenBy(Myself))
