@@ -6558,8 +6558,8 @@ END
 //////////////////////////////////////////////////////////////////////////// Decide On Next Target You Can See
 // Protect The Wizard if their attacker is not disabled
 // [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
-IF
-ActionListEmpty()
+// IF
+// ActionListEmpty()
 
 // [IWD2 PORT] removed coordination: HPPercentGT(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),0)
 // [IWD2 PORT] removed coordination: !InParty(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])))
@@ -6577,11 +6577,11 @@ ActionListEmpty()
 // [IWD2 PORT] removed coordination: // 	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_NOT_TARGETABLE)
 
 // [IWD2 PORT] removed coordination: See(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])))
-THEN
-RESPONSE #100
-FloatMessage(Myself,47684) // Shout Help
-Continue()
-END
+// THEN
+// RESPONSE #100
+// FloatMessage(Myself,47684) // Shout Help
+// Continue()
+// END
 
 // Help hurt allies if their attacker is not disabled
 IF

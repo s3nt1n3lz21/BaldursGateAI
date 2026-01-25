@@ -126,17 +126,17 @@ END
 // This bit ensures that AIRanged cancel their normal attack if their ranged weapon is out of ammo and don't use melee.
 // The HP check allows them to move closer if the enemy if far away but not if they are close by.
 
-IF
-	Global("usingNormalAttack","LOCALS",1)
-	!IsWeaponRanged(Myself)
-	HPGT(NearestEnemyOf(Myself),0)
-THEN
-	RESPONSE #100
-		FloatMessage(Myself,47693) // ClearAllActions Fired
-		SetGlobal("usingNormalAttack","LOCALS",0)
-		ClearAllActions()
-		Continue()
-END
+// IF
+// 	Global("usingNormalAttack","LOCALS",1)
+// 	!IsWeaponRanged(Myself)
+// 	HPGT(NearestEnemyOf(Myself),0)
+// THEN
+// 	RESPONSE #100
+// 		FloatMessage(Myself,47693) // ClearAllActions Fired
+// 		SetGlobal("usingNormalAttack","LOCALS",0)
+// 		ClearAllActions()
+// 		Continue()
+// END
 
 ////////////////////////////////////////////////////////////////// Cancel Fireball If Enemy Has Moved Closer
 // If casting a fireball and target is within 17ft cancel it
@@ -6558,8 +6558,8 @@ END
 //////////////////////////////////////////////////////////////////////////// Decide On Next Target You Can See
 // Protect The Wizard if their attacker is not disabled
 // [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
-IF
-ActionListEmpty()
+// IF
+// ActionListEmpty()
 
 // [IWD2 PORT] removed coordination: HPPercentGT(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),0)
 // [IWD2 PORT] removed coordination: !InParty(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])))
@@ -6577,11 +6577,11 @@ ActionListEmpty()
 // [IWD2 PORT] removed coordination: // 	!StateCheck(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])),STATE_NOT_TARGETABLE)
 
 // [IWD2 PORT] removed coordination: See(LastAttackerOf(NearestMyGroupOfType([ALLY.0.0.MAGE_ALL.0.0.0])))
-THEN
-RESPONSE #100
-FloatMessage(Myself,47684) // Shout Help
-Continue()
-END
+// THEN
+// RESPONSE #100
+// FloatMessage(Myself,47684) // Shout Help
+// Continue()
+// END
 
 // Help hurt allies if their attacker is not disabled
 IF
