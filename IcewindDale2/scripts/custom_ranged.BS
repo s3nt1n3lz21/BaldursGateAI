@@ -8182,7 +8182,7 @@ THEN
 		AttackOneRound(LastSeenBy(Myself))
 END
 
-///////////////////////////////////////////////////////// Melee/Ranged Non-Spell Attack
+///////////////////////////////////////////////////////// Ranged Non-Spell Attack
 // Attack enemies that have been targeted
 IF
 	ActionListEmpty()
@@ -8283,6 +8283,34 @@ THEN
 		SetGlobal("usingNormalAttack","LOCALS",1)
 		FloatMessage(Myself,47684) // Shout Help
 END
+
+// Melee Attacks
+// IF
+// 	ActionListEmpty()
+// 	!IsWeaponRanged(Myself)
+// 	HPPercentGT(NearestEnemyOf(Myself),0)
+// 	HPPercentGT(LastSeenBy(Myself),0)
+// 	!InParty(LastSeenBy(Myself))
+// 	//!Specifics(LastSeenBy(Myself),ALLIES)
+// THEN
+// 	RESPONSE #100
+// 		// FloatMessage(Myself,47681) // Ranged Attack
+// 		SetGlobal("usingNormalAttack","LOCALS",1)
+// 		AttackOneRound(LastSeenBy(Myself))
+// END
+
+// // If cant see nearby enemy go and attack the nearest
+// IF
+// 	ActionListEmpty()
+// 	!IsWeaponRanged(Myself)
+// 	HPPercentGT(NearestEnemyOf(Myself),0)
+// 	!InParty(NearestEnemyOf(Myself))
+// THEN
+// 	RESPONSE #100
+// 		// FloatMessage(Myself,47681) // Ranged Attack
+// 		SetGlobal("usingNormalAttack","LOCALS",1)
+// 		AttackOneRound(NearestEnemyOf(Myself))
+// END
 
 ////////////////////////////////////////////////////////// Wizard Use Healing If No Enemies
 
