@@ -22,6 +22,11 @@
 // 47691 - No Valid Target
 // 47692 - Cooldown Blocking Action
 // 47693 - ClearAllActions Fired
+// 47694 - Help: Need Antidote
+
+// TODOS:
+// Bard Song
+// Ray Of Enfeeblement
 
 // TESTING
 // //FloatMessage(Myself,103365) // Test
@@ -244,8 +249,7 @@ IF
     !HasItem("potn20",Myself)
 THEN
     RESPONSE #100
-		//FloatMessage(Myself,103245) // Help: Need Antidote
-        FloatMessage(Myself,47684) // Shout Help
+		FloatMessage(Myself,47694) // Help: Need Antidote
         Shout(200) // Shout for help
 		Continue()
 END
@@ -295,8 +299,7 @@ IF
 	!HasItem("potn17",Myself)
 THEN
     RESPONSE #100
-		//FloatMessage(Myself,103354) // Help: Need Cure Disease
-        FloatMessage(Myself,47684) // Shout Help
+		FloatMessage(Myself,47695) // Help: Need Cure Disease
         Shout(201) // Shout for help
 		Continue()
 END
@@ -339,8 +342,7 @@ IF
 	CheckStatLT(Myself,49,RESISTFIRE)
 THEN
 	RESPONSE #100
-		//FloatMessage(Myself,103351) // Help: Need Potion Fire Resistance
-        FloatMessage(Myself,47684) // Shout Help
+		FloatMessage(Myself,47696) // Help: Need Potion Fire Resistance
         Shout(202) // Shout for help
 		Continue()
 END
@@ -357,7 +359,7 @@ IF
 THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103350) // Potion: Cold Resistance
+		FloatMessage(Myself,47697) // Potion: Cold Resistance
 		UseItem("potn22",Myself)
 END
 
@@ -370,8 +372,7 @@ IF
 	CheckStatLT(Myself,49,RESISTCOLD)
 THEN
 	RESPONSE #100
-		//FloatMessage(Myself,103349) // Help: Need Potion Cold Resistance
-        FloatMessage(Myself,47684) // Shout Help
+		FloatMessage(Myself,47698) // Help: Need Potion Cold Resistance
         Shout(203) // Shout for help
 		Continue()
 END
@@ -397,8 +398,7 @@ IF
 	CheckStatLT(Myself,49,RESISTELECTRICITY)
 THEN
 	RESPONSE #100
-		//FloatMessage(Myself,103347) // Help: Need Potion Insulation
-        FloatMessage(Myself,47684) // Shout Help
+		FloatMessage(Myself,47699) // Help: Need Potion Insulation
         Shout(204) // Shout for help
 		Continue()
 END
@@ -1114,8 +1114,7 @@ IF
     HPPercentLT(Myself,50)
 THEN
     RESPONSE #100
-		//FloatMessage(Myself,103337) // Help: Need Potion Of Healing
-        FloatMessage(Myself,47684) // Shout Help
+		FloatMessage(Myself,47700) // Help: Need Potion Of Healing
         Shout(205) // Shout for help
 		Continue()
 END
@@ -6614,7 +6613,7 @@ IF
 	See(LastAttackerOf(MostDamagedOf(Myself)))
 THEN
 	RESPONSE #100
-		FloatMessage(Myself,47684) // Shout Help
+		FloatMessage(Myself,47701) // Protecting Ally
 		Continue()
 END
 
@@ -8221,7 +8220,7 @@ THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(Player1))
 		SetGlobal("usingNormalAttack","LOCALS",1)
-		FloatMessage(Myself,47684) // Shout Help
+		FloatMessage(Myself,47701) // Protecting Ally
 END
 
 IF
@@ -8233,7 +8232,7 @@ THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(Player2))
 		SetGlobal("usingNormalAttack","LOCALS",1)
-		FloatMessage(Myself,47684) // Shout Help
+		FloatMessage(Myself,47701) // Protecting Ally
 END
 
 IF
@@ -8245,7 +8244,7 @@ THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(Player3))
 		SetGlobal("usingNormalAttack","LOCALS",1)
-		FloatMessage(Myself,47684) // Shout Help
+		FloatMessage(Myself,47701) // Protecting Ally
 END
 
 IF
@@ -8257,7 +8256,7 @@ THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(Player4))
 		SetGlobal("usingNormalAttack","LOCALS",1)
-		FloatMessage(Myself,47684) // Shout Help
+		FloatMessage(Myself,47701) // Protecting Ally
 END
 
 IF
@@ -8269,7 +8268,7 @@ THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(Player5))
 		SetGlobal("usingNormalAttack","LOCALS",1)
-		FloatMessage(Myself,47684) // Shout Help
+		FloatMessage(Myself,47701) // Protecting Ally
 END
 
 IF
@@ -8281,7 +8280,7 @@ THEN
 	RESPONSE #100
 		AttackOneRound(LastAttackerOf(Player6))
 		SetGlobal("usingNormalAttack","LOCALS",1)
-		FloatMessage(Myself,47684) // Shout Help
+		FloatMessage(Myself,47701) // Protecting Ally
 END
 
 // Melee Attacks
