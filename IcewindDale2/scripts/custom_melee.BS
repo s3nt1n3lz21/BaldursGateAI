@@ -593,6 +593,36 @@ THEN
 		Spell(Myself,CLERIC_IRON_SKINS)
 END
 
+/////////////// Bard Song Fear Counter
+IF
+    ActionListEmpty()
+    CheckStatGT(Myself,0,CLASSLEVELBARD)
+    CheckStatLT(Myself,20,CLASSLEVELBARD)
+    See(Player1)
+    OR(6)
+        OR(2)
+            StateCheck(Player1,STATE_PANIC)
+            CheckSpellState(Player1,HOPELESSNESS)
+        OR(2)
+            StateCheck(Player2,STATE_PANIC)
+            CheckSpellState(Player2,HOPELESSNESS)
+        OR(2)
+            StateCheck(Player3,STATE_PANIC)
+            CheckSpellState(Player3,HOPELESSNESS)
+        OR(2)
+            StateCheck(Player4,STATE_PANIC)
+            CheckSpellState(Player4,HOPELESSNESS)
+        OR(2)
+            StateCheck(Player5,STATE_PANIC)
+            CheckSpellState(Player5,HOPELESSNESS)
+        OR(2)
+            StateCheck(Player6,STATE_PANIC)
+            CheckSpellState(Player6,HOPELESSNESS)
+THEN
+    RESPONSE #100
+        PlayBardSong(THE_TALE_OF_CURRAN_STRONGHEART)
+END
+
 //////////////////////////////////////////////////////////////////// If ally health is low and have heal spell, heal them
 IF
 	ActionListEmpty()
