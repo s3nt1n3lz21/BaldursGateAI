@@ -8190,6 +8190,18 @@ END
 // 		Continue()
 // END
 
+//////// Bard Luck Song
+
+IF
+    ActionListEmpty()
+    CheckStatGT(Myself,5,CLASSLEVELBARD)
+    CheckStatLT(Myself,20,CLASSLEVELBARD)
+    !ModalState(Myself,BATTLESONG)
+THEN
+    RESPONSE #100
+        PlayBardSong(TYMORAS_MELODY)
+END
+
 /////////////////////////////////////////////////////////// Use Melfs Minute Meteors If Equipped
 
 IF
