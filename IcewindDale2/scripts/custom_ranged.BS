@@ -4573,6 +4573,15 @@ END
 // 1 Turn = 10 Rounds = 1 Minute Real time
 // 1 Hour = 5 Turns = 50 Rounds = 5 Minutes Real Time
 
+IF
+    ActionListEmpty()
+    HaveSpell(CLERIC_PROTECTION_FROM_EVIL)
+    !CheckSpellState(Myself,PROTECTION_FROM_EVIL)
+THEN
+    RESPONSE #100
+        Spell(Myself,CLERIC_PROTECTION_FROM_EVIL)
+END
+
 // Level 1
 // 50 Rounds (5 minutes) - 15ft Radius
 IF
