@@ -54,7 +54,7 @@
 // END
 
 IF
-	HotKey(Q)
+	HotKey(U)
 	Global("u_useLongSummonSpells","LOCALS",0)
 THEN
 	RESPONSE #100
@@ -63,7 +63,7 @@ THEN
 END
 
 IF
-	HotKey(Q)
+	HotKey(U)
 	Global("u_useLongSummonSpells","LOCALS",1)
 THEN
 	RESPONSE #100
