@@ -4264,6 +4264,21 @@ END
 
 /////////////////////////////////////////////////////////////////////////////////////// Turn Undead
 // Start turning undead if can turn nearby undead
+
+// Turn Undead (Cleric) when undead are present
+IF
+    ActionListEmpty()
+    See([EVILCUTOFF],0)
+    General([EVILCUTOFF],UNDEAD)
+    OR(2)
+        Class(Myself,CLERIC_ALL)
+        Class(Myself,PALADIN_ALL)
+    !ModalState(Myself,TURNUNDEAD)
+THEN
+    RESPONSE #100
+        Turn()
+END
+
 // [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
 // IF
 // [IWD2 PORT] commented: Turn Undead scripting tokens not available in IWD2 IDS/TRIGGER sets
