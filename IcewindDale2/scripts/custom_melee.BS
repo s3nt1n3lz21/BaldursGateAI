@@ -4577,6 +4577,16 @@ THEN
         Spell(Myself,CLERIC_PROTECTION_FROM_EVIL)
 END
 
+// Minor Elemental Barrier (self buff)
+IF
+    ActionListEmpty()
+    HaveSpell(CLERIC_MINOR_ELEMENTAL_BARRIER)
+    !CheckSpellState(Myself,MINOR_ELEMENTAL_BARRIER)
+THEN
+    RESPONSE #100
+        Spell(Myself,CLERIC_MINOR_ELEMENTAL_BARRIER)
+END
+
 // Level 1
 // 50 Rounds (5 minutes) - 15ft Radius
 IF
