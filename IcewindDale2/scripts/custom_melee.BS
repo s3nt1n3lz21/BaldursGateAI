@@ -4571,20 +4571,20 @@ END
 IF
     ActionListEmpty()
     HaveSpell(CLERIC_PROTECTION_FROM_EVIL)
-    !CheckSpellState(Myself,PROTECTION_FROM_EVIL)
+    !CheckSpellState(Player1,PROTECTION_FROM_EVIL)
 THEN
     RESPONSE #100
-        Spell(Myself,CLERIC_PROTECTION_FROM_EVIL)
+        Spell(Player1,CLERIC_PROTECTION_FROM_EVIL)
 END
 
 // Minor Elemental Barrier (self buff)
 IF
     ActionListEmpty()
     HaveSpell(CLERIC_MINOR_ELEMENTAL_BARRIER)
-    !CheckSpellState(Myself,MINOR_ELEMENTAL_BARRIER)
+    !CheckSpellState(Player1,MINOR_ELEMENTAL_BARRIER)
 THEN
     RESPONSE #100
-        Spell(Myself,CLERIC_MINOR_ELEMENTAL_BARRIER)
+        Spell(Player1,CLERIC_MINOR_ELEMENTAL_BARRIER)
 END
 
 // Level 1
