@@ -1467,6 +1467,166 @@ IF
 	// NumCreature([GOODCUTOFF.0.SOLAR],0)
 	// [IWD2 PORT] removed coordination: NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
 	// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MONSTER_SUMMONING_V)
+
+	// [IWD2 PORT] commented: spell stat not in STATS.IDS
+	// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("castnattack","LOCALS",6)
+		// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+		FloatMessage(Myself,47688) // Casting Spell
+		Spell(Myself,WIZARD_MONSTER_SUMMONING_V)
+END
+
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	// [IWD2 PORT] commented: planar race token not in RACE.IDS
+	// NumCreature([GOODCUTOFF.0.PLANATAR],0)
+	// [IWD2 PORT] commented: planar race token not in RACE.IDS
+	// NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+	// [IWD2 PORT] commented: planar race token not in RACE.IDS
+	// NumCreature([GOODCUTOFF.0.SOLAR],0)
+	// [IWD2 PORT] removed coordination: NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
+	// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MONSTER_SUMMONING_IV)
+
+	// [IWD2 PORT] commented: spell stat not in STATS.IDS
+	// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("castnattack","LOCALS",6)
+		// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+		FloatMessage(Myself,47688) // Casting Spell
+		Spell(Myself,WIZARD_MONSTER_SUMMONING_IV)
+END
+
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	// [IWD2 PORT] commented: planar race token not in RACE.IDS
+	// NumCreature([GOODCUTOFF.0.PLANATAR],0)
+	// [IWD2 PORT] commented: planar race token not in RACE.IDS
+	// NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+	// [IWD2 PORT] commented: planar race token not in RACE.IDS
+	// NumCreature([GOODCUTOFF.0.SOLAR],0)
+	// [IWD2 PORT] removed coordination: NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
+	// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MONSTER_SUMMONING_III)
+
+	// [IWD2 PORT] commented: spell stat not in STATS.IDS
+	// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("castnattack","LOCALS",6)
+		// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+		FloatMessage(Myself,47688) // Casting Spell
+		Spell(Myself,WIZARD_MONSTER_SUMMONING_III)
+END
+
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	// [IWD2 PORT] commented: planar race token not in RACE.IDS
+	// NumCreature([GOODCUTOFF.0.PLANATAR],0)
+	// [IWD2 PORT] commented: planar race token not in RACE.IDS
+	// NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+	// [IWD2 PORT] commented: planar race token not in RACE.IDS
+	// NumCreature([GOODCUTOFF.0.SOLAR],0)
+	// [IWD2 PORT] removed coordination: NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
+	// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MONSTER_SUMMONING_II)
+
+	// [IWD2 PORT] commented: spell stat not in STATS.IDS
+	// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("castnattack","LOCALS",6)
+		// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+		FloatMessage(Myself,47688) // Casting Spell
+		Spell(Myself,WIZARD_MONSTER_SUMMONING_II)
+END
+
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	// [IWD2 PORT] commented: planar race token not in RACE.IDS
+	// NumCreature([GOODCUTOFF.0.PLANATAR],0)
+	// [IWD2 PORT] commented: planar race token not in RACE.IDS
+	// NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+	// [IWD2 PORT] commented: planar race token not in RACE.IDS
+	// NumCreature([GOODCUTOFF.0.SOLAR],0)
+	// [IWD2 PORT] removed coordination: NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
+	// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MONSTER_SUMMONING_I)
+
+	// [IWD2 PORT] commented: spell stat not in STATS.IDS
+	// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("castnattack","LOCALS",6)
+		// [IWD2 PORT] removed coordination: Shout(SUMMONING_CREATURE) // Summoning Creature
+		FloatMessage(Myself,47688) // Casting Spell
+		Spell(Myself,WIZARD_MONSTER_SUMMONING_I)
+END
+
+// [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	// [IWD2 PORT] removed coordination: !Heard([ANYONE],SUMMONING_CREATURE) // If someone else summoning a creature
+
+	// [IWD2 PORT] commented: planar race token not in RACE.IDS
+	// NumCreature([GOODCUTOFF.0.PLANATAR],0)
+	// [IWD2 PORT] commented: planar race token not in RACE.IDS
+	// NumCreature([GOODCUTOFF.0.DARKPLANATAR],0)
+	// [IWD2 PORT] commented: planar race token not in RACE.IDS
+	// NumCreature([GOODCUTOFF.0.SOLAR],0)
+	// [IWD2 PORT] removed coordination: NumCreature([GOODCUTOFF.0.ANTISOLAR.0.0.SUMMONED],0)
+	// [IWD2 PORT] removed coordination: NumCreatureLT([GOODCUTOFF.0.0.0.0.SUMMONED],5)
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_SUMMON_NATURES_ALLY_8)
 
