@@ -1388,6 +1388,114 @@ END
 
 ////////////////////////////////////////////////////////////////////////////// Short Duration Summon spells
 
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SUMMON_MONSTER_VI)
+
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("castnattack","LOCALS",6)
+		FloatMessage(Myself,47688) // Casting Spell
+		Spell(Myself,WIZARD_SUMMON_MONSTER_VI)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SUMMON_MONSTER_V)
+
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("castnattack","LOCALS",6)
+		FloatMessage(Myself,47688) // Casting Spell
+		Spell(Myself,WIZARD_SUMMON_MONSTER_V)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SUMMON_MONSTER_IV)
+
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("castnattack","LOCALS",6)
+		FloatMessage(Myself,47688) // Casting Spell
+		Spell(Myself,WIZARD_SUMMON_MONSTER_IV)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SUMMON_MONSTER_III)
+
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("castnattack","LOCALS",6)
+		FloatMessage(Myself,47688) // Casting Spell
+		Spell(Myself,WIZARD_SUMMON_MONSTER_III)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SUMMON_MONSTER_II)
+
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("castnattack","LOCALS",6)
+		FloatMessage(Myself,47688) // Casting Spell
+		Spell(Myself,WIZARD_SUMMON_MONSTER_II)
+END
+
+IF
+	ActionListEmpty()
+
+	Global("u_useShortSummonSpells","LOCALS",1)
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_SUMMON_MONSTER_I)
+
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("castnattack","LOCALS",6)
+		FloatMessage(Myself,47688) // Casting Spell
+		Spell(Myself,WIZARD_SUMMON_MONSTER_I)
+END
+
 // [IWD2 PORT] block simplified/uncommented: BG/EE-only group casting/summon coordination
 IF
 	ActionListEmpty()
@@ -6799,6 +6907,25 @@ END
 
 // Level 4
 // 3 Rounds + 1 Rounds/Level (18 seconds + 6 seconds/level) - 1 Creature
+// Invisibility on Rogue/Player 3
+IF
+	ActionListEmpty()
+    OR(2)
+  		CheckStat(Myself,1,AURACLEANSING)
+  		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_IMPROVED_INVISIBILITY)
+	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
+
+	// !CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,103280) // Spell: Improved Invisibility
+		Spell(Player2,WIZARD_IMPROVED_INVISIBILITY)
+END
+
 IF
 	ActionListEmpty()
 	OR(2)
