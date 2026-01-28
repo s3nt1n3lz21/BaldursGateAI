@@ -4683,7 +4683,7 @@ IF
     ActionListEmpty()
     CheckStatGT(Myself,0,CLASSLEVELCLERIC)
     HaveSpell(CLERIC_RECITATION)
-    !CheckSpellState(Myself,RECITATION)
+    !CheckSpellState(Myself,BENEFICIAL_RECITATION)
 THEN
     RESPONSE #100
         Spell(Myself,CLERIC_RECITATION)
