@@ -560,6 +560,26 @@ IF
 		CheckStat(Myself,1,AURACLEANSING)
 		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_STONESKIN)
+	!CheckSpellState(Player1,STONESKIN)
+	!CheckStatGT(Player1,0,STONESKINS)
+
+// [IWD2 PORT] commented: spell stat not in STATS.IDS
+// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//FloatMessage(Myself,103275) // Spell: Stoneskin
+		Spell(Player1,WIZARD_STONESKIN)
+END
+
+IF
+	ActionListEmpty()
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_STONESKIN)
 	!CheckSpellState(Myself,STONESKIN)
 	!CheckStatGT(Myself,0,STONESKINS)
 
@@ -4658,6 +4678,16 @@ END
 // 1 Round = 6 Seconds Real Time
 // 1 Turn = 10 Rounds = 1 Minute Real time
 // 1 Hour = 5 Turns = 50 Rounds = 5 Minutes Real Time
+
+IF
+    ActionListEmpty()
+    CheckStatGT(Myself,0,CLASSLEVELCLERIC)
+    HaveSpell(CLERIC_ARMOR_OF_FAITH)
+    !CheckSpellState(Myself,ARMOR_OF_FAITH)
+THEN
+    RESPONSE #100
+        Spell(Myself,CLERIC_ARMOR_OF_FAITH)
+END
 
 IF
     ActionListEmpty()
