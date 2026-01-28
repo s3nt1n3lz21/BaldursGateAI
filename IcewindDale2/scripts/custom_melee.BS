@@ -6747,7 +6747,7 @@ IF
   		CheckStat(Myself,1,AURACLEANSING)
   		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_IMPROVED_INVISIBILITY)
-	!StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
+	!StateCheck(Player3,STATE_IMPROVEDINVISIBILITY)
 
 	// !CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -6756,7 +6756,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		//DisplayStringHead(Myself,103280) // Spell: Improved Invisibility
-		Spell(Player2,WIZARD_IMPROVED_INVISIBILITY)
+		Spell(Player3,WIZARD_IMPROVED_INVISIBILITY)
 END
 
 IF
