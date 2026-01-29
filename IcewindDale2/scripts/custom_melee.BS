@@ -6476,25 +6476,25 @@ END
 
 // Level 3
 // Until Charges Depleted - Self
-//IF
-	//ActionListEmpty()
-	//OR(2)
-		//CheckStat(Myself,1,AURACLEANSING)
-		//!GlobalTimerNotExpired("castnattack","LOCALS")
-	// HaveSpell(WIZARD_MELF_METEOR)
-	//!HasItem("ENEBLADE",Myself)
-	//!HasItem("MELFMET",Myself)
-//
+IF
+	ActionListEmpty()
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_MELFS_MINUTE_METEORS)
+	!HasItem("ENEBLADE",Myself)
+	!HasItem("MELFMET",Myself)
+
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	//!StateCheck(Myself,STATE_SILENCED)
-	//CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-//THEN
-	//RESPONSE #100
-        //SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103279) // Spell: Melfs Minute Meteors
-		// Spell(Myself,WIZARD_MELF_METEOR)
-//END
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		FloatMessage(Myself,103279) // Spell: Melfs Minute Meteors
+		Spell(Myself,WIZARD_MELFS_MINUTE_METEORS)
+END
 
 IF
 	ActionListEmpty()
