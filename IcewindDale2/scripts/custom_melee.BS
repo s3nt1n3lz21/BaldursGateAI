@@ -4731,6 +4731,23 @@ THEN
         Spell(Player1,CLERIC_PROTECTION_FROM_EVIL)
 END
 
+// Perception Filter (self buff)
+IF
+    ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+
+    HaveSpellRES("USWI356")
+    // !CheckSpellState(Myself,PERCEPTION_FILTER)
+
+    !StateCheck(Myself,STATE_SILENCED)
+    CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+    RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+        //DisplayStringHead(Myself,71440) // Spell: Perception Filter
+        SpellRES("USWI356",Myself)
+END
+
 // Minor Elemental Barrier (self buff)
 IF
     ActionListEmpty()
