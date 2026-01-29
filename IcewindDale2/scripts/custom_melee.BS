@@ -4015,6 +4015,29 @@ THEN
         Spell(ThirdNearestEnemyOf(Myself),WIZARD_RAY_OF_ENFEEBLEMENT)
 END
 
+IF
+ 	ActionListEmpty()
+	!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(CLERIC_DOOM)
+	See(NearestEnemyOf(Myself))
+	OR(3)
+		CheckStatLT(LastSeenBy(Myself),0,ARMORCLASS)
+		CheckStatGT(LastSeenBy(Myself),75,MAXHITPOINTS)
+		CheckStatLT(LastSeenBy(Myself),10,THAC0)
+	!CheckSpellState(LastSeenBy(Myself),DOOM)
+	!StateCheck(LastSeenBy(Myself),STATE_DEAD)
+
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+
+	!InParty(LastSeenBy(Myself))
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//DisplayStringHead(Myself,71439) // Spell: Doom
+		Spell(LastSeenBy(Myself),CLERIC_DOOM)
+END
+
 /////////////////////////////////////////////////////////////////////////////////////// Debuff/Control Wands
 IF
 	ActionListEmpty()
