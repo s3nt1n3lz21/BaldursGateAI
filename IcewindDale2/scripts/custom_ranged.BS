@@ -6699,7 +6699,8 @@ IF
 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
 	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
+	    // Increase timer slightly from 6 to 7 to prevent double cast/item is not equipped for a while after casting
+        SetGlobalTimer("castnattack","LOCALS",7)
 		FloatMessage(Myself,103279) // Spell: Melfs Minute Meteors
 		Spell(Myself,WIZARD_MELFS_MINUTE_METEORS)
 END
