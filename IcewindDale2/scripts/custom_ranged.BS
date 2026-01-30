@@ -4224,6 +4224,26 @@ THEN
 END
 
 IF
+    ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+
+    HaveSpell(CLERIC_BANE)
+    !StateCheck(Myself,STATE_SILENCED)
+    CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+
+    See(NearestEnemyOf(Myself),0)
+    Range(NearestEnemyOf(Myself),12)
+
+	// 3+ enemies
+    NumCreatureGT([ENEMY],2,12)
+THEN
+    RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+        FloatMessage(Myself,103303) // Spell: Bane
+        Spell(Myself,CLERIC_BANE)
+END
+
+IF
  	ActionListEmpty()
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_DOOM)
