@@ -8119,6 +8119,23 @@ END
 //END
 
 IF
+    ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+
+    HasItem("IWAND03",Myself)
+	HPPercentGT(NearestEnemyOf(Myself),0)
+
+    See(NearestEnemyOf(Myself),0)
+    Range(NearestEnemyOf(Myself),18)
+	!InParty(LastSeenBy(Myself))
+THEN
+    RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		//FloatMessage(Myself,103256) // Wand: Magic Missile
+        UseItem("IWAND03",NearestEnemyOf(Myself))
+END
+
+IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 	Class(Myself,MAGE_ALL)
