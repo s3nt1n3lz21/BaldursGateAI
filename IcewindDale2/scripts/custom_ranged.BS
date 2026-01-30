@@ -657,6 +657,8 @@ IF
 	HaveSpell(CLERIC_CURE_LIGHT_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),80)
 
+	!Range(NearestEnemyOf(Myself),3)
+
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
 	!StateCheck(Myself,STATE_SILENCED)
@@ -673,6 +675,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 
 	Global("u_healingSpellsOn","LOCALS",1)
+
+	!Range(NearestEnemyOf(Myself),3)
 
 	HaveSpell(CLERIC_CURE_MODERATE_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),80) 
@@ -694,6 +698,8 @@ IF
 
 	Global("u_healingSpellsOn","LOCALS",1)
 
+	!Range(NearestEnemyOf(Myself),3)
+
 	HaveSpell(CLERIC_CURE_SERIOUS_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),75)
 
@@ -714,6 +720,8 @@ IF
 
 	Global("u_healingSpellsOn","LOCALS",1)
 
+	!Range(NearestEnemyOf(Myself),3)
+
 	HaveSpell(CLERIC_CURE_CRITICAL_WOUNDS)
 	HPPercentLT(MostDamagedOf(Myself),70)
 
@@ -731,6 +739,8 @@ END
 IF
 	ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
+
+	!Range(NearestEnemyOf(Myself),3)
 
 	Global("u_healingSpellsOn","LOCALS",1)
 
@@ -753,6 +763,8 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 
 	Global("u_healingSpellsOn","LOCALS",1)
+
+	!Range(NearestEnemyOf(Myself),3)
 
 	HaveSpell(CLERIC_HEALING_CIRCLE)  // SPPR514.SPL (Mass Cure)
 	HPPercentLT(MostDamagedOf(Myself),70)
