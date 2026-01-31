@@ -6678,7 +6678,8 @@ END
 // No check for hope status, so use variable to cast once per combat
 IF
     Global("u_hope_cast","LOCALS",1)
-    !See(NearestEnemyOf(Myself),0)
+	!See(NearestEnemyOf(Myself),0)
+	!Range(NearestEnemyOf(Myself),30)
 THEN
     RESPONSE #100
         SetGlobal("u_hope_cast","LOCALS",0)
