@@ -2377,6 +2377,7 @@ IF
 		CheckStat(Myself,1,AURACLEANSING)
 		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_DETECT_INVISIBILITY)
+	Range(NearestEnemyOf(Myself),12)
 // OR(2)
 // [IWD2 PORT] commented: SpellCast() trigger not in IWD2 TRIGGER.IDS
 // 		SpellCast([EVILCUTOFF],WIZARD_INVISIBILITY)
