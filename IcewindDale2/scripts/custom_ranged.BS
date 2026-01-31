@@ -6891,6 +6891,9 @@ IF
 		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_EMOTION_HOPE)
 
+	See(NearestEnemyOf(Myself),0)
+	Range(NearestEnemyOf(Myself),30)
+
     Global("u_hope_cast","LOCALS",0)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
