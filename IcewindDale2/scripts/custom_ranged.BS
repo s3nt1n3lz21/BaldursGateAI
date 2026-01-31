@@ -2423,48 +2423,48 @@ THEN
 END
 
 // Level 2 - Alteration
-IF
-	ActionListEmpty()
-	!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(CLERIC_SILENCE_15_RADIUS)  // SPPR211.SPL (Silence, 15' Radius)
-	OR(4)
-		See(NearestEnemyOf([0.0.0.BARD_ALL]))
-		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
-	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
-	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-// [IWD2 PORT] commented: stat not in STATS.IDS
-// 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
-// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
-// [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
-// 	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
+// IF
+// 	ActionListEmpty()
+// 	!GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(CLERIC_SILENCE_15_RADIUS)  // SPPR211.SPL (Silence, 15' Radius)
+// 	OR(4)
+// 		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+// 		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+// 		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+// 		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
+// 	!StateCheck(LastSeenBy(Myself),STATE_SILENCED)
+// 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+// // [IWD2 PORT] commented: stat not in STATS.IDS
+// // 	!CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
+// // 	!ImmuneToSpellLevel(LastSeenBy(Myself),2)
 
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+// // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+// 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-// [IWD2 PORT] commented: stat not in STATS.IDS
-// 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+// // [IWD2 PORT] commented: stat not in STATS.IDS
+// // 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
 
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103333) // Spell: Silence
-		Spell(LastSeenBy(Myself),CLERIC_SILENCE_15_RADIUS)  // SPPR211.SPL (Silence, 15' Radius)
-END
+// 	!InParty(LastSeenBy(Myself))
+// THEN
+// 	RESPONSE #100
+//         SetGlobalTimer("castnattack","LOCALS",6)
+// 		//FloatMessage(Myself,103333) // Spell: Silence
+// 		Spell(LastSeenBy(Myself),CLERIC_SILENCE_15_RADIUS)  // SPPR211.SPL (Silence, 15' Radius)
+// END
 
 // Level 6 - Abjuration 1
 IF
