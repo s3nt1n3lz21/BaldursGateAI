@@ -4128,6 +4128,7 @@ IF
 	!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(CLERIC_PRAYER)
 	See(NearestEnemyOf(Myself))
+	Range(NearestEnemyOf(Myself),12)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
