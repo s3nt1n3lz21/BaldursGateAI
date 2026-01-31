@@ -4934,6 +4934,23 @@ IF
     ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 
+    HaveSpell(CLERIC_SPIRITUAL_HAMMER)
+
+	!HasItem("SHAMMR",Myself)  // Spiritual Hammer
+
+    !StateCheck(Myself,STATE_SILENCED)
+    CheckStatLT(Myself,50,SPELLFAILUREPRIEST)
+THEN
+    RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+        FloatMessage(Myself,103304) // Spell: Spiritual Weapon
+        Spell(Myself,CLERIC_SPIRITUAL_HAMMER)
+END
+
+IF
+    ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+
     HaveSpell(WIZARD_EAGLES_SPLENDOR)
 
 	!CheckSpellState(Player1, EAGLES_SPLENDOR)
