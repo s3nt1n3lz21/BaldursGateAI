@@ -4932,6 +4932,21 @@ END
 
 IF
     ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+
+    HaveSpell(WIZARD_ARMOR)
+    !CheckSpellState(Myself,ARMOR)
+    !StateCheck(Myself,STATE_SILENCED)
+    CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+    RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+        FloatMessage(Myself,103270) // Spell: Mage Armor
+        Spell(Myself,WIZARD_ARMOR)
+END
+
+IF
+    ActionListEmpty()
     CheckStatGT(Myself,0,CLASSLEVELCLERIC)
     HaveSpell(CLERIC_RECITATION)
     !CheckSpellState(Myself,BENEFICIAL_RECITATION)
