@@ -6675,12 +6675,23 @@ THEN
 		Spell(Player1,WIZARD_CATS_GRACE)
 END
 
+// No check for hope status, so use variable to cast once per combat
+IF
+    Global("u_hope_cast","LOCALS",1)
+    !See(NearestEnemyOf(Myself),0)
+THEN
+    RESPONSE #100
+        SetGlobal("u_hope_cast","LOCALS",0)
+END
+
 IF
 	ActionListEmpty()
 	OR(2)
 		CheckStat(Myself,1,AURACLEANSING)
 		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_EMOTION_HOPE)
+
+    Global("u_hope_cast","LOCALS",0)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -6690,6 +6701,7 @@ THEN
 	RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
 		Spell(Myself,WIZARD_EMOTION_HOPE)
+        SetGlobal("u_hope_cast","LOCALS",1)
 END
 
 //IF
