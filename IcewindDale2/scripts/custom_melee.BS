@@ -4738,6 +4738,22 @@ IF
     ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 
+    HaveSpell(WIZARD_EAGLES_SPLENDOR)
+
+	!CheckSpellState(Player1, EAGLES_SPLENDOR)
+    !StateCheck(Myself,STATE_SILENCED)
+    CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+    RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+        FloatMessage(Myself,103273) // Spell: Eagle's Splendor
+        Spell(Player1,WIZARD_EAGLES_SPLENDOR)
+END
+
+IF
+    ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+
     HaveSpell(WIZARD_ARMOR)
     !CheckSpellState(Myself,ARMOR)
     !StateCheck(Myself,STATE_SILENCED)
