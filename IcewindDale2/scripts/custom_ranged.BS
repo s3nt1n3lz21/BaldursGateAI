@@ -6902,6 +6902,63 @@ THEN
         SetGlobal("u_hope_cast","LOCALS",1)
 END
 
+IF
+    ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+
+    HaveSpell(WIZARD_HASTE)
+
+	!CheckSpellState(Player1,HASTE)
+
+    !StateCheck(Myself,STATE_SILENCED)
+    CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+    See(NearestEnemyOf(Myself),0)
+    Range(NearestEnemyOf(Myself),18)
+THEN
+    RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+        Spell(Player1,WIZARD_HASTE)
+END
+
+IF
+    ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+
+    HaveSpell(WIZARD_HASTE)
+
+	!CheckSpellState(Player2,HASTE)
+
+    !StateCheck(Myself,STATE_SILENCED)
+    CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+    See(NearestEnemyOf(Myself),0)
+    Range(NearestEnemyOf(Myself),18)
+THEN
+    RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+        Spell(Player2,WIZARD_HASTE)
+END
+
+IF
+    ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+
+    HaveSpell(WIZARD_HASTE)
+
+	!CheckSpellState(Player3,HASTE)
+
+    !StateCheck(Myself,STATE_SILENCED)
+    CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+    See(NearestEnemyOf(Myself),0)
+    Range(NearestEnemyOf(Myself),18)
+THEN
+    RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+        Spell(Player3,WIZARD_HASTE)
+END
+
 //IF
 	//ActionListEmpty()
 	//OR(2)
