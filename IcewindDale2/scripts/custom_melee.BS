@@ -4738,6 +4738,23 @@ IF
     ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 
+    HaveSpell(WIZARD_CATS_GRACE)
+
+	!CheckSpellState(Player3, CATS_GRACE)
+
+    !StateCheck(Myself,STATE_SILENCED)
+    CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+    RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+        FloatMessage(Myself,103272) // Spell: Cat's Grace
+        Spell(Player3,WIZARD_CATS_GRACE)
+END
+
+IF
+    ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+
     HaveSpell(CLERIC_SPIRITUAL_HAMMER)
 
 	!HasItem("SHAMMR",Myself)  // Spiritual Hammer
