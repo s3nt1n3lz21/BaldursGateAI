@@ -6828,7 +6828,7 @@ IF
 		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MELFS_MINUTE_METEORS)
 	!HasItem("ENEBLADE",Myself)
-	!HasItem("MELFMET",Myself)
+	!HasItem("IMMETE0",Myself)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -6837,7 +6837,8 @@ IF
 THEN
 	RESPONSE #100
 	    // Increase timer slightly from 6 to 7 to prevent double cast/item is not equipped for a while after casting
-        SetGlobalTimer("castnattack","LOCALS",7)
+		// Testing at 6 again
+        SetGlobalTimer("castnattack","LOCALS",6)
 		FloatMessage(Myself,103279) // Spell: Melfs Minute Meteors
 		Spell(Myself,WIZARD_MELFS_MINUTE_METEORS)
 END
