@@ -1417,6 +1417,40 @@ END
 ////////////////////////////////////////////////////////////////////////////// Short Duration Summon spells
 
 IF
+    ActionListEmpty()
+	Global("u_useShortSummonSpells","LOCALS",1)
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+
+    HaveSpell(WIZARD_CONJURE_FIRE_ELEMENTAL)
+    !StateCheck(Myself,STATE_SILENCED)
+    CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+    RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",12)
+        FloatMessage(Myself,103318) // Spell: Conjure Lesser Fire Elemental
+        Spell(Myself,WIZARD_CONJURE_FIRE_ELEMENTAL)
+END
+
+IF
+    ActionListEmpty()
+	Global("u_useShortSummonSpells","LOCALS",1)
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+
+    HaveSpell(WIZARD_CONJURE_LESSER_FIRE_ELEMENTAL)
+    !StateCheck(Myself,STATE_SILENCED)
+    CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+    RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",12)
+        FloatMessage(Myself,103318) // Spell: Conjure Lesser Fire Elemental
+        Spell(Myself,WIZARD_CONJURE_LESSER_FIRE_ELEMENTAL)
+END
+
+IF
 	ActionListEmpty()
 
 	Global("u_useShortSummonSpells","LOCALS",1)
@@ -4738,43 +4772,9 @@ END
 
 IF
     ActionListEmpty()
-	Global("u_useShortSummonSpells","LOCALS",1)
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-
-    HaveSpell(WIZARD_CONJURE_FIRE_ELEMENTAL)
-    !StateCheck(Myself,STATE_SILENCED)
-    CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-    RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",12)
-        FloatMessage(Myself,103318) // Spell: Conjure Lesser Fire Elemental
-        Spell(Myself,WIZARD_CONJURE_FIRE_ELEMENTAL)
-END
-
-IF
-    ActionListEmpty()
-	Global("u_useShortSummonSpells","LOCALS",1)
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-
-    HaveSpell(WIZARD_CONJURE_LESSER_FIRE_ELEMENTAL)
-    !StateCheck(Myself,STATE_SILENCED)
-    CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-    RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",12)
-        FloatMessage(Myself,103318) // Spell: Conjure Lesser Fire Elemental
-        Spell(Myself,WIZARD_CONJURE_LESSER_FIRE_ELEMENTAL)
-END
-
-IF
-    ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 
-    HaveSpellRES("USW1552")
+    HaveSpellRES("USWI552")
     !CheckSpellState(Myself,GHOST_ARMOR)
     !StateCheck(Myself,STATE_SILENCED)
     CheckStatLT(Myself,50,SPELLFAILUREMAGE)
@@ -4782,7 +4782,7 @@ THEN
     RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
         // FloatMessage(Myself,103299) // Spell: Ghostform
-        SpellRES("USW1552", Myself)
+        SpellRES("USWI552", Myself)
 END
 
 IF
