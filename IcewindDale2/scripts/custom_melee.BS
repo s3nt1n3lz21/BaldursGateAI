@@ -6250,6 +6250,25 @@ THEN
 		Spell(Player1,CLERIC_PROTECTION_FROM_FIRE)
 END
 
+IF
+    ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+    HaveSpellRES("USCOLD")
+    CheckStatLT(Player1,99,RESISTCOLD)
+
+    !CheckStat(Player1,1,MINORGLOBE)
+    !StateCheck(Player1,STATE_INVISIBLE)
+    !StateCheck(Player1,STATE_IMPROVEDINVISIBILITY)
+
+    !StateCheck(Myself,STATE_SILENCED)
+    CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+    RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+        // FloatMessage(Myself,?????) // Protection From Cold
+        SpellRES("USCOLD",Player1)
+END
+
 // Level 5 - Alteration 8
 // 3 Rounds + 1 Round/Level (18 seconds + 6 seconds/level) - 1 Creature
 IF
