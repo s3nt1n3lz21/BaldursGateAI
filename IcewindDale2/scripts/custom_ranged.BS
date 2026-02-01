@@ -6847,7 +6847,7 @@ IF
 		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MELFS_MINUTE_METEORS)
 	!HasItem("ENEBLADE",Myself)
-	!HasItem("IMMETE0",Myself)
+	!HasItem("MMMETE0",Myself)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -8904,7 +8904,7 @@ END
 
 IF
 	ActionListEmpty()
-	HasItem("MELFMET",Myself)
+	HasItem("MMMETE0",Myself)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	!InParty(LastSeenBy(Myself))
 
