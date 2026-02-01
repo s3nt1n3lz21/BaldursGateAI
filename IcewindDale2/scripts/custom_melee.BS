@@ -6720,8 +6720,7 @@ IF
     !StateCheck(Myself,STATE_SILENCED)
     CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
-    See(NearestEnemyOf(Myself),0)
-    Range(NearestEnemyOf(Myself),18)
+    Range(NearestEnemyOf(Myself),30)
 THEN
     RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -6739,8 +6738,7 @@ IF
     !StateCheck(Myself,STATE_SILENCED)
     CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
-    See(NearestEnemyOf(Myself),0)
-    Range(NearestEnemyOf(Myself),18)
+    Range(NearestEnemyOf(Myself),30)
 THEN
     RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
@@ -6758,8 +6756,7 @@ IF
     !StateCheck(Myself,STATE_SILENCED)
     CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
-    See(NearestEnemyOf(Myself),0)
-    Range(NearestEnemyOf(Myself),18)
+    Range(NearestEnemyOf(Myself),30)
 THEN
     RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
