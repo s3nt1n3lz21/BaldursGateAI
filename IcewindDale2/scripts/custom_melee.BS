@@ -4809,7 +4809,6 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 
     HaveSpellRES("USWI552")
-    !CheckSpellState(Player1,GHOST_ARMOR)
     !StateCheck(Myself,STATE_SILENCED)
     CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
