@@ -2467,57 +2467,57 @@ END
 // END
 
 // Level 6 - Abjuration 1
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_DISPEL_MAGIC)
-	See(NearestEnemyOf(Myself))
-	OR(2)
-		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-// [IWD2 PORT] commented: stat not in STATS.IDS
-// 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
-// [IWD2 PORT] commented: stat not in STATS.IDS
-// 		CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
-// [IWD2 PORT] commented: stat not in STATS.IDS
-// 		CheckStat(LastSeenBy(Myself),3,WIZARD_SPELL_IMMUNITY)
-// [IWD2 PORT] commented: stat not in STATS.IDS
-// 		CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
-// [IWD2 PORT] commented: stat not in STATS.IDS
-// 		CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY)
-// [IWD2 PORT] commented: stat not in STATS.IDS
-// 		CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
-// [IWD2 PORT] commented: stat not in STATS.IDS
-// 		CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY)
-// [IWD2 PORT] commented: stat not in STATS.IDS
-// 		CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
-// 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
-		CheckStatGT(LastSeenBy(Myself),25,RESISTMAGIC)
+// IF
+// 	ActionListEmpty()
+// 	OR(2)
+// 		CheckStat(Myself,1,AURACLEANSING)
+// 		!GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(WIZARD_DISPEL_MAGIC)
+// 	See(NearestEnemyOf(Myself))
+// 	OR(2)
+// 		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+// // [IWD2 PORT] commented: stat not in STATS.IDS
+// // 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
+// // [IWD2 PORT] commented: stat not in STATS.IDS
+// // 		CheckStat(LastSeenBy(Myself),2,WIZARD_SPELL_IMMUNITY)
+// // [IWD2 PORT] commented: stat not in STATS.IDS
+// // 		CheckStat(LastSeenBy(Myself),3,WIZARD_SPELL_IMMUNITY)
+// // [IWD2 PORT] commented: stat not in STATS.IDS
+// // 		CheckStat(LastSeenBy(Myself),4,WIZARD_SPELL_IMMUNITY)
+// // [IWD2 PORT] commented: stat not in STATS.IDS
+// // 		CheckStat(LastSeenBy(Myself),5,WIZARD_SPELL_IMMUNITY)
+// // [IWD2 PORT] commented: stat not in STATS.IDS
+// // 		CheckStat(LastSeenBy(Myself),6,WIZARD_SPELL_IMMUNITY)
+// // [IWD2 PORT] commented: stat not in STATS.IDS
+// // 		CheckStat(LastSeenBy(Myself),7,WIZARD_SPELL_IMMUNITY)
+// // [IWD2 PORT] commented: stat not in STATS.IDS
+// // 		CheckStat(LastSeenBy(Myself),8,WIZARD_SPELL_IMMUNITY)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// // 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// 		CheckStatGT(LastSeenBy(Myself),25,RESISTMAGIC)
 
-// [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
-// 	!ImmuneToSpellLevel(LastSeenBy(Myself),6)
+// // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
+// // 	!ImmuneToSpellLevel(LastSeenBy(Myself),6)
 
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+// // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103371) // Spell: Pierce Magic
-		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
-END
+// 	!InParty(LastSeenBy(Myself))
+// THEN
+// 	RESPONSE #100
+//         SetGlobalTimer("castnattack","LOCALS",6)
+// 		//FloatMessage(Myself,103371) // Spell: Pierce Magic
+// 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
+// END
 
 // Level 5 - Abjuration 1
 IF
@@ -2560,45 +2560,45 @@ THEN
 END
 
 // Level 4 - Abjuration
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_DISPEL_MAGIC)
-	OR(4)
-		See(NearestEnemyOf([0.0.0.BARD_ALL]))
-		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
-	OR(1)
-		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
-// 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
-// [IWD2 PORT] commented: stat not in STATS.IDS
-// 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
-// [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
-// 	!ImmuneToSpellLevel(LastSeenBy(Myself),4)
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+// IF
+// 	ActionListEmpty()
+// 	OR(2)
+// 		CheckStat(Myself,1,AURACLEANSING)
+// 		!GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(WIZARD_DISPEL_MAGIC)
+// 	OR(4)
+// 		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+// 		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+// 		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+// 		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
+// 	OR(1)
+// 		CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// // 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// // [IWD2 PORT] commented: stat not in STATS.IDS
+// // 		CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
+// // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
+// // 	!ImmuneToSpellLevel(LastSeenBy(Myself),4)
+// 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+// // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
 
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103331) // Spell: Secret Word
-		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
-END
+// 	!InParty(LastSeenBy(Myself))
+// THEN
+// 	RESPONSE #100
+//         SetGlobalTimer("castnattack","LOCALS",6)
+// 		//FloatMessage(Myself,103331) // Spell: Secret Word
+// 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
+// END
 
 // Level 2 - Divination
 IF
@@ -3222,377 +3222,296 @@ END
 
 // Wizard True Dispel Magic = Dispel Magic
 // Dispel Magic On Allies
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_DISPEL_MAGIC)
-	OR(13)
-		CheckSpellState(Player1,HOPELESSNESS)
-		CheckSpellState(Player1,ENFEEBLED)
-		CheckSpellState(Player1,HELD)
-		CheckSpellState(Player1,ENTANGLE)
-		CheckSpellState(Player1,WEB)
-		CheckSpellState(Player1,DOOM)
-		CheckSpellState(Player1,MISCAST_MAGIC)
-		StateCheck(Player1,STATE_PANIC)
-		StateCheck(Player1,STATE_CHARMED)
-		StateCheck(Player1,STATE_CONFUSED)
-		StateCheck(Player1,STATE_SLEEPING)
-		StateCheck(Player1,STATE_SLOWED)
-		StateCheck(Player1,STATE_FEEBLEMINDED)
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 		CheckStatGT(Player1,0,CLERIC_INSECT_PLAGUE)
-	See(Player1)
+// IF
+// 	ActionListEmpty()
+// 	OR(2)
+// 		CheckStat(Myself,1,AURACLEANSING)
+// 		!GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(WIZARD_DISPEL_MAGIC)
+// 	OR(13)
+// 		CheckSpellState(Player1,HOPELESSNESS)
+// 		CheckSpellState(Player1,ENFEEBLED)
+// 		CheckSpellState(Player1,HELD)
+// 		CheckSpellState(Player1,ENTANGLE)
+// 		CheckSpellState(Player1,WEB)
+// 		CheckSpellState(Player1,DOOM)
+// 		CheckSpellState(Player1,MISCAST_MAGIC)
+// 		StateCheck(Player1,STATE_PANIC)
+// 		StateCheck(Player1,STATE_CHARMED)
+// 		StateCheck(Player1,STATE_CONFUSED)
+// 		StateCheck(Player1,STATE_SLEEPING)
+// 		StateCheck(Player1,STATE_SLOWED)
+// 		StateCheck(Player1,STATE_FEEBLEMINDED)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 		CheckStatGT(Player1,0,CLERIC_INSECT_PLAGUE)
+// 	See(Player1)
 
-	!Heard([ANYONE],204)
+// 	!Heard([ANYONE],204)
 
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+// // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103322) // Spell: Dispel Magic
-		Shout(204)
-		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
-END
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+// THEN
+// 	RESPONSE #100
+//         SetGlobalTimer("castnattack","LOCALS",6)
+// 		//FloatMessage(Myself,103322) // Spell: Dispel Magic
+// 		Shout(204)
+// 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
+// END
 
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_DISPEL_MAGIC)
-	OR(13)
-		CheckSpellState(Player2,HOPELESSNESS)
-		CheckSpellState(Player2,ENFEEBLED)
-		CheckSpellState(Player2,HELD)
-		CheckSpellState(Player2,ENTANGLE)
-		CheckSpellState(Player2,WEB)
-		CheckSpellState(Player2,DOOM)
-		CheckSpellState(Player2,MISCAST_MAGIC)
-		StateCheck(Player2,STATE_PANIC)
-		StateCheck(Player2,STATE_CHARMED)
-		StateCheck(Player2,STATE_CONFUSED)
-		StateCheck(Player2,STATE_SLEEPING)
-		StateCheck(Player2,STATE_SLOWED)
-		StateCheck(Player2,STATE_FEEBLEMINDED)
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 		CheckStatGT(Player2,0,CLERIC_INSECT_PLAGUE)
-	See(Player2)
+// IF
+// 	ActionListEmpty()
+// 	OR(2)
+// 		CheckStat(Myself,1,AURACLEANSING)
+// 		!GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(WIZARD_DISPEL_MAGIC)
+// 	OR(13)
+// 		CheckSpellState(Player2,HOPELESSNESS)
+// 		CheckSpellState(Player2,ENFEEBLED)
+// 		CheckSpellState(Player2,HELD)
+// 		CheckSpellState(Player2,ENTANGLE)
+// 		CheckSpellState(Player2,WEB)
+// 		CheckSpellState(Player2,DOOM)
+// 		CheckSpellState(Player2,MISCAST_MAGIC)
+// 		StateCheck(Player2,STATE_PANIC)
+// 		StateCheck(Player2,STATE_CHARMED)
+// 		StateCheck(Player2,STATE_CONFUSED)
+// 		StateCheck(Player2,STATE_SLEEPING)
+// 		StateCheck(Player2,STATE_SLOWED)
+// 		StateCheck(Player2,STATE_FEEBLEMINDED)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 		CheckStatGT(Player2,0,CLERIC_INSECT_PLAGUE)
+// 	See(Player2)
 
-	!Heard([ANYONE],204)
+// 	!Heard([ANYONE],204)
 
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+// // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103322) // Spell: Dispel Magic
-		Shout(204)
-		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
-END
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+// THEN
+// 	RESPONSE #100
+//         SetGlobalTimer("castnattack","LOCALS",6)
+// 		//FloatMessage(Myself,103322) // Spell: Dispel Magic
+// 		Shout(204)
+// 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
+// END
 
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_DISPEL_MAGIC)
-	OR(13)
-		CheckSpellState(Player3,HOPELESSNESS)
-		CheckSpellState(Player3,ENFEEBLED)
-		CheckSpellState(Player3,HELD)
-		CheckSpellState(Player3,ENTANGLE)
-		CheckSpellState(Player3,WEB)
-		CheckSpellState(Player3,DOOM)
-		CheckSpellState(Player3,MISCAST_MAGIC)
-		StateCheck(Player3,STATE_PANIC)
-		StateCheck(Player3,STATE_CHARMED)
-		StateCheck(Player3,STATE_CONFUSED)
-		StateCheck(Player3,STATE_SLEEPING)
-		StateCheck(Player3,STATE_SLOWED)
-		StateCheck(Player3,STATE_FEEBLEMINDED)
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 		CheckStatGT(Player3,0,CLERIC_INSECT_PLAGUE)
-	See(Player3)
+// IF
+// 	ActionListEmpty()
+// 	OR(2)
+// 		CheckStat(Myself,1,AURACLEANSING)
+// 		!GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(WIZARD_DISPEL_MAGIC)
+// 	OR(13)
+// 		CheckSpellState(Player3,HOPELESSNESS)
+// 		CheckSpellState(Player3,ENFEEBLED)
+// 		CheckSpellState(Player3,HELD)
+// 		CheckSpellState(Player3,ENTANGLE)
+// 		CheckSpellState(Player3,WEB)
+// 		CheckSpellState(Player3,DOOM)
+// 		CheckSpellState(Player3,MISCAST_MAGIC)
+// 		StateCheck(Player3,STATE_PANIC)
+// 		StateCheck(Player3,STATE_CHARMED)
+// 		StateCheck(Player3,STATE_CONFUSED)
+// 		StateCheck(Player3,STATE_SLEEPING)
+// 		StateCheck(Player3,STATE_SLOWED)
+// 		StateCheck(Player3,STATE_FEEBLEMINDED)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 		CheckStatGT(Player3,0,CLERIC_INSECT_PLAGUE)
+// 	See(Player3)
 
-	!Heard([ANYONE],204)
+// 	!Heard([ANYONE],204)
 
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+// // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103322) // Spell: Dispel Magic
-		Shout(204)
-		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
-END
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+// THEN
+// 	RESPONSE #100
+//         SetGlobalTimer("castnattack","LOCALS",6)
+// 		//FloatMessage(Myself,103322) // Spell: Dispel Magic
+// 		Shout(204)
+// 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
+// END
 
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_DISPEL_MAGIC)
-	OR(13)
-		CheckSpellState(Player4,HOPELESSNESS)
-		CheckSpellState(Player4,ENFEEBLED)
-		CheckSpellState(Player4,HELD)
-		CheckSpellState(Player4,ENTANGLE)
-		CheckSpellState(Player4,WEB)
-		CheckSpellState(Player4,DOOM)
-		CheckSpellState(Player4,MISCAST_MAGIC)
-		StateCheck(Player4,STATE_PANIC)
-		StateCheck(Player4,STATE_CHARMED)
-		StateCheck(Player4,STATE_CONFUSED)
-		StateCheck(Player4,STATE_SLEEPING)
-		StateCheck(Player4,STATE_SLOWED)
-		StateCheck(Player4,STATE_FEEBLEMINDED)
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 		CheckStatGT(Player4,0,CLERIC_INSECT_PLAGUE)
-	See(Player4)
+// IF
+// 	ActionListEmpty()
+// 	OR(2)
+// 		CheckStat(Myself,1,AURACLEANSING)
+// 		!GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(WIZARD_DISPEL_MAGIC)
+// 	OR(13)
+// 		CheckSpellState(Player4,HOPELESSNESS)
+// 		CheckSpellState(Player4,ENFEEBLED)
+// 		CheckSpellState(Player4,HELD)
+// 		CheckSpellState(Player4,ENTANGLE)
+// 		CheckSpellState(Player4,WEB)
+// 		CheckSpellState(Player4,DOOM)
+// 		CheckSpellState(Player4,MISCAST_MAGIC)
+// 		StateCheck(Player4,STATE_PANIC)
+// 		StateCheck(Player4,STATE_CHARMED)
+// 		StateCheck(Player4,STATE_CONFUSED)
+// 		StateCheck(Player4,STATE_SLEEPING)
+// 		StateCheck(Player4,STATE_SLOWED)
+// 		StateCheck(Player4,STATE_FEEBLEMINDED)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 		CheckStatGT(Player4,0,CLERIC_INSECT_PLAGUE)
+// 	See(Player4)
 
-	!Heard([ANYONE],204)
+// 	!Heard([ANYONE],204)
 
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+// // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103322) // Spell: Dispel Magic
-		Shout(204)
-		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
-END
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+// THEN
+// 	RESPONSE #100
+//         SetGlobalTimer("castnattack","LOCALS",6)
+// 		//FloatMessage(Myself,103322) // Spell: Dispel Magic
+// 		Shout(204)
+// 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
+// END
 
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_DISPEL_MAGIC)
-	OR(13)
-		CheckSpellState(Player5,HOPELESSNESS)
-		CheckSpellState(Player5,ENFEEBLED)
-		CheckSpellState(Player5,HELD)
-		CheckSpellState(Player5,ENTANGLE)
-		CheckSpellState(Player5,WEB)
-		CheckSpellState(Player5,DOOM)
-		CheckSpellState(Player5,MISCAST_MAGIC)
-		StateCheck(Player5,STATE_PANIC)
-		StateCheck(Player5,STATE_CHARMED)
-		StateCheck(Player5,STATE_CONFUSED)
-		StateCheck(Player5,STATE_SLEEPING)
-		StateCheck(Player5,STATE_SLOWED)
-		StateCheck(Player5,STATE_FEEBLEMINDED)
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 		CheckStatGT(Player5,0,CLERIC_INSECT_PLAGUE)
-	See(Player5)
+// IF
+// 	ActionListEmpty()
+// 	OR(2)
+// 		CheckStat(Myself,1,AURACLEANSING)
+// 		!GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(WIZARD_DISPEL_MAGIC)
+// 	OR(13)
+// 		CheckSpellState(Player5,HOPELESSNESS)
+// 		CheckSpellState(Player5,ENFEEBLED)
+// 		CheckSpellState(Player5,HELD)
+// 		CheckSpellState(Player5,ENTANGLE)
+// 		CheckSpellState(Player5,WEB)
+// 		CheckSpellState(Player5,DOOM)
+// 		CheckSpellState(Player5,MISCAST_MAGIC)
+// 		StateCheck(Player5,STATE_PANIC)
+// 		StateCheck(Player5,STATE_CHARMED)
+// 		StateCheck(Player5,STATE_CONFUSED)
+// 		StateCheck(Player5,STATE_SLEEPING)
+// 		StateCheck(Player5,STATE_SLOWED)
+// 		StateCheck(Player5,STATE_FEEBLEMINDED)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 		CheckStatGT(Player5,0,CLERIC_INSECT_PLAGUE)
+// 	See(Player5)
 
-	!Heard([ANYONE],204)
+// 	!Heard([ANYONE],204)
 
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+// // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103322) // Spell: Dispel Magic
-		Shout(204)
-		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
-END
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+// THEN
+// 	RESPONSE #100
+//         SetGlobalTimer("castnattack","LOCALS",6)
+// 		//FloatMessage(Myself,103322) // Spell: Dispel Magic
+// 		Shout(204)
+// 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
+// END
 
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_DISPEL_MAGIC)
-	OR(13)
-		CheckSpellState(Player6,HOPELESSNESS)
-		CheckSpellState(Player6,ENFEEBLED)
-		CheckSpellState(Player6,HELD)
-		CheckSpellState(Player6,ENTANGLE)
-		CheckSpellState(Player6,WEB)
-		CheckSpellState(Player6,DOOM)
-		CheckSpellState(Player6,MISCAST_MAGIC)
-		StateCheck(Player6,STATE_PANIC)
-		StateCheck(Player6,STATE_CHARMED)
-		StateCheck(Player6,STATE_CONFUSED)
-		StateCheck(Player6,STATE_SLEEPING)
-		StateCheck(Player6,STATE_SLOWED)
-		StateCheck(Player6,STATE_FEEBLEMINDED)
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 		CheckStatGT(Player6,0,CLERIC_INSECT_PLAGUE)
-	See(Player6)
+// IF
+// 	ActionListEmpty()
+// 	OR(2)
+// 		CheckStat(Myself,1,AURACLEANSING)
+// 		!GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(WIZARD_DISPEL_MAGIC)
+// 	OR(13)
+// 		CheckSpellState(Player6,HOPELESSNESS)
+// 		CheckSpellState(Player6,ENFEEBLED)
+// 		CheckSpellState(Player6,HELD)
+// 		CheckSpellState(Player6,ENTANGLE)
+// 		CheckSpellState(Player6,WEB)
+// 		CheckSpellState(Player6,DOOM)
+// 		CheckSpellState(Player6,MISCAST_MAGIC)
+// 		StateCheck(Player6,STATE_PANIC)
+// 		StateCheck(Player6,STATE_CHARMED)
+// 		StateCheck(Player6,STATE_CONFUSED)
+// 		StateCheck(Player6,STATE_SLEEPING)
+// 		StateCheck(Player6,STATE_SLOWED)
+// 		StateCheck(Player6,STATE_FEEBLEMINDED)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 		CheckStatGT(Player6,0,CLERIC_INSECT_PLAGUE)
+// 	See(Player6)
 
-	!Heard([ANYONE],204)
+// 	!Heard([ANYONE],204)
 
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+// // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103322) // Spell: Dispel Magic
-		Shout(204)
-		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
-END
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+// THEN
+// 	RESPONSE #100
+//         SetGlobalTimer("castnattack","LOCALS",6)
+// 		//FloatMessage(Myself,103322) // Spell: Dispel Magic
+// 		Shout(204)
+// 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
+// END
 
-// Dispel Magic On Enemies
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_DISPEL_MAGIC)
-	OR(4)
-		See(NearestEnemyOf([0.0.0.BARD_ALL]))
-		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
-	OR(11)
+// // Dispel Magic On Enemies
+// IF
+// 	ActionListEmpty()
+// 	OR(2)
+// 		CheckStat(Myself,1,AURACLEANSING)
+// 		!GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(WIZARD_DISPEL_MAGIC)
+// 	OR(4)
+// 		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+// 		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+// 		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+// 		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
+// 	OR(11)
 
-		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
-		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-		CheckSpellState(LastSeenBy(Myself),HASTE)
-		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
-		// [IWD2 PORT] commented: TRUE_SIGHT not in SPLSTATE.IDS
-		// 	CheckSpellState(LastSeenBy(Myself),TRUE_SIGHT)
-		CheckSpellState(LastSeenBy(Myself),DEFENSIVE_HARMONY)
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
-		// [IWD2 PORT] commented: FIRE_SHIELD not in SPLSTATE.IDS
-		// 	CheckSpellState(LastSeenBy(Myself),FIRE_SHIELD)
-		CheckSpellState(LastSeenBy(Myself),DEATH_WARD)
-		// [IWD2 PORT] commented: CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)  // no direct IWD2 stat replacement
-		CheckStatGT(LastSeenBy(Myself),0,STR)
-		// [IWD2 PORT] commented: PROTECTION_FROM_MAGIC_WEAPONS not in SPLSTATE.IDS
-		// 	CheckSpellState(LastSeenBy(Myself),PROTECTION_FROM_MAGIC_WEAPONS)
-
-
-
-
-
-
-
-		StateCheck(LastSeenBy(Myself),STATE_HASTED)
-		StateCheck(LastSeenBy(Myself),STATE_BLESS)
-		// [IWD2 PORT] commented: STATE_DRAWUPONHOLYMIGHT not in STATE.IDS
-		// 	StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
-		StateCheck(LastSeenBy(Myself),STATE_BLUR)
-		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
-	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-// [IWD2 PORT] commented: stat not in STATS.IDS
-// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
-// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
-// [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
-// 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
-
-	!Heard([ANYONE],205)
-
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
-
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-// [IWD2 PORT] commented: stat not in STATS.IDS
-// 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
-
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
-
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103322) // Spell: Dispel Magic
-		Shout(205)
-		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
-END
-
-// Wizard Dispel Magic = Remove Magic
-// Level 3 - Abjuration
-IF
-	ActionListEmpty()
-	OR(2)
-		CheckStat(Myself,1,AURACLEANSING)
-		!GlobalTimerNotExpired("castnattack","LOCALS")
-	HaveSpell(WIZARD_DISPEL_MAGIC)
-	OR(4)
-		See(NearestEnemyOf([0.0.0.BARD_ALL]))
-		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
-		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
-		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
-	OR(11)
-
-		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
-		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
-		CheckSpellState(LastSeenBy(Myself),HASTE)
-		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
-		// [IWD2 PORT] TRUE_SIGHT not in SPLSTATE.IDS; approximated with Mirror Image state
-		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
-		CheckSpellState(LastSeenBy(Myself),DEFENSIVE_HARMONY)
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
-		// [IWD2 PORT] FIRE_SHIELD not in SPLSTATE.IDS; approximated with Blur state
-		StateCheck(LastSeenBy(Myself),STATE_BLUR)
-		CheckSpellState(LastSeenBy(Myself),DEATH_WARD)
-		// [IWD2 PORT] commented: CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)  // no direct IWD2 stat replacement
-		CheckStatGT(LastSeenBy(Myself),0,STR)
-		// [IWD2 PORT] PROTECTION_FROM_MAGIC_WEAPONS not in SPLSTATE.IDS; approximated with Bless state
-		StateCheck(LastSeenBy(Myself),STATE_BLESS)
+// 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
+// 		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+// 		CheckSpellState(LastSeenBy(Myself),HASTE)
+// 		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
+// 		// [IWD2 PORT] commented: TRUE_SIGHT not in SPLSTATE.IDS
+// 		// 	CheckSpellState(LastSeenBy(Myself),TRUE_SIGHT)
+// 		CheckSpellState(LastSeenBy(Myself),DEFENSIVE_HARMONY)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+// 		// [IWD2 PORT] commented: FIRE_SHIELD not in SPLSTATE.IDS
+// 		// 	CheckSpellState(LastSeenBy(Myself),FIRE_SHIELD)
+// 		CheckSpellState(LastSeenBy(Myself),DEATH_WARD)
+// 		// [IWD2 PORT] commented: CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)  // no direct IWD2 stat replacement
+// 		CheckStatGT(LastSeenBy(Myself),0,STR)
+// 		// [IWD2 PORT] commented: PROTECTION_FROM_MAGIC_WEAPONS not in SPLSTATE.IDS
+// 		// 	CheckSpellState(LastSeenBy(Myself),PROTECTION_FROM_MAGIC_WEAPONS)
 
 
 
@@ -3600,46 +3519,127 @@ IF
 
 
 
-		StateCheck(LastSeenBy(Myself),STATE_HASTED)
-		StateCheck(LastSeenBy(Myself),STATE_BLESS)
-		// [IWD2 PORT] commented: STATE_DRAWUPONHOLYMIGHT not in STATE.IDS
-		// 	StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
-		StateCheck(LastSeenBy(Myself),STATE_BLUR)
-		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
-	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
-// [IWD2 PORT] commented: stat not in STATS.IDS
-// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) 
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
-// [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
-// 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
-// [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
-// 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
+// 		StateCheck(LastSeenBy(Myself),STATE_HASTED)
+// 		StateCheck(LastSeenBy(Myself),STATE_BLESS)
+// 		// [IWD2 PORT] commented: STATE_DRAWUPONHOLYMIGHT not in STATE.IDS
+// 		// 	StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
+// 		StateCheck(LastSeenBy(Myself),STATE_BLUR)
+// 		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+// 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+// // [IWD2 PORT] commented: stat not in STATS.IDS
+// // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
+// // 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
 
-	!Heard([ANYONE],205)
+// 	!Heard([ANYONE],205)
 
-	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
-	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
-// [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
-// 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+// // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
 
-	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
-// [IWD2 PORT] commented: stat not in STATS.IDS
-// 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+// 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+// // [IWD2 PORT] commented: stat not in STATS.IDS
+// // 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
 
-// [IWD2 PORT] commented: spell stat not in STATS.IDS
-// 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
-	!StateCheck(Myself,STATE_SILENCED)
-	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 
-	!InParty(LastSeenBy(Myself))
-THEN
-	RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",6)
-		//FloatMessage(Myself,103323) // Spell: Remove Magic
-		Shout(205)
-		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
-END
+// 	!InParty(LastSeenBy(Myself))
+// THEN
+// 	RESPONSE #100
+//         SetGlobalTimer("castnattack","LOCALS",6)
+// 		//FloatMessage(Myself,103322) // Spell: Dispel Magic
+// 		Shout(205)
+// 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
+// END
+
+// // Wizard Dispel Magic = Remove Magic
+// // Level 3 - Abjuration
+// IF
+// 	ActionListEmpty()
+// 	OR(2)
+// 		CheckStat(Myself,1,AURACLEANSING)
+// 		!GlobalTimerNotExpired("castnattack","LOCALS")
+// 	HaveSpell(WIZARD_DISPEL_MAGIC)
+// 	OR(4)
+// 		See(NearestEnemyOf([0.0.0.BARD_ALL]))
+// 		See(NearestEnemyOf([0.0.0.DRUID_ALL]))
+// 		See(NearestEnemyOf([0.0.0.MAGE_ALL]))
+// 		See(NearestEnemyOf([0.0.0.CLERIC_ALL]))
+// 	OR(11)
+
+// 		CheckStatGT(LastSeenBy(Myself),0,SHIELDGLOBE)
+// 		CheckStatGT(LastSeenBy(Myself),0,MINORGLOBE)
+// 		CheckSpellState(LastSeenBy(Myself),HASTE)
+// 		CheckStatGT(LastSeenBy(Myself),0,STONESKINS)
+// 		// [IWD2 PORT] TRUE_SIGHT not in SPLSTATE.IDS; approximated with Mirror Image state
+// 		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+// 		CheckSpellState(LastSeenBy(Myself),DEFENSIVE_HARMONY)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_CHAOTIC_COMMANDS)
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 		CheckStatGT(LastSeenBy(Myself),0,CLERIC_FREE_ACTION)
+// 		// [IWD2 PORT] FIRE_SHIELD not in SPLSTATE.IDS; approximated with Blur state
+// 		StateCheck(LastSeenBy(Myself),STATE_BLUR)
+// 		CheckSpellState(LastSeenBy(Myself),DEATH_WARD)
+// 		// [IWD2 PORT] commented: CheckStatGT(LastSeenBy(Myself),0,DEFENSIVE_MODIFIER)  // no direct IWD2 stat replacement
+// 		CheckStatGT(LastSeenBy(Myself),0,STR)
+// 		// [IWD2 PORT] PROTECTION_FROM_MAGIC_WEAPONS not in SPLSTATE.IDS; approximated with Bless state
+// 		StateCheck(LastSeenBy(Myself),STATE_BLESS)
+
+
+
+
+
+
+
+// 		StateCheck(LastSeenBy(Myself),STATE_HASTED)
+// 		StateCheck(LastSeenBy(Myself),STATE_BLESS)
+// 		// [IWD2 PORT] commented: STATE_DRAWUPONHOLYMIGHT not in STATE.IDS
+// 		// 	StateCheck(LastSeenBy(Myself),STATE_DRAWUPONHOLYMIGHT)
+// 		StateCheck(LastSeenBy(Myself),STATE_BLUR)
+// 		StateCheck(LastSeenBy(Myself),STATE_MIRRORIMAGE)
+// 	!CheckStat(LastSeenBy(Myself),1,MINORGLOBE)
+// // [IWD2 PORT] commented: stat not in STATS.IDS
+// // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_IMMUNITY) 
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_TURNING)
+// // [IWD2 PORT] commented: WIZARD_SPELL_DEFLECTION not in STATS.IDS
+// // 	!CheckStat(LastSeenBy(Myself),1,WIZARD_SPELL_DEFLECTION)
+// // [IWD2 PORT] commented: ImmuneToSpellLevel() not in TRIGGER.IDS
+// // 	!ImmuneToSpellLevel(LastSeenBy(Myself),3)
+
+// 	!Heard([ANYONE],205)
+
+// 	!StateCheck(LastSeenBy(Myself),STATE_INVISIBLE)
+// 	!StateCheck(LastSeenBy(Myself),STATE_IMPROVEDINVISIBILITY)
+// // [IWD2 PORT] commented: STATE_NOT_TARGETABLE not in STATE.IDS
+// // 	!StateCheck(LastSeenBy(Myself),STATE_NOT_TARGETABLE)
+
+// 	CheckStatLT(LastSeenBy(Myself),75,RESISTMAGIC)
+// // [IWD2 PORT] commented: stat not in STATS.IDS
+// // 	CheckStatGT(LastSeenBy(Myself),5,SAVEVSSPELL)
+
+// // [IWD2 PORT] commented: spell stat not in STATS.IDS
+// // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
+// 	!StateCheck(Myself,STATE_SILENCED)
+// 	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+
+// 	!InParty(LastSeenBy(Myself))
+// THEN
+// 	RESPONSE #100
+//         SetGlobalTimer("castnattack","LOCALS",6)
+// 		//FloatMessage(Myself,103323) // Spell: Remove Magic
+// 		Shout(205)
+// 		Spell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
+// END
 
 // Cleric Dispel Magic = Dispel Magic
 // Level 3 - Abjuration
@@ -6847,7 +6847,7 @@ IF
 		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MELFS_MINUTE_METEORS)
 	!HasItem("ENEBLADE",Myself)
-	!HasItem("MMMETE0",Myself)
+	!HasItem("MMMETEO",Myself)
 
 // [IWD2 PORT] commented: spell stat not in STATS.IDS
 // 	!CheckStatGT(Myself,0,CLERIC_INSECT_PLAGUE)
@@ -8904,7 +8904,7 @@ END
 
 IF
 	ActionListEmpty()
-	HasItem("MMMETE0",Myself)
+	HasItem("MMMETEO",Myself)
 	HPPercentGT(NearestEnemyOf(Myself),0)
 	!InParty(LastSeenBy(Myself))
 
