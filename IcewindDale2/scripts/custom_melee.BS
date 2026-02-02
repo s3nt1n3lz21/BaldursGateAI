@@ -6253,7 +6253,7 @@ END
 IF
     ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-    HaveSpellRES("USCOLD")
+    HaveSpellRES("USPR352")
     CheckStatLT(Player1,99,RESISTCOLD)
 
     !CheckStat(Player1,1,MINORGLOBE)
@@ -6266,7 +6266,7 @@ THEN
     RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
         // FloatMessage(Myself,?????) // Protection From Cold
-        SpellRES("USCOLD",Player1)
+        SpellRES("USPR352",Player1)
 END
 
 // Level 5 - Alteration 8
