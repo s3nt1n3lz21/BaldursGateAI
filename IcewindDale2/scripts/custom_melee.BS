@@ -1428,7 +1428,7 @@ IF
     CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
     RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",12)
+        SetGlobalTimer("castnattack","LOCALS",6)
         FloatMessage(Myself,103318) // Spell: Conjure Lesser Fire Elemental
         Spell(Myself,WIZARD_CONJURE_EARTH_ELEMENTAL)
 END
@@ -1445,7 +1445,7 @@ IF
     CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
     RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",12)
+        SetGlobalTimer("castnattack","LOCALS",6)
         FloatMessage(Myself,103318) // Spell: Conjure Lesser Fire Elemental
         Spell(Myself,WIZARD_CONJURE_FIRE_ELEMENTAL)
 END
@@ -1462,7 +1462,7 @@ IF
     CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
     RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",12)
+        SetGlobalTimer("castnattack","LOCALS",6)
         FloatMessage(Myself,103318) // Spell: Conjure Lesser Fire Elemental
         Spell(Myself,WIZARD_CONJURE_LESSER_EARTH_ELEMENTAL)
 END
@@ -1479,7 +1479,7 @@ IF
     CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
     RESPONSE #100
-        SetGlobalTimer("castnattack","LOCALS",12)
+        SetGlobalTimer("castnattack","LOCALS",6)
         FloatMessage(Myself,103318) // Spell: Conjure Lesser Fire Elemental
         Spell(Myself,WIZARD_CONJURE_LESSER_FIRE_ELEMENTAL)
 END
