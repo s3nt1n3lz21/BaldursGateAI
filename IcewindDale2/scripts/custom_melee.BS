@@ -4809,14 +4809,30 @@ IF
     !GlobalTimerNotExpired("castnattack","LOCALS")
 
     HaveSpellRES("USWI552")
-    !CheckSpellState(Myself,GHOST_ARMOR)
+    !CheckSpellState(Player1,GHOST_ARMOR)
     !StateCheck(Myself,STATE_SILENCED)
     CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
     RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
         // FloatMessage(Myself,103299) // Spell: Ghostform
-        SpellRES("USWI552", Myself)
+        SpellRES("USWI552", Player1)
+END
+
+// Enlarge Player 2
+IF
+    ActionListEmpty()
+    !GlobalTimerNotExpired("castnattack","LOCALS")
+    HaveSpellRES("USWI255")
+    !StateCheck(Player2,STATE_INVISIBLE)
+    !StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
+    !StateCheck(Myself,STATE_SILENCED)
+    CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+    RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+        // FloatMessage(Myself,xxxxx) // Spell: Enlarge Creature
+        SpellRES("USWI255",Player2)
 END
 
 IF
