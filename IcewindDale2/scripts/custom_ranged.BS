@@ -5005,12 +5005,13 @@ IF
     ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
 
-    HaveSpellRES("USWI552")
+    Global("GhostformUsed","LOCALS",0)
     !StateCheck(Myself,STATE_SILENCED)
     CheckStatLT(Myself,50,SPELLFAILUREMAGE)
 THEN
     RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		SetGlobal("GhostformUsed","LOCALS",1)
         // FloatMessage(Myself,103299) // Spell: Ghostform
         SpellRES("USWI552", Player1)
 END
