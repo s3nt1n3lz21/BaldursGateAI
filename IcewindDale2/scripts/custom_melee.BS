@@ -4823,7 +4823,7 @@ END
 IF
     ActionListEmpty()
     !GlobalTimerNotExpired("castnattack","LOCALS")
-    HaveSpellRES("USWI255")
+	Global("EnlargeCreatureUsed","LOCALS",0)
     !StateCheck(Player2,STATE_INVISIBLE)
     !StateCheck(Player2,STATE_IMPROVEDINVISIBILITY)
     !StateCheck(Myself,STATE_SILENCED)
@@ -4831,6 +4831,7 @@ IF
 THEN
     RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
+		SetGlobal("EnlargeCreatureUsed","LOCALS",1)
         // FloatMessage(Myself,xxxxx) // Spell: Enlarge Creature
         SpellRES("USWI255",Player2)
 END
