@@ -8247,25 +8247,57 @@ THEN
 		Spell(LastSeenBy(Myself),WIZARD_CHAIN_LIGHTNING)
 END
 
-// Safe Fireball
+// Safe Fireball 3 Code Blocks
+// Arm Safe Spell for Fireball
 IF
-	Class(Myself,MAGE_ALL)
-	HaveSpellRes("USMM004") // Metamagic Safe Spell
-	HaveSpell(WIZARD_FIREBALL)
-	// !StateCheck(TenthNearestEnemyOf(Myself),STATE_REALLY_DEAD)
+    ActionListEmpty()
+    Class(Myself,MAGE_ALL)
 
-	// !TriggerOverride(TenthNearestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
-	See(SecondNearestEnemyOf(Myself)) // Target the fireball target
-	!InParty(LastSeenBy(Myself))
+    GlobalTimerExpired("SafeFireballCD","LOCALS")
+    Global("DoSafeFireball","LOCALS",0)
+
+    HaveSpellRes("USMM004")            // Safe Spell (metamagic)
+    HaveSpell(WIZARD_FIREBALL)
+
+    See(SecondNearestEnemyOf(Myself))
+    !InParty(LastSeenBy(Myself))
     NumCreatureGT([ENEMY],2)
-    NumCreatureGT([ALLY],0)            // only bother when allies are around
+    NumCreatureGT([ALLY],0)
 THEN
-	RESPONSE #100
+    RESPONSE #100
+        SetGlobal("DoSafeFireball","LOCALS",1)
+        SetGlobalTimer("DoSafeFireballTimeout","LOCALS",3)
+        SetGlobalTimer("SafeFireballCD","LOCALS",6)
+
         SetGlobalTimer("castnattack","LOCALS",6)
-		SetGlobalTimer("castingfireball","LOCALS",6) // Starting fireball
-		//FloatMessage(Myself,103266) // Spell: Fireball
-		SpellRES("USMM004",Myself) // apply Safe Spell to the *next* cast
-		Spell(SecondNearestEnemyOf(Myself),WIZARD_FIREBALL)
+        SetGlobalTimer("castingfireball","LOCALS",6)
+
+        SpellRES("USMM004",Myself)
+        Continue()
+END
+
+// Cast Fireball after Safe Spell (same pass)
+IF
+    Class(Myself,MAGE_ALL)
+    Global("DoSafeFireball","LOCALS",1)
+
+    HaveSpell(WIZARD_FIREBALL)
+    See(SecondNearestEnemyOf(Myself))
+    !InParty(LastSeenBy(Myself))
+THEN
+    RESPONSE #100
+        SetGlobal("DoSafeFireball","LOCALS",0)
+        Spell(SecondNearestEnemyOf(Myself),WIZARD_FIREBALL)
+        Continue()
+END
+
+// Failsafe: clear armed state if it didn't resolve quickly
+IF
+    Global("DoSafeFireball","LOCALS",1)
+    GlobalTimerExpired("DoSafeFireballTimeout","LOCALS")
+THEN
+    RESPONSE #100
+        SetGlobal("DoSafeFireball","LOCALS",0)
 END
 
 // Level 3 - Evocation
