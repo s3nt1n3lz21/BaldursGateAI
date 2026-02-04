@@ -6701,6 +6701,7 @@ IF
 		CheckStat(Myself,1,AURACLEANSING)
 		!GlobalTimerNotExpired("castnattack","LOCALS")
 	HaveSpell(WIZARD_MELFS_MINUTE_METEORS)
+	!HasItem("BLIGHTN",Myself)
 	!HasItem("ENEBLADE",Myself)
 	!HasItem("MMMETEO",Myself)
 
@@ -6715,6 +6716,28 @@ THEN
         SetGlobalTimer("castnattack","LOCALS",6)
 		FloatMessage(Myself,103279) // Spell: Melfs Minute Meteors
 		Spell(Myself,WIZARD_MELFS_MINUTE_METEORS)
+END
+
+// Ball Lightning
+IF
+	ActionListEmpty()
+	OR(2)
+		CheckStat(Myself,1,AURACLEANSING)
+		!GlobalTimerNotExpired("castnattack","LOCALS")
+	HaveSpell(WIZARD_BALL_LIGHTNING)
+
+	// Prevent recast if Ball Lightning projectiles are already active
+	!HasItem("BLIGHTN",Myself)
+	!HasItem("ENEBLADE",Myself)
+	!HasItem("MMMETEO",Myself)
+
+	!StateCheck(Myself,STATE_SILENCED)
+	CheckStatLT(Myself,50,SPELLFAILUREMAGE)
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		FloatMessage(Myself,103266) // Spell: Ball Lightning
+		Spell(Myself,WIZARD_BALL_LIGHTNING)
 END
 
 IF
