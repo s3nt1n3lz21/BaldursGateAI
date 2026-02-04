@@ -8247,6 +8247,27 @@ THEN
 		Spell(LastSeenBy(Myself),WIZARD_CHAIN_LIGHTNING)
 END
 
+// Safe Fireball
+IF
+	Class(Myself,MAGE_ALL)
+	HaveSpellRes("USMM004") // Metamagic Safe Spell
+	HaveSpell(WIZARD_FIREBALL)
+	// !StateCheck(TenthNearestEnemyOf(Myself),STATE_REALLY_DEAD)
+
+	// !TriggerOverride(TenthNearestEnemyOf(Myself),Range(NearestEnemyOf(Myself),22))
+	See(SecondNearestEnemyOf(Myself)) // Target the fireball target
+	!InParty(LastSeenBy(Myself))
+    NumCreatureGT([ENEMY],2)
+    NumCreatureGT([ALLY],0)            // only bother when allies are around
+THEN
+	RESPONSE #100
+        SetGlobalTimer("castnattack","LOCALS",6)
+		SetGlobalTimer("castingfireball","LOCALS",6) // Starting fireball
+		//FloatMessage(Myself,103266) // Spell: Fireball
+		SpellRES("USMM004",Myself) // apply Safe Spell to the *next* cast
+		Spell(SecondNearestEnemyOf(Myself),WIZARD_FIREBALL)
+END
+
 // Level 3 - Evocation
 IF
 	Class(Myself,MAGE_ALL)
