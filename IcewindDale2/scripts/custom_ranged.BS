@@ -4306,7 +4306,7 @@ IF
     Range(NearestEnemyOf(Myself),12)
 
 	// 3+ enemies
-    NumCreatureGT([ENEMY],2,12)
+    NumCreatureGT([ENEMY],2)
 THEN
     RESPONSE #100
         SetGlobalTimer("castnattack","LOCALS",6)
